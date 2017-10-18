@@ -15,16 +15,64 @@
  */
 package com.kubiakpatryk.safely;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class LauncherActivity extends AppCompatActivity {
 
-    private static final String TAG = "LauncherActivity";
+    public static final String FIRST_LAUNCHER_KEY = "IS_FIRST_LAUNCH";
+    public static final String INTENT_EXTRA_CLASS_NAME = "CLASS_NAME";
+
+    private SharedPreferencesManager sharedPreferencesManager;
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
+
+        startSuitableActivity();
+
+
+    }
+
+    public void startSuitableActivity(){
+        startActivity(selectSuitableActivity());
+    }
+
+    public Intent selectSuitableActivity(){
+        if(isFirstLaunch(sharedPreferencesManager)) {
+            putExtraToIntent("TutorialActivity");
+            return new Intent(this, TutorialActivity.class);
+        }
+        else {
+            putExtraToIntent("MainActivity");
+            return new Intent(this, MainActivity.class);
+        }
+    }
+
+    private void putExtraToIntent(String activityName){
+        intent = new Intent().putExtra(INTENT_EXTRA_CLASS_NAME,activityName);
+    }
+
+    public boolean isFirstLaunch(SharedPreferencesManager sharedPreferencesManager) {
+        if (isFirstLaunchNotExists())
+            return true;
+        else {
+            return (Boolean) sharedPreferencesManager.getIfContainsKey(FIRST_LAUNCHER_KEY);
+        }
+    }
+
+    private boolean isFirstLaunchNotExists() {
+        return sharedPreferencesManager.getIfContainsKey(FIRST_LAUNCHER_KEY) == null;
+    }
+
+    @Override
+    public Intent getIntent() {
+        return intent;
     }
 }

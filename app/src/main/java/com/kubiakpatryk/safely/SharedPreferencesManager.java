@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class SharedPreferencesManager implements PreferenceOperations{
+public class SharedPreferencesManager{
 
     private static final String PREFERENCES_NAME = "com.kubiakpatryk.safely";
 
@@ -33,17 +33,21 @@ public class SharedPreferencesManager implements PreferenceOperations{
         sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
-    @Override
     public Object getIfContainsKey(String key) {
         if(sharedPreferences.contains(key))
             return getSuitableObject(key);
         else return null;
     }
 
-    @Override
     public void setKeyValue(String key, Object value) {
         editor = sharedPreferences.edit();
         setSuitableObject(key,value);
+        editor.apply();
+    }
+
+    public void clearAllPreferences(){
+        editor = sharedPreferences.edit();
+        editor.clear();
         editor.apply();
     }
 
