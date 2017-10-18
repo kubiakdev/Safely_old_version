@@ -15,27 +15,29 @@
  */
 package com.kubiakpatryk.safely;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.res.Resources;
+import android.support.constraint.ConstraintLayout;
+import android.widget.LinearLayout;
 
-public class LauncherActivity extends AppCompatActivity {
+/**
+ * Created by patryk on 18.10.17.
+ */
 
-    private SuitableActivityLauncher suitableActivityLauncher;
+public class ScreenResolutions {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launcher);
+    public ScreenResolutions() {}
 
-        suitableActivityLauncher = new SuitableActivityLauncher(this, getIntent());
-
-        startSuitableActivity();
-
+    public int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
-    public void startSuitableActivity(){
-        startActivity(suitableActivityLauncher.selectSuitableActivity());
+    public int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
+    public void setLayoutParameters(ConstraintLayout layout){
+        layout.setLayoutParams(
+                new LinearLayout.LayoutParams(getScreenWidth(), getScreenHeight()));
+    }
 
 }

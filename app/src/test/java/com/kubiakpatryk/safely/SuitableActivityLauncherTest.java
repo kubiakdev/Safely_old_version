@@ -28,9 +28,10 @@ import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class,sdk = 26)
-public class LauncherActivityTest {
+public class SuitableActivityLauncherTest {
 
     private LauncherActivity launcherActivity;
+    private SuitableActivityLauncher suitableActivityLauncher;
     private SharedPreferencesManager sharedPreferencesManager;
     private Object isFirstLaunch;
 
@@ -38,16 +39,19 @@ public class LauncherActivityTest {
     public void initializeObjects(){
         launcherActivity = Robolectric.buildActivity(LauncherActivity.class).create().get();
         Context context = launcherActivity.getApplicationContext();
+        suitableActivityLauncher = new SuitableActivityLauncher
+                (context, launcherActivity.getIntent());
         sharedPreferencesManager = new SharedPreferencesManager(context);
         saveCurrentPreferences();
         removePreviousPreferences();
     }
 
     private void saveCurrentPreferences(){
-        if(sharedPreferencesManager.getIfContainsKey(LauncherActivity.FIRST_LAUNCHER_KEY) == null)
+        if(sharedPreferencesManager.getIfContainsKey
+                (SuitableActivityLauncher.FIRST_LAUNCHER_KEY) == null)
             return;
         isFirstLaunch = sharedPreferencesManager.
-                getIfContainsKey(LauncherActivity.FIRST_LAUNCHER_KEY);
+                getIfContainsKey(SuitableActivityLauncher.FIRST_LAUNCHER_KEY);
     }
 
     private void removePreviousPreferences(){
@@ -56,21 +60,21 @@ public class LauncherActivityTest {
 
     @Test
     public void testIsFirstLaunch_WithNullBoolean(){
-        boolean result = launcherActivity.isFirstLaunch(sharedPreferencesManager);
+        boolean result = suitableActivityLauncher.isFirstLaunch(sharedPreferencesManager);
         assertEquals(result,true);
     }
 
     @Test
     public void testIsFirstLaunch_WithTrueBoolean(){
-        sharedPreferencesManager.setKeyValue(LauncherActivity.FIRST_LAUNCHER_KEY,true);
-        boolean result = launcherActivity.isFirstLaunch(sharedPreferencesManager);
+        sharedPreferencesManager.setKeyValue(SuitableActivityLauncher.FIRST_LAUNCHER_KEY,true);
+        boolean result = suitableActivityLauncher.isFirstLaunch(sharedPreferencesManager);
         assertEquals(result, true);
     }
 
     @Test
     public void testIsFirstLaunch_WithFalseBoolean() {
-        sharedPreferencesManager.setKeyValue(LauncherActivity.FIRST_LAUNCHER_KEY,false);
-        boolean result = launcherActivity.isFirstLaunch(sharedPreferencesManager);
+        sharedPreferencesManager.setKeyValue(SuitableActivityLauncher.FIRST_LAUNCHER_KEY,false);
+        boolean result = suitableActivityLauncher.isFirstLaunch(sharedPreferencesManager);
         assertEquals(result, false);
     }
 
@@ -78,6 +82,6 @@ public class LauncherActivityTest {
     public void returnOldPreference(){
         if(isFirstLaunch==null)
             return;
-        sharedPreferencesManager.setKeyValue(LauncherActivity.FIRST_LAUNCHER_KEY, isFirstLaunch);
+        sharedPreferencesManager.setKeyValue(SuitableActivityLauncher.FIRST_LAUNCHER_KEY, isFirstLaunch);
     }
 }

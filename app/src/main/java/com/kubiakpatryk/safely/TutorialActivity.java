@@ -15,14 +15,35 @@
  */
 package com.kubiakpatryk.safely;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class TutorialActivity extends AppCompatActivity {
 
+    private ScreenResolutions screenResolutions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
+
+        screenResolutions = new ScreenResolutions();
+
+        ConstraintLayout constraintLayout_leftOuter =
+                (ConstraintLayout) findViewById(R.id.tutorialActivity_constraintLayout_leftOuter);
+        ConstraintLayout constraintLayout_leftInner =
+                (ConstraintLayout) findViewById(R.id.tutorialActivity_constraintLayout_leftInner);
+        ConstraintLayout constraintLayout_center =
+                (ConstraintLayout) findViewById(R.id.tutorialActivity_constraintLayout_center);
+        ConstraintLayout constraintLayout_rightInner =
+                (ConstraintLayout) findViewById(R.id.tutorialActivity_constraintLayout_rightInner);
+        ConstraintLayout constraintLayout_rightOuter =
+                (ConstraintLayout) findViewById(R.id.tutorialActivity_constraintLayout_rightOuter);
+        screenResolutions.setLayoutParameters(constraintLayout_leftOuter);
+        screenResolutions.setLayoutParameters(constraintLayout_leftInner);
+        screenResolutions.setLayoutParameters(constraintLayout_center);
+        screenResolutions.setLayoutParameters(constraintLayout_rightInner);
+        screenResolutions.setLayoutParameters(constraintLayout_rightOuter);
     }
 }
