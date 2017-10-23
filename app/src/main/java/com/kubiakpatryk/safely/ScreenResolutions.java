@@ -17,6 +17,7 @@ package com.kubiakpatryk.safely;
 
 import android.content.res.Resources;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 /**
@@ -24,6 +25,8 @@ import android.widget.LinearLayout;
  */
 
 public class ScreenResolutions {
+
+    private static final String TAG = "ScreenResolutions";
 
     public ScreenResolutions() {}
 
@@ -36,6 +39,7 @@ public class ScreenResolutions {
     }
 
     public void setLayoutParameters(ConstraintLayout layout){
+        if (layout==null) Log.e(TAG, "setLayoutParameters: fuck");
         layout.setLayoutParams(
                 new LinearLayout.LayoutParams(getScreenWidth(), getScreenHeight()));
     }

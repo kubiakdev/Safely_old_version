@@ -31,6 +31,8 @@ public class LauncherActivity extends AppCompatActivity {
 
         startSuitableActivity();
 
+        finish();
+
     }
 
     public void startSuitableActivity(){
