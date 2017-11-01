@@ -15,8 +15,6 @@
  */
 package com.kubiakpatryk.safely;
 
-import static org.junit.Assert.*;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -29,36 +27,37 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static org.junit.Assert.assertTrue;
+
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 26)
-public class SharedPreferencesManagerTest {
+public class SharedPreferencesHelperTest {
 
     private static final String TEST_BOOLEAN_KEY = "TEST_BOOLEAN_KEY";
     private static final String TEST_FLOAT_KEY = "TEST_FLOAT_KEY";
     private static final String TEST_INTEGER_KEY = "TEST_INTEGER_KEY";
-    private static final String TEST_LONG_KEY = "TEST_LONG_KEY";
     private static final String TEST_STRING_KEY = "TEST_STRING_KEY";
     private static final boolean TEST_DEFAULT_BOOLEAN_VALUE = false;
     private static final float TEST_DEFAULT_FLOAT_VALUE = 0;
     private static final int TEST_DEFAULT_INTEGER_VALUE = 0;
-    private static final long TEST_DEFAULT_LONG_VALUE = 0;
     private static final String TEST_DEFAULT_STRING_VALUE = "";
     private static final boolean EXPECTED_BOOLEAN_VALUE = true;
     private static final float EXPECTED_FLOAT_VALUE = 1;
     private static final int EXPECTED_INTEGER_VALUE = 1;
-    private static final long EXPECTED_LONG_VALUE = 1;
     private static final String EXPECTED_STRING_VALUE = "test_passed";
 
     private LauncherActivity launcherActivity;
     private Context context;
-    private SharedPreferencesManager sharedPreferencesManager;
+    private SharedPreferencesHelper sharedPreferencesHelper;
     private SharedPreferences sharedPreferences;
 
     @Before
     public void initializeObjects() {
         launcherActivity = Robolectric.buildActivity(LauncherActivity.class).create().get();
         context = launcherActivity.getApplicationContext();
-        sharedPreferencesManager = new SharedPreferencesManager(context);
+        sharedPreferencesHelper = new SharedPreferencesHelper(launcherActivity.getSharedPreferences(
+                "wow",Context.MODE_PRIVATE
+        ));
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         setDefaultPreferences();
     }
@@ -68,7 +67,6 @@ public class SharedPreferencesManagerTest {
         editor.putBoolean(TEST_BOOLEAN_KEY, TEST_DEFAULT_BOOLEAN_VALUE);
         editor.putFloat(TEST_FLOAT_KEY,TEST_DEFAULT_FLOAT_VALUE);
         editor.putInt(TEST_INTEGER_KEY, TEST_DEFAULT_INTEGER_VALUE);
-        editor.putLong(TEST_LONG_KEY,TEST_DEFAULT_LONG_VALUE);
         editor.putString(TEST_STRING_KEY,TEST_DEFAULT_STRING_VALUE);
         editor.apply();
     }
@@ -85,7 +83,7 @@ public class SharedPreferencesManagerTest {
 
     @Test
     public void testIsSharedPreferencesManagerNotNull(){
-        Assert.assertNotNull(sharedPreferencesManager);
+        Assert.assertNotNull(sharedPreferencesHelper);
     }
 
     @Test
@@ -95,36 +93,29 @@ public class SharedPreferencesManagerTest {
 
     @Test
     public void testBooleanPreferences(){
-        sharedPreferencesManager.setKeyValue(TEST_BOOLEAN_KEY,EXPECTED_BOOLEAN_VALUE);
-        boolean result = (Boolean) sharedPreferencesManager.getIfContainsKey(TEST_BOOLEAN_KEY);
+        sharedPreferencesHelper.put(TEST_BOOLEAN_KEY,EXPECTED_BOOLEAN_VALUE);
+        boolean result = sharedPreferencesHelper.get(TEST_BOOLEAN_KEY,TEST_DEFAULT_BOOLEAN_VALUE);
         assertTrue(EXPECTED_BOOLEAN_VALUE == result);
     }
 
     @Test
     public void testFloatPreferences(){
-        sharedPreferencesManager.setKeyValue(TEST_FLOAT_KEY,EXPECTED_FLOAT_VALUE);
-        float result = (Float) sharedPreferencesManager.getIfContainsKey(TEST_FLOAT_KEY);
+        sharedPreferencesHelper.put(TEST_FLOAT_KEY,EXPECTED_FLOAT_VALUE);
+        float result = sharedPreferencesHelper.get(TEST_FLOAT_KEY, TEST_DEFAULT_FLOAT_VALUE);
         assertTrue(EXPECTED_FLOAT_VALUE == result);
     }
 
     @Test
     public void testIntegerPreferences(){
-        sharedPreferencesManager.setKeyValue(TEST_INTEGER_KEY,EXPECTED_INTEGER_VALUE);
-        int result = (Integer) sharedPreferencesManager.getIfContainsKey(TEST_INTEGER_KEY);
+        sharedPreferencesHelper.put(TEST_INTEGER_KEY,EXPECTED_INTEGER_VALUE);
+        int result = sharedPreferencesHelper.get(TEST_INTEGER_KEY, TEST_DEFAULT_INTEGER_VALUE);
         assertTrue(EXPECTED_INTEGER_VALUE == result);
     }
 
     @Test
-    public void testLongPreferences(){
-        sharedPreferencesManager.setKeyValue(TEST_LONG_KEY,EXPECTED_LONG_VALUE);
-        long result = (Long) sharedPreferencesManager.getIfContainsKey(TEST_LONG_KEY);
-        assertTrue(EXPECTED_LONG_VALUE == result);
-    }
-
-    @Test
     public void testStringPreferences(){
-        sharedPreferencesManager.setKeyValue(TEST_STRING_KEY,EXPECTED_STRING_VALUE);
-        String result = (String) sharedPreferencesManager.getIfContainsKey(TEST_STRING_KEY);
+        sharedPreferencesHelper.put(TEST_STRING_KEY,EXPECTED_STRING_VALUE);
+        String result = sharedPreferencesHelper.get(TEST_STRING_KEY, TEST_DEFAULT_STRING_VALUE);
         assertTrue(EXPECTED_STRING_VALUE.equals(result));
     }
 }

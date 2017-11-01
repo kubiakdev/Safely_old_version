@@ -15,33 +15,55 @@
  */
 package com.kubiakpatryk.safely;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.support.constraint.ConstraintLayout;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
 
-/**
- * Created by patryk on 18.10.17.
- */
+import java.util.List;
+
+import javax.inject.Inject;
 
 public class ScreenResolutions {
 
-    private static final String TAG = "ScreenResolutions";
+    private Context context;
 
-    public ScreenResolutions() {}
+    @Inject
+    public ScreenResolutions(Context context) {
+        this.context = context;
+    }
 
     public int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
+        int val;
+        if(isPortraitOrientation()) val = getDisplayMetrics().widthPixels;
+        else val = getDisplayMetrics().heightPixels;
+        return val;
     }
 
     public int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
+        int val;
+        if(isPortraitOrientation()) val = getDisplayMetrics().heightPixels;
+        else val = getDisplayMetrics().widthPixels;
+        return val;
     }
 
-    public void setLayoutParameters(ConstraintLayout layout){
-        if (layout==null) Log.e(TAG, "setLayoutParameters: fuck");
-        layout.setLayoutParams(
-                new LinearLayout.LayoutParams(getScreenWidth(), getScreenHeight()));
+    public void setLayoutParameters(List<ConstraintLayout> layouts){
+            for (ConstraintLayout l : layouts) {
+                l.setLayoutParams(
+                        new LinearLayout.LayoutParams(getScreenWidth(), getScreenHeight()));
+            }
     }
+
+    private DisplayMetrics getDisplayMetrics(){
+        return Resources.getSystem().getDisplayMetrics();
+    }
+
+    private boolean isPortraitOrientation(){
+       return context.getResources().getConfiguration().orientation ==
+               Configuration.ORIENTATION_PORTRAIT;
+    }
+
 
 }

@@ -15,15 +15,26 @@
  */
 package com.kubiakpatryk.safely;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.kubiakpatryk.safely.components.ActivityComponent;
+import com.kubiakpatryk.safely.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.modules.ActivityModule;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -32,43 +43,61 @@ public class TutorialActivity extends AppCompatActivity {
     R.id.tutorialActivity_constraintLayout_center,
     R.id.tutorialActivity_constraintLayout_rightInner,
     R.id.tutorialActivity_constraintLayout_rightOuter})
-    ConstraintLayout[] constraintLayouts;
+    List<ConstraintLayout> constraintLayoutList;
 
     @BindViews({R.id.tutorialActivity_radioButton_leftOuter,
     R.id.tutorialActivity_radioButton_leftInner,
     R.id.tutorialActivity_radioButton_center,
     R.id.tutorialActivity_radioButton_rightInner,
     R.id.tutorialActivity_radioButton_rightOuter})
-    RadioButton[] radioButtons;
+    List<RadioButton> radioButtonList;
 
     @BindView(R.id.tutorialActivity_radioGroup)
     RadioGroup radioGroup;
 
+    @Inject
+    ScreenResolutions screenResolutions;
 
-    private ScreenResolutions screenResolutions;
-    private TutorialActivityResources activityResources;
-    private CustomHorizontalScrollView scrollView;
+    @Inject
+    CustomGestureDetector customGestureDetector;
+
+    @Inject
+    CustomHorizontalScrollView scrollView;
+
+    private ActivityComponent activityComponent;
+
+    public ActivityComponent getActivityComponent(){
+        if(activityComponent == null){
+            activityComponent = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
         ButterKnife.bind(this);
-
-        screenResolutions = new ScreenResolutions();
-        activityResources = new TutorialActivityResources(getWindow().getDecorView());
-        scrollView = new CustomHorizontalScrollView(this, getWindow().getDecorView());
-
-
+        getActivityComponent().inject(this);
         setConstraintLayoutParameters();
     }
 
-    private void setConstraintLayoutParameters(){
-        screenResolutions.setLayoutParameters(activityResources.getConstraintLayout_leftOuter());
-        screenResolutions.setLayoutParameters(activityResources.getConstraintLayout_leftInner());
-        screenResolutions.setLayoutParameters(activityResources.getConstraintLayout_center());
-        screenResolutions.setLayoutParameters(activityResources.getConstraintLayout_rightInner());
-        screenResolutions.setLayoutParameters(activityResources.getConstraintLayout_rightOuter());
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        scrollView.setViewsWidth(screenResolutions.getScreenWidth());
     }
 
+    private void setConstraintLayoutParameters(){
+        screenResolutions.setLayoutParameters(constraintLayoutList);
+    }
+
+    @OnClick(R.id.tutorialActivity_button_agree)
+    public void moveToSecureChooseActivity() {
+        Intent intent = new Intent(this, SecureChooseActivity.class);
+        startActivity(intent);
+    }
 }

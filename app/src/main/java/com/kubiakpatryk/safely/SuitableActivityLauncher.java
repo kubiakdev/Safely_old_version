@@ -18,49 +18,41 @@ package com.kubiakpatryk.safely;
 import android.content.Context;
 import android.content.Intent;
 
+import javax.inject.Inject;
+
 public class SuitableActivityLauncher {
 
     public static final String FIRST_LAUNCHER_KEY = "IS_FIRST_LAUNCH";
-    public static final String INTENT_EXTRA_CLASS_NAME = "CLASS_NAME";
 
-    private SharedPreferencesManager sharedPreferencesManager;
+    @Inject
+    SharedPreferencesHelper sharedPreferencesHelper;
+
     private Context context;
-    private Intent intent;
 
-    public SuitableActivityLauncher(Context context, Intent intent) {
+    @Inject
+    public SuitableActivityLauncher(Context context) {
         this.context = context;
-        this.intent = intent;
-        sharedPreferencesManager = new SharedPreferencesManager(context);
     }
 
     public Intent selectSuitableActivity(){
-        if(isFirstLaunch(sharedPreferencesManager)) {
-            putExtraToIntent("TutorialActivity");
-            return new Intent(context, TutorialActivity.class);
+        if(isFirstLaunch(sharedPreferencesHelper)) {
+            return new Intent(context.getApplicationContext(), TutorialActivity.class);
         }
         else {
-            putExtraToIntent("MainActivity");
-            return new Intent(context, MainActivity.class);
+
+            return new Intent(context.getApplicationContext(), MainActivity.class);
         }
     }
 
-    private void putExtraToIntent(String activityName){
-        intent = new Intent().putExtra(INTENT_EXTRA_CLASS_NAME,activityName);
-    }
-
-    public boolean isFirstLaunch(SharedPreferencesManager sharedPreferencesManager) {
+    public boolean isFirstLaunch(SharedPreferencesHelper sharedPreferencesHelper) {
         if (isFirstLaunchNotExists())
             return true;
         else {
-            return (Boolean) sharedPreferencesManager.getIfContainsKey(FIRST_LAUNCHER_KEY);
+            return sharedPreferencesHelper.get(FIRST_LAUNCHER_KEY,true);
         }
     }
 
     private boolean isFirstLaunchNotExists() {
-        return sharedPreferencesManager.getIfContainsKey(FIRST_LAUNCHER_KEY) == null;
-    }
-
-    public Intent getIntent() {
-        return intent;
+        return sharedPreferencesHelper.get(FIRST_LAUNCHER_KEY, true) == null;
     }
 }

@@ -15,27 +15,54 @@
  */
 package com.kubiakpatryk.safely;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
+import com.kubiakpatryk.safely.components.ActivityComponent;
+import com.kubiakpatryk.safely.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.modules.ActivityModule;
+
+import javax.inject.Inject;
 
 public class LauncherActivity extends AppCompatActivity {
 
-    private SuitableActivityLauncher suitableActivityLauncher;
+    @Inject
+    SharedPreferencesHelper sharedPreferencesHelper;
+
+    @Inject
+    ScreenResolutions screenResolutions;
+
+    @Inject
+    SuitableActivityLauncher suitableActivityLauncher;
+
+    private ActivityComponent activityComponent;
+
+    public ActivityComponent getActivityComponent(){
+        if(activityComponent == null){
+            activityComponent = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-
-        suitableActivityLauncher = new SuitableActivityLauncher(this, getIntent());
-
-        startSuitableActivity();
-
-        finish();
-
+        getActivityComponent().inject(this);
     }
 
-    public void startSuitableActivity(){
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        startSuitableActivity();
+        finish();
+    }
+
+    private void startSuitableActivity(){
         startActivity(suitableActivityLauncher.selectSuitableActivity());
     }
 

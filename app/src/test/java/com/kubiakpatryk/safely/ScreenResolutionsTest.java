@@ -15,11 +15,7 @@
  */
 package com.kubiakpatryk.safely;
 
-import static org.junit.Assert.*;
-
 import android.content.res.Resources;
-import android.util.DisplayMetrics;
-import android.view.Display;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +23,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadow.api.Shadow;
-import org.robolectric.shadows.ShadowDisplay;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by patryk on 18.10.17.
@@ -45,7 +41,7 @@ public class ScreenResolutionsTest {
     @Before
     public void initializeObjects(){
         launcherActivity = Robolectric.buildActivity(LauncherActivity.class).create().get();
-        screenResolutions = new ScreenResolutions();
+//        screenResolutions = new ScreenResolutions(Resources.getSystem().getDisplayMetrics());
         setTestResolutions();
     }
 
