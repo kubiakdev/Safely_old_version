@@ -25,6 +25,7 @@ import com.kubiakpatryk.safely.SharedPreferencesHelper;
 import com.kubiakpatryk.safely.SuitableActivityLauncher;
 import com.kubiakpatryk.safely.modules.ApplicationModule;
 import com.kubiakpatryk.safely.modules.GestureListenerModule;
+import com.kubiakpatryk.safely.modules.ScreenResolutionsModule;
 import com.kubiakpatryk.safely.modules.SharedPreferencesModule;
 
 import javax.inject.Singleton;
@@ -35,11 +36,11 @@ import dagger.Component;
 @Component(modules = {
         ApplicationModule.class,
         GestureListenerModule.class,
-        SharedPreferencesModule.class})
+        SharedPreferencesModule.class,
+        ScreenResolutionsModule.class})
 public interface ApplicationComponent {
 
     void inject(DemoApplication demoApplication);
-
 
     Context getContext();
 

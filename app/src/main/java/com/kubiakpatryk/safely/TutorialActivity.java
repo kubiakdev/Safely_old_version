@@ -17,7 +17,6 @@ package com.kubiakpatryk.safely;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
@@ -83,12 +82,6 @@ public class TutorialActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         getActivityComponent().inject(this);
         setConstraintLayoutParameters();
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        scrollView.setViewsWidth(screenResolutions.getScreenWidth());
     }
 
     private void setConstraintLayoutParameters(){
