@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.components.ActivityComponent;
 import com.kubiakpatryk.safely.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 
 import javax.inject.Inject;
@@ -28,18 +29,15 @@ import javax.inject.Inject;
 public class LauncherActivity extends AppCompatActivity {
 
     @Inject
-    SharedPreferencesHelper sharedPreferencesHelper;
-
-    @Inject
-    ScreenResolutions screenResolutions;
-
-    @Inject
     SuitableActivityLauncher suitableActivityLauncher;
+
+    @Inject
+    CipherCreator cipherCreator;
 
     private ActivityComponent activityComponent;
 
-    public ActivityComponent getActivityComponent(){
-        if(activityComponent == null){
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
                     .applicationComponent(DemoApplication.get(this).getApplicationComponent())
@@ -62,7 +60,7 @@ public class LauncherActivity extends AppCompatActivity {
         finish();
     }
 
-    private void startSuitableActivity(){
+    private void startSuitableActivity() {
         startActivity(suitableActivityLauncher.selectSuitableActivity());
     }
 

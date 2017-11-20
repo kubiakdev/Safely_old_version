@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -26,6 +27,7 @@ import com.kubiakpatryk.safely.components.ActivityComponent;
 import com.kubiakpatryk.safely.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,10 +60,8 @@ public class TutorialActivity extends AppCompatActivity {
     ScreenResolutions screenResolutions;
 
     @Inject
-    CustomGestureDetector customGestureDetector;
-
-    @Inject
     CustomHorizontalScrollView scrollView;
+
 
     private ActivityComponent activityComponent;
 

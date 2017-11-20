@@ -22,17 +22,9 @@ import com.kubiakpatryk.safely.components.ApplicationComponent;
 import com.kubiakpatryk.safely.components.DaggerApplicationComponent;
 import com.kubiakpatryk.safely.modules.ApplicationModule;
 
-import javax.inject.Inject;
-
 public class DemoApplication extends Application {
 
     protected ApplicationComponent applicationComponent;
-
-    @Inject SharedPreferencesHelper sharedPreferencesHelper;
-
-    @Inject ScreenResolutions screenResolutions;
-
-    @Inject SuitableActivityLauncher suitableActivityLauncher;
 
     public static DemoApplication get(Context context){
         return (DemoApplication) context.getApplicationContext();

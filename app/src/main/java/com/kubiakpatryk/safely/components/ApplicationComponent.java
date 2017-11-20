@@ -17,13 +17,13 @@ package com.kubiakpatryk.safely.components;
 
 import android.content.Context;
 
-import com.kubiakpatryk.safely.CustomGestureDetector;
+import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.DemoApplication;
 import com.kubiakpatryk.safely.ScreenResolutions;
-import com.kubiakpatryk.safely.SharedPreferencesHelper;
 import com.kubiakpatryk.safely.SuitableActivityLauncher;
 import com.kubiakpatryk.safely.modules.ApplicationModule;
+import com.kubiakpatryk.safely.modules.DatabaseModule;
 import com.kubiakpatryk.safely.modules.GestureListenerModule;
 import com.kubiakpatryk.safely.modules.ScreenResolutionsModule;
 import com.kubiakpatryk.safely.modules.SharedPreferencesModule;
@@ -37,14 +37,14 @@ import dagger.Component;
         ApplicationModule.class,
         GestureListenerModule.class,
         SharedPreferencesModule.class,
-        ScreenResolutionsModule.class})
+        ScreenResolutionsModule.class,
+        DatabaseModule.class
+        })
 public interface ApplicationComponent {
 
     void inject(DemoApplication demoApplication);
 
     Context getContext();
-
-    SharedPreferencesHelper getSharedPreferencesHelper();
 
     ScreenResolutions getScreenResolutions();
 
@@ -52,6 +52,6 @@ public interface ApplicationComponent {
 
     CustomHorizontalScrollView getCustomHorizontalScrollView();
 
-    CustomGestureDetector getCustomGestureDetector();
+    CipherCreator getCipherCreator();
 
 }
