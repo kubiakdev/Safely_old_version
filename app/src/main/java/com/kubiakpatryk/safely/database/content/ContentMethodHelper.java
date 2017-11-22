@@ -13,17 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database;
+package com.kubiakpatryk.safely.database.content;
+
+import com.kubiakpatryk.safely.database.DatabaseMethodHelper;
 
 import java.util.List;
 
-public interface DatabaseMethodHelper<T> {
+public interface ContentMethodHelper extends DatabaseMethodHelper<ContentModel>{
 
-    void insert(T model);
+    @Override
+    void insert(ContentModel model);
 
-    T getModel(String where, String whereArg);
+    @Override
+    ContentModel getModel(String where, String whereArg);
 
-    List<T> getAll();
+    @Override
+    List<ContentModel> getAll();
 
-    void updateRow(T model, String where, String whereArg);
+    @Override
+    void updateRow(ContentModel model, String where, String whereArg);
 }

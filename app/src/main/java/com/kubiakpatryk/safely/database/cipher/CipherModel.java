@@ -28,6 +28,12 @@ public class CipherModel {
         this.value = value;
     }
 
+    public CipherModel(int id, int key, int value) {
+        this.id = id;
+        this.key = key;
+        this.value = value;
+    }
+
     public int getId() {
         return id;
     }

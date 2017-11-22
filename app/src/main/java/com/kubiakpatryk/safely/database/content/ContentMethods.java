@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.cipher;
+package com.kubiakpatryk.safely.database.content;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -25,35 +25,40 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class CipherMethods implements CipherMethodHelper {
+public class ContentMethods implements ContentMethodHelper {
 
-    final String TABLE_CIPHER = "cipher";
+
+    final String TABLE_CONTENT = "content";
 
     final String ID = "id";
-    final String KEY = "key";
-    final String VALUE = "value";
+    final String CONTENT = "content";
+    final String CREATED = "created";
+    final String MODIFIED = "modified";
+    final String FAVOURITE = "favourite";
 
     private SQLiteDatabase database;
 
     @Inject
-    CipherMethods(SQLiteDatabase database) {
+    ContentMethods(SQLiteDatabase database) {
         this.database = database;
     }
 
     @Override
-    public void insert(CipherModel model) {
+    public void insert(ContentModel model) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY, model.getKey());
-        contentValues.put(VALUE, model.getValue());
-        database.insert(TABLE_CIPHER, null, contentValues);
+        contentValues.put(CONTENT, model.getContent());
+        contentValues.put(CREATED, model.getCreated());
+        contentValues.put(MODIFIED, model.getModified());
+        contentValues.put(FAVOURITE,model.getFavourite());
+        database.insert(TABLE_CONTENT, null, contentValues);
     }
 
     @Override
-    public CipherModel getModel(String where, String whereArg) {
+    public ContentModel getModel(String where, String whereArg) {
         @SuppressLint("Recycle")
         Cursor cursor = database.query(
-                TABLE_CIPHER,
-                new String[]{ID,KEY, VALUE},
+                TABLE_CONTENT,
+                new String[]{ID, CONTENT, CREATED, MODIFIED, FAVOURITE},
                 where + "=?",
                 new String[]{whereArg},
                 null,
@@ -62,24 +67,28 @@ public class CipherMethods implements CipherMethodHelper {
         if (cursor != null)
             cursor.moveToFirst();
         assert cursor != null;
-        return new CipherModel(
+        return new ContentModel(
                 cursor.getInt(0),
-                cursor.getInt(1),
-                cursor.getInt(2));
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4));
     }
 
     @Override
-    public List<CipherModel> getAll() {
-        List<CipherModel> modelsArray = new ArrayList<>();
-        String task = "SELECT * FROM " + TABLE_CIPHER;
+    public List<ContentModel> getAll() {
+        List<ContentModel> modelsArray = new ArrayList<>();
+        String task = "SELECT * FROM " + TABLE_CONTENT;
         @SuppressLint("Recycle")
         Cursor cursor = database.rawQuery(task, null);
         if (cursor.moveToFirst()) {
             do {
-                CipherModel model = new CipherModel();
+                ContentModel model = new ContentModel();
                 model.setId(cursor.getInt(0));
-                model.setKey(cursor.getInt(1));
-                model.setValue(cursor.getInt(2));
+                model.setContent(cursor.getString(1));
+                model.setCreated(cursor.getString(2));
+                model.setModified(cursor.getString(3));
+                model.setFavourite(cursor.getInt(4));
                 modelsArray.add(model);
             } while (cursor.moveToNext());
         }
@@ -87,11 +96,13 @@ public class CipherMethods implements CipherMethodHelper {
     }
 
     @Override
-    public void updateRow(CipherModel model, String where, String whereArg) {
+    public void updateRow(ContentModel model, String where, String whereArg) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY, model.getValue());
-        contentValues.put(VALUE, model.getValue());
-        database.update(TABLE_CIPHER, contentValues,
+        contentValues.put(CONTENT, model.getContent());
+        contentValues.put(CREATED, model.getCreated());
+        contentValues.put(MODIFIED, model.getModified());
+        contentValues.put(FAVOURITE,model.getFavourite());
+        database.update(TABLE_CONTENT, contentValues,
                 where + "=?", new String[]{whereArg});
     }
 }

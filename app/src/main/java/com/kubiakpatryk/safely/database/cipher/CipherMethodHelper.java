@@ -13,17 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database;
+package com.kubiakpatryk.safely.database.cipher;
+
+import com.kubiakpatryk.safely.database.DatabaseMethodHelper;
 
 import java.util.List;
 
-public interface DatabaseMethodHelper<T> {
+public interface CipherMethodHelper extends DatabaseMethodHelper<CipherModel> {
 
-    void insert(T model);
+    @Override
+    void insert(CipherModel model);
 
-    T getModel(String where, String whereArg);
+    @Override
+    CipherModel getModel(String where, String whereArg);
 
-    List<T> getAll();
+    @Override
+    List<CipherModel> getAll();
 
-    void updateRow(T model, String where, String whereArg);
+    @Override
+    void updateRow(CipherModel model, String where, String whereArg);
 }

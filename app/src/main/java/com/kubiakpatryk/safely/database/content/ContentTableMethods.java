@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.cipher;
+package com.kubiakpatryk.safely.database.content;
 
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,42 +22,43 @@ import com.kubiakpatryk.safely.database.DatabaseTableHelper;
 
 import javax.inject.Inject;
 
-public class CipherTableMethods implements DatabaseTableHelper {
+public class ContentTableMethods implements DatabaseTableHelper {
 
     @Inject
-    CipherMethods cipherMethods;
+    ContentMethods contentMethods;
 
     @Inject
     SQLiteDatabase database;
 
     @Inject
-    CipherTableMethods() {
+    public ContentTableMethods() {
     }
 
     @Override
     public void createTable() {
         String CREATE_TABLE = "CREATE TABLE " +
-                cipherMethods.TABLE_CIPHER + "(" +
-                cipherMethods.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                cipherMethods.KEY + " TEXT NOT NULL," +
-                cipherMethods.VALUE + " TEXT NOT NULL" + ")";
+                contentMethods.TABLE_CONTENT + "(" +
+                contentMethods.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                contentMethods.CONTENT + " TEXT NOT NULL," +
+                contentMethods.CREATED + " TEXT NOT NULL," +
+                contentMethods.MODIFIED + " TEXT NOT NULL," +
+                contentMethods.FAVOURITE + " INTEGER NOT NULL" + ")";
         database.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void deleteTableIfExists() {
-        String DELETE_TABLE = ("DROP TABLE IF EXISTS " + cipherMethods.TABLE_CIPHER);
+        String DELETE_TABLE = ("DROP TABLE IF EXISTS " + contentMethods.TABLE_CONTENT);
         database.execSQL(DELETE_TABLE);
     }
 
     @Override
     public int getRowsSize() {
-        return (int) DatabaseUtils.queryNumEntries(database, cipherMethods.TABLE_CIPHER);
+        return (int) DatabaseUtils.queryNumEntries(database, contentMethods.TABLE_CONTENT);
     }
 
     @Override
     public void deleteAllPositions() {
-        database.delete(cipherMethods.TABLE_CIPHER, null, null);
+        database.delete(contentMethods.TABLE_CONTENT, null, null);
     }
 }
-

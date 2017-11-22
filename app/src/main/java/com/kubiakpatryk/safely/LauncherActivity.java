@@ -21,7 +21,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.components.ActivityComponent;
 import com.kubiakpatryk.safely.components.DaggerActivityComponent;
-import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 
 import javax.inject.Inject;
@@ -30,9 +29,6 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Inject
     SuitableActivityLauncher suitableActivityLauncher;
-
-    @Inject
-    CipherCreator cipherCreator;
 
     private ActivityComponent activityComponent;
 

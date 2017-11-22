@@ -20,6 +20,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
+import com.kubiakpatryk.safely.database.content.ContentTableMethods;
+import com.kubiakpatryk.safely.database.passwords.PasswordsTableMethods;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -33,7 +35,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private SQLiteDatabase database = this.getReadableDatabase();
 
     @Inject
-    CipherTableMethods tableMethods;
+    CipherTableMethods cipherTableMethods;
+
+    @Inject
+    ContentTableMethods contentTableMethods;
+
+    @Inject
+    PasswordsTableMethods passwordsTableMethods;
 
     @Inject
     public DatabaseHandler(Context context) {
@@ -43,12 +51,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        tableMethods.createTable();
+        cipherTableMethods.createTable();
+        contentTableMethods.createTable();
+        passwordsTableMethods.createTable();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        tableMethods.deleteTableIfExists();
+        cipherTableMethods.deleteTableIfExists();
+        contentTableMethods.deleteTableIfExists();
+        passwordsTableMethods.deleteTableIfExists();
         onCreate(db);
     }
 

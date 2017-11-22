@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.cipher;
+package com.kubiakpatryk.safely.database.passwords;
 
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,42 +22,44 @@ import com.kubiakpatryk.safely.database.DatabaseTableHelper;
 
 import javax.inject.Inject;
 
-public class CipherTableMethods implements DatabaseTableHelper {
+public class PasswordsTableMethods implements DatabaseTableHelper{
 
     @Inject
-    CipherMethods cipherMethods;
+    PasswordsMethods passwordsMethods;
+
 
     @Inject
     SQLiteDatabase database;
 
     @Inject
-    CipherTableMethods() {
+    public PasswordsTableMethods() {
     }
 
     @Override
     public void createTable() {
         String CREATE_TABLE = "CREATE TABLE " +
-                cipherMethods.TABLE_CIPHER + "(" +
-                cipherMethods.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                cipherMethods.KEY + " TEXT NOT NULL," +
-                cipherMethods.VALUE + " TEXT NOT NULL" + ")";
+                passwordsMethods.TABLE_PASSWORDS + "(" +
+                passwordsMethods.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                passwordsMethods.LOGIN + " TEXT NOT NULL," +
+                passwordsMethods.DETAIL + " TEXT NOT NULL," +
+                passwordsMethods.FIRST_PASSWORD + " TEXT NOT NULL," +
+                passwordsMethods.SECOND_PASSWORD + " TEXT NOT NULL" + ")";
         database.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void deleteTableIfExists() {
-        String DELETE_TABLE = ("DROP TABLE IF EXISTS " + cipherMethods.TABLE_CIPHER);
+        String DELETE_TABLE = ("DROP TABLE IF EXISTS " + passwordsMethods.TABLE_PASSWORDS);
         database.execSQL(DELETE_TABLE);
     }
 
     @Override
     public int getRowsSize() {
-        return (int) DatabaseUtils.queryNumEntries(database, cipherMethods.TABLE_CIPHER);
+        return (int) DatabaseUtils.queryNumEntries(database, passwordsMethods.TABLE_PASSWORDS);
     }
 
     @Override
     public void deleteAllPositions() {
-        database.delete(cipherMethods.TABLE_CIPHER, null, null);
+        database.delete(passwordsMethods.TABLE_PASSWORDS, null, null);
     }
 }
-
