@@ -21,18 +21,31 @@ import com.kubiakpatryk.safely.LauncherActivity;
 import com.kubiakpatryk.safely.TutorialActivity;
 import com.kubiakpatryk.safely.annotations.ActivityContext;
 import com.kubiakpatryk.safely.annotations.PerActivity;
+import com.kubiakpatryk.safely.main.MainActivity;
 import com.kubiakpatryk.safely.modules.ActivityModule;
+import com.kubiakpatryk.safely.modules.ContentHolderModule;
 
 import dagger.Component;
 
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
+@Component(dependencies = ApplicationComponent.class, modules = {
+        ActivityModule.class,
+        ContentHolderModule.class
+})
 public interface ActivityComponent {
 
     void inject(LauncherActivity launcherActivity);
 
     void inject(TutorialActivity tutorialActivity);
 
+    void inject(MainActivity mainActivity);
+
     @ActivityContext
     Context getContext();
+
+//    View provideView();
+//
+//    MainViewHolder getMainViewHolder();
+//
+//    RecyclerAdapterImplementation getViewRecyclerAdapter();
 }

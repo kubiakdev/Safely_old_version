@@ -15,37 +15,17 @@
  */
 package com.kubiakpatryk.safely.modules;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-
-import com.kubiakpatryk.safely.annotations.ActivityContext;
+import java.util.ArrayList;
+import java.util.List;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ActivityModule {
-
-    private Activity activity;
-
-    public ActivityModule(Activity activity) {
-        this.activity = activity;
-    }
+public class ContentHolderModule {
 
     @Provides
-    @ActivityContext
-    Context provideContext(){
-        return activity;
-    }
-
-    @Provides
-    Activity provideActivity() {
-        return activity;
-    }
-
-    @Provides
-    View provideView(){
-           return new View(activity.getBaseContext());
+    List<String> provideStringList() {
+        return new ArrayList<>();
     }
 }

@@ -13,26 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely;
+package com.kubiakpatryk.safely.main;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+
+import com.kubiakpatryk.safely.DemoApplication;
+import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.components.ActivityComponent;
 import com.kubiakpatryk.safely.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 
 import javax.inject.Inject;
 
-public class LauncherActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity {
 
     @Inject
-    SuitableActivityLauncher suitableActivityLauncher;
+    MainViewHolder mainViewHolder;
+
+    @Inject
+    RecyclerAdapterImplementation recyclerAdapterImplementation;
+
+    @Inject
+    RecyclerViewEntity recyclerViewEntity;
+
+    @BindView(R.id.mainActivity_recyclerView)
+    RecyclerView recyclerView;
 
     private ActivityComponent activityComponent;
 
-    public ActivityComponent getActivityComponent() {
-        if (activityComponent == null) {
+    public ActivityComponent getActivityComponent(){
+        if(activityComponent == null){
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
                     .applicationComponent(DemoApplication.get(this).getApplicationComponent())
@@ -44,21 +59,10 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launcher);
+        setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
+        ButterKnife.bind(this);
 
+        recyclerViewEntity.initializeRecyclerView(recyclerView);
     }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        startSuitableActivity();
-        finish();
-    }
-
-    private void startSuitableActivity() {
-        startActivity(suitableActivityLauncher.selectSuitableActivity());
-    }
-
-
 }

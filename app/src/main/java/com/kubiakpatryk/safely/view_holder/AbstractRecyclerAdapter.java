@@ -13,16 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely;
+package com.kubiakpatryk.safely.view_holder;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+public abstract class AbstractRecyclerAdapter<T extends RecyclerView.ViewHolder>
+        extends RecyclerView.Adapter<T> {
+
+    private List<?> list;
+
+    public AbstractRecyclerAdapter(List<?> list){
+        this.list = list;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public abstract T onCreateViewHolder(ViewGroup parent, int viewType);
+
+    @Override
+    public abstract void onBindViewHolder(T holder, int position);
+
+    @Override
+    public int getItemCount(){
+      return list.size();
     }
 }

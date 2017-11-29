@@ -13,39 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.main;
 
-import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 
-import com.kubiakpatryk.safely.annotations.ActivityContext;
+import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.view_holder.AbstractHolder;
 
-import dagger.Module;
-import dagger.Provides;
+import javax.inject.Inject;
 
-@Module
-public class ActivityModule {
+public class ViewHolderImplementation extends AbstractHolder {
 
-    private Activity activity;
-
-    public ActivityModule(Activity activity) {
-        this.activity = activity;
+    @Inject
+    ViewHolderImplementation(View itemView) {
+        super(itemView);
+        setContent(R.id.contentModel_textView);
     }
 
-    @Provides
-    @ActivityContext
-    Context provideContext(){
-        return activity;
-    }
-
-    @Provides
-    Activity provideActivity() {
-        return activity;
-    }
-
-    @Provides
-    View provideView(){
-           return new View(activity.getBaseContext());
-    }
+    @Override
+    public void onClick(View v) {}
 }

@@ -18,6 +18,8 @@ package com.kubiakpatryk.safely;
 import android.content.Context;
 import android.content.Intent;
 
+import com.kubiakpatryk.safely.main.MainActivity;
+
 import javax.inject.Inject;
 
 public class SuitableActivityLauncher {

@@ -17,18 +17,12 @@ package com.kubiakpatryk.safely.components;
 
 import android.content.Context;
 
-import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.DemoApplication;
 import com.kubiakpatryk.safely.ScreenResolutions;
 import com.kubiakpatryk.safely.SuitableActivityLauncher;
-import com.kubiakpatryk.safely.database.cipher.CipherMethods;
-import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
-import com.kubiakpatryk.safely.database.content.ContentMethods;
-import com.kubiakpatryk.safely.database.content.ContentTableMethods;
-import com.kubiakpatryk.safely.database.passwords.PasswordsMethods;
-import com.kubiakpatryk.safely.database.passwords.PasswordsTableMethods;
 import com.kubiakpatryk.safely.modules.ApplicationModule;
+import com.kubiakpatryk.safely.modules.ContentHolderModule;
 import com.kubiakpatryk.safely.modules.DatabaseModule;
 import com.kubiakpatryk.safely.modules.GestureListenerModule;
 import com.kubiakpatryk.safely.modules.ScreenResolutionsModule;
@@ -44,8 +38,9 @@ import dagger.Component;
         GestureListenerModule.class,
         SharedPreferencesModule.class,
         ScreenResolutionsModule.class,
-        DatabaseModule.class
-        })
+        DatabaseModule.class,
+        ContentHolderModule.class
+})
 public interface ApplicationComponent {
 
     void inject(DemoApplication demoApplication);
@@ -58,19 +53,19 @@ public interface ApplicationComponent {
 
     CustomHorizontalScrollView getCustomHorizontalScrollView();
 
-    CipherCreator getCipherCreator();
-
-    CipherMethods getCipherMethods();
-
-    CipherTableMethods getCipherTableMethods();
-
-    ContentMethods getContentMethods();
-
-    ContentTableMethods getContentTableMethods();
-
-    PasswordsMethods getPasswordMethods();
-
-    PasswordsTableMethods getPasswordsTableMethods();
+//    CipherCreator getCipherCreator();
+//
+//    CipherMethods getCipherMethods();
+//
+//    CipherTableMethods getCipherTableMethods();
+//
+//    ContentMethods getContentMethods();
+//
+//    ContentTableMethods getContentTableMethods();
+//
+//    PasswordsMethods getPasswordMethods();
+//
+//    PasswordsTableMethods getPasswordsTableMethods();
 
 
 }
