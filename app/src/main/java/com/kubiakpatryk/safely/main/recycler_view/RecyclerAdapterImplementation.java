@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.main;
+package com.kubiakpatryk.safely.main.recycler_view;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -34,7 +34,7 @@ public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewH
     private List<String> list;
 
     @Inject
-    RecyclerAdapterImplementation(List<String> list) {
+    public RecyclerAdapterImplementation(List<String> list) {
         super(list);
         this.list = list;
     }

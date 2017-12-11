@@ -15,8 +15,6 @@
  */
 package com.kubiakpatryk.safely.modules;
 
-import android.content.Context;
-
 import com.kubiakpatryk.safely.ScreenResolutions;
 
 import dagger.Module;
@@ -26,7 +24,7 @@ import dagger.Provides;
 public class ScreenResolutionsModule {
 
     @Provides
-    int getViewsWidth(Context context){
-        return new ScreenResolutions(context).getScreenWidth();
+    int getViewsWidth(){
+        return new ScreenResolutions().getScreenWidth();
     }
 }

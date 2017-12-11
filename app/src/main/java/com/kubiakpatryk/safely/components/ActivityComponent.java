@@ -22,6 +22,7 @@ import com.kubiakpatryk.safely.TutorialActivity;
 import com.kubiakpatryk.safely.annotations.ActivityContext;
 import com.kubiakpatryk.safely.annotations.PerActivity;
 import com.kubiakpatryk.safely.main.MainActivity;
+import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOperations;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 import com.kubiakpatryk.safely.modules.ContentHolderModule;
 
@@ -42,6 +43,14 @@ public interface ActivityComponent {
 
     @ActivityContext
     Context getContext();
+
+    FloatingActionButtonOperations get();
+
+//    SmallActionButtonsHandler get2();
+
+//    SmallActionButtonsEntity getEntity();
+//
+//    RecyclerViewEntity getR();
 
 //    View provideView();
 //

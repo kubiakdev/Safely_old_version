@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.main;
+package com.kubiakpatryk.safely.main.action_button.small_buttons;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
-import com.kubiakpatryk.safely.R;
-import com.kubiakpatryk.safely.view_holder.AbstractHolder;
+public class SmallActionButtonsOnClickListener implements View.OnClickListener{
 
-import javax.inject.Inject;
+    private Activity activity;
+    private Intent intent;
 
-public class ViewHolderImplementation extends AbstractHolder {
-
-    @Inject
-    ViewHolderImplementation(View itemView) {
-        super(itemView);
-        setContent(R.id.contentModel_textView);
+    SmallActionButtonsOnClickListener(Activity activity, Intent intent) {
+        this.activity = activity;
+        this.intent = intent;
     }
 
     @Override
-    public void onClick(View v) {}
+    public void onClick(View view) {
+        activity.startActivity(intent);
+    }
 }

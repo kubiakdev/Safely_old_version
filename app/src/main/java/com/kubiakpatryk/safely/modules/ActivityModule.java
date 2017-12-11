@@ -48,4 +48,5 @@ public class ActivityModule {
     View provideView(){
            return new View(activity.getBaseContext());
     }
+
 }

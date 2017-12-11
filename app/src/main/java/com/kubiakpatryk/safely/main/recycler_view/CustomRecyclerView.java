@@ -13,34 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.main;
+package com.kubiakpatryk.safely.main.recycler_view;
 
+import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
-
-import com.kubiakpatryk.safely.R;
+import android.util.AttributeSet;
 
 import javax.inject.Inject;
 
-public class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-    private Object content;
+public class CustomRecyclerView extends RecyclerView{
 
     @Inject
-    MainViewHolder(View itemView){
-        super(itemView);
-        itemView.setOnClickListener(this);
-        content = itemView.findViewById(R.id.contentModel_textView);
+    public CustomRecyclerView(Context context) {
+        super(context);
+    }
+
+    public CustomRecyclerView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public CustomRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
     }
 
     @Override
-    public void onClick(View v) {
-        Toast.makeText(itemView.getContext(), "Position " + getAdapterPosition() +
-                        " clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    public Object getContent() {
-        return content;
+    public boolean performClick() {
+        System.out.println("fuck");
+        return super.performClick();
     }
 }

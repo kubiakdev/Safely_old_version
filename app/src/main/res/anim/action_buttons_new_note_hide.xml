@@ -14,8 +14,27 @@
   v See the License for the specific language governing permissions and
   ~ limitations under the License.
 -->
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff4081</color>
-</resources>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true">
+
+    <!--Move-->
+    <translate
+        android:duration="300"
+        android:fromXDelta="-170%"
+        android:fromYDelta="-25%"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:toXDelta="0%"
+        android:toYDelta="0%">
+
+    </translate>
+
+    <!--Fade Out-->
+    <alpha
+        android:duration="600"
+        android:fromAlpha="1.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toAlpha="0.0">
+
+    </alpha>
+
+</set>

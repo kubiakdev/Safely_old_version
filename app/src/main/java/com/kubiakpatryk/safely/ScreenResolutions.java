@@ -15,8 +15,6 @@
  */
 package com.kubiakpatryk.safely;
 
-import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
@@ -28,42 +26,26 @@ import javax.inject.Inject;
 
 public class ScreenResolutions {
 
-    private Context context;
 
     @Inject
-    public ScreenResolutions(Context context) {
-        this.context = context;
+    public ScreenResolutions(){}
+
+    public int getScreenWidth(){
+        return getDisplayMetrics().widthPixels;
     }
 
-    public int getScreenWidth() {
-        int val;
-        if(isPortraitOrientation()) val = getDisplayMetrics().widthPixels;
-        else val = getDisplayMetrics().heightPixels;
-        return val;
+    public int getScreenHeight(){
+        return getDisplayMetrics().heightPixels;
     }
 
-    public int getScreenHeight() {
-        int val;
-        if(isPortraitOrientation()) val = getDisplayMetrics().heightPixels;
-        else val = getDisplayMetrics().widthPixels;
-        return val;
-    }
-
-    public void setLayoutParameters(List<ConstraintLayout> layouts){
+    void setLayoutParameters(List<ConstraintLayout> layouts){
             for (ConstraintLayout l : layouts) {
                 l.setLayoutParams(
-                        new LinearLayout.LayoutParams(getScreenWidth(), getScreenHeight()));
+                        new LinearLayout.LayoutParams(getScreenWidth(),getScreenHeight()));
             }
     }
 
     private DisplayMetrics getDisplayMetrics(){
         return Resources.getSystem().getDisplayMetrics();
     }
-
-    private boolean isPortraitOrientation(){
-       return context.getResources().getConfiguration().orientation ==
-               Configuration.ORIENTATION_PORTRAIT;
-    }
-
-
 }

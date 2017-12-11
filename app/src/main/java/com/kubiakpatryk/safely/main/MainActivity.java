@@ -15,34 +15,30 @@
  */
 package com.kubiakpatryk.safely.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.DemoApplication;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.components.ActivityComponent;
 import com.kubiakpatryk.safely.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOperations;
+import com.kubiakpatryk.safely.main.recycler_view.RecyclerAdapterImplementation;
+import com.kubiakpatryk.safely.main.recycler_view.ViewHolderImplementation;
 import com.kubiakpatryk.safely.modules.ActivityModule;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    MainViewHolder mainViewHolder;
+    ViewHolderImplementation viewHolderImplementation;
 
     @Inject
     RecyclerAdapterImplementation recyclerAdapterImplementation;
 
     @Inject
-    RecyclerViewEntity recyclerViewEntity;
-
-    @BindView(R.id.mainActivity_recyclerView)
-    RecyclerView recyclerView;
+    FloatingActionButtonOperations operations;
 
     private ActivityComponent activityComponent;
 
@@ -61,8 +57,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
-        ButterKnife.bind(this);
-
-        recyclerViewEntity.initializeRecyclerView(recyclerView);
     }
 }

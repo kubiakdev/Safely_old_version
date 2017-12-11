@@ -13,29 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.main;
+package com.kubiakpatryk.safely.main.recycler_view;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.view_holder.AbstractHolder;
 
 import javax.inject.Inject;
 
-class RecyclerViewEntity {
+public class ViewHolderImplementation extends AbstractHolder {
 
     @Inject
-    RecyclerViewEntity() {
+    ViewHolderImplementation(View itemView) {
+        super(itemView);
+        setContent(R.id.contentModel_textView);
     }
 
-    void initializeRecyclerView(RecyclerView recyclerView){
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new StaggeredGridLayoutManager(2, 1));
-        recyclerView.setAdapter(new RecyclerAdapterImplementation(getListItemData()));
-    }
-
-    private List<String> getListItemData(){
-        return new ArrayList<>(0);
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(itemView.getContext(), "Position " + getAdapterPosition() +
+                " clicked", Toast.LENGTH_SHORT).show();
     }
 }
