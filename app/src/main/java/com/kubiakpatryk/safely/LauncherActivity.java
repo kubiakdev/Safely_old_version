@@ -18,18 +18,19 @@ package com.kubiakpatryk.safely;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import com.kubiakpatryk.safely.components.ActivityComponent;
-import com.kubiakpatryk.safely.components.DaggerActivityComponent;
-import com.kubiakpatryk.safely.modules.ActivityModule;
+
+import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
+import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
 
 import javax.inject.Inject;
 
 public class LauncherActivity extends AppCompatActivity {
 
-    @Inject
-    SuitableActivityLauncher suitableActivityLauncher;
-
     private ActivityComponent activityComponent;
+
+    @Inject
+    SelectSuitableActivity suitableActivity;
 
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
@@ -57,7 +58,7 @@ public class LauncherActivity extends AppCompatActivity {
     }
 
     private void startSuitableActivity() {
-        startActivity(suitableActivityLauncher.selectSuitableActivity());
+        startActivity(suitableActivity.selectSuitableActivity());
     }
 
 

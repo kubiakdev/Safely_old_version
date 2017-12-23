@@ -15,56 +15,70 @@
  */
 package com.kubiakpatryk.safely.main.recycler_view.entity;
 
-import android.app.Activity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
-import android.view.View;
 
+import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.SmallActionButtonsHandler;
-import com.kubiakpatryk.safely.main.action_button.small_buttons.entity.SmallActionButtonsEntity;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
 import com.kubiakpatryk.safely.main.recycler_view.RecyclerAdapterImplementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOperations.IS_ACTION_BUTTON_SHOW;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import static com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener.IS_ACTION_BUTTON_SHOW;
 
 public class RecyclerViewEntity {
 
+    @Inject
     SmallActionButtonsHandler buttonsHandler;
 
-    private SmallActionButtonsEntity buttonsEntity;
+    @Inject
+    @Named("RecyclerViewEntity_ItemList")
+    List<String> itemList;
+
+    @Inject
+    @Named("RecyclerViewEntity_SpanCount")
+    int spanCount;
+
+    @Inject
+    @Named("RecyclerViewEntity_Orientation")
+    int orientation;
+
+    @Inject
+    @Named("SmallFloatingActionButtons_ListToHide")
+    List<SmallActionButtonsModel> listToHide;
+
+    @Inject
+    RecyclerAdapterImplementation adapterImplementation;
 
     private CustomRecyclerView recyclerView;
 
-    private Activity activity;
-
-    public RecyclerViewEntity(CustomRecyclerView recyclerView, Activity activity) {
+    @Inject
+    public RecyclerViewEntity(CustomRecyclerView recyclerView) {
         this.recyclerView = recyclerView;
-        this.activity = activity;
     }
 
     public void initializeRecyclerView() {
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
-        recyclerView.setAdapter(new RecyclerAdapterImplementation(getListItemData()));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, orientation));
+        recyclerView.setAdapter(adapterImplementation);
         setRecyclerViewOnTouchListener();
+
+
+        recyclerView.setBackgroundResource(R.color.cardview_dark_background);
     }
 
     private void setRecyclerViewOnTouchListener(){
 
-        recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+        recyclerView.setOnTouchListener((view, motionEvent) ->  {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_MOVE:
                         if (IS_ACTION_BUTTON_SHOW) {
-                            buttonsHandler = new SmallActionButtonsHandler(activity);
-                            buttonsEntity = new SmallActionButtonsEntity();
-                            List<SmallActionButtonsModel> modelList = buttonsEntity.getModelsToHide();
-                            buttonsHandler.hideSmallActionButtons(modelList);
+                            buttonsHandler.hideSmallActionButtons(listToHide);
                             IS_ACTION_BUTTON_SHOW = false;
                         }
                         break;
@@ -75,11 +89,6 @@ public class RecyclerViewEntity {
                         break;
                 }
                 return false;
-            }
-        });
-    }
-
-    private List<String> getListItemData(){
-        return new ArrayList<>();
+            });
     }
 }

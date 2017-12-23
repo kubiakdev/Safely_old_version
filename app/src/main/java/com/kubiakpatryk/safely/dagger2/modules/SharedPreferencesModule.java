@@ -13,14 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.annotations;
+package com.kubiakpatryk.safely.dagger2.modules;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import android.content.Context;
+import android.content.SharedPreferences;
 
-import javax.inject.Qualifier;
+import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ApplicationContext {
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
+@Module
+public class SharedPreferencesModule {
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences(@ApplicationContext Context context){
+        return context.getSharedPreferences("default-preferences",Context.MODE_PRIVATE);
+
+    }
 }

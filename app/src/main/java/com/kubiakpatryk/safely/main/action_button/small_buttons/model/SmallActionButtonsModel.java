@@ -22,8 +22,8 @@ public class SmallActionButtonsModel {
     private double marginBottom;
     private int animationResource;
 
-    public SmallActionButtonsModel(int buttonResource, double marginRight,
-                                   double marginBottom, int animationResource) {
+    public SmallActionButtonsModel(int buttonResource, double marginRight, double marginBottom,
+                                   int animationResource) {
         this.buttonResource = buttonResource;
         this.marginRight = marginRight;
         this.marginBottom = marginBottom;

@@ -18,25 +18,29 @@ package com.kubiakpatryk.safely;
 import android.content.Context;
 import android.content.Intent;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.main.MainActivity;
+import com.kubiakpatryk.safely.preferences.SharedPreferencesHelper;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-public class SuitableActivityLauncher {
+@Singleton
+public class SelectSuitableActivity {
 
-    public static final String FIRST_LAUNCHER_KEY = "IS_FIRST_LAUNCH";
-
-    @Inject
-    SharedPreferencesHelper sharedPreferencesHelper;
+    private static final String FIRST_LAUNCHER_KEY = "IS_FIRST_LAUNCH";
 
     private Context context;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
     @Inject
-    public SuitableActivityLauncher(Context context) {
+    public SelectSuitableActivity(@ApplicationContext Context context,
+                                  SharedPreferencesHelper sharedPreferencesHelper) {
         this.context = context;
+        this.sharedPreferencesHelper = sharedPreferencesHelper;
     }
 
-    public Intent selectSuitableActivity(){
+    Intent selectSuitableActivity(){
         if(isFirstLaunch(sharedPreferencesHelper)) {
             return new Intent(context.getApplicationContext(), TutorialActivity.class);
         }
@@ -46,7 +50,7 @@ public class SuitableActivityLauncher {
         }
     }
 
-    public boolean isFirstLaunch(SharedPreferencesHelper sharedPreferencesHelper) {
+    private boolean isFirstLaunch(SharedPreferencesHelper sharedPreferencesHelper) {
         if (isFirstLaunchNotExists())
             return true;
         else {

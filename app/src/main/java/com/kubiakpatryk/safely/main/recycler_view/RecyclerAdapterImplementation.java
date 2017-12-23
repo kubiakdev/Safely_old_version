@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kubiakpatryk.safely.view_holder.AbstractRecyclerAdapter;
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.view_holder.AbstractRecyclerAdapter;
 
 import java.util.List;
 

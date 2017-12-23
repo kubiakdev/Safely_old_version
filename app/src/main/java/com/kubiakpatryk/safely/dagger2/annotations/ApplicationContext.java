@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.dagger2.annotations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-import dagger.Module;
-import dagger.Provides;
+import javax.inject.Qualifier;
 
-@Module
-public class ContentHolderModule {
-
-    @Provides
-    List<String> provideStringList() {
-        return new ArrayList<>();
-    }
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ApplicationContext {
 }

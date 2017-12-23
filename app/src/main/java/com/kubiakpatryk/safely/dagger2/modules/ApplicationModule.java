@@ -13,22 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.dagger2.modules;
 
+import android.app.Application;
 import android.content.Context;
-import android.view.GestureDetector;
+import android.support.annotation.NonNull;
 
-import com.kubiakpatryk.safely.GestureListener;
+import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class GestureListenerModule {
+public class ApplicationModule {
+
+    private final Application application;
+
+    public ApplicationModule(@NonNull Application application) {
+        this.application = application;
+    }
 
     @Provides
-   GestureDetector.OnGestureListener provideGestureListener(Context context){
-        return new GestureListener(context);
+    @ApplicationContext
+    Context provideContext(){
+        return application.getApplicationContext();
+    }
+
+    @Provides
+    Application provideApplication(){
+        return application;
     }
 
 }

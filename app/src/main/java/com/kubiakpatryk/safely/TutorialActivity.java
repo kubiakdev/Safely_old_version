@@ -19,15 +19,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.kubiakpatryk.safely.components.ActivityComponent;
-import com.kubiakpatryk.safely.components.DaggerActivityComponent;
-import com.kubiakpatryk.safely.modules.ActivityModule;
+import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
+import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.main.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,29 +38,28 @@ import butterknife.OnClick;
 
 public class TutorialActivity extends AppCompatActivity {
 
-    @BindViews({R.id.tutorialActivity_constraintLayout_leftOuter,
-    R.id.tutorialActivity_constraintLayout_leftInner,
-    R.id.tutorialActivity_constraintLayout_center,
-    R.id.tutorialActivity_constraintLayout_rightInner,
-    R.id.tutorialActivity_constraintLayout_rightOuter})
-    List<ConstraintLayout> constraintLayoutList;
-
-    @BindViews({R.id.tutorialActivity_radioButton_leftOuter,
-    R.id.tutorialActivity_radioButton_leftInner,
-    R.id.tutorialActivity_radioButton_center,
-    R.id.tutorialActivity_radioButton_rightInner,
-    R.id.tutorialActivity_radioButton_rightOuter})
-    List<RadioButton> radioButtonList;
-
-    @BindView(R.id.tutorialActivity_radioGroup)
-    RadioGroup radioGroup;
-
     @Inject
     ScreenResolutions screenResolutions;
 
     @Inject
     CustomHorizontalScrollView scrollView;
 
+    @BindViews({R.id.tutorialActivity_constraintLayout_leftOuter,
+            R.id.tutorialActivity_constraintLayout_leftInner,
+            R.id.tutorialActivity_constraintLayout_center,
+            R.id.tutorialActivity_constraintLayout_rightInner,
+            R.id.tutorialActivity_constraintLayout_rightOuter})
+    List<ConstraintLayout> constraintLayoutList;
+
+    @BindViews({R.id.tutorialActivity_radioButton_leftOuter,
+            R.id.tutorialActivity_radioButton_leftInner,
+            R.id.tutorialActivity_radioButton_center,
+            R.id.tutorialActivity_radioButton_rightInner,
+            R.id.tutorialActivity_radioButton_rightOuter})
+    List<RadioButton> radioButtonList;
+
+    @BindView(R.id.tutorialActivity_radioGroup)
+    RadioGroup radioGroup;
 
     private ActivityComponent activityComponent;
 
@@ -90,7 +88,8 @@ public class TutorialActivity extends AppCompatActivity {
 
     @OnClick(R.id.tutorialActivity_button_agree)
     public void moveToSecureChooseActivity() {
-        Intent intent = new Intent(this, SecureChooseActivity.class);
+//        Intent intent = new Intent(this, SecureChooseActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

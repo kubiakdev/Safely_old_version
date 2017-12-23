@@ -13,30 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.dagger2.modules;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.database.sqlite.SQLiteDatabase;
 
-import javax.inject.Singleton;
+import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
+import com.kubiakpatryk.safely.database.DatabaseHandler;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ApplicationModule {
-
-    private final Context context;
-
-    public ApplicationModule(@NonNull Context context) {
-        this.context = context;
-    }
+public class DatabaseModule {
 
     @Provides
-    @Singleton
-//    @ApplicationContext
-    Context provideContext(){
-        return context;
+    SQLiteDatabase provideDatabase(@ApplicationContext Context context){
+        return new DatabaseHandler(context).getWritableDatabase();
     }
-
 }

@@ -27,6 +27,8 @@ import javax.inject.Inject;
 class SmallActionButtonsAnimationSchema {
 
     private Activity activity;
+    private FloatingActionButton button;
+    private FrameLayout.LayoutParams layoutParams;
 
     @Inject
     SmallActionButtonsAnimationSchema(Activity activity) {
@@ -34,25 +36,28 @@ class SmallActionButtonsAnimationSchema {
     }
 
     void showSmallButton(SmallActionButtonsModel model) {
-        FloatingActionButton button = activity.findViewById(model.getButtonResource());
-        FrameLayout.LayoutParams layoutParams =
-                (FrameLayout.LayoutParams) button.getLayoutParams();
+        initializeObjects(model);
         layoutParams.rightMargin += button.getWidth() * model.getMarginRight();
         layoutParams.bottomMargin += button.getHeight() * model.getMarginBottom();
-        button.setLayoutParams(layoutParams);
         button.setClickable(true);
-        button.startAnimation(AnimationUtils.loadAnimation(
-                activity, model.getAnimationResource()));
+        prepareButton(model);
     }
 
     void hideSmallButton(SmallActionButtonsModel model){
-        FloatingActionButton button = activity.findViewById(model.getButtonResource());
-        FrameLayout.LayoutParams layoutParams =
-                (FrameLayout.LayoutParams) button.getLayoutParams();
+        initializeObjects(model);
         layoutParams.rightMargin -= button.getWidth() * model.getMarginRight();
         layoutParams.bottomMargin -= button.getHeight() * model.getMarginBottom();
-        button.setLayoutParams(layoutParams);
         button.setClickable(false);
+        prepareButton(model);
+    }
+
+    private void initializeObjects(SmallActionButtonsModel model){
+        button = activity.findViewById(model.getButtonResource());
+        layoutParams = (FrameLayout.LayoutParams) button.getLayoutParams();
+    }
+
+    private void prepareButton(SmallActionButtonsModel model){
+        button.setLayoutParams(layoutParams);
         button.startAnimation(AnimationUtils.loadAnimation(
                 activity, model.getAnimationResource()));
     }

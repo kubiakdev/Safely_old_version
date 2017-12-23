@@ -13,24 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.dagger2.annotations;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-import com.kubiakpatryk.safely.database.DatabaseHandler;
+import javax.inject.Scope;
 
-import javax.inject.Singleton;
-
-import dagger.Module;
-import dagger.Provides;
-
-@Module
-public class DatabaseModule {
-
-    @Provides
-    @Singleton
-    SQLiteDatabase provideDatabase(Context context){
-        return new DatabaseHandler(context).getWritableDatabase();
-    }
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+public @interface PerActivity {
 }

@@ -18,12 +18,14 @@ package com.kubiakpatryk.safely;
 import android.content.Context;
 import android.view.GestureDetector;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
+
 import javax.inject.Inject;
 
 public class CustomGestureDetector extends GestureDetector{
 
     @Inject
-    public CustomGestureDetector(Context context, GestureListener listener) {
+    public CustomGestureDetector(@ActivityContext Context context, GestureListener listener) {
         super(context, listener);
     }
 }

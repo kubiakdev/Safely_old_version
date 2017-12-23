@@ -16,34 +16,58 @@
 package com.kubiakpatryk.safely.main;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.DemoApplication;
 import com.kubiakpatryk.safely.R;
-import com.kubiakpatryk.safely.components.ActivityComponent;
-import com.kubiakpatryk.safely.components.DaggerActivityComponent;
-import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOperations;
-import com.kubiakpatryk.safely.main.recycler_view.RecyclerAdapterImplementation;
-import com.kubiakpatryk.safely.main.recycler_view.ViewHolderImplementation;
-import com.kubiakpatryk.safely.modules.ActivityModule;
+import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
+import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener;
+import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
+import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
+import com.kubiakpatryk.safely.main.recycler_view.entity.RecyclerViewEntity;
+
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    ViewHolderImplementation viewHolderImplementation;
+    RecyclerViewEntity recyclerViewEntity;
 
     @Inject
-    RecyclerAdapterImplementation recyclerAdapterImplementation;
+    FloatingActionButtonOnClickListener onClickListener;
 
     @Inject
-    FloatingActionButtonOperations operations;
+    @Named("SmallFloatingActionButtons_ListToShow")
+    List<SmallActionButtonsModel> listToShow;
+
+    @Inject
+    @Named("SmallFloatingActionButtons_ListToHide")
+    List<SmallActionButtonsModel> listToHide;
+
+    @Inject
+    @Named("RecyclerViewEntity_ItemList")
+    List<String> list;
+
+    @BindView(R.id.mainActivity_recyclerView)
+    CustomRecyclerView recyclerView;
+
+    @BindView(R.id.mainActivity_actionButton)
+    FloatingActionButton mainActionButton;
+
 
     private ActivityComponent activityComponent;
 
-    public ActivityComponent getActivityComponent(){
-        if(activityComponent == null){
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
                     .applicationComponent(DemoApplication.get(this).getApplicationComponent())
@@ -57,5 +81,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
+
+        ButterKnife.bind(this);
+
+        mainActionButton.setOnClickListener(onClickListener);
+
+        recyclerViewEntity.initializeRecyclerView();
+
+
     }
 }

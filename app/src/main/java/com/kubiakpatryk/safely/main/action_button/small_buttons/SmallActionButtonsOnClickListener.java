@@ -18,12 +18,16 @@ package com.kubiakpatryk.safely.main.action_button.small_buttons;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
+
+import javax.inject.Inject;
 
 public class SmallActionButtonsOnClickListener implements View.OnClickListener{
 
     private Activity activity;
     private Intent intent;
 
+    @Inject
     SmallActionButtonsOnClickListener(Activity activity, Intent intent) {
         this.activity = activity;
         this.intent = intent;
@@ -31,6 +35,7 @@ public class SmallActionButtonsOnClickListener implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        activity.startActivity(intent);
+//        activity.startActivity(intent);
+        Toast.makeText(activity, ""+view.getX(), Toast.LENGTH_SHORT).show();
     }
 }

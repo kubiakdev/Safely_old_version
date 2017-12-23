@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely;
+package com.kubiakpatryk.safely.preferences;
 
 import android.content.SharedPreferences;
 
@@ -28,8 +28,8 @@ public class SharedPreferencesHelper {
     private SharedPreferences sharedPreferences;
 
     @Inject
-    public SharedPreferencesHelper(SharedPreferences sharedPreferences) {
-       this.sharedPreferences = sharedPreferences;
+    SharedPreferencesHelper(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
     }
 
     public Boolean get(String key, boolean defaultValue) {

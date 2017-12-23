@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.modules;
+package com.kubiakpatryk.safely.dagger2.modules;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.view.GestureDetector;
 
-import javax.inject.Singleton;
+import com.kubiakpatryk.safely.GestureListener;
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class SharedPreferencesModule {
+public class GestureListenerModule {
 
     @Provides
-    @Singleton
-    SharedPreferences provideSharedPreferences(Context context){
-        return context.getSharedPreferences("default-preferences",Context.MODE_PRIVATE);
-
+   GestureDetector.OnGestureListener provideGestureListener(@ActivityContext Context context){
+        return new GestureListener(context);
     }
+
 }

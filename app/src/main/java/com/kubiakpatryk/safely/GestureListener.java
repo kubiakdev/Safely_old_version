@@ -19,15 +19,16 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
+
 import javax.inject.Inject;
 
 public class GestureListener implements GestureDetector.OnGestureListener {
 
-    @Inject
     Context context;
 
     @Inject
-    public GestureListener(Context context) {
+    public GestureListener(@ActivityContext Context context) {
         this.context = context;
     }
 

@@ -16,16 +16,18 @@
 package com.kubiakpatryk.safely.main.recycler_view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
+
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-public class CustomRecyclerView extends RecyclerView{
+public class CustomRecyclerView extends RecyclerView {
 
     @Inject
-    public CustomRecyclerView(Context context) {
+    public CustomRecyclerView(@ActivityContext Context context) {
         super(context);
     }
 
@@ -39,7 +41,6 @@ public class CustomRecyclerView extends RecyclerView{
 
     @Override
     public boolean performClick() {
-        System.out.println("fuck");
         return super.performClick();
     }
 }

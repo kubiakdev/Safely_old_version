@@ -13,25 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.components;
+package com.kubiakpatryk.safely.dagger2.components;
 
 import android.content.Context;
 
 import com.kubiakpatryk.safely.LauncherActivity;
 import com.kubiakpatryk.safely.TutorialActivity;
-import com.kubiakpatryk.safely.annotations.ActivityContext;
-import com.kubiakpatryk.safely.annotations.PerActivity;
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
+import com.kubiakpatryk.safely.dagger2.annotations.PerActivity;
+import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.dagger2.modules.CustomHorizontalScrollViewModule;
+import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
+import com.kubiakpatryk.safely.dagger2.modules.FloatingActionButtonsModule;
 import com.kubiakpatryk.safely.main.MainActivity;
-import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOperations;
-import com.kubiakpatryk.safely.modules.ActivityModule;
-import com.kubiakpatryk.safely.modules.ContentHolderModule;
 
 import dagger.Component;
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = {
         ActivityModule.class,
-        ContentHolderModule.class
+        RecyclerViewEntityModule.class,
+        CustomHorizontalScrollViewModule.class,
+        FloatingActionButtonsModule.class,
+        RecyclerViewEntityModule.class
 })
 public interface ActivityComponent {
 
@@ -43,18 +47,4 @@ public interface ActivityComponent {
 
     @ActivityContext
     Context getContext();
-
-    FloatingActionButtonOperations get();
-
-//    SmallActionButtonsHandler get2();
-
-//    SmallActionButtonsEntity getEntity();
-//
-//    RecyclerViewEntity getR();
-
-//    View provideView();
-//
-//    MainViewHolder getMainViewHolder();
-//
-//    RecyclerAdapterImplementation getViewRecyclerAdapter();
 }

@@ -20,7 +20,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
+
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class CustomHorizontalScrollView extends HorizontalScrollView {
 
@@ -40,25 +43,33 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     @Inject
-    public CustomHorizontalScrollView(Context context, int viewsWidth) {
+    public CustomHorizontalScrollView(@ActivityContext Context context,
+                                      @Named("ViewsWidth") int viewsWidth) {
         super(context);
         CustomHorizontalScrollView.viewsWidth = viewsWidth;
     }
 
     @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
+    protected void onScrollChanged(int l, int t, int old_l, int old_t) {
+        super.onScrollChanged(l, t, old_l, old_t);
         currentPosition = l;
-
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
             updateCurrentView(getScrollDistance());
-            postDelayed(new ScrollToCenter(), 0);
+            Runnable scrollToCenter = () ->
+                    smoothScrollTo((currentView - 1) * viewsWidth, 0);
+            postDelayed(scrollToCenter, 0);
+            performClick();
         }
         return super.onTouchEvent(ev);
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
     }
 
     private void updateCurrentView(int distance) {
@@ -71,14 +82,5 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     private int getScrollDistance() {
         int touchStartPosition = viewsWidth * currentView - viewsWidth;
         return currentPosition - touchStartPosition;
-    }
-
-    private class ScrollToCenter implements Runnable {
-
-        @Override
-        public void run() {
-            smoothScrollTo((currentView - 1) * viewsWidth, 0);
-        }
-
     }
 }

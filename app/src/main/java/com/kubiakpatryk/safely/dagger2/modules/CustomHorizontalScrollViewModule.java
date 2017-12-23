@@ -13,14 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.annotations;
+package com.kubiakpatryk.safely.dagger2.modules;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import com.kubiakpatryk.safely.ScreenResolutions;
 
-import javax.inject.Qualifier;
+import javax.inject.Named;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ActivityContext {
+import dagger.Module;
+import dagger.Provides;
+
+@Module
+public class CustomHorizontalScrollViewModule {
+
+    @Provides
+    @Named("ViewsWidth")
+    Integer provideViewsWidth(){
+        return new ScreenResolutions().getScreenWidth();
+    }
 }

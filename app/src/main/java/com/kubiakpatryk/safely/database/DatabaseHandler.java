@@ -19,6 +19,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
 import com.kubiakpatryk.safely.database.content.ContentTableMethods;
 import com.kubiakpatryk.safely.database.passwords.PasswordsTableMethods;
@@ -44,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     PasswordsTableMethods passwordsTableMethods;
 
     @Inject
-    public DatabaseHandler(Context context) {
+    public DatabaseHandler(@ApplicationContext Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

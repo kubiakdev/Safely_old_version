@@ -18,9 +18,9 @@ package com.kubiakpatryk.safely;
 import android.app.Application;
 import android.content.Context;
 
-import com.kubiakpatryk.safely.components.ApplicationComponent;
-import com.kubiakpatryk.safely.components.DaggerApplicationComponent;
-import com.kubiakpatryk.safely.modules.ApplicationModule;
+import com.kubiakpatryk.safely.dagger2.components.ApplicationComponent;
+import com.kubiakpatryk.safely.dagger2.components.DaggerApplicationComponent;
+import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
 
 public class DemoApplication extends Application {
 

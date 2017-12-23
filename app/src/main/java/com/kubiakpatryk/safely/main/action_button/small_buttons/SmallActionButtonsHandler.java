@@ -61,27 +61,23 @@ public class SmallActionButtonsHandler {
     @Inject
     SmallActionButtonsAnimationSchema animationSchema;
 
+    @Inject
     public SmallActionButtonsHandler(Activity activity) {
         this.activity = activity;
         ButterKnife.bind(this, this.activity);
 
-        animationSchema = new SmallActionButtonsAnimationSchema(activity);
         setOnClickListeners();
     }
 
     private void setOnClickListeners() {
-        actionButtons[0].setOnClickListener(new SmallActionButtonsOnClickListener(
-                activity, new Intent()));
-        actionButtons[1].setOnClickListener(new SmallActionButtonsOnClickListener(
-                activity, new Intent()));
-        actionButtons[2].setOnClickListener(new SmallActionButtonsOnClickListener(
-                activity, new Intent()));
+        for (FloatingActionButton actionButton : actionButtons) {
+            actionButton.setOnClickListener(new SmallActionButtonsOnClickListener(
+                    activity, new Intent()));
+        }
     }
 
     public void showSmallActionButtons(List<SmallActionButtonsModel> modelList) {
-        for (int i = 0; i<modelList.size(); i++){
-            animationSchema.showSmallButton(modelList.get(i));
-        }
+        for (SmallActionButtonsModel model : modelList) animationSchema.showSmallButton(model);
     }
 
     public void hideSmallActionButtons(List<SmallActionButtonsModel> modelList) {
