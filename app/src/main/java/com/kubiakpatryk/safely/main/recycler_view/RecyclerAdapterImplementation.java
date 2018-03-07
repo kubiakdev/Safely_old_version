@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.kubiakpatryk.safely.main.recycler_view;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,19 +27,17 @@ import com.kubiakpatryk.safely.view_holder.AbstractRecyclerAdapter;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 
 public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewHolderImplementation>{
 
     private List<String> list;
 
-    @Inject
     public RecyclerAdapterImplementation(List<String> list) {
         super(list);
         this.list = list;
     }
 
+    @NonNull
     @Override
     public ViewHolderImplementation onCreateViewHolder(ViewGroup parent, int viewType) {
         @SuppressLint("InflateParams")
@@ -48,7 +47,7 @@ public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewH
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderImplementation holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderImplementation holder, int position) {
         if (holder.getContent() != null) {
             TextView textView = (TextView) holder.getContent();
             textView.setText(list.get(position));

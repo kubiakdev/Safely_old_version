@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,11 @@ package com.kubiakpatryk.safely.main.recycler_view.entity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 
+import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.database.content.ContentMethods;
+import com.kubiakpatryk.safely.database.content.ContentModel;
+import com.kubiakpatryk.safely.database.content.ContentTableMethods;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.SmallActionButtonsHandler;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
@@ -35,10 +39,10 @@ public class RecyclerViewEntity {
 
     @Inject
     SmallActionButtonsHandler buttonsHandler;
-
-    @Inject
-    @Named("RecyclerViewEntity_ItemList")
-    List<String> itemList;
+//
+//    @Inject
+//    @Named("RecyclerViewEntity_ItemList")
+//    List<String> itemList;
 
     @Inject
     @Named("RecyclerViewEntity_SpanCount")
@@ -52,8 +56,14 @@ public class RecyclerViewEntity {
     @Named("SmallFloatingActionButtons_ListToHide")
     List<SmallActionButtonsModel> listToHide;
 
+//    @Inject
+//    ContentListPreparator preparator;
+
     @Inject
-    RecyclerAdapterImplementation adapterImplementation;
+    ContentTableMethods tableMethods;
+
+    @Inject
+    ContentMethods contentMethods;
 
     private CustomRecyclerView recyclerView;
 
@@ -62,11 +72,27 @@ public class RecyclerViewEntity {
         this.recyclerView = recyclerView;
     }
 
+    public List<String> getList(){
+        //
+//        tableMethods.deleteTableIfExists();
+//        tableMethods.createTable();
+        int length = contentMethods.getAll().size();
+        StringBuilder word = new StringBuilder();
+        for (int i = 0; i<length; i++) word.append("w");
+        contentMethods.insert(new ContentModel(word.toString(),"","",1));
+        //
+        return Stream.of(contentMethods.getAll())
+                .map(ContentModel::getContent)
+                .toList();
+    }
+
     public void initializeRecyclerView() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, orientation));
-        recyclerView.setAdapter(adapterImplementation);
+        recyclerView.setAdapter(new RecyclerAdapterImplementation(getList()));
         setRecyclerViewOnTouchListener();
+
+
 
 
         recyclerView.setBackgroundResource(R.color.cardview_dark_background);

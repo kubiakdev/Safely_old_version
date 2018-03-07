@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.kubiakpatryk.safely.dagger2.components;
 import android.content.Context;
 
 import com.kubiakpatryk.safely.LauncherActivity;
+import com.kubiakpatryk.safely.SecureChooseActivity;
 import com.kubiakpatryk.safely.TutorialActivity;
 import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
 import com.kubiakpatryk.safely.dagger2.annotations.PerActivity;
@@ -44,6 +45,8 @@ public interface ActivityComponent {
     void inject(TutorialActivity tutorialActivity);
 
     void inject(MainActivity mainActivity);
+
+    void inject(SecureChooseActivity secureChooseActivity);
 
     @ActivityContext
     Context getContext();

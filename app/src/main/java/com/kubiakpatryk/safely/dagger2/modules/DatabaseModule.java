@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.database.DatabaseHandler;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -28,6 +30,7 @@ import dagger.Provides;
 public class DatabaseModule {
 
     @Provides
+    @Singleton
     SQLiteDatabase provideDatabase(@ApplicationContext Context context){
         return new DatabaseHandler(context).getWritableDatabase();
     }

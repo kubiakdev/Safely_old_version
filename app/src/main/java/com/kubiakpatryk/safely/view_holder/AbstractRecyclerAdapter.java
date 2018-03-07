@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.kubiakpatryk.safely.view_holder;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -29,6 +30,7 @@ public abstract class AbstractRecyclerAdapter<T extends RecyclerView.ViewHolder>
         this.list = list;
     }
 
+    @NonNull
     @Override
     public abstract T onCreateViewHolder(ViewGroup parent, int viewType);
 

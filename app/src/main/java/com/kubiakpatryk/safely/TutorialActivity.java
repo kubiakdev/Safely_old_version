@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import android.widget.RadioGroup;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
-import com.kubiakpatryk.safely.main.MainActivity;
 
 import java.util.List;
 
@@ -63,8 +62,8 @@ public class TutorialActivity extends AppCompatActivity {
 
     private ActivityComponent activityComponent;
 
-    public ActivityComponent getActivityComponent(){
-        if(activityComponent == null){
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
                     .applicationComponent(DemoApplication.get(this).getApplicationComponent())
@@ -79,17 +78,13 @@ public class TutorialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutorial);
         ButterKnife.bind(this);
         getActivityComponent().inject(this);
-        setConstraintLayoutParameters();
-    }
-
-    private void setConstraintLayoutParameters(){
         screenResolutions.setLayoutParameters(constraintLayoutList);
     }
 
     @OnClick(R.id.tutorialActivity_button_agree)
-    public void moveToSecureChooseActivity() {
-//        Intent intent = new Intent(this, SecureChooseActivity.class);
-        Intent intent = new Intent(this, MainActivity.class);
+    public void onAgreeButtonClick(){
+        Intent intent = new Intent(this, SecureChooseActivity.class);
         startActivity(intent);
     }
 }
+

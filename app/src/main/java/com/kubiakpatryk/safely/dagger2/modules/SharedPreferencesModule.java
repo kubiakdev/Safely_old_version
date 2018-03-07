@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ public class SharedPreferencesModule {
 
     @Provides
     @Singleton
-    SharedPreferences provideSharedPreferences(@ApplicationContext Context context){
-        return context.getSharedPreferences("default-preferences",Context.MODE_PRIVATE);
-
+    SharedPreferences provideSharedPreferences(@ApplicationContext Context context) {
+        return context.getSharedPreferences("default_preferences", Context.MODE_PRIVATE);
     }
 }

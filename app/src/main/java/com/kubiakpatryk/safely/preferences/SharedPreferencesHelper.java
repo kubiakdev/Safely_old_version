@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,8 @@ package com.kubiakpatryk.safely.preferences;
 import android.content.SharedPreferences;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
 public class SharedPreferencesHelper {
-
-    private static final String PREFERENCES_ACCESS_KEY = "prefs_access_key";
 
     private SharedPreferences sharedPreferences;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,15 @@
  */
 package com.kubiakpatryk.safely;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.main.MainActivity;
+import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 
 import javax.inject.Inject;
 
@@ -30,7 +32,10 @@ public class LauncherActivity extends AppCompatActivity {
     private ActivityComponent activityComponent;
 
     @Inject
-    SelectSuitableActivity suitableActivity;
+    SharedPreferencesManager preferencesManager;
+
+    @Inject
+    CipherConventer cipherConventer;
 
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
@@ -47,19 +52,21 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         getActivityComponent().inject(this);
+        startActivity(selectSuitableActivity());
 
+//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!"));
+//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!"));
+//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!!!"));
+//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!!!"));
+        cipherConventer.printsomething();
     }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        startSuitableActivity();
-        finish();
+    Intent selectSuitableActivity() {
+        //
+        preferencesManager.setIsFirstLaunch(true);
+        //
+        if (preferencesManager.isFirstLaunch())
+            return new Intent(this, TutorialActivity.class);
+        else return new Intent(this, MainActivity.class);
     }
-
-    private void startSuitableActivity() {
-        startActivity(suitableActivity.selectSuitableActivity());
-    }
-
-
 }

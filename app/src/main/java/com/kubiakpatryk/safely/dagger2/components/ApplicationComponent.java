@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,9 @@
 package com.kubiakpatryk.safely.dagger2.components;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.kubiakpatryk.safely.DemoApplication;
 import com.kubiakpatryk.safely.ScreenResolutions;
-import com.kubiakpatryk.safely.SelectSuitableActivity;
 import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
 import com.kubiakpatryk.safely.dagger2.modules.DatabaseModule;
@@ -28,6 +26,14 @@ import com.kubiakpatryk.safely.dagger2.modules.GestureListenerModule;
 import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
 import com.kubiakpatryk.safely.dagger2.modules.SharedPreferencesModule;
 import com.kubiakpatryk.safely.database.DatabaseHandler;
+import com.kubiakpatryk.safely.database.cipher.CipherCreator;
+import com.kubiakpatryk.safely.database.cipher.CipherMethods;
+import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
+import com.kubiakpatryk.safely.database.content.ContentMethods;
+import com.kubiakpatryk.safely.database.content.ContentTableMethods;
+import com.kubiakpatryk.safely.database.passwords.PasswordsMethods;
+import com.kubiakpatryk.safely.database.passwords.PasswordsTableMethods;
+import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 
 import javax.inject.Singleton;
 
@@ -48,13 +54,27 @@ public interface ApplicationComponent {
     @ApplicationContext
     Context getContext();
 
-    ScreenResolutions getScreenResolutions();
+    SharedPreferencesManager getSharedPreferencesManager();
 
-    SelectSuitableActivity getSelectSuitableActivity();
+    ScreenResolutions getScreenResolutions();
 
     DatabaseHandler getDatabaseHandler();
 
-    SharedPreferences getSharedPreferences();
+    CipherCreator getCipherCreator();
+
+    CipherMethods getCipherMethods();
+
+    CipherTableMethods getCipherTableMethods();
+
+    ContentMethods getContentMethods();
+
+    ContentTableMethods getContentTableMethods();
+
+    PasswordsMethods getPasswordMethods();
+
+    PasswordsTableMethods getPasswordsTableMethods();
+
+    CipherConventer con();
 
 
 }

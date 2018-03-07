@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,71 @@
  */
 package com.kubiakpatryk.safely;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
-public class SecureChooseActivity extends AppCompatActivity {
+import com.jakewharton.rxbinding2.view.RxView;
+import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
+import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
+import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.database.cipher.CipherCreator;
+import com.kubiakpatryk.safely.database.cipher.CipherMethods;
+import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
+import com.kubiakpatryk.safely.main.MainActivity;
+import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class SecureChooseActivity extends RxAppCompatActivity {
+
+    @Inject
+    SharedPreferencesManager preferencesManager;
+
+    @Inject
+    CipherCreator cipherCreator;
+
+    @Inject
+    CipherMethods cipherMethods;
+
+    @Inject
+    CipherTableMethods cipherTableMethods;
+
+    @BindView(R.id.secureChooseActivity_button_generateCipher)
+    Button generateCipherButton;
+
+    private ActivityComponent activityComponent;
+
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
+            activityComponent = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secure_choose);
+        getActivityComponent().inject(this);
+        ButterKnife.bind(this);
+
+        RxView.clicks(generateCipherButton)
+                .compose(bindToLifecycle())
+                .subscribe(o -> {
+                    generateCipherButton.setClickable(false);
+                    cipherCreator.createCipher();
+                    //
+//                    preferencesManager.setIsFirstLaunch(false);
+                    //
+                    startActivity(new Intent(this, MainActivity.class));
+                });
     }
 }

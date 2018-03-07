@@ -13,20 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely;
+package com.kubiakpatryk.safely.preferences;
 
-import static org.junit.Assert.*;
+import javax.inject.Inject;
 
-import org.junit.Test;
+public class SharedPreferencesManager {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    @Inject
+    SharedPreferencesHelper preferencesHelper;
+
+    private static final String FIRST_LAUNCHER_KEY = "IS_FIRST_LAUNCH";
+
+    @Inject
+    SharedPreferencesManager(){
     }
+
+    public boolean isFirstLaunch(){
+        return preferencesHelper.get(FIRST_LAUNCHER_KEY, true);
+    }
+
+    public void setIsFirstLaunch(boolean value){
+        preferencesHelper.put(FIRST_LAUNCHER_KEY, value);
+    }
+
 }

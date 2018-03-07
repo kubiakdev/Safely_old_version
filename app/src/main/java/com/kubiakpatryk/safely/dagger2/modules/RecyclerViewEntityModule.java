@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ public class RecyclerViewEntityModule {
     @Provides
     @Named("RecyclerViewEntity_ItemList")
     List<String> provideItemList() {
+        if (!itemList.isEmpty()) return itemList;
         itemList.add("Demo Resource \n D R");
         itemList.add("Demo res");
         itemList.add("D r");
@@ -63,7 +64,7 @@ public class RecyclerViewEntityModule {
     @Provides
     RecyclerAdapterImplementation provideRecyclerAdapterImplementation(
             @Named("RecyclerViewEntity_ItemList") List<String> list){
-        list.add("436");
+//        list.add("436");
         return new RecyclerAdapterImplementation(list);
     }
 

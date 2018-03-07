@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package com.kubiakpatryk.safely.database.cipher;
 
-import java.util.List;
+import com.annimon.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -34,17 +34,22 @@ public class CipherCreator {
     public CipherCreator() {
     }
 
-    public void createCipher(){
+    public void createCipher() {
+        //
         tableMethods.deleteTableIfExists();
+        //
         tableMethods.createTable();
-        List<Integer> keys = initializer.getKeys();
-        List<Integer> values = initializer.getValues();
-        for (int i = 0; i<keys.size(); i++){
-            CipherModel model = new CipherModel(keys.get(i), values.get(i));
-            cipherMethods.insert(model);
-        }
+//        List<Integer> keys = initializer.getKeys();
+//        List<Integer> values = initializer.getValues();
+//        for (int i = 0; i < keys.size(); i++) {
+//            CipherModel model = new CipherModel(keys.get(i), values.get(i));
+//            cipherMethods.insert(model);
+//            System.out.println(model.getId() + " " + model.getKey() + " " + model.getValue());
+//        }
+        Stream.of(initializer.getKeys())
+                .forEach(integer -> cipherMethods
+                        .insert(new CipherModel(initializer.getValues().get(integer), integer)));
     }
-
 
 
 }

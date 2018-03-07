@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        cipherTableMethods.createTable();
-        contentTableMethods.createTable();
-        passwordsTableMethods.createTable();
+//        cipherTableMethods.createTable();
+//        contentTableMethods.createTable();
+//        passwordsTableMethods.createTable();
     }
 
     @Override
@@ -62,6 +62,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cipherTableMethods.deleteTableIfExists();
         contentTableMethods.deleteTableIfExists();
         passwordsTableMethods.deleteTableIfExists();
+
+        cipherTableMethods.createTable();
+        contentTableMethods.createTable();
+        passwordsTableMethods.createTable();
         onCreate(db);
     }
 

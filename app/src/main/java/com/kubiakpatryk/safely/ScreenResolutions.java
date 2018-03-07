@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kubiak
+ * Copyright (C) 2018 Patryk Kubiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,31 +21,39 @@ import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
 
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class ScreenResolutions {
 
-
     @Inject
-    public ScreenResolutions(){}
+    public ScreenResolutions() {
+    }
 
-    public int getScreenWidth(){
+    private Disposable disposable;
+
+    public int getScreenWidth() {
         return getDisplayMetrics().widthPixels;
     }
 
-    public int getScreenHeight(){
+    private int getScreenHeight() {
         return getDisplayMetrics().heightPixels;
     }
 
-    void setLayoutParameters(List<ConstraintLayout> layouts){
-            for (ConstraintLayout l : layouts) {
-                l.setLayoutParams(
-                        new LinearLayout.LayoutParams(getScreenWidth(),getScreenHeight()));
-            }
+    void setLayoutParameters(List<ConstraintLayout> layouts) {
+       disposable = Observable.fromIterable(layouts)
+                .subscribeOn(Schedulers.from(Executors.newFixedThreadPool(2)))
+                .doOnComplete(() -> disposable.dispose())
+                .subscribe(layout -> layout.setLayoutParams(new LinearLayout
+                            .LayoutParams(getScreenWidth(), getScreenHeight())));
     }
 
-    private DisplayMetrics getDisplayMetrics(){
+    private DisplayMetrics getDisplayMetrics() {
         return Resources.getSystem().getDisplayMetrics();
     }
 }
