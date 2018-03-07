@@ -13,14 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.dagger2.annotations;
+package com.kubiakpatryk.safely.database;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import javax.inject.Inject;
 
-import javax.inject.Scope;
+import io.objectbox.BoxStore;
 
-@Scope
-@Retention(RetentionPolicy.RUNTIME)
-public @interface PerActivity {
+public class BoxManager {
+
+    private BoxStore boxStore;
+
+    @Inject
+    BoxManager(BoxStore boxStore){
+        this.boxStore = boxStore;
+    }
+
+    public BoxStore getBoxStore() {
+        return boxStore;
+    }
 }

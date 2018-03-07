@@ -17,7 +17,7 @@ package com.kubiakpatryk.safely.dagger2.components;
 
 import android.content.Context;
 
-import com.kubiakpatryk.safely.DemoApplication;
+import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.ScreenResolutions;
 import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
@@ -25,14 +25,8 @@ import com.kubiakpatryk.safely.dagger2.modules.DatabaseModule;
 import com.kubiakpatryk.safely.dagger2.modules.GestureListenerModule;
 import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
 import com.kubiakpatryk.safely.dagger2.modules.SharedPreferencesModule;
-import com.kubiakpatryk.safely.database.DatabaseHandler;
+import com.kubiakpatryk.safely.database.BoxManager;
 import com.kubiakpatryk.safely.database.cipher.CipherCreator;
-import com.kubiakpatryk.safely.database.cipher.CipherMethods;
-import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
-import com.kubiakpatryk.safely.database.content.ContentMethods;
-import com.kubiakpatryk.safely.database.content.ContentTableMethods;
-import com.kubiakpatryk.safely.database.passwords.PasswordsMethods;
-import com.kubiakpatryk.safely.database.passwords.PasswordsTableMethods;
 import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 
 import javax.inject.Singleton;
@@ -49,7 +43,7 @@ import dagger.Component;
 })
 public interface ApplicationComponent {
 
-    void inject(DemoApplication demoApplication);
+    void inject(App app);
 
     @ApplicationContext
     Context getContext();
@@ -58,23 +52,8 @@ public interface ApplicationComponent {
 
     ScreenResolutions getScreenResolutions();
 
-    DatabaseHandler getDatabaseHandler();
+    BoxManager getBoxManager();
 
     CipherCreator getCipherCreator();
-
-    CipherMethods getCipherMethods();
-
-    CipherTableMethods getCipherTableMethods();
-
-    ContentMethods getContentMethods();
-
-    ContentTableMethods getContentTableMethods();
-
-    PasswordsMethods getPasswordMethods();
-
-    PasswordsTableMethods getPasswordsTableMethods();
-
-    CipherConventer con();
-
 
 }

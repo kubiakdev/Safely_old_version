@@ -21,26 +21,42 @@ import android.content.Context;
 import com.kubiakpatryk.safely.dagger2.components.ApplicationComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerApplicationComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
+import com.kubiakpatryk.safely.database.MyObjectBox;
 
-public class DemoApplication extends Application {
+import io.objectbox.BoxStore;
+
+public class App extends Application {
+
+    private static App app;
 
     protected ApplicationComponent applicationComponent;
+    private BoxStore boxStore;
 
-    public static DemoApplication get(Context context){
-        return (DemoApplication) context.getApplicationContext();
+    public static App getApp(){
+        return app;
+    }
+
+    public static App getContext(Context context){
+        return (App) context.getApplicationContext();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         applicationComponent = DaggerApplicationComponent
                 .builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
         applicationComponent.inject(this);
+        boxStore = MyObjectBox.builder().androidContext(App.this).build();
     }
 
     public ApplicationComponent getApplicationComponent(){
         return applicationComponent;
+    }
+
+    public BoxStore getBoxStore() {
+        return boxStore;
     }
 }

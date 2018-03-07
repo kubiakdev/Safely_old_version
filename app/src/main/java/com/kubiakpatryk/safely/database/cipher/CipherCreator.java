@@ -16,39 +16,36 @@
 package com.kubiakpatryk.safely.database.cipher;
 
 import com.annimon.stream.Stream;
+import com.kubiakpatryk.safely.database.BoxManager;
 
 import javax.inject.Inject;
 
-public class CipherCreator {
+import io.objectbox.Box;
 
-    @Inject
-    CipherMethods cipherMethods;
+public class CipherCreator {
 
     @Inject
     CipherInitializer initializer;
 
     @Inject
-    CipherTableMethods tableMethods;
+    BoxManager boxManager;
+
+    private Box<CipherEntity> box;
 
     @Inject
-    public CipherCreator() {
+    CipherCreator() {
     }
 
     public void createCipher() {
+        box = boxManager.getBoxStore().boxFor(CipherEntity.class);
         //
-        tableMethods.deleteTableIfExists();
+        if(box.count()!=0) box.removeAll();
         //
-        tableMethods.createTable();
-//        List<Integer> keys = initializer.getKeys();
-//        List<Integer> values = initializer.getValues();
-//        for (int i = 0; i < keys.size(); i++) {
-//            CipherModel model = new CipherModel(keys.get(i), values.get(i));
-//            cipherMethods.insert(model);
-//            System.out.println(model.getId() + " " + model.getKey() + " " + model.getValue());
-//        }
         Stream.of(initializer.getKeys())
-                .forEach(integer -> cipherMethods
-                        .insert(new CipherModel(initializer.getValues().get(integer), integer)));
+                .forEach(integer -> box
+                        .put(new CipherEntity(initializer.getValues().get(integer), integer)));
+
+        Stream.of(box.getAll()).forEach(System.out::println);
     }
 
 

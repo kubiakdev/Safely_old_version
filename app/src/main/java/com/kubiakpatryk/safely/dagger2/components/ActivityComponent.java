@@ -21,7 +21,7 @@ import com.kubiakpatryk.safely.LauncherActivity;
 import com.kubiakpatryk.safely.SecureChooseActivity;
 import com.kubiakpatryk.safely.TutorialActivity;
 import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
-import com.kubiakpatryk.safely.dagger2.annotations.PerActivity;
+import com.kubiakpatryk.safely.dagger2.annotations.ForActivity;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
 import com.kubiakpatryk.safely.dagger2.modules.CustomHorizontalScrollViewModule;
 import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
@@ -30,7 +30,7 @@ import com.kubiakpatryk.safely.main.MainActivity;
 
 import dagger.Component;
 
-@PerActivity
+@ForActivity
 @Component(dependencies = ApplicationComponent.class, modules = {
         ActivityModule.class,
         RecyclerViewEntityModule.class,

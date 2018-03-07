@@ -19,10 +19,6 @@ import android.app.Activity;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
-import com.kubiakpatryk.safely.main.recycler_view.RecyclerAdapterImplementation;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Named;
 
@@ -32,21 +28,9 @@ import dagger.Provides;
 @Module
 public class RecyclerViewEntityModule {
 
-    private List<String> itemList = new ArrayList<>();;
-
     @Provides
     CustomRecyclerView provideRecyclerView(Activity activity){
         return activity.findViewById(R.id.mainActivity_recyclerView);
-    }
-
-    @Provides
-    @Named("RecyclerViewEntity_ItemList")
-    List<String> provideItemList() {
-        if (!itemList.isEmpty()) return itemList;
-        itemList.add("Demo Resource \n D R");
-        itemList.add("Demo res");
-        itemList.add("D r");
-        return itemList;
     }
 
     @Provides
@@ -60,13 +44,4 @@ public class RecyclerViewEntityModule {
     int provideOrientation(){
         return 1;
     }
-
-    @Provides
-    RecyclerAdapterImplementation provideRecyclerAdapterImplementation(
-            @Named("RecyclerViewEntity_ItemList") List<String> list){
-//        list.add("436");
-        return new RecyclerAdapterImplementation(list);
-    }
-
-
 }

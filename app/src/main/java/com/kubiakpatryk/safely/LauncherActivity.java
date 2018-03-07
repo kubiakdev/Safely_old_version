@@ -34,14 +34,11 @@ public class LauncherActivity extends AppCompatActivity {
     @Inject
     SharedPreferencesManager preferencesManager;
 
-    @Inject
-    CipherConventer cipherConventer;
-
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
-                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .applicationComponent(App.getContext(this).getApplicationComponent())
                     .build();
         }
         return activityComponent;
@@ -54,11 +51,6 @@ public class LauncherActivity extends AppCompatActivity {
         getActivityComponent().inject(this);
         startActivity(selectSuitableActivity());
 
-//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!"));
-//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!"));
-//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!!!"));
-//        System.out.println(cipherConventer.encrypt("dawno dawno dawno temu!!!!!!"));
-        cipherConventer.printsomething();
     }
 
     Intent selectSuitableActivity() {

@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.passwords;
+package com.kubiakpatryk.safely.database;
 
-public class PasswordsModel {
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
-    private int id;
+@Entity
+public class PasswordsEntity {
+
+    @Id
+    private long id;
+
     private String login;
     private String detail;
     private String firstPassword;
     private String secondPassword;
 
-    public PasswordsModel() {}
+    public PasswordsEntity() {}
 
-    public PasswordsModel(String login, String detail,
+    public PasswordsEntity(String login, String detail,
                           String firstPassword, String secondPassword) {
         this.login = login;
         this.detail = detail;
@@ -33,7 +39,7 @@ public class PasswordsModel {
         this.secondPassword = secondPassword;
     }
 
-    public PasswordsModel(int id, String login, String detail,
+    public PasswordsEntity(long id, String login, String detail,
                           String firstPassword, String secondPassword) {
         this.id = id;
         this.login = login;
@@ -42,11 +48,11 @@ public class PasswordsModel {
         this.secondPassword = secondPassword;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,5 +86,16 @@ public class PasswordsModel {
 
     public void setSecondPassword(String secondPassword) {
         this.secondPassword = secondPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "PasswordsEntity{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", detail='" + detail + '\'' +
+                ", firstPassword='" + firstPassword + '\'' +
+                ", secondPassword='" + secondPassword + '\'' +
+                '}';
     }
 }

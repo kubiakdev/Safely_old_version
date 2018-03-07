@@ -13,27 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.content;
+package com.kubiakpatryk.safely.database;
 
-public class ContentModel {
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.annotation.Index;
 
-    private int id;
+@Entity
+public class ContentEntity {
+
+    @Id
+    private long id;
+
+    @Index
     private String content;
+
     private String created;
     private String modified;
-    private int favourite;
+    private long favourite;
 
-    public ContentModel() {
+    public ContentEntity() {
     }
 
-    public ContentModel(String content, String created, String modified, int favourite) {
+    public ContentEntity(String content, String created, String modified, long favourite) {
         this.content = content;
         this.created = created;
         this.modified = modified;
         this.favourite = favourite;
     }
 
-    public ContentModel(int id, String content, String created, String modified, int favourite) {
+    public ContentEntity(long id, String content, String created, String modified, long favourite) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -41,11 +50,11 @@ public class ContentModel {
         this.favourite = favourite;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -73,11 +82,22 @@ public class ContentModel {
         this.modified = modified;
     }
 
-    public int getFavourite() {
+    public long getFavourite() {
         return favourite;
     }
 
-    public void setFavourite(int favourite) {
+    public void setFavourite(long favourite) {
         this.favourite = favourite;
+    }
+
+    @Override
+    public String toString() {
+        return "ContentEntity{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", created='" + created + '\'' +
+                ", modified='" + modified + '\'' +
+                ", favourite=" + favourite +
+                '}';
     }
 }

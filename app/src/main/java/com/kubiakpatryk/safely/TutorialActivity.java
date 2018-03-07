@@ -66,7 +66,7 @@ public class TutorialActivity extends AppCompatActivity {
         if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
-                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .applicationComponent(App.getContext(this).getApplicationComponent())
                     .build();
         }
         return activityComponent;

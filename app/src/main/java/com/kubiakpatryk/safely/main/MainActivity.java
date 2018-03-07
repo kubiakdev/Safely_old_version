@@ -19,11 +19,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
-import com.kubiakpatryk.safely.DemoApplication;
+import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.database.BoxManager;
 import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
@@ -54,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
     List<SmallActionButtonsModel> listToHide;
 
     @Inject
-    @Named("RecyclerViewEntity_ItemList")
-    List<String> list;
+    BoxManager boxManager;
 
     @BindView(R.id.mainActivity_recyclerView)
     CustomRecyclerView recyclerView;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
-                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .applicationComponent(App.getContext(this).getApplicationComponent())
                     .build();
         }
         return activityComponent;
@@ -86,7 +86,5 @@ public class MainActivity extends AppCompatActivity {
         mainActionButton.setOnClickListener(onClickListener);
 
         recyclerViewEntity.initializeRecyclerView();
-
-
     }
 }

@@ -24,8 +24,6 @@ import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
 import com.kubiakpatryk.safely.database.cipher.CipherCreator;
-import com.kubiakpatryk.safely.database.cipher.CipherMethods;
-import com.kubiakpatryk.safely.database.cipher.CipherTableMethods;
 import com.kubiakpatryk.safely.main.MainActivity;
 import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -43,12 +41,6 @@ public class SecureChooseActivity extends RxAppCompatActivity {
     @Inject
     CipherCreator cipherCreator;
 
-    @Inject
-    CipherMethods cipherMethods;
-
-    @Inject
-    CipherTableMethods cipherTableMethods;
-
     @BindView(R.id.secureChooseActivity_button_generateCipher)
     Button generateCipherButton;
 
@@ -58,7 +50,7 @@ public class SecureChooseActivity extends RxAppCompatActivity {
         if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
-                    .applicationComponent(DemoApplication.get(this).getApplicationComponent())
+                    .applicationComponent(App.getContext(this).getApplicationComponent())
                     .build();
         }
         return activityComponent;

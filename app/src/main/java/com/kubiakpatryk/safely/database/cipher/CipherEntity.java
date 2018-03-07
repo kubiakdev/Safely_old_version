@@ -15,46 +15,62 @@
  */
 package com.kubiakpatryk.safely.database.cipher;
 
-public class CipherModel {
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
-    private int id;
-    private int key;
-    private int value;
+@Entity
+public class CipherEntity {
 
-    public CipherModel () {}
+    @Id
+    private long id;
 
-    public CipherModel(int key, int value) {
+    private long key;
+    private long value;
+
+    public CipherEntity() {
+    }
+
+    public CipherEntity(long key, long value) {
         this.key = key;
         this.value = value;
     }
 
-    public CipherModel(int id, int key, int value) {
+    public CipherEntity(long id, long key, long value) {
         this.id = id;
         this.key = key;
         this.value = value;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getKey() {
+    public long getKey() {
         return key;
     }
 
-    public void setKey(int key) {
+    public void setKey(long key) {
         this.key = key;
     }
 
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(long value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "CipherEntity{" +
+                "id=" + id +
+                ", key=" + key +
+                ", value=" + value +
+                '}';
     }
 }

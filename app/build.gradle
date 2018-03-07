@@ -78,6 +78,10 @@ dependencies {
     compile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
 
+    //ObjectBox
+    compile 'io.objectbox:objectbox-android:1.4.3'
+    annotationProcessor 'io.objectbox:objectbox-processor:1.4.3'
+
     //RxAndroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 

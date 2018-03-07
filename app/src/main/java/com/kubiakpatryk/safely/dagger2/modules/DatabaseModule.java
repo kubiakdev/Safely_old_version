@@ -16,22 +16,22 @@
 package com.kubiakpatryk.safely.dagger2.modules;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
+import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
-import com.kubiakpatryk.safely.database.DatabaseHandler;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.objectbox.BoxStore;
 
 @Module
 public class DatabaseModule {
 
     @Provides
     @Singleton
-    SQLiteDatabase provideDatabase(@ApplicationContext Context context){
-        return new DatabaseHandler(context).getWritableDatabase();
+    BoxStore provideBoxStore(@ApplicationContext Context context){
+        return ((App) context.getApplicationContext()).getBoxStore();
     }
 }
