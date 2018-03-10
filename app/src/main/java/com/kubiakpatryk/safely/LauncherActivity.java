@@ -50,7 +50,6 @@ public class LauncherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
         getActivityComponent().inject(this);
         startActivity(selectSuitableActivity());
-
     }
 
     Intent selectSuitableActivity() {

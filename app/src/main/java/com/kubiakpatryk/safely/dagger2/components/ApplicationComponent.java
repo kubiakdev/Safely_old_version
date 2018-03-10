@@ -19,6 +19,7 @@ import android.content.Context;
 
 import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.ScreenResolutions;
+import com.kubiakpatryk.safely.cipher.CipherCreator;
 import com.kubiakpatryk.safely.dagger2.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
 import com.kubiakpatryk.safely.dagger2.modules.DatabaseModule;
@@ -26,7 +27,6 @@ import com.kubiakpatryk.safely.dagger2.modules.GestureListenerModule;
 import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
 import com.kubiakpatryk.safely.dagger2.modules.SharedPreferencesModule;
 import com.kubiakpatryk.safely.database.BoxManager;
-import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 
 import javax.inject.Singleton;

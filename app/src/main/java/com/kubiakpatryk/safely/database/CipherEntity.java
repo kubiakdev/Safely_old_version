@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.database.cipher;
+package com.kubiakpatryk.safely.database;
 
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;

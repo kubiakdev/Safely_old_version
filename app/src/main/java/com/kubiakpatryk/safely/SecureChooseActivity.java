@@ -20,10 +20,10 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.kubiakpatryk.safely.cipher.CipherCreator;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
-import com.kubiakpatryk.safely.database.cipher.CipherCreator;
 import com.kubiakpatryk.safely.main.MainActivity;
 import com.kubiakpatryk.safely.preferences.SharedPreferencesManager;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;

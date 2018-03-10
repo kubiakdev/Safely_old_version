@@ -24,7 +24,6 @@ import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
-import com.kubiakpatryk.safely.database.BoxManager;
 import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
@@ -53,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     @Named("SmallFloatingActionButtons_ListToHide")
     List<SmallActionButtonsModel> listToHide;
-
-    @Inject
-    BoxManager boxManager;
 
     @BindView(R.id.mainActivity_recyclerView)
     CustomRecyclerView recyclerView;
@@ -86,5 +82,17 @@ public class MainActivity extends AppCompatActivity {
         mainActionButton.setOnClickListener(onClickListener);
 
         recyclerViewEntity.initializeRecyclerView();
+
+//        Box<CipherEntity> box = boxManager.getBoxStore().boxFor(CipherEntity.class);
+//        Stream.of(box.getAll()).forEach(System.out::println);
+//
+//        Observable.interval(500, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.from(Executors.newFixedThreadPool(2)))
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(n -> {
+//                    System.out.println(cipherMethods.decrypt("patryk"));
+//                    cipherCreator.createCipher();
+//                });
+
     }
 }

@@ -16,7 +16,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kubiakpatryk.safely">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -26,10 +26,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
 
-        <meta-data android:name="android.max_aspect" android:value="2.1" />
-
-        <activity android:name=".LauncherActivity" >
+        <activity android:name=".LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,10 +40,8 @@
         <activity
             android:name=".TutorialActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".main.MainActivity">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".SecureChooseActivity" />
     </application>
 
