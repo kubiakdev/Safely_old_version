@@ -16,7 +16,6 @@
 package com.kubiakpatryk.safely.main.action_button.small_buttons;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.view.animation.Animation;
 
@@ -56,24 +55,12 @@ public class SmallActionButtonsHandler {
     @BindAnim(R.anim.action_buttons_settings_hide)
     Animation settingsHide;
 
-    private Activity activity;
-
     @Inject
     SmallActionButtonsAnimationSchema animationSchema;
 
     @Inject
     public SmallActionButtonsHandler(Activity activity) {
-        this.activity = activity;
-        ButterKnife.bind(this, this.activity);
-
-        setOnClickListeners();
-    }
-
-    private void setOnClickListeners() {
-        for (FloatingActionButton actionButton : actionButtons) {
-            actionButton.setOnClickListener(new SmallActionButtonsOnClickListener(
-                    activity, new Intent()));
-        }
+        ButterKnife.bind(this, activity);
     }
 
     public void showSmallActionButtons(List<SmallActionButtonsModel> modelList) {

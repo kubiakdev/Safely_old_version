@@ -16,24 +16,34 @@
 package com.kubiakpatryk.safely.main.recycler_view;
 
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.kubiakpatryk.safely.MyCallback;
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.main.DialogCreator;
+import com.kubiakpatryk.safely.main.MainActivity;
 import com.kubiakpatryk.safely.view_holder.AbstractHolder;
 
-import javax.inject.Inject;
+public class ViewHolderImplementation extends AbstractHolder implements MyCallback {
 
-public class ViewHolderImplementation extends AbstractHolder {
+    private MyCallback myCallback;
 
-    @Inject
-    ViewHolderImplementation(View itemView) {
+    @Override
+    public void callback() {
+        myCallback.callback();
+    }
+
+    ViewHolderImplementation(MyCallback myCallback, View itemView) {
         super(itemView);
+        this.myCallback = myCallback;
         setContent(R.id.contentModel_textView);
     }
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(itemView.getContext(), "Position " + getAdapterPosition() +
-                " clicked", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(itemView.getContext(), ""+getAdapterPosition(), Toast.LENGTH_SHORT).show();
+        String content = ((TextView) getContent()).getText().toString();
+        DialogCreator dialogCreator =
+                new DialogCreator(this, (MainActivity) v.getContext(), content);
     }
 }

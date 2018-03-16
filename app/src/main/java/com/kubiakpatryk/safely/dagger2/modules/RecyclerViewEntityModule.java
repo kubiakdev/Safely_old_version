@@ -44,4 +44,5 @@ public class RecyclerViewEntityModule {
     int provideOrientation(){
         return 1;
     }
+
 }

@@ -19,11 +19,14 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
+import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
 import com.kubiakpatryk.safely.dagger2.components.DaggerActivityComponent;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
+import com.kubiakpatryk.safely.database.BoxManager;
+import com.kubiakpatryk.safely.database.ContentEntity;
 import com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener;
 import com.kubiakpatryk.safely.main.action_button.small_buttons.model.SmallActionButtonsModel;
 import com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView;
@@ -36,6 +39,7 @@ import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.objectbox.Box;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     FloatingActionButtonOnClickListener onClickListener;
+
+    @Inject
+    BoxManager boxManager;
 
     @Inject
     @Named("SmallFloatingActionButtons_ListToShow")
@@ -83,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewEntity.initializeRecyclerView();
 
-//        Box<CipherEntity> box = boxManager.getBoxStore().boxFor(CipherEntity.class);
-//        Stream.of(box.getAll()).forEach(System.out::println);
+        Box<ContentEntity> box = boxManager.getBoxStore().boxFor(ContentEntity.class);
+        Stream.of(box.getAll()).forEach(System.out::println);
+
 //
 //        Observable.interval(500, TimeUnit.MILLISECONDS)
 //                .subscribeOn(Schedulers.from(Executors.newFixedThreadPool(2)))

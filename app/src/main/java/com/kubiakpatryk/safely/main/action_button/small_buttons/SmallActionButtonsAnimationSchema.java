@@ -58,6 +58,7 @@ class SmallActionButtonsAnimationSchema {
 
     private void prepareButton(SmallActionButtonsModel model){
         button.setLayoutParams(layoutParams);
+        button.setOnClickListener(new SmallActionButtonsOnClickListener(activity, model.getIntent()));
         button.startAnimation(AnimationUtils.loadAnimation(
                 activity, model.getAnimationResource()));
     }

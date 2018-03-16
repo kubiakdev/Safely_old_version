@@ -13,27 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kubiakpatryk.safely.main.action_button.small_buttons;
+package com.kubiakpatryk.safely;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-
-import javax.inject.Inject;
-
-public class SmallActionButtonsOnClickListener implements View.OnClickListener{
-
-    private Activity activity;
-    private Intent intent;
-
-    @Inject
-    SmallActionButtonsOnClickListener(Activity activity, Intent intent) {
-        this.activity = activity;
-        this.intent = intent;
-    }
-
-    @Override
-    public void onClick(View view) {
-        activity.startActivity(intent);
-    }
+public interface MyCallback {
+    void callback();
 }

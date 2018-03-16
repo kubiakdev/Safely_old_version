@@ -22,18 +22,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kubiakpatryk.safely.MyCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.view_holder.AbstractRecyclerAdapter;
 
 import java.util.List;
 
 
-public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewHolderImplementation>{
+public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewHolderImplementation>
+        implements MyCallback{
 
     private List<String> list;
+    private MyCallback myCallback;
 
-    public RecyclerAdapterImplementation(List<String> list) {
+    @Override
+    public void callback() {
+        myCallback.callback();
+
+    }
+
+    public RecyclerAdapterImplementation(MyCallback myCallback, List<String> list) {
         super(list);
+        this.myCallback = myCallback;
         this.list = list;
     }
 
@@ -43,7 +53,7 @@ public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewH
         @SuppressLint("InflateParams")
         View layoutView = LayoutInflater.from(parent.getContext()).
         inflate(R.layout.content_model, null, false);
-        return new ViewHolderImplementation(layoutView);
+        return new ViewHolderImplementation(this, layoutView);
     }
 
     @Override

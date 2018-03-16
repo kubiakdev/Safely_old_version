@@ -19,6 +19,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 
 import com.annimon.stream.Stream;
+import com.kubiakpatryk.safely.MyCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.database.BoxManager;
 import com.kubiakpatryk.safely.database.ContentEntity;
@@ -32,11 +33,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import io.objectbox.Box;
-
 import static com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener.IS_ACTION_BUTTON_SHOW;
 
-public class RecyclerViewEntity {
+public class RecyclerViewEntity implements MyCallback{
 
     @Inject
     SmallActionButtonsHandler buttonsHandler;
@@ -57,7 +56,11 @@ public class RecyclerViewEntity {
     BoxManager boxManager;
 
     private CustomRecyclerView recyclerView;
-    private Box<ContentEntity> box;
+
+    @Override
+    public void callback() {
+        initializeRecyclerView();
+    }
 
     @Inject
     public RecyclerViewEntity(CustomRecyclerView recyclerView) {
@@ -65,14 +68,7 @@ public class RecyclerViewEntity {
     }
 
     public List<String> getList(){
-        box = boxManager.getBoxStore().boxFor(ContentEntity.class);
-//        long length = box.count();
-//        StringBuilder word = new StringBuilder();
-//        for (int i = 0; i<15; i++) {
-//            for (int j = 0; j < length + 9; j++) word.append("test");
-//            box.put(new ContentEntity(word.toString(), "", "", 1));
-//        }
-        return Stream.of(box.getAll())
+        return Stream.of(boxManager.getBoxStore().boxFor(ContentEntity.class).getAll())
                 .map(ContentEntity::getContent)
                 .toList();
     }
@@ -80,9 +76,8 @@ public class RecyclerViewEntity {
     public void initializeRecyclerView() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(spanCount, orientation));
-        recyclerView.setAdapter(new RecyclerAdapterImplementation(getList()));
+        recyclerView.setAdapter(new RecyclerAdapterImplementation(this, getList()));
         setRecyclerViewOnTouchListener();
-
 
 
         recyclerView.setBackgroundResource(R.color.cardview_dark_background);

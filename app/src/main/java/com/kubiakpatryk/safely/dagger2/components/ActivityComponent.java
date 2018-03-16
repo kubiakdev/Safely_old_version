@@ -24,8 +24,8 @@ import com.kubiakpatryk.safely.dagger2.annotations.ActivityContext;
 import com.kubiakpatryk.safely.dagger2.annotations.ForActivity;
 import com.kubiakpatryk.safely.dagger2.modules.ActivityModule;
 import com.kubiakpatryk.safely.dagger2.modules.CustomHorizontalScrollViewModule;
-import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
 import com.kubiakpatryk.safely.dagger2.modules.FloatingActionButtonsModule;
+import com.kubiakpatryk.safely.dagger2.modules.RecyclerViewEntityModule;
 import com.kubiakpatryk.safely.main.MainActivity;
 
 import dagger.Component;

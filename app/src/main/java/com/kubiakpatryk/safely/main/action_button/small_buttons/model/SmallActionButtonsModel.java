@@ -15,19 +15,23 @@
  */
 package com.kubiakpatryk.safely.main.action_button.small_buttons.model;
 
+import android.content.Intent;
+
 public class SmallActionButtonsModel {
 
     private int buttonResource;
     private double marginRight;
     private double marginBottom;
     private int animationResource;
+    private Intent intent;
 
     public SmallActionButtonsModel(int buttonResource, double marginRight, double marginBottom,
-                                   int animationResource) {
+                                   int animationResource, Intent intent) {
         this.buttonResource = buttonResource;
         this.marginRight = marginRight;
         this.marginBottom = marginBottom;
         this.animationResource = animationResource;
+        this.intent = intent;
     }
 
     public int getButtonResource() {
@@ -44,5 +48,9 @@ public class SmallActionButtonsModel {
 
     public int getAnimationResource() {
         return animationResource;
+    }
+
+    public Intent getIntent() {
+        return intent;
     }
 }
