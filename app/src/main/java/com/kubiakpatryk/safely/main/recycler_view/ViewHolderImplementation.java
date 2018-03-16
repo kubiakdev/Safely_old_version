@@ -15,6 +15,7 @@
  */
 package com.kubiakpatryk.safely.main.recycler_view;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,7 +44,13 @@ public class ViewHolderImplementation extends AbstractHolder implements MyCallba
     public void onClick(View v) {
 //        Toast.makeText(itemView.getContext(), ""+getAdapterPosition(), Toast.LENGTH_SHORT).show();
         String content = ((TextView) getContent()).getText().toString();
-        DialogCreator dialogCreator =
-                new DialogCreator(this, (MainActivity) v.getContext(), content);
+        new DialogCreator(this, (MainActivity) v.getContext(), content);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        TextView textView = (TextView) getContent();
+        textView.setBackgroundColor(Color.YELLOW);
+        return true;
     }
 }

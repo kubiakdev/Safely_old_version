@@ -19,13 +19,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public abstract class AbstractHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener {
+        implements View.OnClickListener, View.OnLongClickListener {
 
     private Object content;
 
     public AbstractHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void setContent(int resource){
@@ -38,4 +39,7 @@ public abstract class AbstractHolder extends RecyclerView.ViewHolder
 
     @Override
     public abstract void onClick(View v);
+
+    @Override
+    public abstract boolean onLongClick(View v);
 }
