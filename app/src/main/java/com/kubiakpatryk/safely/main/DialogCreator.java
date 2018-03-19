@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.kubiakpatryk.safely.App;
-import com.kubiakpatryk.safely.MyCallback;
+import com.kubiakpatryk.safely.OnDialogCloseCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.database.ContentEntity;
 import com.kubiakpatryk.safely.database.ContentEntity_;
@@ -33,15 +33,15 @@ import io.objectbox.Box;
 
 public class DialogCreator {
 
-    private MyCallback myCallback;
+    private OnDialogCloseCallback onDialogCloseCallback;
     private Activity activity;
     private String content, cachedContent;
     private AlertDialog.Builder dialog;
     private EditText editText;
     private Box<ContentEntity> box;
 
-    public DialogCreator(MyCallback myCallback, Activity activity, String content) {
-        this.myCallback = myCallback;
+    public DialogCreator(OnDialogCloseCallback onDialogCloseCallback, Activity activity, String content) {
+        this.onDialogCloseCallback = onDialogCloseCallback;
         this.activity = activity;
         this.content = content;
         createAndShowDialog();
@@ -62,8 +62,7 @@ public class DialogCreator {
                 box = ((App) activity.getApplication()
                         .getApplicationContext()).getBoxStore().boxFor(ContentEntity.class);
                 updateRecord();
-//                Stream.of(box.getAll()).forEach(System.out::println);
-                myCallback.callback();
+                onDialogCloseCallback.callback();
             }
         });
     }

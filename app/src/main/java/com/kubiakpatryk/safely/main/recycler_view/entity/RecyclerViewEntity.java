@@ -17,9 +17,11 @@ package com.kubiakpatryk.safely.main.recycler_view.entity;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.annimon.stream.Stream;
-import com.kubiakpatryk.safely.MyCallback;
+import com.kubiakpatryk.safely.OnDialogCloseCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.database.BoxManager;
 import com.kubiakpatryk.safely.database.ContentEntity;
@@ -35,7 +37,7 @@ import javax.inject.Named;
 
 import static com.kubiakpatryk.safely.main.action_button.FloatingActionButtonOnClickListener.IS_ACTION_BUTTON_SHOW;
 
-public class RecyclerViewEntity implements MyCallback{
+public class RecyclerViewEntity implements OnDialogCloseCallback {
 
     @Inject
     SmallActionButtonsHandler buttonsHandler;
@@ -56,10 +58,12 @@ public class RecyclerViewEntity implements MyCallback{
     BoxManager boxManager;
 
     private CustomRecyclerView recyclerView;
+    private LayoutAnimationController animation;
 
     @Override
     public void callback() {
         initializeRecyclerView();
+        animation.start();
     }
 
     @Inject
@@ -75,14 +79,24 @@ public class RecyclerViewEntity implements MyCallback{
 
     public void initializeRecyclerView() {
         recyclerView.setHasFixedSize(true);
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, orientation);
-        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        StaggeredGridLayoutManager staggeredGridLayoutManager =
+                new StaggeredGridLayoutManager(spanCount, orientation);
+        staggeredGridLayoutManager.setGapStrategy(
+                StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(new RecyclerAdapterImplementation(this, getList()));
         setRecyclerViewOnTouchListener();
+        setLayoutAnimation();
 
 
         recyclerView.setBackgroundResource(R.color.cardview_dark_background);
+    }
+
+    private void setLayoutAnimation(){
+        if (animation==null)
+            animation = AnimationUtils.loadLayoutAnimation(
+                recyclerView.getContext(), R.anim.content_staggered_grid_layout_animation);
+        recyclerView.setLayoutAnimation(animation);
     }
 
     private void setRecyclerViewOnTouchListener(){

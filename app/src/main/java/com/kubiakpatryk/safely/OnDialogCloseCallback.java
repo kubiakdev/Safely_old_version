@@ -15,6 +15,6 @@
  */
 package com.kubiakpatryk.safely;
 
-public interface MyCallback {
+public interface OnDialogCloseCallback {
     void callback();
 }

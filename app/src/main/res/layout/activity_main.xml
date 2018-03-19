@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainActivity_recyclerView"
+        android:layoutAnimation="@anim/content_staggered_grid_layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView>
 

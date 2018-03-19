@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kubiakpatryk.safely.MyCallback;
+import com.kubiakpatryk.safely.OnDialogCloseCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.view_holder.AbstractRecyclerAdapter;
 
@@ -30,20 +30,20 @@ import java.util.List;
 
 
 public class RecyclerAdapterImplementation extends AbstractRecyclerAdapter<ViewHolderImplementation>
-        implements MyCallback{
+        implements OnDialogCloseCallback {
 
     private List<String> list;
-    private MyCallback myCallback;
+    private OnDialogCloseCallback onDialogCloseCallback;
 
     @Override
     public void callback() {
-        myCallback.callback();
+        onDialogCloseCallback.callback();
 
     }
 
-    public RecyclerAdapterImplementation(MyCallback myCallback, List<String> list) {
+    public RecyclerAdapterImplementation(OnDialogCloseCallback onDialogCloseCallback, List<String> list) {
         super(list);
-        this.myCallback = myCallback;
+        this.onDialogCloseCallback = onDialogCloseCallback;
         this.list = list;
     }
 

@@ -19,24 +19,24 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
-import com.kubiakpatryk.safely.MyCallback;
+import com.kubiakpatryk.safely.OnDialogCloseCallback;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.main.DialogCreator;
 import com.kubiakpatryk.safely.main.MainActivity;
 import com.kubiakpatryk.safely.view_holder.AbstractHolder;
 
-public class ViewHolderImplementation extends AbstractHolder implements MyCallback {
+public class ViewHolderImplementation extends AbstractHolder implements OnDialogCloseCallback {
 
-    private MyCallback myCallback;
+    private OnDialogCloseCallback onDialogCloseCallback;
 
     @Override
     public void callback() {
-        myCallback.callback();
+        onDialogCloseCallback.callback();
     }
 
-    ViewHolderImplementation(MyCallback myCallback, View itemView) {
+    ViewHolderImplementation(OnDialogCloseCallback onDialogCloseCallback, View itemView) {
         super(itemView);
-        this.myCallback = myCallback;
+        this.onDialogCloseCallback = onDialogCloseCallback;
         setContent(R.id.contentModel_textView);
     }
 

@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
-import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.App;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.dagger2.components.ActivityComponent;
@@ -91,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewEntity.initializeRecyclerView();
 
         Box<ContentEntity> box = boxManager.getBoxStore().boxFor(ContentEntity.class);
-        Stream.of(box.getAll()).forEach(System.out::println);
+        box.removeAll();
+        StringBuilder s = new StringBuilder("test");
+        for (int i = 0; i < 20; i++) {
+            box.put(new ContentEntity(s.toString(), "","",1));
+            s.append("test");
+        }
 
 //
 //        Observable.interval(500, TimeUnit.MILLISECONDS)
