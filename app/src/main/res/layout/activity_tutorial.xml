@@ -20,7 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kubiakpatryk.safely.TutorialActivity">
+    tools:context="com.kubiakpatryk.safely.ui.tutorial.TutorialActivity">
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="192dp" />
 
-    <com.kubiakpatryk.safely.CustomHorizontalScrollView
+    <com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView
         android:id="@+id/tutorialActivity_horizontalScrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
 
         </LinearLayout>
 
-    </com.kubiakpatryk.safely.CustomHorizontalScrollView>
+    </com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"

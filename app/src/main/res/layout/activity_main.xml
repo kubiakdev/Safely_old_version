@@ -43,16 +43,16 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView
+    <com.kubiakpatryk.safely.ui.custom.CustomRecycler
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainActivity_recyclerView"
         android:layoutAnimation="@anim/content_staggered_grid_layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    </com.kubiakpatryk.safely.main.recycler_view.CustomRecyclerView>
+    </com.kubiakpatryk.safely.ui.custom.CustomRecycler>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/mainActivity_actionButton"
+    <com.kubiakpatryk.safely.ui.custom.CustomFab
+        android:id="@+id/mainActivity_fab_actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -60,7 +60,7 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_menu_help"
-        app:layout_behavior="com.kubiakpatryk.safely.main.action_button.FloatingActionButtonBehavior" />
+        app:layout_behavior="com.kubiakpatryk.safely.ui.custom.CustomFab$CustomBehavior" />
 
     <include layout="@layout/action_buttons"/>
 </android.support.design.widget.CoordinatorLayout>

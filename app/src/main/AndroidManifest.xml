@@ -30,21 +30,37 @@
             android:name="android.max_aspect"
             android:value="2.1" />
 
-        <activity android:name=".LauncherActivity">
-
-        </activity>
-        <activity
-            android:name=".TutorialActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecureChooseActivity" />
+        <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".ui.main.MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".ui.secure_choose.SecureChooseActivity">
+        <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

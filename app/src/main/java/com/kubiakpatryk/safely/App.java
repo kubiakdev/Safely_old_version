@@ -16,12 +16,11 @@
 package com.kubiakpatryk.safely;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.kubiakpatryk.safely.dagger2.components.ApplicationComponent;
-import com.kubiakpatryk.safely.dagger2.components.DaggerApplicationComponent;
-import com.kubiakpatryk.safely.dagger2.modules.ApplicationModule;
-import com.kubiakpatryk.safely.database.MyObjectBox;
+import com.kubiakpatryk.safely.data.db.entity.MyObjectBox;
+import com.kubiakpatryk.safely.di.components.ApplicationComponent;
+import com.kubiakpatryk.safely.di.components.DaggerApplicationComponent;
+import com.kubiakpatryk.safely.di.modules.ApplicationModule;
 
 import io.objectbox.BoxStore;
 
@@ -34,10 +33,6 @@ public class App extends Application {
 
     public static App getApp(){
         return app;
-    }
-
-    public static App getContext(Context context){
-        return (App) context.getApplicationContext();
     }
 
     @Override
