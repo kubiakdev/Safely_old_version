@@ -88,12 +88,12 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<CipherEntity> getCipherEntityByKey(long key) {
+    public Observable<CipherEntity> getCipherEntityByKey(String key) {
         return dbHelper.getCipherEntityByKey(key);
     }
 
     @Override
-    public Observable<CipherEntity> getCipherEntityByValue(long value) {
+    public Observable<CipherEntity> getCipherEntityByValue(String value) {
         return dbHelper.getCipherEntityByValue(value);
     }
 
@@ -155,5 +155,15 @@ public class DataManager implements DataHelper {
     @Override
     public void setIsFirstLaunch(boolean value) {
         prefsHelper.setIsFirstLaunch(value);
+    }
+
+    @Override
+    public boolean isShowingBytes() {
+        return prefsHelper.isShowingBytes();
+    }
+
+    @Override
+    public void setIsShowingBytes(boolean value) {
+        prefsHelper.setIsShowingBytes(value);
     }
 }

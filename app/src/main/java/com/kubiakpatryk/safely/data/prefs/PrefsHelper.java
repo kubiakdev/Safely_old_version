@@ -20,5 +20,9 @@ public interface PrefsHelper {
     boolean isFirstLaunch();
 
     void setIsFirstLaunch(boolean value);
+
+    boolean isShowingBytes();
+
+    void setIsShowingBytes(boolean value);
 }
 

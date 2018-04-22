@@ -95,13 +95,13 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<CipherEntity> getCipherEntityByKey(final long key) {
+    public Observable<CipherEntity> getCipherEntityByKey(final String key) {
         return Observable.fromCallable(() -> boxStore.boxFor(CipherEntity.class)
                 .query().equal(CipherEntity_.key, key).build().findFirst());
     }
 
     @Override
-    public Observable<CipherEntity> getCipherEntityByValue(final long value) {
+    public Observable<CipherEntity> getCipherEntityByValue(final String value) {
         return Observable.fromCallable(() -> boxStore.boxFor(CipherEntity.class)
                 .query().equal(CipherEntity_.value, value).build().findFirst());
     }

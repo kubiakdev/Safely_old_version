@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
         MainPresenter.callback = this;
+        NoteDialogFragment.callback = this;
 
         reloadAdapter();
         presenter.setUpCustomFab(customFab, smallCustomFabArray, this);
@@ -74,9 +75,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void openNoteDialog(String content) {
-        NoteDialogFragment noteDialog = NoteDialogFragment.newInstance(content);
-        noteDialog.setCallback(this);
-        noteDialog.show(getSupportFragmentManager());
+        NoteDialogFragment.newInstance(content).show(getSupportFragmentManager());
     }
 
     @Override

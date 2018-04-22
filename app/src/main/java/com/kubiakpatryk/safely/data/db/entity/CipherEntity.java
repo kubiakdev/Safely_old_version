@@ -17,6 +17,7 @@ package com.kubiakpatryk.safely.data.db.entity;
 
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
+import io.objectbox.annotation.NameInDb;
 
 @Entity
 public class CipherEntity {
@@ -24,19 +25,19 @@ public class CipherEntity {
     @Id
     private long id;
 
-    private long key;
-    private long value;
+    @NameInDb("key_")
+    private String key;
 
-    public CipherEntity() {
-    }
+    @NameInDb("value_")
+    private String value;
 
-    public CipherEntity(long key, long value) {
+    public CipherEntity(long id, String key, String value) {
+        this.id = id;
         this.key = key;
         this.value = value;
     }
 
-    public CipherEntity(long id, long key, long value) {
-        this.id = id;
+    public CipherEntity(String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -49,19 +50,19 @@ public class CipherEntity {
         this.id = id;
     }
 
-    public long getKey() {
+    public String getKey() {
         return key;
     }
 
-    public void setKey(long key) {
+    public void setKey(String key) {
         this.key = key;
     }
 
-    public long getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(long value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
@@ -69,8 +70,8 @@ public class CipherEntity {
     public String toString() {
         return "CipherEntity{" +
                 "id=" + id +
-                ", key=" + key +
-                ", value=" + value +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
                 '}';
     }
 }

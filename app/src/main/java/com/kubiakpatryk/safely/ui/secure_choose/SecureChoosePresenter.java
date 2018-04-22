@@ -15,7 +15,6 @@
  */
 package com.kubiakpatryk.safely.ui.secure_choose;
 
-import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
@@ -35,7 +34,8 @@ import io.reactivex.disposables.CompositeDisposable;
 public class SecureChoosePresenter<V extends SecureChooseMvpView> extends BasePresenter<V>
         implements SecureChooseMvpPresenter<V> {
 
-    private static List<Integer> values = new ArrayList<>(AppConstants.RANGE);
+    private List<Character> values = new ArrayList<>(AppConstants.RANGE);
+    private List<Character> keys = new ArrayList<>(AppConstants.RANGE);
 
     @Inject
     SecureChoosePresenter(DataManager dataManager,
@@ -46,41 +46,61 @@ public class SecureChoosePresenter<V extends SecureChooseMvpView> extends BasePr
 
     @Override
     public void onGenerateCipherButtonClick() {
-        values = new ArrayList<>(AppConstants.RANGE);
+        removeCipherDatabaseIfNotNull();
 
-        removeCipherIfNotNull();
-
-        initializeValueList();
+        initializeLists();
 
         getCompositeDisposable().add(Observable.range(0, AppConstants.RANGE)
-                .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
+                .subscribeOn(getSchedulerProviderHelper().io())
                 .doOnComplete(() -> {
-                    if (!isViewAttached()) return;
-                    getMvpView().openMainActivity();
+                    if (isViewAttached()) getMvpView().openMainActivity();
                 })
-                .subscribe(integer -> {
-                    int key = AppConstants.START_RANGE + integer;
-                    getDataManager().add(new CipherEntity(key, values.get(integer)))
-                            .subscribe();
-                    getDataManager().setIsFirstLaunch(false);
-                }));
+                .subscribe(i ->
+                        getDataManager().add(new CipherEntity(
+                                getCreated(i, keys), getCreated(i, values)))
+                                .observeOn(getSchedulerProviderHelper().ui())
+                                .subscribeOn(getSchedulerProviderHelper().io())
+                                .subscribe()));
     }
 
-    private void initializeValueList() {
-        Stream.iterate(AppConstants.START_RANGE, i -> i + 1)
-                .limit(AppConstants.RANGE)
-                .forEach(values::add);
+    private String getCreated(int integer, List<Character> list) {
+        byte[] bytes = list.get(integer).toString().getBytes();
+        return (getSeparatedAndMultipliedBytes(bytes) + AppConstants.SPACE_BETWEEN_CHARS);
+    }
+
+    private String getSeparatedAndMultipliedBytes(byte[] bytes) {
+        StringBuilder stringBuilder = new StringBuilder();
+        long[] array = new long[bytes.length];
+        for (int i = 0; i<bytes.length; i++) {
+            array[i] = Long.valueOf(String.valueOf(bytes[i])) * AppConstants.MULTIPLIER;
+            stringBuilder.append(array[i]).append(AppConstants.SPACE_BETWEEN_BYTES);
+        }
+        return stringBuilder.toString();
+    }
+
+    private void initializeLists() {
+        for (char c : AppConstants.ASCII_SIGNS) {
+            keys.add(c);
+            values.add(c);
+        }
+        addPolishSigns();
         Collections.shuffle(values);
     }
 
-    private void removeCipherIfNotNull() {
+    private void addPolishSigns() {
+        for (char c : AppConstants.POLISH_SIGNS_ARRAY) {
+            keys.add(c);
+            values.add(c);
+        }
+    }
+
+    private void removeCipherDatabaseIfNotNull() {
         if (!getDataManager().getAllCipherEntity().toList().blockingGet().isEmpty()) {
             getDataManager().getCipherBox()
                     .subscribeOn(getSchedulerProviderHelper().io())
                     .observeOn(getSchedulerProviderHelper().ui())
                     .subscribe(Box::removeAll);
-
         }
     }
 

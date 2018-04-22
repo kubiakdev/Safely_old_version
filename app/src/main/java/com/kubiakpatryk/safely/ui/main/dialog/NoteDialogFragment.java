@@ -36,7 +36,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
 
     private static final String TAG = NoteDialogFragment.class.getName();
     public String content;
-    private Callback callback;
+    public static Callback callback;
 
     @Inject
     NoteDialogMvpPresenter<NoteDialogMvpView> presenter;
@@ -50,11 +50,6 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         bundle.putString("current_content", content);
         dialog.setArguments(bundle);
         return dialog;
-    }
-
-    @Override
-    public void setCallback(Callback callback) {
-        this.callback = callback;
     }
 
     @Nullable

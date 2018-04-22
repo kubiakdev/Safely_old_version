@@ -23,7 +23,7 @@ public final class CommonUtils {
 
     private CommonUtils(){}
 
-    public static String getTimeStamp(){
+    public static String getTimeStamp() {
         return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.getDefault())
                 .format(new Date());
     }

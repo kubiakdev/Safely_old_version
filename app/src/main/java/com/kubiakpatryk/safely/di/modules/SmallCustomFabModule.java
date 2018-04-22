@@ -15,13 +15,12 @@
  */
 package com.kubiakpatryk.safely.di.modules;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
-import com.kubiakpatryk.safely.ui.tutorial.TutorialActivity;
+import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogFragment;
 
 import javax.inject.Named;
 
@@ -39,7 +38,8 @@ public class SmallCustomFabModule {
         fab.setVerticalPosition(0.25);
         fab.setAnimationResourceToShow(R.anim.action_buttons_new_note_show);
         fab.setAnimationResourceToHide(R.anim.action_buttons_new_note_hide);
-        fab.setIntent(new Intent(activity, TutorialActivity.class));
+        fab.setOnClickListener(v ->
+            NoteDialogFragment.newInstance("").show(activity.getSupportFragmentManager()));
         return fab;
     }
 

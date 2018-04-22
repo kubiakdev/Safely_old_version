@@ -15,9 +15,7 @@
  */
 package com.kubiakpatryk.safely.ui.custom;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.animation.AnimationUtils;
@@ -33,7 +31,6 @@ public class SmallCustomFab extends FloatingActionButton {
     private double verticalPosition;
     private int animationResourceToShow;
     private int animationResourceToHide;
-    private Intent intent;
 
     @Inject
     public SmallCustomFab(@ActivityContext Context context,
@@ -41,13 +38,12 @@ public class SmallCustomFab extends FloatingActionButton {
                           double verticalPosition,
                           int animationResourceToShow,
                           int animationResourceToHide,
-                          Intent intent) {
+                          boolean action) {
         super(context);
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.animationResourceToShow = animationResourceToShow;
         this.animationResourceToHide = animationResourceToHide;
-        this.intent = intent;
     }
 
     public SmallCustomFab(Context context) {
@@ -94,39 +90,29 @@ public class SmallCustomFab extends FloatingActionButton {
         this.animationResourceToHide = animationResourceToHide;
     }
 
-    public Intent getIntent() {
-        return intent;
-    }
-
-    public void setIntent(Intent intent) {
-        this.intent = intent;
-    }
-
     public static class AnimationScheduler {
 
         private AnimationScheduler() {
         }
 
-        public static void showFab(final Activity activity, final SmallCustomFab fab) {
+        public static void showFab(Context context, final SmallCustomFab fab) {
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) fab.getLayoutParams();
             params.rightMargin += Math.abs(fab.getWidth() * fab.getHorizontalPosition());
             params.bottomMargin += Math.abs(fab.getHeight() * fab.getVerticalPosition());
             fab.setClickable(true);
             fab.setLayoutParams(params);
-            fab.setOnClickListener(view -> activity.startActivity(fab.getIntent()));
             fab.startAnimation(AnimationUtils.loadAnimation(
-                    activity, fab.getAnimationResourceToShow()));
+                    context, fab.getAnimationResourceToShow()));
         }
 
-        public static void hideFab(final Activity activity, final SmallCustomFab fab) {
+        public static void hideFab(Context context, final SmallCustomFab fab) {
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) fab.getLayoutParams();
             params.rightMargin -= Math.abs(fab.getWidth() * fab.getHorizontalPosition());
             params.bottomMargin -= Math.abs(fab.getHeight() * fab.getVerticalPosition());
             fab.setClickable(false);
             fab.setLayoutParams(params);
-            fab.setOnClickListener(view -> activity.startActivity(fab.getIntent()));
             fab.startAnimation(AnimationUtils.loadAnimation(
-                    activity, fab.getAnimationResourceToHide()));
+                    context, fab.getAnimationResourceToHide()));
         }
     }
 }
