@@ -2,8 +2,8 @@ package com.kubiakpatryk.safely.data.db;
 
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity;
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity_;
-import com.kubiakpatryk.safely.data.db.entity.ContentEntity;
-import com.kubiakpatryk.safely.data.db.entity.ContentEntity_;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity_;
 import com.kubiakpatryk.safely.data.db.entity.PasswordEntity;
 import com.kubiakpatryk.safely.data.db.entity.PasswordEntity_;
 
@@ -22,9 +22,9 @@ public class DbManager implements DbHelper {
         this.boxStore = boxStore;
     }
 
-    public BoxStore getBoxStore() {
-        return boxStore;
-    }
+//    public BoxStore getBoxStore() {
+//        return boxStore;
+//    }
 
     @Override
     public Observable<Long> add(final CipherEntity entity) {
@@ -32,8 +32,8 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<Long> add(final ContentEntity entity) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class).put(entity));
+    public Observable<Long> add(final NoteEntity entity) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class).put(entity));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<Box<ContentEntity>> getContentBox() {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class));
+    public Observable<Box<NoteEntity>> getNoteBox() {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class));
     }
 
     @Override
@@ -63,8 +63,8 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<ContentEntity> getAllContentEntity() {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class).getAll())
+    public Observable<NoteEntity> getAllNoteEntity() {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class).getAll())
                 .flatMapIterable(contentEntities -> contentEntities);
     }
 
@@ -92,32 +92,32 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityById(final long id) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class).get(id));
+    public Observable<NoteEntity> getNoteEntityById(final long id) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class).get(id));
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByContent(final String content) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class)
-                .query().equal(ContentEntity_.content, content).build().findFirst());
+    public Observable<NoteEntity> getNoteEntityByContent(final String content) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
+                .query().equal(NoteEntity_.content, content).build().findFirst());
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByCreated(final String created) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class)
-                .query().equal(ContentEntity_.created, created).build().findFirst());
+    public Observable<NoteEntity> getNoteEntityByCreated(final String created) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
+                .query().equal(NoteEntity_.created, created).build().findFirst());
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByModified(final String modified) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class)
-                .query().equal(ContentEntity_.modified, modified).build().findFirst());
+    public Observable<NoteEntity> getNoteEntityByModified(final String modified) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
+                .query().equal(NoteEntity_.modified, modified).build().findFirst());
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByFavourite(final long favourite) {
-        return Observable.fromCallable(() -> boxStore.boxFor(ContentEntity.class)
-                .query().equal(ContentEntity_.favourite, favourite).build().findFirst());
+    public Observable<NoteEntity> getNoteEntityByFavourite(final long favourite) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
+                .query().equal(NoteEntity_.favourite, favourite).build().findFirst());
     }
 
     @Override

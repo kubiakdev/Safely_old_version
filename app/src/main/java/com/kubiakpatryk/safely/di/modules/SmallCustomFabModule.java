@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
-import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogFragment;
 
 import javax.inject.Named;
 
@@ -15,6 +14,8 @@ import dagger.Provides;
 @Module
 public class SmallCustomFabModule {
 
+    public static OnNewNoteClickCallback onNewNoteClickCallback;
+
     @Provides
     @Named("SmallCustomFab_NewNote")
     SmallCustomFab provideSmallCustomFab_NewNote(@PerActivity AppCompatActivity activity) {
@@ -23,8 +24,7 @@ public class SmallCustomFabModule {
         fab.setVerticalPosition(0.25);
         fab.setAnimationResourceToShow(R.anim.action_buttons_new_note_show);
         fab.setAnimationResourceToHide(R.anim.action_buttons_new_note_hide);
-        fab.setOnClickListener(v ->
-            NoteDialogFragment.newInstance("").show(activity.getSupportFragmentManager()));
+        fab.setOnClickListener(v -> onNewNoteClickCallback.onNewNoteClick());
         return fab;
     }
 
@@ -57,5 +57,9 @@ public class SmallCustomFabModule {
             @Named("SmallCustomFab_Passwords") SmallCustomFab fabPasswords,
             @Named("SmallCustomFab_Settings") SmallCustomFab fabSettings) {
         return new SmallCustomFab[]{fabNewNote, fabPasswords, fabSettings};
+    }
+
+    public interface OnNewNoteClickCallback {
+        void onNewNoteClick();
     }
 }

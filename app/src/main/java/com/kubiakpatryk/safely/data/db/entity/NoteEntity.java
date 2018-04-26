@@ -5,7 +5,7 @@ import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Index;
 
 @Entity
-public class ContentEntity {
+public class NoteEntity {
 
     @Id
     private long id;
@@ -17,17 +17,17 @@ public class ContentEntity {
     private String modified;
     private long favourite;
 
-    public ContentEntity() {
+    public NoteEntity() {
     }
 
-    public ContentEntity(String content, String created, String modified, long favourite) {
+    public NoteEntity(String content, String created, String modified, long favourite) {
         this.content = content;
         this.created = created;
         this.modified = modified;
         this.favourite = favourite;
     }
 
-    public ContentEntity(long id, String content, String created, String modified, long favourite) {
+    public NoteEntity(long id, String content, String created, String modified, long favourite) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -77,7 +77,7 @@ public class ContentEntity {
 
     @Override
     public String toString() {
-        return "ContentEntity{" +
+        return "NoteEntity{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", created='" + created + '\'' +

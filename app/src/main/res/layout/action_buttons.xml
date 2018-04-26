@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
-        android:src="@android:drawable/ic_menu_edit"
+        android:src="@mipmap/ic_create_white_36dp"
         android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_blue_dark"
+        app:backgroundTint="@color/secondaryLightColor"
         app:fabSize="mini" />
 
     <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
-        android:src="@android:drawable/ic_lock_idle_lock"
+        android:src="@mipmap/ic_lock_white_36dp"
         android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_blue_dark"
+        app:backgroundTint="@color/secondaryLightColor"
         app:fabSize="mini" />
 
     <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
-        android:src="@android:drawable/ic_menu_manage"
+        android:src="@mipmap/ic_settings_white_36dp"
         android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_blue_dark"
+        app:backgroundTint="@color/secondaryLightColor"
         app:fabSize="mini" />
 
 </FrameLayout>

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
-import com.kubiakpatryk.safely.ui.main.MainActivity;
+import com.kubiakpatryk.safely.ui.login.LoginActivity;
 import com.kubiakpatryk.safely.ui.tutorial.TutorialActivity;
 
 import javax.inject.Inject;
@@ -33,8 +33,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     }
 
     @Override
-    public void openMainActivity() {
-        startActivity(MainActivity.getStartIntent(this));
+    public void openLoginActivity() {
+        startActivity(LoginActivity.getStartIntent(this));
         finish();
     }
 

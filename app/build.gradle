@@ -86,6 +86,9 @@ dependencies {
     compile 'io.objectbox:objectbox-android:1.4.3'
     annotationProcessor 'io.objectbox:objectbox-processor:1.4.3'
 
+    //PatternLock
+    compile 'com.andrognito.patternlockview:patternlockview-reactive:1.0.0'
+
     //RxAndroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 

@@ -8,7 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
-import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
+import com.kubiakpatryk.safely.ui.login.LoginActivity;
 
 import java.util.List;
 
@@ -58,8 +58,8 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     }
 
     @Override
-    public void openSecureChooseActivity(){
-     startActivity(SecureChooseActivity.getStartIntent(this));
+    public void openLoginActivity(){
+     startActivity(LoginActivity.getStartIntent(this));
     }
 
     @Override

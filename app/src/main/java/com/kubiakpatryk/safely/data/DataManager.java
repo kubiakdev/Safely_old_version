@@ -2,7 +2,7 @@ package com.kubiakpatryk.safely.data;
 
 import com.kubiakpatryk.safely.data.db.DbHelper;
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity;
-import com.kubiakpatryk.safely.data.db.entity.ContentEntity;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.data.db.entity.PasswordEntity;
 import com.kubiakpatryk.safely.data.prefs.PrefsHelper;
 
@@ -28,7 +28,7 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<Long> add(ContentEntity entity) {
+    public Observable<Long> add(NoteEntity entity) {
         return dbHelper.add(entity);
     }
 
@@ -43,8 +43,8 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<Box<ContentEntity>> getContentBox() {
-        return dbHelper.getContentBox();
+    public Observable<Box<NoteEntity>> getNoteBox() {
+        return dbHelper.getNoteBox();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<ContentEntity> getAllContentEntity() {
-        return dbHelper.getAllContentEntity();
+    public Observable<NoteEntity> getAllNoteEntity() {
+        return dbHelper.getAllNoteEntity();
     }
 
     @Override
@@ -83,28 +83,28 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityById(long id) {
-        return dbHelper.getContentEntityById(id);
+    public Observable<NoteEntity> getNoteEntityById(long id) {
+        return dbHelper.getNoteEntityById(id);
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByContent(String content) {
-        return dbHelper.getContentEntityByContent(content);
+    public Observable<NoteEntity> getNoteEntityByContent(String content) {
+        return dbHelper.getNoteEntityByContent(content);
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByCreated(String created) {
-        return dbHelper.getContentEntityByCreated(created);
+    public Observable<NoteEntity> getNoteEntityByCreated(String created) {
+        return dbHelper.getNoteEntityByCreated(created);
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByModified(String modified) {
-        return dbHelper.getContentEntityByModified(modified);
+    public Observable<NoteEntity> getNoteEntityByModified(String modified) {
+        return dbHelper.getNoteEntityByModified(modified);
     }
 
     @Override
-    public Observable<ContentEntity> getContentEntityByFavourite(long favourite) {
-        return dbHelper.getContentEntityByFavourite(favourite);
+    public Observable<NoteEntity> getNoteEntityByFavourite(long favourite) {
+        return dbHelper.getNoteEntityByFavourite(favourite);
     }
 
     @Override
@@ -150,5 +150,15 @@ public class DataManager implements DataHelper {
     @Override
     public void setIsShowingBytes(boolean value) {
         prefsHelper.setIsShowingBytes(value);
+    }
+
+    @Override
+    public String getSavedPatternLock() {
+        return prefsHelper.getSavedPatternLock();
+    }
+
+    @Override
+    public void setPatternLock(String value) {
+        prefsHelper.setPatternLock(value);
     }
 }

@@ -22,7 +22,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     public void selectSuitableActivity(){
         if (!isViewAttached()) return;
         if (getDataManager().isFirstLaunch()) getMvpView().openTutorialActivity();
-        else getMvpView().openMainActivity();
+        else getMvpView().openLoginActivity();
     }
 
 }

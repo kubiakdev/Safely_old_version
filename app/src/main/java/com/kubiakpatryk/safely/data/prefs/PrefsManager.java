@@ -12,6 +12,7 @@ public class PrefsManager implements PrefsHelper {
 
     private static final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
     private static final String PREFS_SHOW_BYTES_KEY = "PREFS_IS_SHOWING_BYTES";
+    private static final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
 
     private final SharedPreferences preferences;
 
@@ -36,5 +37,15 @@ public class PrefsManager implements PrefsHelper {
     @Override
     public void setIsShowingBytes(boolean value) {
         preferences.edit().putBoolean(PREFS_SHOW_BYTES_KEY, value).apply();
+    }
+
+    @Override
+    public String getSavedPatternLock() {
+        return preferences.getString(PREFS_SAVED_PATTERN_LOCK_KEY, "");
+    }
+
+    @Override
+    public void setPatternLock(String value) {
+        preferences.edit().putString(PREFS_SAVED_PATTERN_LOCK_KEY, value).apply();
     }
 }

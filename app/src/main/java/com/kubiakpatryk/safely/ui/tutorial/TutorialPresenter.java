@@ -28,7 +28,7 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
     @Override
     public void onAgreeButtonClick() {
         if (!isViewAttached()) return;
-        getMvpView().openSecureChooseActivity();
+        getMvpView().openLoginActivity();
     }
 
     @Override

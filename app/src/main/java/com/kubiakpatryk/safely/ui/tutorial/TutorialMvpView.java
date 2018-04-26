@@ -6,5 +6,5 @@ public interface TutorialMvpView extends MvpView{
 
     void onAgreeButtonClick();
 
-    void openSecureChooseActivity();
+    void openLoginActivity();
 }

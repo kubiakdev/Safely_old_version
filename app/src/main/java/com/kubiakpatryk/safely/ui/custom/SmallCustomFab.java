@@ -22,14 +22,14 @@ public class SmallCustomFab extends FloatingActionButton {
                           double horizontalPosition,
                           double verticalPosition,
                           int animationResourceToShow,
-                          int animationResourceToHide,
-                          boolean action) {
+                          int animationResourceToHide) {
         super(context);
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.animationResourceToShow = animationResourceToShow;
         this.animationResourceToHide = animationResourceToHide;
     }
+
 
     public SmallCustomFab(Context context) {
         super(context);

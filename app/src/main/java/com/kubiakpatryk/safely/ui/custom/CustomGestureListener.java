@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 public class CustomGestureListener implements GestureDetector.OnGestureListener {
 
-
     Context context;
 
     @Inject

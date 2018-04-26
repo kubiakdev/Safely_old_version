@@ -6,5 +6,5 @@ public interface SplashMvpView extends MvpView {
 
     void openTutorialActivity();
 
-    void openMainActivity();
+    void openLoginActivity();
 }

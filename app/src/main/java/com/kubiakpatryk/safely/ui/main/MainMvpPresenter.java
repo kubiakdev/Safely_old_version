@@ -1,35 +1,31 @@
 package com.kubiakpatryk.safely.ui.main;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.MenuItem;
 
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.base.MvpPresenter;
-import com.kubiakpatryk.safely.ui.custom.CustomFab;
-import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
-import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
 
 import java.util.List;
 
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
 
-    void setUpCustomFab(CustomFab fab, final SmallCustomFab[] array,
-                        final AppCompatActivity activity);
+    void onPause();
 
-    void showFabArray(SmallCustomFab[] array, final AppCompatActivity activity);
+    void setUpCustomFab();
 
-    void hideFabArray(SmallCustomFab[] array, final AppCompatActivity activity);
+    void showFabArray();
 
-    void setUpCustomRecycler(final CustomRecycler recycler, final SmallCustomFab[] array,
-                             List<String> list, Context context);
+    void hideFabArray();
 
-    void onTouchEventIsFabShow(SmallCustomFab[] array);
+    void setUpCustomRecycler();
 
     StaggeredGridLayoutManager getLayoutManager();
 
     void onCancelOrDismiss(String content, String cachedContent);
 
     List<String> getList();
+
+    boolean onOptionsItemSelected(MenuItem item);
 }

@@ -1,6 +1,5 @@
 package com.kubiakpatryk.safely.ui.main.holder;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,13 +19,13 @@ public class MainHolder extends BaseHolder{
         String content = ((TextView) getContent()).getText().toString();
         MainActivity activity = (MainActivity) v.getContext();
         activity.openNoteDialog(content);
-        System.out.println(content);
     }
 
     @Override
     public boolean onLongClick(View v) {
-        TextView textView = (TextView) getContent();
-        textView.setBackgroundColor(Color.YELLOW);
+        String content = ((TextView) getContent()).getText().toString();
+        MainActivity activity = (MainActivity) v.getContext();
+        activity.onOpenOptionsMenu(content);
         return true;
     }
 }

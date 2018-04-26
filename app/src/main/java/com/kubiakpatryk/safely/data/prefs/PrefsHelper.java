@@ -9,5 +9,9 @@ public interface PrefsHelper {
     boolean isShowingBytes();
 
     void setIsShowingBytes(boolean value);
+
+    String getSavedPatternLock();
+
+    void setPatternLock(String value);
 }
 

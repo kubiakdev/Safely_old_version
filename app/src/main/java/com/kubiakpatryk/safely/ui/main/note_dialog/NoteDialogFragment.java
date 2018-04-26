@@ -1,14 +1,14 @@
-package com.kubiakpatryk.safely.ui.main.dialog;
+package com.kubiakpatryk.safely.ui.main.note_dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.dialog.BaseDialogFragment;
@@ -22,13 +22,13 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
 
     private static final String TAG = NoteDialogFragment.class.getName();
     public String content;
-    public static Callback callback;
+    public static OnDismissDialogCallback onDismissDialogCallback;
 
     @Inject
     NoteDialogMvpPresenter<NoteDialogMvpView> presenter;
 
     @BindView(R.id.note_layout_editText_noteContent)
-    EditText editText;
+    AppCompatEditText editText;
 
     public static NoteDialogFragment newInstance(String content) {
         NoteDialogFragment dialog = new NoteDialogFragment();
@@ -74,7 +74,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Override
     public void onDestroyView() {
         presenter.onDetach();
-        callback.onDismissDialog(content, editText.getText().toString());
+        onDismissDialogCallback.onDismissDialog(content, editText.getText().toString());
         super.onDestroyView();
     }
 
@@ -83,7 +83,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         super.dismissDialog(TAG);
     }
 
-    public interface Callback {
+    public interface OnDismissDialogCallback {
         void onDismissDialog(String content, String cachedContent);
     }
 }

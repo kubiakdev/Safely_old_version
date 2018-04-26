@@ -10,12 +10,15 @@ import com.kubiakpatryk.safely.di.annotations.ActivityContext;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomGestureListener;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
+import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
+import com.kubiakpatryk.safely.ui.login.LoginMvpView;
+import com.kubiakpatryk.safely.ui.login.LoginPresenter;
 import com.kubiakpatryk.safely.ui.main.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.MainPresenter;
-import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogMvpView;
-import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogPresenter;
+import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpView;
+import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpView;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChoosePresenter;
@@ -65,6 +68,13 @@ public class ActivityModule {
     @Provides
     SchedulerProviderHelper provideSchedulerHelperProvider() {
         return new SchedulerProvider();
+    }
+
+    @Provides
+    @PerActivity
+    LoginMvpPresenter<LoginMvpView> provideLoginMvpPresenter(
+            LoginPresenter<LoginMvpView> presenter){
+        return presenter;
     }
 
     @Provides

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainActivity_coordinatorLayout"
     android:layout_width="match_parent"
@@ -15,9 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:toolbarId="@+id/mainActivity_toolbar">
+            app:toolbarId="@+id/mainActivity_toolbar"
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/mainActivity_toolbar"
@@ -29,12 +27,14 @@
     </android.support.design.widget.AppBarLayout>
 
     <com.kubiakpatryk.safely.ui.custom.CustomRecycler
+        android:id="@+id/mainActivity_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainActivity_recyclerView"
         android:layoutAnimation="@anim/content_staggered_grid_layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
     </com.kubiakpatryk.safely.ui.custom.CustomRecycler>
+
 
     <com.kubiakpatryk.safely.ui.custom.CustomFab
         android:id="@+id/mainActivity_fab_actionButton"
@@ -44,8 +44,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@android:drawable/ic_menu_help"
-        app:layout_behavior="com.kubiakpatryk.safely.ui.custom.CustomFab$CustomBehavior" />
+        android:src="@mipmap/ic_add_white_36dp" />
 
-    <include layout="@layout/action_buttons"/>
+    <include layout="@layout/action_buttons" />
 </android.support.design.widget.CoordinatorLayout>

@@ -27,7 +27,7 @@ public class MainAdapter extends BaseAdapter<MainHolder> {
     public MainHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         @SuppressLint("InflateParams")
         View layoutView = LayoutInflater.from(parent.getContext()).
-        inflate(R.layout.content_model, null, false);
+        inflate(R.layout.note_model, null, false);
         return new MainHolder(layoutView);
     }
 

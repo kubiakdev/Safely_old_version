@@ -6,8 +6,9 @@ import com.kubiakpatryk.safely.di.annotations.ActivityContext;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.di.modules.ActivityModule;
 import com.kubiakpatryk.safely.di.modules.SmallCustomFabModule;
+import com.kubiakpatryk.safely.ui.login.LoginActivity;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
-import com.kubiakpatryk.safely.ui.main.dialog.NoteDialogFragment;
+import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogFragment;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
 import com.kubiakpatryk.safely.ui.splash.SplashActivity;
 import com.kubiakpatryk.safely.ui.tutorial.TutorialActivity;
@@ -20,6 +21,8 @@ import dagger.Component;
         SmallCustomFabModule.class
 })
 public interface ActivityComponent {
+
+    void inject(LoginActivity loginActivity);
 
     void inject(NoteDialogFragment noteDialog);
 
