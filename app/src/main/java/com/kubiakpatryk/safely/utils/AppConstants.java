@@ -1,6 +1,14 @@
 package com.kubiakpatryk.safely.utils;
 
 public final class AppConstants {
+    public static final int SMALL_FAB_INDEX_NEW_NOTE = 0;
+    public static final int SMALL_FAB_INDEX_PASSWORDS = 1;
+    public static final int SMALL_FAB_INDEX_SETTINGS = 2;
+
+    public static final int SMALL_FAB_INDEX_COPY = 0;
+    public static final int SMALL_FAB_INDEX_PASTE = 1;
+    public static final int SMALL_FAB_INDEX_CUT = 2;
+    public static final int SMALL_FAB_INDEX_DELETE = 3;
 
     public static final int MULTIPLIER = 11 * 17 * 23 * 53 * 73 * 121;
 

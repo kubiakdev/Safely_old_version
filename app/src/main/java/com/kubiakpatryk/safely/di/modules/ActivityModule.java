@@ -13,9 +13,15 @@ import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.ui.login.LoginPresenter;
-import com.kubiakpatryk.safely.ui.main.MainMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.MainMvpView;
-import com.kubiakpatryk.safely.ui.main.MainPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
+import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpView;
+import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
+import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpView;
 import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogPresenter;
@@ -80,6 +86,20 @@ public class ActivityModule {
     @Provides
     NoteDialogMvpPresenter<NoteDialogMvpView> provideNoteDialogMvpPresenter(
             NoteDialogPresenter<NoteDialogMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    MainCipherMvpPresenter<MainCipherMvpView> provideMainCipherMvpPresenter(
+            MainCipherPresenter<MainCipherMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    MainNoteOptionsMvpPresenter<MainNoteOptionsMvpView> provideMainNoteOptionsMvpPresenter(
+            MainNoteOptionsPresenter<MainNoteOptionsMvpView> presenter) {
         return presenter;
     }
 

@@ -14,8 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:toolbarId="@+id/mainActivity_toolbar"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:toolbarId="@+id/mainActivity_toolbar">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/mainActivity_toolbar"
@@ -46,5 +46,8 @@
         android:focusable="true"
         android:src="@mipmap/ic_add_white_36dp" />
 
-    <include layout="@layout/action_buttons" />
+    <include layout="@layout/small_action_buttons_main" />
+
+    <include layout="@layout/small_action_buttons_options" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -1,7 +1,6 @@
-package com.kubiakpatryk.safely.ui.main;
+package com.kubiakpatryk.safely.ui.main.mvp;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.MenuItem;
 
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.base.MvpPresenter;
@@ -11,9 +10,15 @@ import java.util.List;
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
 
+    StaggeredGridLayoutManager getLayoutManager();
+
+    List<String> getList();
+
     void onPause();
 
-    void setUpCustomFab();
+    void initMainFab();
+
+    void initSmallMainFabArray();
 
     void showFabArray();
 
@@ -21,11 +26,5 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void setUpCustomRecycler();
 
-    StaggeredGridLayoutManager getLayoutManager();
-
     void onCancelOrDismiss(String content, String cachedContent);
-
-    List<String> getList();
-
-    boolean onOptionsItemSelected(MenuItem item);
 }

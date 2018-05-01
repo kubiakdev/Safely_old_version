@@ -6,7 +6,8 @@ import android.view.View;
 public abstract class BaseHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener {
 
-    private Object content;
+    private Object contentView;
+    private Object viewContainer;
 
     public BaseHolder(View itemView) {
         super(itemView);
@@ -14,12 +15,20 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder
         itemView.setOnLongClickListener(this);
     }
 
-    public void setContent(int resource){
-        content = itemView.findViewById(resource);
+    public Object getContentView(){
+        return contentView;
     }
 
-    public Object getContent(){
-        return content;
+    protected void setContentView(int resource){
+        contentView = itemView.findViewById(resource);
+    }
+
+    public Object getViewContainer() {
+        return viewContainer;
+    }
+
+    protected void setViewContainer(int resource) {
+        viewContainer = itemView.findViewById(resource);
     }
 
     @Override

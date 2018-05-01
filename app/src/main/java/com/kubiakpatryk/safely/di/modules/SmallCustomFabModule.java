@@ -14,8 +14,6 @@ import dagger.Provides;
 @Module
 public class SmallCustomFabModule {
 
-    public static OnNewNoteClickCallback onNewNoteClickCallback;
-
     @Provides
     @Named("SmallCustomFab_NewNote")
     SmallCustomFab provideSmallCustomFab_NewNote(@PerActivity AppCompatActivity activity) {
@@ -24,7 +22,6 @@ public class SmallCustomFabModule {
         fab.setVerticalPosition(0.25);
         fab.setAnimationResourceToShow(R.anim.action_buttons_new_note_show);
         fab.setAnimationResourceToHide(R.anim.action_buttons_new_note_hide);
-        fab.setOnClickListener(v -> onNewNoteClickCallback.onNewNoteClick());
         return fab;
     }
 
@@ -57,9 +54,5 @@ public class SmallCustomFabModule {
             @Named("SmallCustomFab_Passwords") SmallCustomFab fabPasswords,
             @Named("SmallCustomFab_Settings") SmallCustomFab fabSettings) {
         return new SmallCustomFab[]{fabNewNote, fabPasswords, fabSettings};
-    }
-
-    public interface OnNewNoteClickCallback {
-        void onNewNoteClick();
     }
 }

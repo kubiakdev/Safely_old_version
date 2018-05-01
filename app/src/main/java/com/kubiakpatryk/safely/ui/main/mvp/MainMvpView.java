@@ -1,7 +1,4 @@
-package com.kubiakpatryk.safely.ui.main;
-
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
+package com.kubiakpatryk.safely.ui.main.mvp;
 
 import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
@@ -13,8 +10,6 @@ import java.util.List;
 
 public interface MainMvpView extends MvpView {
 
-    Object getActivitySystemService(@NonNull String name);
-
     List<String> getList();
 
     BaseActivity getBaseActivity();
@@ -23,12 +18,19 @@ public interface MainMvpView extends MvpView {
 
     CustomFab getCustomFab();
 
-    SmallCustomFab[] getSmallCustomFabArray();
+    SmallCustomFab[] getSmallCustomMainFabArray();
 
-    AppBarLayout getAppBarLayout();
+    String encrypt(final String source);
+
+    String decrypt(final String source);
 
     void reloadAdapter();
 
-    void openNoteDialog(String content);
+    void onNewNoteClick();
 
+    void onOpenNoteDialog(String content);
+
+    void hideSmallOptionsFabArray_left();
+
+    void hideSmallOptionsFabArray_right();
 }
