@@ -83,6 +83,11 @@ public class DataManager implements DataHelper {
     }
 
     @Override
+    public Observable<NoteEntity> getNoteEntity(NoteEntity entity) {
+        return dbHelper.getNoteEntity(entity);
+    }
+
+    @Override
     public Observable<NoteEntity> getNoteEntityById(long id) {
         return dbHelper.getNoteEntityById(id);
     }

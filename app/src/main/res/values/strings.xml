@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Safely</string>
+
+    <!--Login Activity-->
+
+    <!--PatternLock-->
+    <string name="patternLock_chooseYourPattern">"Now, choose your pattern lock"</string>
+    <string name="patternLock_selectYourPattern">"Select your pattern lock"</string>
+    <string name="patternLock_selectYourPatternAgain">"Select your pattern lock again"</string>
+    <string name="patternLock_rememberThat">Remember that!</string>
+    <string name="patternLock_patternsMustBeTheSame">Pattern locks must be the same\nTry Again!</string>
+    <string name="patternLock_tryAgain">Ups…Try again!</string>
+    <string name="patternLock_yourLastChance">This is your last chance \n(App will close) </string>
+
+    <!--Main Activity-->
+
+    <!--Note layout-->
+    <string name="noteLayout_editTextHint">Write your note here</string>
 </resources>

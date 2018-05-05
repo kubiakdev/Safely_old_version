@@ -1,6 +1,7 @@
 package com.kubiakpatryk.safely.utils;
 
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,8 @@ public class AppStatics {
 
     public static boolean IS_NOTE_SELECTED = false;
 
-    public static String CACHED_NOTE_CONTENT;
+    public static NoteEntity CACHED_NOTE;
 
-    public static List<String> CACHED_NOTE_LIST;
+    public static List<NoteEntity> CACHED_NOTE_LIST;
     public static List<CipherEntity> CIPHER_ENTITY_LIST = new ArrayList<>();
 }

@@ -3,6 +3,7 @@ package com.kubiakpatryk.safely.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.widget.TextView;
 
 import com.andrognito.patternlockview.PatternLockView;
@@ -39,7 +40,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
 
-        lookAfterPatternLock();
+        initializePatternLock();
     }
 
     @Override
@@ -54,8 +55,35 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         finish();
     }
 
-    private void lookAfterPatternLock(){
-        presenter.lookAfterPatternLock(patternLockView, textView);
+    @Override
+    public void startVibration() {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null) vibrator.vibrate(300);
+    }
+
+    @Override
+    public void restartActivity() {
+        startActivity(getStartIntent(this));
+        finish();
+    }
+
+    @Override
+    public void closeApp() {
+        this.finishAffinity();
+    }
+
+    @Override
+    public PatternLockView getPatternLockView() {
+        return patternLockView;
+    }
+
+    @Override
+    public TextView getTextView() {
+        return textView;
+    }
+
+    private void initializePatternLock() {
+        presenter.initializePatternLock();
     }
 
     @Override

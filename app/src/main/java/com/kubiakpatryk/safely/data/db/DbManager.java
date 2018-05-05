@@ -92,6 +92,16 @@ public class DbManager implements DbHelper {
     }
 
     @Override
+    public Observable<NoteEntity> getNoteEntity(NoteEntity entity) {
+        return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class).query()
+                .equal(NoteEntity_.content, entity.getContent())
+                .equal(NoteEntity_.created, entity.getCreated())
+                .equal(NoteEntity_.modified, entity.getModified())
+                .equal(NoteEntity_.favourite, entity.getFavourite())
+                .build().findFirst());
+    }
+
+    @Override
     public Observable<NoteEntity> getNoteEntityById(final long id) {
         return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class).get(id));
     }

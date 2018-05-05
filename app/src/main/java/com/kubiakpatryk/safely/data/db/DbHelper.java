@@ -34,6 +34,8 @@ public interface DbHelper {
 
     Observable<CipherEntity> getCipherEntityByValue(final String value);
 
+    Observable<NoteEntity> getNoteEntity(NoteEntity entity);
+
     Observable<NoteEntity> getNoteEntityById(final long id);
 
     Observable<NoteEntity> getNoteEntityByContent(final String content);

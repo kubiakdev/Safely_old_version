@@ -2,6 +2,7 @@ package com.kubiakpatryk.safely.ui.main.mvp;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.base.MvpPresenter;
 
@@ -12,7 +13,7 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     StaggeredGridLayoutManager getLayoutManager();
 
-    List<String> getList();
+    List<NoteEntity> getList();
 
     void onPause();
 
@@ -26,5 +27,5 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void setUpCustomRecycler();
 
-    void onCancelOrDismiss(String content, String cachedContent);
+    void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity);
 }

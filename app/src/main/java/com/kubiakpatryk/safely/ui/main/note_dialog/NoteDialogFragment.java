@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.dialog.BaseDialogFragment;
+import com.kubiakpatryk.safely.utils.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -21,8 +23,8 @@ import butterknife.ButterKnife;
 public class NoteDialogFragment extends BaseDialogFragment implements NoteDialogMvpView {
 
     private static final String TAG = NoteDialogFragment.class.getName();
-    public String content;
-    public static OnDismissDialogCallback onDismissDialogCallback;
+    public NoteEntity noteEntity;
+    public static OnCancelOrDismissDialogCallback onCancelOrDismissDialogCallback;
 
     @Inject
     NoteDialogMvpPresenter<NoteDialogMvpView> presenter;
@@ -30,10 +32,13 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @BindView(R.id.note_layout_editText_noteContent)
     AppCompatEditText editText;
 
-    public static NoteDialogFragment newInstance(String content) {
+    public static NoteDialogFragment newInstance(NoteEntity entity) {
         NoteDialogFragment dialog = new NoteDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("current_content", content);
+        bundle.putString("noteEntity_content", entity.getContent());
+        bundle.putString("noteEntity_created", entity.getCreated());
+        bundle.putString("noteEntity_modified", entity.getModified());
+        bundle.putLong("noteEntity_favourite", entity.getFavourite());
         dialog.setArguments(bundle);
         return dialog;
     }
@@ -52,8 +57,13 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
 
             Bundle bundle = this.getArguments();
             if (bundle != null) {
-                content = bundle.getString("current_content", "");
-                editText.setText(content);
+                noteEntity = new NoteEntity(
+                        bundle.getString("noteEntity_content", ""),
+                        bundle.getString("noteEntity_created", ""),
+                        bundle.getString("noteEntity_modified", ""),
+                        bundle.getLong("noteEntity_favourite", 0));
+                editText.setText(noteEntity.getContent());
+                editText.setSelection(editText.getText().length());
             }
         }
 
@@ -74,7 +84,15 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     @Override
     public void onDestroyView() {
         presenter.onDetach();
-        onDismissDialogCallback.onDismissDialog(content, editText.getText().toString());
+        String created;
+        if (noteEntity.getCreated().equals("") || noteEntity.getCreated() == null)
+            created = CommonUtils.getTimeStamp();
+        else created = noteEntity.getCreated();
+        onCancelOrDismissDialogCallback.onCancelOrDismissDialog(noteEntity, new NoteEntity(
+                editText.getText().toString(),
+                created,
+                CommonUtils.getTimeStamp(),
+                0));
         super.onDestroyView();
     }
 
@@ -83,7 +101,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         super.dismissDialog(TAG);
     }
 
-    public interface OnDismissDialogCallback {
-        void onDismissDialog(String content, String cachedContent);
+    public interface OnCancelOrDismissDialogCallback {
+        void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity);
     }
 }

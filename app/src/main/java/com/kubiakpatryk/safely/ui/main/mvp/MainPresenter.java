@@ -59,11 +59,14 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     @Override
-    public List<String> getList() {
+    public List<NoteEntity> getList() {
         if (AppStatics.CACHED_NOTE_LIST == null) {
             AppStatics.CACHED_NOTE_LIST = Lists.reverse(getDataManager().getAllNoteEntity()
-                    .map(NoteEntity::getContent)
-                    .map(s -> getMvpView().decrypt(s))
+                    .doOnNext(e -> {
+                        e.setContent(getMvpView().decrypt(e.getContent()));
+                        e.setCreated(getMvpView().decrypt(e.getCreated()));
+                        e.setModified(getMvpView().decrypt(e.getModified()));
+                    })
                     .toList()
                     .blockingGet());
         }
@@ -184,51 +187,56 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     @Override
-    public void onCancelOrDismiss(final String content,
-                                  final String cachedContent) {
+    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
         hideFabArray();
-        if (isContentChanged(content, cachedContent)) {
-            if (content.equals("") && !AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE)
-                onAddNewNote(cachedContent);
-            else onUpdateNote(content, cachedContent);
+        if (!(originalEntity.getContent().equals(modifiedEntity.getContent()))) {
+            if (originalEntity.getContent().equals("")
+                    && originalEntity.getCreated().equals("")
+                    && originalEntity.getModified().equals("")
+                    && !AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE)
+                onAddNewNote(modifiedEntity);
+            else onUpdateNote(originalEntity, modifiedEntity);
         }
     }
 
-    private void onAddNewNote(final String cachedContent) {
-        String encryptedContent = getMvpView().encrypt(cachedContent);
-
-        AppStatics.CACHED_NOTE_LIST.add(cachedContent);
+    private void onAddNewNote(final NoteEntity entity) {
+        AppStatics.CACHED_NOTE_LIST.add(0, entity);
         onReloadAdapterListCallback.reloadAdapter();
 
         getCompositeDisposable().add(getDataManager()
-                .add(new NoteEntity(encryptedContent, CommonUtils.getTimeStamp(),
-                        CommonUtils.getTimeStamp(), 0))
+                .add(new NoteEntity(
+                        getMvpView().encrypt(entity.getContent()),
+                        getMvpView().encrypt(entity.getCreated()),
+                        getMvpView().encrypt(entity.getModified()),
+                        entity.getFavourite()))
                 .observeOn(getSchedulerProviderHelper().ui())
+                .subscribeOn(getSchedulerProviderHelper().io())
                 .subscribe());
     }
 
-    private void onUpdateNote(final String content, final String cachedContent) {
-        String encryptedContent = getMvpView().encrypt(content);
-        String encryptedCachedContent = getMvpView().encrypt(cachedContent);
-
-        AppStatics.CACHED_NOTE_LIST.set(AppStatics.CACHED_NOTE_LIST.indexOf(content), cachedContent);
-        if (AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE) AppStatics.CACHED_NOTE_CONTENT = cachedContent;
+    private void onUpdateNote(final NoteEntity original, final NoteEntity modified) {
+        int index = CommonUtils.indexOfNoteEntity(original);
+        AppStatics.CACHED_NOTE_LIST.set(index, modified);
+        NoteEntity noteEntity = AppStatics.CACHED_NOTE_LIST.get(index);
+        AppStatics.CACHED_NOTE_LIST.remove(index);
+        AppStatics.CACHED_NOTE_LIST.add(0, noteEntity);
+        if (AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE) AppStatics.CACHED_NOTE = modified;
         onReloadAdapterListCallback.reloadAdapter();
 
-        getCompositeDisposable().add(getDataManager().getNoteEntityByContent(encryptedContent)
+        getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
+                getMvpView().encrypt(original.getContent()),
+                getMvpView().encrypt(original.getCreated()),
+                getMvpView().encrypt(original.getModified()),
+                original.getFavourite()))
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(entity -> {
-                    entity.setContent(encryptedCachedContent);
-                    entity.setModified(CommonUtils.getTimeStamp());
+                    entity.setContent(getMvpView().encrypt(modified.getContent()));
+                    entity.setModified(getMvpView().encrypt(modified.getModified()));
                     getDataManager().add(entity)
                             .observeOn(getSchedulerProviderHelper().ui())
                             .subscribe();
                 }));
-    }
-
-    private boolean isContentChanged(String content, String cachedContent) {
-        return !(content.equals(cachedContent));
     }
 
     public interface OnReloadAdapterListCallback {

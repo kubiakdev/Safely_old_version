@@ -1,5 +1,6 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomFab;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public interface MainMvpView extends MvpView {
 
-    List<String> getList();
+    List<NoteEntity> getList();
 
     BaseActivity getBaseActivity();
 
@@ -27,8 +28,6 @@ public interface MainMvpView extends MvpView {
     void reloadAdapter();
 
     void onNewNoteClick();
-
-    void onOpenNoteDialog(String content);
 
     void hideSmallOptionsFabArray_left();
 

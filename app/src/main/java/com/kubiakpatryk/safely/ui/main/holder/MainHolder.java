@@ -3,9 +3,9 @@ package com.kubiakpatryk.safely.ui.main.holder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.view_holder.BaseHolder;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppStatics;
@@ -16,17 +16,20 @@ public class MainHolder extends BaseHolder {
 
     MainHolder(View itemView) {
         super(itemView);
-        setContentView(R.id.noteModel_textView);
+        setContentView(R.id.noteModel_textView_content);
         setViewContainer(R.id.noteModel_cardView);
     }
 
     @Override
     public void onClick(View v) {
-        String content = ((TextView) getContentView()).getText().toString();
         MainActivity activity = (MainActivity) v.getContext();
-        activity.onOpenNoteDialog(content);
-        if (AppStatics.IS_NOTE_SELECTED){
-           onReturnDefaultColor.returnDefaultColor();
+        activity.onOpenNoteDialog(new NoteEntity(
+                getContentView().getText().toString(),
+                getCreatedDate(),
+                getModifiedDate(),
+                isFavourite()));
+        if (AppStatics.IS_NOTE_SELECTED) {
+            onReturnDefaultColor.returnDefaultColor();
             activity.hideSmallOptionsFabArray_left();
             activity.hideSmallOptionsFabArray_right();
         }
@@ -39,12 +42,15 @@ public class MainHolder extends BaseHolder {
 
         AppStatics.IS_NOTE_SELECTED = true;
 
-        String content = ((TextView) getContentView()).getText().toString();
         MainActivity activity = (MainActivity) v.getContext();
 
-        activity.onShowOptionsFabArray(getAdapterPosition(), content);
+        activity.onShowOptionsFabArray(getAdapterPosition(), new NoteEntity(
+                getContentView().getText().toString(),
+                getCreatedDate(),
+                getModifiedDate(),
+                isFavourite()));
         AppStatics.CACHED_NOTE_POSITION = getAdapterPosition();
-        setColor(v, (CardView) getViewContainer());
+        setColor(v, getViewContainer());
         return true;
     }
 

@@ -8,6 +8,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 
 import com.kubiakpatryk.safely.R;
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomFab;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity implements
         MainMvpView,
         MainCipherMvpView,
         MainNoteOptionsMvpView,
-        NoteDialogFragment.OnDismissDialogCallback,
+        NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
         MainPresenter.OnReloadAdapterListCallback {
 
@@ -92,7 +93,7 @@ public class MainActivity extends BaseActivity implements
 
         MainNoteOptionsPresenter.onReloadAdapterListCallback = this;
         MainPresenter.onReloadAdapterListCallback = this;
-        NoteDialogFragment.onDismissDialogCallback = this;
+        NoteDialogFragment.onCancelOrDismissDialogCallback = this;
 
         appBarLayout.setExpanded(false, false);
 
@@ -115,18 +116,17 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public List<String> getList() {
+    public List<NoteEntity> getList() {
         return mainPresenter.getList();
     }
 
-    @Override
-    public void onOpenNoteDialog(String content) {
+    public void onOpenNoteDialog(NoteEntity entity) {
         mainPresenter.hideFabArray();
-        NoteDialogFragment.newInstance(content).show(getSupportFragmentManager());
+        NoteDialogFragment.newInstance(entity).show(getSupportFragmentManager());
     }
 
-    public void onShowOptionsFabArray(int index, String content) {
-        noteOptionsPresenter.onShowOptionsFabArray(index, content);
+    public void onShowOptionsFabArray(int index, NoteEntity entity) {
+        noteOptionsPresenter.onShowOptionsFabArray(index, entity);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onNewNoteClick() {
-        onOpenNoteDialog("");
+        onOpenNoteDialog(new NoteEntity("","","",0));
     }
 
     @Override
@@ -155,8 +155,8 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void onDismissDialog(String content, String cachedContent) {
-        mainPresenter.onCancelOrDismiss(content, cachedContent);
+    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
+        mainPresenter.onCancelOrDismissDialog(originalEntity, modifiedEntity);
     }
 
     @Override

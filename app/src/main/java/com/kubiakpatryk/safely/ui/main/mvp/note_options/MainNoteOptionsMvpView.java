@@ -2,6 +2,7 @@ package com.kubiakpatryk.safely.ui.main.mvp.note_options;
 
 import android.support.annotation.NonNull;
 
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
 
@@ -11,7 +12,7 @@ public interface MainNoteOptionsMvpView extends MvpView{
 
     Object getActivitySystemService(@NonNull String name);
 
-    List<String> getList();
+    List<NoteEntity> getList();
 
     SmallCustomFab[] getSmallCustomOptionsFabArray_left();
 
@@ -20,6 +21,4 @@ public interface MainNoteOptionsMvpView extends MvpView{
     String encrypt(final String source);
 
     void reloadAdapter();
-
-    void onOpenNoteDialog(String content);
 }

@@ -37,7 +37,7 @@ public final class AppConstants {
 
     public static final String PREFS_NAME = "default_preferences";
 
-    static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
+    static final String TIMESTAMP_FORMAT = "yyyy-MM-dd_HH:mm:ss.SSS";
 
     public static int RANGE = END_RANGE - START_RANGE + POLISH_SIGNS_ARRAY.length;
 
