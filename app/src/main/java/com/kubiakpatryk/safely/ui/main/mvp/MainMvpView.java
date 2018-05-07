@@ -1,5 +1,8 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
@@ -11,11 +14,17 @@ import java.util.List;
 
 public interface MainMvpView extends MvpView {
 
-    List<NoteEntity> getList();
-
     BaseActivity getBaseActivity();
 
+    List<NoteEntity> getList();
+
+    ImageButton getViewTypeButton();
+
+    ImageButton getSortByButton();
+
     CustomRecycler getCustomRecycler();
+
+    TextView getNoNotesInformationTextView();
 
     CustomFab getCustomFab();
 

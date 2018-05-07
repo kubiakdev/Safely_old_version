@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
@@ -59,11 +61,20 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.mainActivity_toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.mainActivity_imageButton_ViewTypeButton)
+    ImageButton viewTypeButton;
+
+    @BindView(R.id.mainActivity_imageButton_sortByButton)
+    ImageButton sortByButton;
+
     @BindView(R.id.mainActivity_fab_actionButton)
     CustomFab customFab;
 
     @BindView(R.id.mainActivity_recyclerView)
     CustomRecycler customRecycler;
+
+    @BindView(R.id.mainActivity_textView_noNotesInformation)
+    TextView noNotesInformationTextView;
 
     @BindViews({R.id.actionButtons_button_copy_left,
             R.id.actionButtons_button_paste_left,
@@ -95,8 +106,10 @@ public class MainActivity extends BaseActivity implements
         MainPresenter.onReloadAdapterListCallback = this;
         NoteDialogFragment.onCancelOrDismissDialogCallback = this;
 
-        appBarLayout.setExpanded(false, false);
+        appBarLayout.setExpanded(true, false);
 
+        initViewTypeButton();
+        initSortByButton();
         initMainFab();
         initSmallMainFabArray();
         initSmallOptionFabArray();
@@ -160,10 +173,24 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
+    public ImageButton getViewTypeButton() {
+        return viewTypeButton;
+    }
+
+    @Override
+    public ImageButton getSortByButton() {
+        return sortByButton;
+    }
+
+    @Override
     public CustomRecycler getCustomRecycler() {
         return customRecycler;
     }
 
+    @Override
+    public TextView getNoNotesInformationTextView() {
+        return noNotesInformationTextView;
+    }
 
     @Override
     public CustomFab getCustomFab() {
@@ -200,6 +227,10 @@ public class MainActivity extends BaseActivity implements
     public void hideSmallOptionsFabArray_right() {
         noteOptionsPresenter.hideSmallOptionsFabArray_right();
     }
+
+    public void initViewTypeButton(){mainPresenter.initViewTypeButton();}
+
+    public void initSortByButton(){mainPresenter.initSortByButton();}
 
     public void initMainFab(){
         mainPresenter.initMainFab();

@@ -22,6 +22,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
+                <TextView
+                    android:id="@+id/mainActivity_textView_appName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/toolbar_appName"
+                    android:textSize="28sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:gravity="end">
+
+                    <ImageButton
+                        android:id="@+id/mainActivity_imageButton_ViewTypeButton"
+                        android:layout_width="?android:attr/actionBarSize"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:contentDescription="@string/toolbar_viewTypeDescription"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_view_stream_white_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/mainActivity_imageButton_sortByButton"
+                        android:layout_width="?android:attr/actionBarSize"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:contentDescription="@string/toolbar_sortByButtonDescription"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_sort_white_24dp" />
+                </LinearLayout>
+
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -35,6 +69,14 @@
 
     </com.kubiakpatryk.safely.ui.custom.CustomRecycler>
 
+    <TextView
+        android:id="@+id/mainActivity_textView_noNotesInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:text="@string/recyclerView_noNotesInformation"
+        android:textAlignment="center"
+        android:textSize="22sp"/>
 
     <com.kubiakpatryk.safely.ui.custom.CustomFab
         android:id="@+id/mainActivity_fab_actionButton"

@@ -2,7 +2,9 @@ package com.kubiakpatryk.safely.ui.main.mvp;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
@@ -70,7 +72,28 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                     .toList()
                     .blockingGet());
         }
+        if (AppStatics.CACHED_NOTE_LIST.isEmpty()) showNoNotesInformationTextView();
+        else hideNoNotesInformationTextView();
         return AppStatics.CACHED_NOTE_LIST;
+    }
+
+    @Override
+    public void initViewTypeButton() {
+        getMvpView().getViewTypeButton().setOnClickListener(v -> {
+            if (AppStatics.RECYCLER_VIEW_SPAN_COUNT == 2) {
+                AppStatics.RECYCLER_VIEW_SPAN_COUNT = 1;
+                v.setRotation(90);
+            } else {
+                AppStatics.RECYCLER_VIEW_SPAN_COUNT = 2;
+                v.setRotation(0);
+            }
+            onReloadAdapterListCallback.reloadAdapter();
+        });
+    }
+
+    @Override
+    public void initSortByButton() {
+
     }
 
     @Override
@@ -179,7 +202,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public StaggeredGridLayoutManager getLayoutManager() {
         StaggeredGridLayoutManager staggeredGridLayoutManager =
-                new StaggeredGridLayoutManager(AppConstants.RECYCLER_VIEW_SPAN_COUNT,
+                new StaggeredGridLayoutManager(AppStatics.RECYCLER_VIEW_SPAN_COUNT,
                         AppConstants.RECYCLER_VIEW_ORIENTATION);
         staggeredGridLayoutManager.setGapStrategy(
                 StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
@@ -192,8 +215,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         if (!(originalEntity.getContent().equals(modifiedEntity.getContent()))) {
             if (originalEntity.getContent().equals("")
                     && originalEntity.getCreated().equals("")
-                    && originalEntity.getModified().equals("")
-                    && !AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE)
+                    && originalEntity.getModified().equals(""))
                 onAddNewNote(modifiedEntity);
             else onUpdateNote(originalEntity, modifiedEntity);
         }
@@ -237,6 +259,17 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                             .observeOn(getSchedulerProviderHelper().ui())
                             .subscribe();
                 }));
+    }
+
+    private void showNoNotesInformationTextView() {
+        getMvpView().getNoNotesInformationTextView().setGravity(Gravity.FILL_VERTICAL);
+        getMvpView().getNoNotesInformationTextView().setVisibility(View.VISIBLE);
+        getMvpView().getNoNotesInformationTextView()
+                .setOnClickListener(v -> getMvpView().onNewNoteClick());
+    }
+
+    private void hideNoNotesInformationTextView() {
+        getMvpView().getNoNotesInformationTextView().setVisibility(View.GONE);
     }
 
     public interface OnReloadAdapterListCallback {

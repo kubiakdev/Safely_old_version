@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.dialog.BaseDialogFragment;
-import com.kubiakpatryk.safely.utils.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -54,20 +53,13 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
             getActivityComponent().inject(this);
             setUnbinder(ButterKnife.bind(this, view));
             presenter.onAttach(this);
-
-            Bundle bundle = this.getArguments();
-            if (bundle != null) {
-                noteEntity = new NoteEntity(
-                        bundle.getString("noteEntity_content", ""),
-                        bundle.getString("noteEntity_created", ""),
-                        bundle.getString("noteEntity_modified", ""),
-                        bundle.getLong("noteEntity_favourite", 0));
-                editText.setText(noteEntity.getContent());
-                editText.setSelection(editText.getText().length());
-            }
         }
-
         return view;
+    }
+
+    @Override
+    public Bundle getBundleArguments() {
+        return this.getArguments();
     }
 
     @Override
@@ -77,28 +69,39 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         super.onActivityCreated(savedInstanceState);
     }
 
-    public void show(FragmentManager fragmentManager) {
-        super.show(fragmentManager, TAG);
-    }
-
     @Override
     public void onDestroyView() {
         presenter.onDetach();
-        String created;
-        if (noteEntity.getCreated().equals("") || noteEntity.getCreated() == null)
-            created = CommonUtils.getTimeStamp();
-        else created = noteEntity.getCreated();
-        onCancelOrDismissDialogCallback.onCancelOrDismissDialog(noteEntity, new NoteEntity(
-                editText.getText().toString(),
-                created,
-                CommonUtils.getTimeStamp(),
-                0));
         super.onDestroyView();
     }
 
     @Override
     public void dismissDialog(String tag) {
         super.dismissDialog(TAG);
+    }
+
+    @Override
+    public void onCancelOrDismissDialog(NoteEntity original, NoteEntity modified) {
+        onCancelOrDismissDialogCallback.onCancelOrDismissDialog(original, modified);
+    }
+
+    @Override
+    public AppCompatEditText getEditText() {
+        return editText;
+    }
+
+    @Override
+    public NoteEntity getNoteEntity() {
+        return noteEntity;
+    }
+
+    @Override
+    public void setNoteEntity(NoteEntity noteEntity) {
+        this.noteEntity = noteEntity;
+    }
+
+    public void show(FragmentManager fragmentManager) {
+        super.show(fragmentManager, TAG);
     }
 
     public interface OnCancelOrDismissDialogCallback {

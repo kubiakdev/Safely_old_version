@@ -12,8 +12,6 @@ public final class AppConstants {
 
     public static final int MULTIPLIER = 11 * 17 * 23 * 53 * 73 * 121;
 
-    public static final int RECYCLER_VIEW_SPAN_COUNT = 2;
-
     public static final int RECYCLER_VIEW_ORIENTATION = 1;
 
     private static final int START_RANGE = 32;

@@ -17,6 +17,10 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void onPause();
 
+    void initViewTypeButton();
+
+    void initSortByButton();
+
     void initMainFab();
 
     void initSmallMainFabArray();
