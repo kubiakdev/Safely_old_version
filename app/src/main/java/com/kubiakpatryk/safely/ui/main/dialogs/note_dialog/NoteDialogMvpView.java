@@ -1,4 +1,4 @@
-package com.kubiakpatryk.safely.ui.main.note_dialog;
+package com.kubiakpatryk.safely.ui.main.dialogs.note_dialog;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;

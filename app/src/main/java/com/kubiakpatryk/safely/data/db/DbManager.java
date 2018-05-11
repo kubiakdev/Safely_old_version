@@ -97,7 +97,7 @@ public class DbManager implements DbHelper {
                 .equal(NoteEntity_.content, entity.getContent())
                 .equal(NoteEntity_.created, entity.getCreated())
                 .equal(NoteEntity_.modified, entity.getModified())
-                .equal(NoteEntity_.favourite, entity.getFavourite())
+                .equal(NoteEntity_.isBookmarked, entity.isBookmarked())
                 .build().findFirst());
     }
 
@@ -125,9 +125,9 @@ public class DbManager implements DbHelper {
     }
 
     @Override
-    public Observable<NoteEntity> getNoteEntityByFavourite(final long favourite) {
+    public Observable<NoteEntity> getNoteEntityByIsBookmarked(final boolean isBookmarked) {
         return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
-                .query().equal(NoteEntity_.favourite, favourite).build().findFirst());
+                .query().equal(NoteEntity_.isBookmarked, isBookmarked).build().findFirst());
     }
 
     @Override

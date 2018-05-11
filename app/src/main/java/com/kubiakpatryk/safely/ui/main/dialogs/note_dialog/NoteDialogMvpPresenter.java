@@ -1,4 +1,4 @@
-package com.kubiakpatryk.safely.ui.main.note_dialog;
+package com.kubiakpatryk.safely.ui.main.dialogs.note_dialog;
 
 import com.kubiakpatryk.safely.ui.base.MvpPresenter;
 

@@ -16,10 +16,16 @@
 
     <!--Main Activity-->
 
-    <!--activity_main-->
+    <!--Activity_Main-->
     <string name="toolbar_appName">@string/app_name</string>
     <string name="toolbar_viewTypeDescription">""</string>
     <string name="toolbar_sortByButtonDescription">""</string>
+    <string name="alertDialog_sureToCut">Are you sure to cut note content?</string>
+    <string name="alertDialog_sureToCut_positive">Sure</string>
+    <string name="alertDialog_sureToCut_negative">No</string>
+    <string name="alertDialog_sureToDelete">Are you sure to delete note?</string>
+    <string name="alertDialog_sureToDelete_positive">Sure</string>
+    <string name="alertDialog_sureToDelete_negative">No</string>
 
     <!--Note_layout-->
     <string name="noteLayout_editTextHint">Write your note here</string>

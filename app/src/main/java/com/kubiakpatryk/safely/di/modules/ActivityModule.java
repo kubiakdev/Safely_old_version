@@ -13,6 +13,9 @@ import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.ui.login.LoginPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogMvpView;
+import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
@@ -22,9 +25,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
-import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogMvpView;
-import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpView;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpView;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChoosePresenter;
@@ -52,7 +55,7 @@ public class ActivityModule {
 
     @Provides
     @ActivityContext
-    Context provideContext(){
+    Context provideContext() {
         return activity;
     }
 
@@ -62,12 +65,12 @@ public class ActivityModule {
     }
 
     @Provides
-    View provideView(){
-           return new View(activity.getBaseContext());
+    View provideView() {
+        return new View(activity.getBaseContext());
     }
 
     @Provides
-    CompositeDisposable provideCompositeDisposable(){
+    CompositeDisposable provideCompositeDisposable() {
         return new CompositeDisposable();
     }
 
@@ -79,13 +82,19 @@ public class ActivityModule {
     @Provides
     @PerActivity
     LoginMvpPresenter<LoginMvpView> provideLoginMvpPresenter(
-            LoginPresenter<LoginMvpView> presenter){
+            LoginPresenter<LoginMvpView> presenter) {
         return presenter;
     }
 
     @Provides
     NoteDialogMvpPresenter<NoteDialogMvpView> provideNoteDialogMvpPresenter(
             NoteDialogPresenter<NoteDialogMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    SortChooseDialogMvpPresenter<SortChooseDialogMvpView> provideSortChooseDialogMvpPresenter(
+            SortChooseDialogPresenter<SortChooseDialogMvpView> presenter) {
         return presenter;
     }
 
@@ -120,7 +129,7 @@ public class ActivityModule {
     @Provides
     @PerActivity
     SecureChooseMvpPresenter<SecureChooseMvpView> provideSecureChooseMvpPresenter(
-            SecureChoosePresenter<SecureChooseMvpView> presenter){
+            SecureChoosePresenter<SecureChooseMvpView> presenter) {
         return presenter;
     }
 
@@ -132,12 +141,12 @@ public class ActivityModule {
     }
 
     @Provides
-    CustomRecycler provideRecyclerView(@PerActivity AppCompatActivity activity){
+    CustomRecycler provideRecyclerView(@PerActivity AppCompatActivity activity) {
         return activity.findViewById(R.id.mainActivity_recyclerView);
     }
 
     @Provides
-    GestureDetector.OnGestureListener provideGestureListener(@ActivityContext Context context){
+    GestureDetector.OnGestureListener provideGestureListener(@ActivityContext Context context) {
         return new CustomGestureListener(context);
     }
 }

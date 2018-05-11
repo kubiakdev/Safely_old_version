@@ -13,10 +13,12 @@ import com.kubiakpatryk.safely.utils.AppStatics;
 public class MainHolder extends BaseHolder {
 
     static OnReturnDefaultColor onReturnDefaultColor;
+    static OnReturnBooleanValue onReturnBooleanValue;
 
     MainHolder(View itemView) {
         super(itemView);
         setContentView(R.id.noteModel_textView_content);
+        setBookmarkShape(R.id.noteModel_imageView_bookmarkShape);
         setViewContainer(R.id.noteModel_cardView);
     }
 
@@ -27,11 +29,12 @@ public class MainHolder extends BaseHolder {
                 getContentView().getText().toString(),
                 getCreatedDate(),
                 getModifiedDate(),
-                isFavourite()));
+                isBookmarked()));
+
         if (AppStatics.IS_NOTE_SELECTED) {
             onReturnDefaultColor.returnDefaultColor();
-            activity.hideSmallOptionsFabArray_left();
-            activity.hideSmallOptionsFabArray_right();
+            activity.hideOptionsFabArray_left();
+            activity.hideOptionsFabArray_right();
         }
         AppStatics.IS_NOTE_SELECTED = false;
     }
@@ -43,12 +46,13 @@ public class MainHolder extends BaseHolder {
         AppStatics.IS_NOTE_SELECTED = true;
 
         MainActivity activity = (MainActivity) v.getContext();
+        activity.hideMainFabArray();
 
         activity.onShowOptionsFabArray(getAdapterPosition(), new NoteEntity(
                 getContentView().getText().toString(),
                 getCreatedDate(),
                 getModifiedDate(),
-                isFavourite()));
+                onReturnBooleanValue.returnBoolean(getAdapterPosition())));
         AppStatics.CACHED_NOTE_POSITION = getAdapterPosition();
         setColor(v, getViewContainer());
         return true;
@@ -61,5 +65,9 @@ public class MainHolder extends BaseHolder {
 
     public interface OnReturnDefaultColor {
         void returnDefaultColor();
+    }
+
+    public interface OnReturnBooleanValue{
+        boolean returnBoolean(int index);
     }
 }

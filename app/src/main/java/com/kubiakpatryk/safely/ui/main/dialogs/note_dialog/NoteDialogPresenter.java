@@ -1,4 +1,4 @@
-package com.kubiakpatryk.safely.ui.main.note_dialog;
+package com.kubiakpatryk.safely.ui.main.dialogs.note_dialog;
 
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
@@ -31,8 +31,8 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
                             "noteEntity_created", ""),
                     getMvpView().getBundleArguments().getString(
                             "noteEntity_modified", ""),
-                    getMvpView().getBundleArguments().getLong(
-                            "noteEntity_favourite", 0)));
+                    getMvpView().getBundleArguments().getBoolean(
+                            "noteEntity_favourite", false)));
             getMvpView().getEditText().setText(getMvpView().getNoteEntity().getContent());
             getMvpView().getEditText().setSelection(getMvpView().getEditText().getText().length());
         }
@@ -44,7 +44,7 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
                 getMvpView().getEditText().getText().toString(),
                 getCreated(),
                 CommonUtils.getTimeStamp(),
-                0));
+                false));
         super.onDetach();
     }
 

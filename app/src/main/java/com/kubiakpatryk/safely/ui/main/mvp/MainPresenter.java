@@ -56,7 +56,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void onPause() {
         getMvpView().getCustomFab().setRotation(0);
-        hideFabArray();
+        hideMainFabArray();
         AppStatics.IS_MAIN_FAB_VISIBLE = false;
     }
 
@@ -93,7 +93,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void initSortByButton() {
-
+       getMvpView().getSortByButton().setOnClickListener(v ->
+               getMvpView().openSortChooseDialogFragment());
     }
 
     @Override
@@ -101,30 +102,30 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         getMvpView().getCustomFab().setOnClickListener(v -> {
             if (AppStatics.IS_NOTE_SELECTED)
                 onReturnDefaultColor.returnDefaultColor();
-            getMvpView().hideSmallOptionsFabArray_left();
-            getMvpView().hideSmallOptionsFabArray_right();
+            getMvpView().hideOptionsFabArray_left();
+            getMvpView().hideOptionsFabArray_right();
             AppStatics.IS_NOTE_SELECTED = false;
             AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE = false;
-            if (AppStatics.IS_SMALL_FAB_LIST_VISIBLE) hideFabArray();
-            else showFabArray();
+            if (AppStatics.IS_SMALL_FAB_LIST_VISIBLE) hideMainFabArray();
+            else showMainFabArray();
         });
     }
 
     @Override
     public void initSmallMainFabArray() {
-        getMvpView().getSmallCustomMainFabArray()[AppConstants.SMALL_FAB_INDEX_NEW_NOTE]
+        getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_NEW_NOTE]
                 .setOnClickListener(v -> getMvpView().onNewNoteClick());
-        getMvpView().getSmallCustomMainFabArray()[AppConstants.SMALL_FAB_INDEX_PASSWORDS]
+        getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_PASSWORDS]
                 .setOnClickListener(v -> Toast.makeText(getMvpView().getBaseActivity(),
                         "Not Available yet.", Toast.LENGTH_SHORT).show());
-        getMvpView().getSmallCustomMainFabArray()[AppConstants.SMALL_FAB_INDEX_SETTINGS]
+        getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_SETTINGS]
                 .setOnClickListener(v -> Toast.makeText(getMvpView().getBaseActivity(),
                         "Not Available yet.", Toast.LENGTH_SHORT).show());
     }
 
     @Override
-    public void showFabArray() {
-        getCompositeDisposable().add(Observable.fromArray(getMvpView().getSmallCustomMainFabArray())
+    public void showMainFabArray() {
+        getCompositeDisposable().add(Observable.fromArray(getMvpView().getMainFabArray())
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .doOnComplete(() -> AppStatics.IS_SMALL_FAB_LIST_VISIBLE = true)
@@ -139,8 +140,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     @Override
-    public void hideFabArray() {
-        getCompositeDisposable().add(Observable.fromArray(getMvpView().getSmallCustomMainFabArray())
+    public void hideMainFabArray() {
+        getCompositeDisposable().add(Observable.fromArray(getMvpView().getMainFabArray())
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .doOnComplete(() -> AppStatics.IS_SMALL_FAB_LIST_VISIBLE = false)
@@ -160,13 +161,13 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     if (AppStatics.IS_NOTE_SELECTED) onReturnDefaultColor.returnDefaultColor();
-                    getMvpView().hideSmallOptionsFabArray_left();
-                    getMvpView().hideSmallOptionsFabArray_right();
+                    getMvpView().hideOptionsFabArray_left();
+                    getMvpView().hideOptionsFabArray_right();
                     AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE = false;
                     AppStatics.IS_NOTE_SELECTED = false;
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    hideFabArray();
+                    hideMainFabArray();
                     break;
                 case MotionEvent.ACTION_UP:
                     getMvpView().getCustomRecycler().performClick();
@@ -211,7 +212,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
-        hideFabArray();
+        hideMainFabArray();
         if (!(originalEntity.getContent().equals(modifiedEntity.getContent()))) {
             if (originalEntity.getContent().equals("")
                     && originalEntity.getCreated().equals("")
@@ -230,7 +231,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                         getMvpView().encrypt(entity.getContent()),
                         getMvpView().encrypt(entity.getCreated()),
                         getMvpView().encrypt(entity.getModified()),
-                        entity.getFavourite()))
+                        entity.isBookmarked()))
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .subscribe());
@@ -249,7 +250,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 getMvpView().encrypt(original.getContent()),
                 getMvpView().encrypt(original.getCreated()),
                 getMvpView().encrypt(original.getModified()),
-                original.getFavourite()))
+                original.isBookmarked()))
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(entity -> {

@@ -44,7 +44,7 @@ public interface DbHelper {
 
     Observable<NoteEntity> getNoteEntityByModified(final String modified);
 
-    Observable<NoteEntity> getNoteEntityByFavourite(final long favourite);
+    Observable<NoteEntity> getNoteEntityByIsBookmarked(final boolean isBookmarked);
 
     Observable<PasswordEntity> getPasswordEntityById(final long id);
 

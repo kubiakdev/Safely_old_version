@@ -108,8 +108,8 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public Observable<NoteEntity> getNoteEntityByFavourite(long favourite) {
-        return dbHelper.getNoteEntityByFavourite(favourite);
+    public Observable<NoteEntity> getNoteEntityByIsBookmarked(boolean isBookmarked) {
+        return dbHelper.getNoteEntityByIsBookmarked(isBookmarked);
     }
 
     @Override

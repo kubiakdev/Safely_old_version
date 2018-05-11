@@ -28,7 +28,7 @@ public interface MainMvpView extends MvpView {
 
     CustomFab getCustomFab();
 
-    SmallCustomFab[] getSmallCustomMainFabArray();
+    SmallCustomFab[] getMainFabArray();
 
     String encrypt(final String source);
 
@@ -38,7 +38,13 @@ public interface MainMvpView extends MvpView {
 
     void onNewNoteClick();
 
-    void hideSmallOptionsFabArray_left();
+    void hideOptionsFabArray_left();
 
-    void hideSmallOptionsFabArray_right();
+    void hideOptionsFabArray_right();
+
+    void openSortChooseDialogFragment();
+
+    void showMainFabArray();
+
+    void hideMainFabArray();
 }

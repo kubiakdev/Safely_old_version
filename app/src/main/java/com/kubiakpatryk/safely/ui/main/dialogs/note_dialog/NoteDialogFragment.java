@@ -1,4 +1,4 @@
-package com.kubiakpatryk.safely.ui.main.note_dialog;
+package com.kubiakpatryk.safely.ui.main.dialogs.note_dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,7 +37,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
         bundle.putString("noteEntity_content", entity.getContent());
         bundle.putString("noteEntity_created", entity.getCreated());
         bundle.putString("noteEntity_modified", entity.getModified());
-        bundle.putLong("noteEntity_favourite", entity.getFavourite());
+        bundle.putBoolean("noteEntity_favourite", entity.isBookmarked());
         dialog.setArguments(bundle);
         return dialog;
     }

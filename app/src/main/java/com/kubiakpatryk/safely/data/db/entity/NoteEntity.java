@@ -15,24 +15,25 @@ public class NoteEntity {
 
     private String created;
     private String modified;
-    private long favourite;
+    private boolean isBookmarked;
 
     public NoteEntity() {
     }
 
-    public NoteEntity(String content, String created, String modified, long favourite) {
+    public NoteEntity(String content, String created, String modified, boolean isBookmarked) {
         this.content = content;
         this.created = created;
         this.modified = modified;
-        this.favourite = favourite;
+        this.isBookmarked = isBookmarked;
     }
 
-    public NoteEntity(long id, String content, String created, String modified, long favourite) {
+    public NoteEntity(long id, String content, String created,
+                      String modified, boolean isBookmarked) {
         this.id = id;
         this.content = content;
         this.created = created;
         this.modified = modified;
-        this.favourite = favourite;
+        this.isBookmarked = isBookmarked;
     }
 
     public long getId() {
@@ -67,12 +68,12 @@ public class NoteEntity {
         this.modified = modified;
     }
 
-    public long getFavourite() {
-        return favourite;
+    public boolean isBookmarked() {
+        return isBookmarked;
     }
 
-    public void setFavourite(long favourite) {
-        this.favourite = favourite;
+    public void setBookmarked(boolean bookmarked) {
+        isBookmarked = bookmarked;
     }
 
     @Override
@@ -82,7 +83,7 @@ public class NoteEntity {
                 ", content='" + content + '\'' +
                 ", created='" + created + '\'' +
                 ", modified='" + modified + '\'' +
-                ", favourite=" + favourite +
+                ", isBookmarked=" + isBookmarked +
                 '}';
     }
 }

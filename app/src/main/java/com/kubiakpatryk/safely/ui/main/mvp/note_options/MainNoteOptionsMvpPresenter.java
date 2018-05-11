@@ -10,10 +10,14 @@ public interface MainNoteOptionsMvpPresenter<V extends MainNoteOptionsMvpView>
 
     void onShowOptionsFabArray(int index, NoteEntity entity);
 
-    void initSmallOptionFabArray();
+    void initOptionFabArray();
 
-    void hideSmallOptionsFabArray_left();
+    void showOptionsFabArray_left();
 
-    void hideSmallOptionsFabArray_right();
+    void showOptionsFabArray_right();
+
+    void hideOptionsFabArray_left();
+
+    void hideOptionsFabArray_right();
 
 }

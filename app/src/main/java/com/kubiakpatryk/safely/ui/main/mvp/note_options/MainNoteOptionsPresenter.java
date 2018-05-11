@@ -4,7 +4,9 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 
+import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
@@ -22,6 +24,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         implements MainNoteOptionsMvpPresenter<V> {
 
     public static OnReloadAdapterListCallback onReloadAdapterListCallback;
+    public static OnBookmarkNote onBookmarkNote;
 
     @Inject
     public MainNoteOptionsPresenter(DataManager dataManager,
@@ -33,45 +36,83 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     @Override
     public void onShowOptionsFabArray(int index, NoteEntity entity) {
         AppStatics.CACHED_NOTE = entity;
-        if (index % 2 == 1) {
-            showSmallOptionFabArray_left();
-            hideSmallOptionsFabArray_right();
+        if (index % 2 == 1 && AppStatics.RECYCLER_VIEW_SPAN_COUNT == 2) {
+            showOptionsFabArray_left();
+            hideOptionsFabArray_right();
         } else {
-            showSmallOptionsFabArray_right();
-            hideSmallOptionsFabArray_left();
+            showOptionsFabArray_right();
+            hideOptionsFabArray_left();
         }
         AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE = true;
     }
 
     @Override
-    public void initSmallOptionFabArray() {
-        getMvpView().getSmallCustomOptionsFabArray_left()[AppConstants.SMALL_FAB_INDEX_COPY]
+    public void initOptionFabArray() {
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_BOOKMARK]
+                .setOnClickListener(v -> onBookmarkNote());
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_COPY]
                 .setOnClickListener(v -> onCopyNote());
-        getMvpView().getSmallCustomOptionsFabArray_left()[AppConstants.SMALL_FAB_INDEX_PASTE]
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_PASTE]
                 .setOnClickListener(v -> onPasteNote(AppStatics.CACHED_NOTE));
-        getMvpView().getSmallCustomOptionsFabArray_left()[AppConstants.SMALL_FAB_INDEX_CUT]
-                .setOnClickListener(v -> onCutNote(AppStatics.CACHED_NOTE));
-        getMvpView().getSmallCustomOptionsFabArray_left()[AppConstants.SMALL_FAB_INDEX_DELETE]
-                .setOnClickListener(v -> onDeleteNote(AppStatics.CACHED_NOTE));
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_CUT]
+                .setOnClickListener(v -> onCutNoteAlertDialog(AppStatics.CACHED_NOTE));
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_DELETE]
+                .setOnClickListener(v -> onDeleteNoteAlertDialog(AppStatics.CACHED_NOTE));
 
-        getMvpView().getSmallCustomOptionsFabArray_right()[AppConstants.SMALL_FAB_INDEX_COPY]
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_BOOKMARK]
+                .setOnClickListener(v -> onBookmarkNote());
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_COPY]
                 .setOnClickListener(v -> onCopyNote());
-        getMvpView().getSmallCustomOptionsFabArray_right()[AppConstants.SMALL_FAB_INDEX_PASTE]
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_PASTE]
                 .setOnClickListener(v -> onPasteNote(AppStatics.CACHED_NOTE));
-        getMvpView().getSmallCustomOptionsFabArray_right()[AppConstants.SMALL_FAB_INDEX_CUT]
-                .setOnClickListener(v -> onCutNote(AppStatics.CACHED_NOTE));
-        getMvpView().getSmallCustomOptionsFabArray_right()[AppConstants.SMALL_FAB_INDEX_DELETE]
-                .setOnClickListener(v -> onDeleteNote(AppStatics.CACHED_NOTE));
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_CUT]
+                .setOnClickListener(v -> onCutNoteAlertDialog(AppStatics.CACHED_NOTE));
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_DELETE]
+                .setOnClickListener(v -> onDeleteNoteAlertDialog(AppStatics.CACHED_NOTE));
     }
 
     @Override
-    public void hideSmallOptionsFabArray_left() {
-        for (SmallCustomFab fab : getMvpView().getSmallCustomOptionsFabArray_left()) fab.hide();
+    public void showOptionsFabArray_left() {
+        for (SmallCustomFab fab : getMvpView().getOptionsFabArray_left()) fab.show();
     }
 
     @Override
-    public void hideSmallOptionsFabArray_right() {
-        for (SmallCustomFab fab : getMvpView().getSmallCustomOptionsFabArray_right()) fab.hide();
+    public void showOptionsFabArray_right() {
+        for (SmallCustomFab fab : getMvpView().getOptionsFabArray_right()) fab.show();
+    }
+
+    @Override
+    public void hideOptionsFabArray_left() {
+        for (SmallCustomFab fab : getMvpView().getOptionsFabArray_left()) fab.hide();
+    }
+
+    @Override
+    public void hideOptionsFabArray_right() {
+        for (SmallCustomFab fab : getMvpView().getOptionsFabArray_right()) fab.hide();
+    }
+
+    private void onBookmarkNote() {
+        onBookmarkNote.bookmark();
+        AppStatics.CACHED_NOTE_LIST.set(
+                CommonUtils.indexOfNoteEntity(AppStatics.CACHED_NOTE),
+                new NoteEntity(
+                        AppStatics.CACHED_NOTE.getContent(),
+                        AppStatics.CACHED_NOTE.getCreated(),
+                        AppStatics.CACHED_NOTE.getModified(),
+                        !AppStatics.CACHED_NOTE.isBookmarked()));
+        AppStatics.CACHED_NOTE.setBookmarked(!AppStatics.CACHED_NOTE.isBookmarked());
+
+        getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
+                getMvpView().encrypt(AppStatics.CACHED_NOTE.getContent()),
+                getMvpView().encrypt(AppStatics.CACHED_NOTE.getCreated()),
+                getMvpView().encrypt(AppStatics.CACHED_NOTE.getModified()),
+                !AppStatics.CACHED_NOTE.isBookmarked()))
+                .subscribe(e -> {
+                    e.setBookmarked(!e.isBookmarked());
+                    getDataManager().add(e)
+                            .observeOn(getSchedulerProviderHelper().ui())
+                            .subscribe();
+                }));
     }
 
     private void onCopyNote() {
@@ -79,6 +120,30 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 getMvpView().getActivitySystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("Note", AppStatics.CACHED_NOTE.getContent());
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    private void onCutNoteAlertDialog(NoteEntity entity) {
+        AlertDialog alertDialog = new AlertDialog.Builder(getMvpView().getBaseActivity()).create();
+        alertDialog.setMessage(getMvpView().getStringValue(R.string.alertDialog_sureToCut));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
+                getMvpView().getStringValue(R.string.alertDialog_sureToCut_positive),
+                (dialog, which) -> onCutNote(entity));
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
+                getMvpView().getStringValue(R.string.alertDialog_sureToCut_negative),
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.show();
+    }
+
+    private void onDeleteNoteAlertDialog(NoteEntity entity) {
+        AlertDialog alertDialog = new AlertDialog.Builder(getMvpView().getBaseActivity()).create();
+        alertDialog.setMessage(getMvpView().getStringValue(R.string.alertDialog_sureToDelete));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
+                getMvpView().getStringValue(R.string.alertDialog_sureToDelete_positive),
+                (dialog, which) -> onDeleteNote(entity));
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
+                getMvpView().getStringValue(R.string.alertDialog_sureToDelete_negative),
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.show();
     }
 
     private void onPasteNote(NoteEntity entity) {
@@ -99,7 +164,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                         builder.toString(),
                         entity.getCreated(),
                         timeStamp,
-                        entity.getFavourite()));
+                        entity.isBookmarked()));
                 updateContentEntity(entity, cachedContent, timeStamp);
             }
         }
@@ -110,7 +175,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         NoteEntity newEntity = new NoteEntity("",
                 entity.getCreated(),
                 timeStamp,
-                entity.getFavourite());
+                entity.isBookmarked());
         AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfNoteEntity(entity), newEntity);
         AppStatics.CACHED_NOTE = newEntity;
         onReloadAdapterListCallback.reloadAdapter();
@@ -119,7 +184,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 getMvpView().encrypt(entity.getContent()),
                 getMvpView().encrypt(entity.getCreated()),
                 getMvpView().encrypt(entity.getModified()),
-                entity.getFavourite()))
+                entity.isBookmarked()))
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .doOnComplete(() -> AppStatics.CACHED_NOTE = newEntity)
@@ -133,12 +198,12 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     }
 
     private void onDeleteNote(final NoteEntity entity) {
-        hideSmallOptionsFabArray_left();
-        hideSmallOptionsFabArray_right();
+        hideOptionsFabArray_left();
+        hideOptionsFabArray_right();
         AppStatics.CACHED_NOTE_LIST.remove(CommonUtils.indexOfNoteEntity(entity));
-        AppStatics.CACHED_NOTE = new NoteEntity("", "", "", 0);
-        hideSmallOptionsFabArray_left();
-        hideSmallOptionsFabArray_right();
+        AppStatics.CACHED_NOTE = new NoteEntity("", "", "", false);
+        hideOptionsFabArray_left();
+        hideOptionsFabArray_right();
         onReloadAdapterListCallback.reloadAdapter();
 
         getCompositeDisposable().add(getDataManager().getNoteBox()
@@ -148,7 +213,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                         getMvpView().encrypt(entity.getContent()),
                         getMvpView().encrypt(entity.getCreated()),
                         getMvpView().encrypt(entity.getModified()),
-                        entity.getFavourite()))
+                        entity.isBookmarked()))
                         .blockingFirst())));
     }
 
@@ -161,7 +226,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 getMvpView().encrypt(entity.getContent()),
                 getMvpView().encrypt(entity.getCreated()),
                 getMvpView().encrypt(entity.getModified()),
-                entity.getFavourite()))
+                entity.isBookmarked()))
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .doOnComplete(() -> {
@@ -180,22 +245,18 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
 
     }
 
-    private void showSmallOptionFabArray_left() {
-        for (SmallCustomFab fab : getMvpView().getSmallCustomOptionsFabArray_left()) fab.show();
-    }
-
-    private void showSmallOptionsFabArray_right() {
-        for (SmallCustomFab fab : getMvpView().getSmallCustomOptionsFabArray_right()) fab.show();
-    }
-
     private void setPasteButtonIsClickable(boolean value) {
-        getMvpView().getSmallCustomOptionsFabArray_left()[AppConstants.SMALL_FAB_INDEX_PASTE]
+        getMvpView().getOptionsFabArray_left()[AppConstants.OPTIONS_FAB_INDEX_PASTE]
                 .setClickable(value);
-        getMvpView().getSmallCustomOptionsFabArray_right()[AppConstants.SMALL_FAB_INDEX_PASTE]
+        getMvpView().getOptionsFabArray_right()[AppConstants.OPTIONS_FAB_INDEX_PASTE]
                 .setClickable(value);
     }
 
     public interface OnReloadAdapterListCallback {
         void reloadAdapter();
+    }
+
+    public interface OnBookmarkNote {
+        void bookmark();
     }
 }

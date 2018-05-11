@@ -15,6 +15,7 @@ import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomFab;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
+import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogFragment;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
@@ -23,7 +24,7 @@ import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
-import com.kubiakpatryk.safely.ui.main.note_dialog.NoteDialogFragment;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogFragment;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class MainActivity extends BaseActivity implements
 
     @Inject
     @Named("SmallCustomFabArray_Main")
-    SmallCustomFab[] smallCustomMainFabArray;
+    SmallCustomFab[] mainFabArray;
 
     @BindView(R.id.mainActivity_appbar)
     AppBarLayout appBarLayout;
@@ -76,17 +77,19 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.mainActivity_textView_noNotesInformation)
     TextView noNotesInformationTextView;
 
-    @BindViews({R.id.actionButtons_button_copy_left,
+    @BindViews({R.id.actionButtons_button_bookmark_left,
+            R.id.actionButtons_button_copy_left,
             R.id.actionButtons_button_paste_left,
             R.id.actionButtons_button_cut_left,
             R.id.actionButtons_button_delete_left})
-    SmallCustomFab[] smallCustomOptionsFabArray_left;
+    SmallCustomFab[] optionsFabArray_left;
 
-    @BindViews({R.id.actionButtons_button_copy_right,
+    @BindViews({R.id.actionButtons_button_bookmark_right,
+            R.id.actionButtons_button_copy_right,
             R.id.actionButtons_button_paste_right,
             R.id.actionButtons_button_cut_right,
             R.id.actionButtons_button_delete_right})
-    SmallCustomFab[] smallCustomOptionsFabArray_right;
+    SmallCustomFab[] optionsFabArray_right;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -129,32 +132,13 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public List<NoteEntity> getList() {
-        return mainPresenter.getList();
-    }
-
-    public void onOpenNoteDialog(NoteEntity entity) {
-        mainPresenter.hideFabArray();
-        NoteDialogFragment.newInstance(entity).show(getSupportFragmentManager());
-    }
-
-    public void onShowOptionsFabArray(int index, NoteEntity entity) {
-        noteOptionsPresenter.onShowOptionsFabArray(index, entity);
-    }
-
-    @Override
     public Object getActivitySystemService(@NonNull String name) {
         return getSystemService(name);
     }
 
     @Override
-    public void reloadAdapter() {
-        mainPresenter.setUpCustomRecycler();
-    }
-
-    @Override
-    public void onNewNoteClick() {
-        onOpenNoteDialog(new NoteEntity("","","",0));
+    public List<NoteEntity> getList() {
+        return mainPresenter.getList();
     }
 
     @Override
@@ -168,8 +152,8 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
-        mainPresenter.onCancelOrDismissDialog(originalEntity, modifiedEntity);
+    public String getStringValue(int id) {
+        return getString(id);
     }
 
     @Override
@@ -198,8 +182,48 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public SmallCustomFab[] getSmallCustomMainFabArray() {
-        return smallCustomMainFabArray;
+    public SmallCustomFab[] getMainFabArray() {
+        return mainFabArray;
+    }
+
+    @Override
+    public SmallCustomFab[] getOptionsFabArray_left() {
+        return optionsFabArray_left;
+    }
+
+    @Override
+    public SmallCustomFab[] getOptionsFabArray_right() {
+        return optionsFabArray_right;
+    }
+
+    @Override
+    public void showMainFabArray() {
+        mainPresenter.showMainFabArray();
+    }
+
+    @Override
+    public void hideMainFabArray() {
+        mainPresenter.hideMainFabArray();
+    }
+
+    @Override
+    public void showOptionsFabArray_left() {
+        noteOptionsPresenter.showOptionsFabArray_left();
+    }
+
+    @Override
+    public void showOptionsFabArray_right() {
+        noteOptionsPresenter.showOptionsFabArray_right();
+    }
+
+    @Override
+    public void hideOptionsFabArray_left() {
+        noteOptionsPresenter.hideOptionsFabArray_left();
+    }
+
+    @Override
+    public void hideOptionsFabArray_right() {
+        noteOptionsPresenter.hideOptionsFabArray_right();
     }
 
     @Override
@@ -209,39 +233,52 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public SmallCustomFab[] getSmallCustomOptionsFabArray_left() {
-        return smallCustomOptionsFabArray_left;
+    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
+        mainPresenter.onCancelOrDismissDialog(originalEntity, modifiedEntity);
     }
 
     @Override
-    public SmallCustomFab[] getSmallCustomOptionsFabArray_right() {
-        return smallCustomOptionsFabArray_right;
+    public void openSortChooseDialogFragment() {
+        SortChooseDialogFragment.newInstance().show(getSupportFragmentManager());
     }
 
     @Override
-    public void hideSmallOptionsFabArray_left() {
-        noteOptionsPresenter.hideSmallOptionsFabArray_left();
+    public void reloadAdapter() {
+        mainPresenter.setUpCustomRecycler();
     }
 
     @Override
-    public void hideSmallOptionsFabArray_right() {
-        noteOptionsPresenter.hideSmallOptionsFabArray_right();
+    public void onNewNoteClick() {
+        onOpenNoteDialog(new NoteEntity("", "", "", false));
     }
 
-    public void initViewTypeButton(){mainPresenter.initViewTypeButton();}
+    public void onOpenNoteDialog(NoteEntity entity) {
+        mainPresenter.hideMainFabArray();
+        NoteDialogFragment.newInstance(entity).show(getSupportFragmentManager());
+    }
 
-    public void initSortByButton(){mainPresenter.initSortByButton();}
+    public void onShowOptionsFabArray(int index, NoteEntity entity) {
+        noteOptionsPresenter.onShowOptionsFabArray(index, entity);
+    }
 
-    public void initMainFab(){
+    public void initViewTypeButton() {
+        mainPresenter.initViewTypeButton();
+    }
+
+    public void initSortByButton() {
+        mainPresenter.initSortByButton();
+    }
+
+    public void initMainFab() {
         mainPresenter.initMainFab();
     }
 
-    public void initSmallMainFabArray(){
+    public void initSmallMainFabArray() {
         mainPresenter.initSmallMainFabArray();
     }
 
     public void initSmallOptionFabArray() {
-        noteOptionsPresenter.initSmallOptionFabArray();
+        noteOptionsPresenter.initOptionFabArray();
     }
 }
 

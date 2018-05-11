@@ -2,9 +2,8 @@ package com.kubiakpatryk.safely.utils;
 
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Date;
-import java.util.Locale;
 
 public final class CommonUtils {
 
@@ -12,8 +11,14 @@ public final class CommonUtils {
     }
 
     public static String getTimeStamp() {
-        return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.getDefault())
-                .format(new Date());
+        return AppConstants.SIMPLE_DATE_FORMAT.format(new Date());
+    }
+
+    public static boolean isFristDateEarlierThanSecond(String firstDate, String secondDate)
+            throws ParseException {
+        Date d1 = AppConstants.SIMPLE_DATE_FORMAT.parse(firstDate);
+        Date d2 = AppConstants.SIMPLE_DATE_FORMAT.parse(secondDate);
+        return (d1.compareTo(d2) <= 0);
     }
 
     public static int indexOfNoteEntity(NoteEntity entity) {
@@ -28,6 +33,6 @@ public final class CommonUtils {
         return (original.getContent().equals(modified.getContent())
                 && original.getCreated().equals(modified.getCreated())
                 && original.getModified().equals(modified.getModified())
-                && original.getFavourite() == modified.getFavourite());
+                && original.isBookmarked() == modified.isBookmarked());
     }
 }

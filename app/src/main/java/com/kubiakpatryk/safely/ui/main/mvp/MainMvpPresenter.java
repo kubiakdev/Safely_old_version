@@ -11,9 +11,9 @@ import java.util.List;
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
 
-    StaggeredGridLayoutManager getLayoutManager();
-
     List<NoteEntity> getList();
+
+    StaggeredGridLayoutManager getLayoutManager();
 
     void onPause();
 
@@ -25,9 +25,9 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void initSmallMainFabArray();
 
-    void showFabArray();
+    void showMainFabArray();
 
-    void hideFabArray();
+    void hideMainFabArray();
 
     void setUpCustomRecycler();
 

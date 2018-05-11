@@ -3,16 +3,18 @@ package com.kubiakpatryk.safely.ui.base.view_holder;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public abstract class BaseHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener {
 
     private TextView contentView;
+    private ImageView bookmarkShape;
     private CardView viewContainer;
     private String createdDate;
     private String modifiedDate;
-    private long favourite;
+    private boolean isBookmarked;
 
     public BaseHolder(View itemView) {
         super(itemView);
@@ -27,6 +29,12 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder
     protected void setContentView(int resource) {
        contentView = itemView.findViewById(resource);
     }
+
+    public ImageView getBookmarkShape() {
+        return bookmarkShape;
+    }
+
+    protected void setBookmarkShape(int resource){ bookmarkShape = itemView.findViewById(resource);}
 
     public CardView getViewContainer() {
         return viewContainer;
@@ -52,12 +60,12 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder
         this.modifiedDate = modifiedDate;
     }
 
-    protected long isFavourite() {
-        return favourite;
+    public boolean isBookmarked() {
+        return isBookmarked;
     }
 
-    public void setFavourite(long favourite) {
-        this.favourite = favourite;
+    public void setBookmarked(boolean isBookmarked) {
+        this.isBookmarked = isBookmarked;
     }
 
     @Override
