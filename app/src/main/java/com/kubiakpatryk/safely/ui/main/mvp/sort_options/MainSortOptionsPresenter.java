@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.objectbox.Box;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends BasePresenter<V>
@@ -26,6 +27,8 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                              SchedulerProviderHelper schedulerProviderHelper,
                              CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
+
+        getDataManager().getNoteBox().subscribe(Box::removeAll);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.kubiakpatryk.safely.ui.main.holder;
 
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.View;
 
 import com.kubiakpatryk.safely.R;
@@ -7,7 +9,6 @@ import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.view_holder.BaseHolder;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppStatics;
-import com.kubiakpatryk.safely.utils.CommonUtils;
 
 public class MainHolder extends BaseHolder {
 
@@ -52,9 +53,13 @@ public class MainHolder extends BaseHolder {
                 getNoteEntity().getModified(),
                 getNoteEntity().isBookmarked()));
         AppStatics.CACHED_NOTE_POSITION = getAdapterPosition();
-
-        CommonUtils.setCardColor(getBackgroundView(), R.color.secondaryLightColor);
+        setColor(v, getBackgroundView());
         return true;
+    }
+
+    private void setColor(View v, CardView cardView) {
+        int color = ContextCompat.getColor(v.getContext(), R.color.secondaryLightColor);
+        cardView.setBackgroundColor(color);
     }
 
     public interface OnReturnDefaultColor {
