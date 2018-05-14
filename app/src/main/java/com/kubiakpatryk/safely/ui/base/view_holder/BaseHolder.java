@@ -6,15 +6,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
+
 public abstract class BaseHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener {
 
     private TextView contentView;
-    private ImageView bookmarkShape;
-    private CardView viewContainer;
-    private String createdDate;
-    private String modifiedDate;
-    private boolean isBookmarked;
+    private ImageView bookmarkView;
+    private CardView backgroundView;
+    private NoteEntity noteEntity;
 
     public BaseHolder(View itemView) {
         super(itemView);
@@ -30,42 +30,26 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder
        contentView = itemView.findViewById(resource);
     }
 
-    public ImageView getBookmarkShape() {
-        return bookmarkShape;
+    public ImageView getBookmarkView() {
+        return bookmarkView;
     }
 
-    protected void setBookmarkShape(int resource){ bookmarkShape = itemView.findViewById(resource);}
+    protected void setBookmarkView(int resource){ bookmarkView = itemView.findViewById(resource);}
 
-    public CardView getViewContainer() {
-        return viewContainer;
+    public CardView getBackgroundView() {
+        return backgroundView;
     }
 
-    protected void setViewContainer(int resource) {
-        viewContainer = itemView.findViewById(resource);
+    protected void setBackgroundView(int resource) {
+        backgroundView = itemView.findViewById(resource);
     }
 
-    public String getCreatedDate() {
-        return createdDate;
+    public NoteEntity getNoteEntity() {
+        return noteEntity;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public boolean isBookmarked() {
-        return isBookmarked;
-    }
-
-    public void setBookmarked(boolean isBookmarked) {
-        this.isBookmarked = isBookmarked;
+    public void setNoteEntity(NoteEntity noteEntity) {
+        this.noteEntity = noteEntity;
     }
 
     @Override

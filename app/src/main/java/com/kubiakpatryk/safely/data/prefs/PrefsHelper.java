@@ -4,14 +4,18 @@ public interface PrefsHelper {
 
     boolean isFirstLaunch();
 
-    void setIsFirstLaunch(boolean value);
-
     boolean isShowingBytes();
-
-    void setIsShowingBytes(boolean value);
 
     String getSavedPatternLock();
 
+    String getSortOption();
+
+    void setIsFirstLaunch(boolean value);
+
+    void setIsShowingBytes(boolean value);
+
     void setPatternLock(String value);
+
+    void setSortOption(String value);
 }
 

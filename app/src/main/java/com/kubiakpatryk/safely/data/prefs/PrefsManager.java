@@ -10,22 +10,23 @@ import javax.inject.Inject;
 
 public class PrefsManager implements PrefsHelper {
 
-    private static final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
-    private static final String PREFS_SHOW_BYTES_KEY = "PREFS_IS_SHOWING_BYTES";
-    private static final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
+    private final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
+    private final String PREFS_SHOW_BYTES_KEY = "PREFS_IS_SHOWING_BYTES";
+    private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
+    private final String PREFS_SORT_OPTION_KEY = "PREFS_SORT_OPTION";
 
     private final SharedPreferences preferences;
 
     @Inject
-    PrefsManager(@ApplicationContext Context context){
+    PrefsManager(@ApplicationContext Context context) {
         preferences = context.getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-    public boolean isFirstLaunch(){
+    public boolean isFirstLaunch() {
         return preferences.getBoolean(PREFS_FIRST_LAUNCH_KEY, true);
     }
 
-    public void setIsFirstLaunch(boolean value){
+    public void setIsFirstLaunch(boolean value) {
         preferences.edit().putBoolean(PREFS_FIRST_LAUNCH_KEY, value).apply();
     }
 
@@ -47,5 +48,15 @@ public class PrefsManager implements PrefsHelper {
     @Override
     public void setPatternLock(String value) {
         preferences.edit().putString(PREFS_SAVED_PATTERN_LOCK_KEY, value).apply();
+    }
+
+    @Override
+    public String getSortOption() {
+        return preferences.getString(PREFS_SORT_OPTION_KEY, "");
+    }
+
+    @Override
+    public void setSortOption(String value) {
+        preferences.edit().putString(PREFS_SORT_OPTION_KEY, value).apply();
     }
 }

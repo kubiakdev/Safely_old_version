@@ -1,7 +1,5 @@
 package com.kubiakpatryk.safely.ui.main.holder;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.view.View;
 
 import com.kubiakpatryk.safely.R;
@@ -9,17 +7,17 @@ import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.view_holder.BaseHolder;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppStatics;
+import com.kubiakpatryk.safely.utils.CommonUtils;
 
 public class MainHolder extends BaseHolder {
 
     static OnReturnDefaultColor onReturnDefaultColor;
-    static OnReturnBooleanValue onReturnBooleanValue;
 
     MainHolder(View itemView) {
         super(itemView);
         setContentView(R.id.noteModel_textView_content);
-        setBookmarkShape(R.id.noteModel_imageView_bookmarkShape);
-        setViewContainer(R.id.noteModel_cardView);
+        setBookmarkView(R.id.noteModel_imageView_bookmarkShape);
+        setBackgroundView(R.id.noteModel_cardView);
     }
 
     @Override
@@ -27,9 +25,9 @@ public class MainHolder extends BaseHolder {
         MainActivity activity = (MainActivity) v.getContext();
         activity.onOpenNoteDialog(new NoteEntity(
                 getContentView().getText().toString(),
-                getCreatedDate(),
-                getModifiedDate(),
-                isBookmarked()));
+                getNoteEntity().getCreated(),
+                getNoteEntity().getModified(),
+                getNoteEntity().isBookmarked()));
 
         if (AppStatics.IS_NOTE_SELECTED) {
             onReturnDefaultColor.returnDefaultColor();
@@ -50,24 +48,16 @@ public class MainHolder extends BaseHolder {
 
         activity.onShowOptionsFabArray(getAdapterPosition(), new NoteEntity(
                 getContentView().getText().toString(),
-                getCreatedDate(),
-                getModifiedDate(),
-                onReturnBooleanValue.returnBoolean(getAdapterPosition())));
+                getNoteEntity().getCreated(),
+                getNoteEntity().getModified(),
+                getNoteEntity().isBookmarked()));
         AppStatics.CACHED_NOTE_POSITION = getAdapterPosition();
-        setColor(v, getViewContainer());
-        return true;
-    }
 
-    private void setColor(View v, CardView cardView) {
-        int color = ContextCompat.getColor(v.getContext(), R.color.secondaryLightColor);
-        cardView.setBackgroundColor(color);
+        CommonUtils.setCardColor(getBackgroundView(), R.color.secondaryLightColor);
+        return true;
     }
 
     public interface OnReturnDefaultColor {
         void returnDefaultColor();
-    }
-
-    public interface OnReturnBooleanValue{
-        boolean returnBoolean(int index);
     }
 }

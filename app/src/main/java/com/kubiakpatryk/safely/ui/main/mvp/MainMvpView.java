@@ -16,17 +16,15 @@ public interface MainMvpView extends MvpView {
 
     BaseActivity getBaseActivity();
 
-    List<NoteEntity> getList();
+    CustomFab getCustomFab();
+
+    CustomRecycler getCustomRecycler();
 
     ImageButton getViewTypeButton();
 
     ImageButton getSortByButton();
 
-    CustomRecycler getCustomRecycler();
-
-    TextView getNoNotesInformationTextView();
-
-    CustomFab getCustomFab();
+    List<NoteEntity> getList();
 
     SmallCustomFab[] getMainFabArray();
 
@@ -34,17 +32,19 @@ public interface MainMvpView extends MvpView {
 
     String decrypt(final String source);
 
-    void reloadAdapter();
+    TextView getNoNotesInformationTextView();
 
-    void onNewNoteClick();
+    void hideMainFabArray();
 
     void hideOptionsFabArray_left();
 
     void hideOptionsFabArray_right();
 
+    void onNewNoteClick();
+
     void openSortChooseDialogFragment();
 
-    void showMainFabArray();
+    void reloadAdapter();
 
-    void hideMainFabArray();
+    void showMainFabArray();
 }

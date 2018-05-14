@@ -33,4 +33,23 @@
     <!--RecyclerView-->
     <string name="recyclerView_noNotesInformation">You have not any notes
         \nTap here to Add one</string>
+
+    <!--SortChoose layout-->
+    <string name="sortChooseLayout_title">Sort by</string>
+    <string name="sortChooseLayout_alphabeticallyCategory">Alphabetically</string>
+    <string name="sortChooseLayout_alphabeticallyCategory_AToZ">A -> Z</string>
+    <string name="sortChooseLayout_alphabeticallyCategory_ZToA">Z -> A</string>
+    <string name="sortChooseLayout_bookmarkedCategory">Bookmark</string>
+    <string name="sortChooseLayout_bookmarkedCategory_yes">Yes</string>
+    <string name="sortChooseLayout_bookmarkedCategory_no">No</string>
+    <string name="sortChooseLayout_contentCategory">Content</string>
+    <string name="sortChooseLayout_contentCategory_toLongest">To longest</string>
+    <string name="sortChooseLayout_contentCategory_toShortest">To shortest</string>
+    <string name="sortChooseLayout_createdDateCategory">Created</string>
+    <string name="sortChooseLayout_createdDateCategory_toNewest">To newest</string>
+    <string name="sortChooseLayout_createdDateCategory_toOldest">To oldest</string>
+    <string name="sortChooseLayout_modifiedDateCategory">Modified</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toEarliest">To earliest</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toLatest">To latest</string>
+
 </resources>

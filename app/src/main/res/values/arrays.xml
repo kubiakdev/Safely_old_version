@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sortChooseLayout_textViewContentArray">
+        <item>@string/sortChooseLayout_alphabeticallyCategory_AToZ</item>
+        <item>@string/sortChooseLayout_alphabeticallyCategory_ZToA</item>
+        <item>@string/sortChooseLayout_bookmarkedCategory_yes</item>
+        <item>@string/sortChooseLayout_bookmarkedCategory_no</item>
+        <item>@string/sortChooseLayout_contentCategory_toLongest</item>
+        <item>@string/sortChooseLayout_contentCategory_toShortest</item>
+        <item>@string/sortChooseLayout_createdDateCategory_toNewest</item>
+        <item>@string/sortChooseLayout_createdDateCategory_toOldest</item>
+        <item>@string/sortChooseLayout_modifiedDateCategory_toEarliest</item>
+        <item>@string/sortChooseLayout_modifiedDateCategory_toLatest</item>
+    </string-array>
+</resources>

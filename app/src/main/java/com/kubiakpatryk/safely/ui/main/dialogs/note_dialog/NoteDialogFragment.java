@@ -76,11 +76,6 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     }
 
     @Override
-    public void dismissDialog(String tag) {
-        super.dismissDialog(TAG);
-    }
-
-    @Override
     public void onCancelOrDismissDialog(NoteEntity original, NoteEntity modified) {
         onCancelOrDismissDialogCallback.onCancelOrDismissDialog(original, modified);
     }

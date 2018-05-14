@@ -16,6 +16,7 @@ import com.kubiakpatryk.safely.ui.custom.CustomFab;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogFragment;
+import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
@@ -25,6 +26,8 @@ import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresen
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogFragment;
+import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
 
 import java.util.List;
 
@@ -39,9 +42,11 @@ public class MainActivity extends BaseActivity implements
         MainMvpView,
         MainCipherMvpView,
         MainNoteOptionsMvpView,
+        MainSortOptionsMvpView,
         NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
-        MainPresenter.OnReloadAdapterListCallback {
+        MainPresenter.OnReloadAdapterListCallback,
+        SortChooseDialogPresenter.OnReloadAdapterListCallback {
 
     @Inject
     MainMvpPresenter<MainMvpView> mainPresenter;
@@ -51,6 +56,9 @@ public class MainActivity extends BaseActivity implements
 
     @Inject
     MainNoteOptionsMvpPresenter<MainNoteOptionsMvpView> noteOptionsPresenter;
+
+    @Inject
+    MainSortOptionsMvpPresenter<MainSortOptionsMvpView> sortOptionsPresenter;
 
     @Inject
     @Named("SmallCustomFabArray_Main")
@@ -95,6 +103,8 @@ public class MainActivity extends BaseActivity implements
         return new Intent(context, MainActivity.class);
     }
 
+    //Activity Lifecycle Methods//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,12 +112,15 @@ public class MainActivity extends BaseActivity implements
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
 
+        cipherPresenter.onAttach(this);
         mainPresenter.onAttach(this);
         noteOptionsPresenter.onAttach(this);
+        sortOptionsPresenter.onAttach(this);
 
         MainNoteOptionsPresenter.onReloadAdapterListCallback = this;
         MainPresenter.onReloadAdapterListCallback = this;
         NoteDialogFragment.onCancelOrDismissDialogCallback = this;
+        SortChooseDialogPresenter.onReloadAdapterListCallback = this;
 
         appBarLayout.setExpanded(true, false);
 
@@ -127,19 +140,12 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public BaseActivity getBaseActivity() {
-        return this;
+    protected void onDestroy() {
+        mainPresenter.onDetach();
+        super.onDestroy();
     }
 
-    @Override
-    public Object getActivitySystemService(@NonNull String name) {
-        return getSystemService(name);
-    }
-
-    @Override
-    public List<NoteEntity> getList() {
-        return mainPresenter.getList();
-    }
+    //Override MvpPresenters methods//
 
     @Override
     public String encrypt(String source) {
@@ -149,6 +155,63 @@ public class MainActivity extends BaseActivity implements
     @Override
     public String decrypt(String source) {
         return cipherPresenter.decrypt(source);
+    }
+
+    @Override
+    public void showMainFabArray() {
+        mainPresenter.showMainFabArray();
+    }
+
+    @Override
+    public void hideMainFabArray() {
+        mainPresenter.hideMainFabArray();
+    }
+
+    @Override
+    public void showNoNotesInformationTextView() {
+        mainPresenter.showNoNotesInformationTextView();
+    }
+
+    @Override
+    public void hideNoNotesInformationTextView() {
+        mainPresenter.hideNoNotesInformationTextView();
+    }
+
+    @Override
+    public void showOptionsFabArray_left() {
+        noteOptionsPresenter.showOptionsFabArray_left();
+    }
+
+    @Override
+    public void showOptionsFabArray_right() {
+        noteOptionsPresenter.showOptionsFabArray_right();
+    }
+
+    @Override
+    public void hideOptionsFabArray_left() {
+        noteOptionsPresenter.hideOptionsFabArray_left();
+    }
+
+    @Override
+    public void hideOptionsFabArray_right() {
+        noteOptionsPresenter.hideOptionsFabArray_right();
+    }
+
+    @Override
+    public List<NoteEntity> getList() {
+        return sortOptionsPresenter.getList();
+    }
+
+    //Override MvpView methods//
+
+    @Override
+    public BaseActivity getBaseActivity() {
+        return this;
+    }
+
+    @Override
+    public Object getActivitySystemService(@NonNull String name) {
+        return getSystemService(name);
     }
 
     @Override
@@ -197,54 +260,15 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void showMainFabArray() {
-        mainPresenter.showMainFabArray();
-    }
-
-    @Override
-    public void hideMainFabArray() {
-        mainPresenter.hideMainFabArray();
-    }
-
-    @Override
-    public void showOptionsFabArray_left() {
-        noteOptionsPresenter.showOptionsFabArray_left();
-    }
-
-    @Override
-    public void showOptionsFabArray_right() {
-        noteOptionsPresenter.showOptionsFabArray_right();
-    }
-
-    @Override
-    public void hideOptionsFabArray_left() {
-        noteOptionsPresenter.hideOptionsFabArray_left();
-    }
-
-    @Override
-    public void hideOptionsFabArray_right() {
-        noteOptionsPresenter.hideOptionsFabArray_right();
-    }
-
-    @Override
-    protected void onDestroy() {
-        mainPresenter.onDetach();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
-        mainPresenter.onCancelOrDismissDialog(originalEntity, modifiedEntity);
-    }
-
-    @Override
     public void openSortChooseDialogFragment() {
         SortChooseDialogFragment.newInstance().show(getSupportFragmentManager());
     }
 
+    //Callbacks//
+
     @Override
-    public void reloadAdapter() {
-        mainPresenter.setUpCustomRecycler();
+    public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
+        mainPresenter.onCancelOrDismissDialog(originalEntity, modifiedEntity);
     }
 
     @Override
@@ -260,6 +284,13 @@ public class MainActivity extends BaseActivity implements
     public void onShowOptionsFabArray(int index, NoteEntity entity) {
         noteOptionsPresenter.onShowOptionsFabArray(index, entity);
     }
+
+    @Override
+    public void reloadAdapter() {
+        mainPresenter.setUpCustomRecycler();
+    }
+
+    //Initializers//
 
     public void initViewTypeButton() {
         mainPresenter.initViewTypeButton();

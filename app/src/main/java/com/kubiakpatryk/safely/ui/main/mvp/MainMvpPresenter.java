@@ -6,16 +6,14 @@ import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.base.MvpPresenter;
 
-import java.util.List;
-
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
 
-    List<NoteEntity> getList();
-
     StaggeredGridLayoutManager getLayoutManager();
 
-    void onPause();
+    void hideMainFabArray();
+
+    void hideNoNotesInformationTextView();
 
     void initViewTypeButton();
 
@@ -25,11 +23,13 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
 
     void initSmallMainFabArray();
 
-    void showMainFabArray();
+    void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity);
 
-    void hideMainFabArray();
+    void onPause();
 
     void setUpCustomRecycler();
 
-    void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity);
+    void showMainFabArray();
+
+    void showNoNotesInformationTextView();
 }

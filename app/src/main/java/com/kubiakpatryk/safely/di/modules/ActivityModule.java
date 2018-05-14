@@ -13,6 +13,9 @@ import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.ui.login.LoginPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpView;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogPresenter;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogMvpView;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogPresenter;
@@ -25,9 +28,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
-import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpView;
-import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
+import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpView;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChoosePresenter;
@@ -107,15 +110,21 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
+    MainMvpPresenter<MainMvpView> provideMainMvpPresenter(
+            MainPresenter<MainMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
     MainNoteOptionsMvpPresenter<MainNoteOptionsMvpView> provideMainNoteOptionsMvpPresenter(
             MainNoteOptionsPresenter<MainNoteOptionsMvpView> presenter) {
         return presenter;
     }
 
     @Provides
-    @PerActivity
-    MainMvpPresenter<MainMvpView> provideMainMvpPresenter(
-            MainPresenter<MainMvpView> presenter) {
+    MainSortOptionsMvpPresenter<MainSortOptionsMvpView> provideMainSortOptionsMvpPresenter(
+            MainSortOptionsPresenter<MainSortOptionsMvpView> presenter) {
         return presenter;
     }
 

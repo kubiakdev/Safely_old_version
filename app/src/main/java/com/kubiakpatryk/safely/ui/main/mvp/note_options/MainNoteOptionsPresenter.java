@@ -93,13 +93,11 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
 
     private void onBookmarkNote() {
         onBookmarkNote.bookmark();
-        AppStatics.CACHED_NOTE_LIST.set(
-                CommonUtils.indexOfNoteEntity(AppStatics.CACHED_NOTE),
-                new NoteEntity(
-                        AppStatics.CACHED_NOTE.getContent(),
-                        AppStatics.CACHED_NOTE.getCreated(),
-                        AppStatics.CACHED_NOTE.getModified(),
-                        !AppStatics.CACHED_NOTE.isBookmarked()));
+        AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(), new NoteEntity(
+                AppStatics.CACHED_NOTE.getContent(),
+                AppStatics.CACHED_NOTE.getCreated(),
+                AppStatics.CACHED_NOTE.getModified(),
+                !AppStatics.CACHED_NOTE.isBookmarked()));
         AppStatics.CACHED_NOTE.setBookmarked(!AppStatics.CACHED_NOTE.isBookmarked());
 
         getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
@@ -159,8 +157,8 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 String cachedContent = String.valueOf(data.getItemAt(0).getText());
                 builder.append(cachedContent);
                 String timeStamp = CommonUtils.getTimeStamp();
-                AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfNoteEntity(
-                        entity), new NoteEntity(
+                AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(),
+                        new NoteEntity(
                         builder.toString(),
                         entity.getCreated(),
                         timeStamp,
@@ -176,7 +174,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 entity.getCreated(),
                 timeStamp,
                 entity.isBookmarked());
-        AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfNoteEntity(entity), newEntity);
+        AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(), newEntity);
         AppStatics.CACHED_NOTE = newEntity;
         onReloadAdapterListCallback.reloadAdapter();
 
@@ -200,7 +198,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     private void onDeleteNote(final NoteEntity entity) {
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();
-        AppStatics.CACHED_NOTE_LIST.remove(CommonUtils.indexOfNoteEntity(entity));
+        AppStatics.CACHED_NOTE_LIST.remove(CommonUtils.indexOfCachedNoteEntity());
         AppStatics.CACHED_NOTE = new NoteEntity("", "", "", false);
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();

@@ -166,4 +166,14 @@ public class DataManager implements DataHelper {
     public void setPatternLock(String value) {
         prefsHelper.setPatternLock(value);
     }
+
+    @Override
+    public String getSortOption() {
+        return prefsHelper.getSortOption();
+    }
+
+    @Override
+    public void setSortOption(String value) {
+        prefsHelper.setSortOption(value);
+    }
 }

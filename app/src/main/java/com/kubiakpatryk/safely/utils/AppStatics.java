@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppStatics {
-
     public static int RECYCLER_VIEW_SPAN_COUNT = 2;
 
     public static int CACHED_NOTE_POSITION = -1;

@@ -22,10 +22,6 @@ public class DbManager implements DbHelper {
         this.boxStore = boxStore;
     }
 
-//    public BoxStore getBoxStore() {
-//        return boxStore;
-//    }
-
     @Override
     public Observable<Long> add(final CipherEntity entity) {
         return Observable.fromCallable(() -> boxStore.boxFor(CipherEntity.class).put(entity));
@@ -109,7 +105,7 @@ public class DbManager implements DbHelper {
     @Override
     public Observable<NoteEntity> getNoteEntityByContent(final String content) {
         return Observable.fromCallable(() -> boxStore.boxFor(NoteEntity.class)
-                .query().equal(NoteEntity_.content, content).build().findFirst());
+                .query().equal(NoteEntity_.isBookmarked, content).build().findFirst());
     }
 
     @Override

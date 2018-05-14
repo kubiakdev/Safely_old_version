@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sortChooseLayout_cardView_height">42dp</dimen>
+    <dimen name="sortChooseLayout_cardView_categoryMarginTop">6dp</dimen>
+    <dimen name="sortChooseLayout_cardView_optionMarginTop">2dp</dimen>
+    <dimen name="sortChooseLayout_cardView_breakBetweenCardViews">1dp</dimen>
+
+    <dimen name="sortChooseLayout_textView_titleTextSize">26sp</dimen>
+    <dimen name="sortChooseLayout_textView_categoryTextSize">20sp</dimen>
+    <dimen name="sortChooseLayout_textView_optionTextSize">14sp</dimen>
+</resources>

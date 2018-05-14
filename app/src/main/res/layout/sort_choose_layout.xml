@@ -1,79 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="40dp">
+    android:scrollbars="none">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Sort by"
-        android:textSize="26sp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:orientation="vertical">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            app:cardBackgroundColor="@color/primaryColor">
 
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_title"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_titleTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            app:cardBackgroundColor="@color/primaryLightColor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_alphabeticallyCategory"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Content length" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_AtoZ"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_AtoZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_alphabeticallyCategory_AToZ"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_ZtoA"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_ZtoA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_alphabeticallyCategory_ZToA"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            app:cardBackgroundColor="@color/primaryLightColor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_bookmarkedCategory"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Alphabetically" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_isBookmarked"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_isBookmarked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_bookmarkedCategory_yes"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_isNotBookmarked"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_isNotBookmarked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_bookmarkedCategory_no"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            app:cardBackgroundColor="@color/primaryLightColor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_contentCategory"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Last Created" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toLongest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toLongest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_contentCategory_toLongest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toShortest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toShortest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_contentCategory_toShortest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            app:cardBackgroundColor="@color/primaryLightColor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_createdDateCategory"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Last Modified" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toNewest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toNewest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_createdDateCategory_toNewest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toOldest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toOldest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_createdDateCategory_toOldest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sortChooseLayout_cardView_height"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            app:cardBackgroundColor="@color/primaryLightColor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sortChooseLayout_modifiedDateCategory"
+                android:textAlignment="center"
+                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Favourite" />
-    </RadioGroup>
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-</android.support.constraint.ConstraintLayout>
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toEarliest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toEarliest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_modifiedDateCategory_toEarliest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sortChooseLayout_cardView_toLatest"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/sortChooseLayout_cardView_height"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sortChooseLayout_toLatest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/sortChooseLayout_modifiedDateCategory_toLatest"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
