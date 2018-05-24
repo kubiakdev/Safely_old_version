@@ -34,6 +34,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
     public static NoteDialogFragment newInstance(NoteEntity entity) {
         NoteDialogFragment dialog = new NoteDialogFragment();
         Bundle bundle = new Bundle();
+        bundle.putLong("noteEntity_id", entity.getId());
         bundle.putString("noteEntity_content", entity.getContent());
         bundle.putString("noteEntity_created", entity.getCreated());
         bundle.putString("noteEntity_modified", entity.getModified());

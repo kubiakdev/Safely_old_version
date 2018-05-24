@@ -41,9 +41,8 @@ public class MainAdapter extends BaseAdapter<MainHolder> implements
     @NonNull
     @Override
     public MainHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        @SuppressLint("InflateParams")
-        View layoutView = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.note_model, null, false);
+        @SuppressLint("InflateParams") View layoutView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.note_model, null, false);
         return new MainHolder(layoutView);
     }
 
@@ -54,13 +53,7 @@ public class MainAdapter extends BaseAdapter<MainHolder> implements
         holder.getContentView().setText(holder.getNoteEntity().getContent());
         if (holder.getNoteEntity().isBookmarked())
             holder.getBookmarkView().setVisibility(View.VISIBLE);
-
-        if (AppStatics.IS_NOTE_SELECTED) {
-            if (CommonUtils.isNoteEqualsToOtherNote(AppStatics.CACHED_NOTE_LIST.get(position),
-                    AppStatics.CACHED_NOTE))
-                CommonUtils.setCardColor(holder.getBackgroundView(), R.color.secondaryLightColor);
-            else (holder.getBackgroundView()).setBackgroundColor(Color.WHITE);
-        }
+        colorHolderCardView();
     }
 
     @Override
@@ -72,16 +65,37 @@ public class MainAdapter extends BaseAdapter<MainHolder> implements
 
     @Override
     public void bookmark() {
-        int index = AppStatics.CACHED_NOTE_POSITION;
-        MainHolder holder = cachedHoldersList.get(index);
-        NoteEntity entity = holder.getNoteEntity();
-        if (cachedHoldersList.get(index).getBookmarkView().getVisibility() == View.VISIBLE) {
-            cachedHoldersList.get(index).getBookmarkView().setVisibility(View.GONE);
-            entity.setBookmarked(false);
+        MainHolder holder = cachedHoldersList.get(getNotePosition());
+        if (cachedHoldersList.get(getNotePosition()).getBookmarkView()
+                .getVisibility() == View.VISIBLE) {
+            cachedHoldersList.get(getNotePosition()).getBookmarkView().setVisibility(View.GONE);
+            holder.getNoteEntity().setBookmarked(false);
         } else {
-            cachedHoldersList.get(index).getBookmarkView().setVisibility(View.VISIBLE);
-            entity.setBookmarked(true);
+            cachedHoldersList.get(getNotePosition()).getBookmarkView().setVisibility(View.VISIBLE);
+            holder.getNoteEntity().setBookmarked(true);
         }
-        holder.setNoteEntity(entity);
+        holder.setNoteEntity(holder.getNoteEntity());
+    }
+
+    private void colorHolderCardView() {
+        if (AppStatics.IS_NOTE_SELECTED) {
+            if (getNotePosition() < cachedHoldersList.size()) {
+                if (CommonUtils.isNoteEqualsToOtherNote(AppStatics.CACHED_NOTE_LIST
+                                .get(getNotePosition()),
+                        AppStatics.CACHED_NOTE))
+                    CommonUtils.setCardColor(cachedHoldersList.get(getNotePosition())
+                            .getBackgroundView(), R.color.secondaryLightColor);
+                else (cachedHoldersList.get(getNotePosition()).getBackgroundView())
+                        .setBackgroundColor(Color.WHITE);
+            }
+        }
+    }
+
+    private int getNotePosition() {
+        for (int i = 0; i < AppStatics.CACHED_NOTE_LIST.size(); i++) {
+            if (AppStatics.CACHED_NOTE_LIST.get(i).getId() == AppStatics.CACHED_NOTE_POSITION)
+                return i;
+        }
+        return -1;
     }
 }

@@ -51,6 +51,8 @@ public final class CommonUtils {
 
     public static boolean isNoteEqualsToOtherNote(NoteEntity original, NoteEntity modified) {
         Log.d(TAG, "isNoteEqualsToOtherNote: " + "\n"
+                + "original id: " + original.getId() + "\n"
+                + "modified id: " + modified.getId() + "\n"
                 + "original content: " + original.getContent() + "\n"
                 + "modified content: " + modified.getContent() + "\n"
                 + "original createdDate: " + original.getCreated() + "\n"
@@ -59,7 +61,8 @@ public final class CommonUtils {
                 + "modified modifiedDate: " + modified.getModified() + "\n"
                 + "original isBookmarked: " + original.isBookmarked() + "\n"
                 + "modified isBookmarked: " + modified.isBookmarked());
-        return (original.getContent().equals(modified.getContent())
+        return (original.getId() == modified.getId()
+                && original.getContent().equals(modified.getContent())
                 && original.getCreated().equals(modified.getCreated())
                 && original.getModified().equals(modified.getModified())
 //                && original.isBookmarked() == modified.isBookmarked());

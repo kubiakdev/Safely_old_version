@@ -25,6 +25,7 @@ public class MainHolder extends BaseHolder {
     public void onClick(View v) {
         MainActivity activity = (MainActivity) v.getContext();
         activity.onOpenNoteDialog(new NoteEntity(
+                getNoteEntity().getId(),
                 getContentView().getText().toString(),
                 getNoteEntity().getCreated(),
                 getNoteEntity().getModified(),
@@ -48,11 +49,12 @@ public class MainHolder extends BaseHolder {
         activity.hideMainFabArray();
 
         activity.onShowOptionsFabArray(getAdapterPosition(), new NoteEntity(
+                getNoteEntity().getId(),
                 getContentView().getText().toString(),
                 getNoteEntity().getCreated(),
                 getNoteEntity().getModified(),
                 getNoteEntity().isBookmarked()));
-        AppStatics.CACHED_NOTE_POSITION = getAdapterPosition();
+        AppStatics.CACHED_NOTE_POSITION = getNoteEntity().getId();
         setColor(v, getBackgroundView());
         return true;
     }

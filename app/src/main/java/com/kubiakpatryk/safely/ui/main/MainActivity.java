@@ -273,7 +273,8 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onNewNoteClick() {
-        onOpenNoteDialog(new NoteEntity("", "", "", false));
+        onOpenNoteDialog(
+                new NoteEntity(-1L, "", "", "", false));
     }
 
     public void onOpenNoteDialog(NoteEntity entity) {

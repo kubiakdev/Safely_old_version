@@ -148,6 +148,16 @@ public class DataManager implements DataHelper {
     }
 
     @Override
+    public Long getLastNoteId() {
+        return prefsHelper.getLastNoteId();
+    }
+
+    @Override
+    public void setLastNoteId(long id) {
+        prefsHelper.setLastNoteId(id);
+    }
+
+    @Override
     public boolean isShowingBytes() {
         return prefsHelper.isShowingBytes();
     }

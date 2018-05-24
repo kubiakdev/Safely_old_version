@@ -27,7 +27,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     public static OnBookmarkNote onBookmarkNote;
 
     @Inject
-    public MainNoteOptionsPresenter(DataManager dataManager,
+    MainNoteOptionsPresenter(DataManager dataManager,
                                     SchedulerProviderHelper schedulerProviderHelper,
                                     CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
@@ -94,6 +94,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     private void onBookmarkNote() {
         onBookmarkNote.bookmark();
         AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(), new NoteEntity(
+                AppStatics.CACHED_NOTE.getId(),
                 AppStatics.CACHED_NOTE.getContent(),
                 AppStatics.CACHED_NOTE.getCreated(),
                 AppStatics.CACHED_NOTE.getModified(),
@@ -101,6 +102,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         AppStatics.CACHED_NOTE.setBookmarked(!AppStatics.CACHED_NOTE.isBookmarked());
 
         getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
+                AppStatics.CACHED_NOTE.getId(),
                 getMvpView().encrypt(AppStatics.CACHED_NOTE.getContent()),
                 getMvpView().encrypt(AppStatics.CACHED_NOTE.getCreated()),
                 getMvpView().encrypt(AppStatics.CACHED_NOTE.getModified()),
@@ -145,6 +147,8 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     }
 
     private void onPasteNote(NoteEntity entity) {
+        getDataManager().getAllNoteEntity().subscribe(e -> System.out.println(e.getId() + "e23" + e.getContent()));
+        System.out.println(getDataManager().getLastNoteId() + "43347347");
         setPasteButtonIsClickable(false);
         ClipboardManager clipboardManager = (ClipboardManager)
                 getMvpView().getActivitySystemService(Context.CLIPBOARD_SERVICE);
@@ -159,6 +163,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 String timeStamp = CommonUtils.getTimeStamp();
                 AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(),
                         new NoteEntity(
+                             entity.getId(),
                         builder.toString(),
                         entity.getCreated(),
                         timeStamp,
@@ -170,7 +175,9 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
 
     private void onCutNote(NoteEntity entity) {
         String timeStamp = CommonUtils.getTimeStamp();
-        NoteEntity newEntity = new NoteEntity("",
+        NoteEntity newEntity = new NoteEntity(
+                entity.getId(),
+                "",
                 entity.getCreated(),
                 timeStamp,
                 entity.isBookmarked());
@@ -179,6 +186,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         onReloadAdapterListCallback.reloadAdapter();
 
         getDataManager().getNoteEntity(new NoteEntity(
+                entity.getId(),
                 getMvpView().encrypt(entity.getContent()),
                 getMvpView().encrypt(entity.getCreated()),
                 getMvpView().encrypt(entity.getModified()),
@@ -199,15 +207,17 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();
         AppStatics.CACHED_NOTE_LIST.remove(CommonUtils.indexOfCachedNoteEntity());
-        AppStatics.CACHED_NOTE = new NoteEntity("", "", "", false);
+        AppStatics.CACHED_NOTE = new NoteEntity(-1L,"", "", "", false);
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();
+        AppStatics.IS_NOTE_SELECTED = false;
         onReloadAdapterListCallback.reloadAdapter();
 
         getCompositeDisposable().add(getDataManager().getNoteBox()
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(box -> box.remove(getDataManager().getNoteEntity(new NoteEntity(
+                        entity.getId(),
                         getMvpView().encrypt(entity.getContent()),
                         getMvpView().encrypt(entity.getCreated()),
                         getMvpView().encrypt(entity.getModified()),
@@ -221,6 +231,7 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         StringBuilder builder = new StringBuilder(entity.getContent());
         builder.append(cachedContent);
         getDataManager().getNoteEntity(new NoteEntity(
+                entity.getId(),
                 getMvpView().encrypt(entity.getContent()),
                 getMvpView().encrypt(entity.getCreated()),
                 getMvpView().encrypt(entity.getModified()),

@@ -21,6 +21,7 @@ import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
 import javax.inject.Inject;
 
+import io.objectbox.Box;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -35,6 +36,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                   SchedulerProviderHelper schedulerProviderHelper,
                   CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
+        getDataManager().setLastNoteId(-1L);
+        getDataManager().getNoteBox().subscribe(Box::removeAll);
     }
 
     @Override
@@ -213,9 +216,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     private void onAddNewNote(final NoteEntity entity) {
-        AppStatics.CACHED_NOTE_LIST.add(0, entity);
-        onReloadAdapterListCallback.reloadAdapter();
-
         getCompositeDisposable().add(getDataManager()
                 .add(new NoteEntity(
                         getMvpView().encrypt(entity.getContent()),
@@ -224,7 +224,18 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                         entity.isBookmarked()))
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribeOn(getSchedulerProviderHelper().io())
-                .subscribe());
+                .doOnComplete(() -> {
+            NoteEntity e = new NoteEntity(
+                    getDataManager().getNoteEntityByModified(getMvpView()
+                            .encrypt(entity.getModified())).blockingFirst().getId(),
+                    entity.getContent(),
+                    entity.getCreated(),
+                    entity.getModified(),
+                    entity.isBookmarked());
+                    AppStatics.CACHED_NOTE_LIST.add(e);
+                    onReloadAdapterListCallback.reloadAdapter();
+                    })
+                        .subscribe());
     }
 
     private void onUpdateNote(final NoteEntity original, final NoteEntity modified) {
@@ -237,6 +248,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         onReloadAdapterListCallback.reloadAdapter();
 
         getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
+                original.getId(),
                 getMvpView().encrypt(original.getContent()),
                 getMvpView().encrypt(original.getCreated()),
                 getMvpView().encrypt(original.getModified()),

@@ -25,6 +25,8 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
         super.onAttach(mvpView);
         if (getMvpView().getBundleArguments() != null) {
             getMvpView().setNoteEntity(new NoteEntity(
+                    getMvpView().getBundleArguments().getLong(
+                            "noteEntity_id", -1L),
                     getMvpView().getBundleArguments().getString(
                             "noteEntity_content", ""),
                     getMvpView().getBundleArguments().getString(
@@ -41,6 +43,7 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
     @Override
     public void onDetach() {
         getMvpView().onCancelOrDismissDialog(getMvpView().getNoteEntity(), new NoteEntity(
+                getMvpView().getNoteEntity().getId(),
                 getMvpView().getEditText().getText().toString(),
                 getCreated(),
                 CommonUtils.getTimeStamp(),

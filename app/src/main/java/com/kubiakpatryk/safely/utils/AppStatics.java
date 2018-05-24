@@ -9,7 +9,7 @@ import java.util.List;
 public class AppStatics {
     public static int RECYCLER_VIEW_SPAN_COUNT = 2;
 
-    public static int CACHED_NOTE_POSITION = -1;
+    public static long CACHED_NOTE_POSITION = -1L;
 
     public static boolean IS_MAIN_FAB_VISIBLE = false;
     public static boolean IS_SMALL_FAB_LIST_VISIBLE = false;

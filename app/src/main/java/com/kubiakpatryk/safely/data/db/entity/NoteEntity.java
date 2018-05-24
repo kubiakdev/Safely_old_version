@@ -7,7 +7,7 @@ import io.objectbox.annotation.Index;
 @Entity
 public class NoteEntity {
 
-    @Id
+    @Id(assignable = true)
     private long id;
 
     @Index

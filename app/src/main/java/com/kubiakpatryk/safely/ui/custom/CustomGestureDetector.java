@@ -10,7 +10,7 @@ import javax.inject.Inject;
 public class CustomGestureDetector extends GestureDetector{
 
     @Inject
-    public CustomGestureDetector(@ActivityContext Context context, CustomGestureListener listener) {
+    CustomGestureDetector(@ActivityContext Context context, CustomGestureListener listener) {
         super(context, listener);
     }
 }

@@ -43,9 +43,11 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                     .toList()
                     .blockingGet());
         }
+        AppStatics.CACHED_NOTE_LIST = sortNoteEntityList(AppStatics.CACHED_NOTE_LIST);
+
         if (AppStatics.CACHED_NOTE_LIST.isEmpty()) getMvpView().showNoNotesInformationTextView();
         else getMvpView().hideNoNotesInformationTextView();
-        return sortNoteEntityList(AppStatics.CACHED_NOTE_LIST);
+        return AppStatics.CACHED_NOTE_LIST;
     }
 
     private List<NoteEntity> sortNoteEntityList(List<NoteEntity> list) {
