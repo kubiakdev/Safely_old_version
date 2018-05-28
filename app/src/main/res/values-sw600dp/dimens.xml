@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Activity login-->
     <dimen name="activityLogin_tvSize">34sp</dimen>
     <dimen name="activityLogin_patternLock_normalDotSize">20dp</dimen>
