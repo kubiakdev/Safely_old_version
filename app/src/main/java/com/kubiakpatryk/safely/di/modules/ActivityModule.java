@@ -31,6 +31,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsPresenter;
+import com.kubiakpatryk.safely.ui.options.OptionsMvpPresenter;
+import com.kubiakpatryk.safely.ui.options.OptionsMvpView;
+import com.kubiakpatryk.safely.ui.options.OptionsPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpPresenter;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseMvpView;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChoosePresenter;
@@ -125,6 +128,12 @@ public class ActivityModule {
     @Provides
     MainSortOptionsMvpPresenter<MainSortOptionsMvpView> provideMainSortOptionsMvpPresenter(
             MainSortOptionsPresenter<MainSortOptionsMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    OptionsMvpPresenter<OptionsMvpView> provideOptionsMvpPresenter(
+            OptionsPresenter<OptionsMvpView> presenter) {
         return presenter;
     }
 

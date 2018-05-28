@@ -15,6 +15,7 @@ import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomFab;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
+import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogFragment;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogFragment;
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
@@ -25,9 +26,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
-import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogFragment;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
+import com.kubiakpatryk.safely.ui.options.OptionsActivity;
 
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class MainActivity extends BaseActivity implements
         NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
         MainPresenter.OnReloadAdapterListCallback,
+        OptionsActivity.OnReloadAdapterListCallback,
         SortChooseDialogPresenter.OnReloadAdapterListCallback {
 
     @Inject
@@ -120,6 +122,7 @@ public class MainActivity extends BaseActivity implements
         MainNoteOptionsPresenter.onReloadAdapterListCallback = this;
         MainPresenter.onReloadAdapterListCallback = this;
         NoteDialogFragment.onCancelOrDismissDialogCallback = this;
+        OptionsActivity.onReloadAdapterListCallback = this;
         SortChooseDialogPresenter.onReloadAdapterListCallback = this;
 
         appBarLayout.setExpanded(true, false);
@@ -158,18 +161,8 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void showMainFabArray() {
-        mainPresenter.showMainFabArray();
-    }
-
-    @Override
     public void hideMainFabArray() {
         mainPresenter.hideMainFabArray();
-    }
-
-    @Override
-    public void showNoNotesInformationTextView() {
-        mainPresenter.showNoNotesInformationTextView();
     }
 
     @Override
@@ -178,13 +171,18 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void showOptionsFabArray_left() {
-        noteOptionsPresenter.showOptionsFabArray_left();
+    public void showMainFabArray() {
+        mainPresenter.showMainFabArray();
     }
 
     @Override
-    public void showOptionsFabArray_right() {
-        noteOptionsPresenter.showOptionsFabArray_right();
+    public void showNoNotesInformationTextView() {
+        mainPresenter.showNoNotesInformationTextView();
+    }
+
+    @Override
+    public void openOptionsActivity() {
+        startActivity(OptionsActivity.getStartIntent(this));
     }
 
     @Override
@@ -195,6 +193,16 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void hideOptionsFabArray_right() {
         noteOptionsPresenter.hideOptionsFabArray_right();
+    }
+
+    @Override
+    public void showOptionsFabArray_left() {
+        noteOptionsPresenter.showOptionsFabArray_left();
+    }
+
+    @Override
+    public void showOptionsFabArray_right() {
+        noteOptionsPresenter.showOptionsFabArray_right();
     }
 
     @Override

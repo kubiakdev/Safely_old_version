@@ -16,7 +16,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.objectbox.Box;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends BasePresenter<V>
@@ -28,7 +27,7 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                              CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
 
-        getDataManager().getNoteBox().subscribe(Box::removeAll);
+//        getDataManager().getNoteBox().subscribe(Box::removeAll);
     }
 
     @Override
@@ -44,6 +43,8 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                     .blockingGet());
         }
         AppStatics.CACHED_NOTE_LIST = sortNoteEntityList(AppStatics.CACHED_NOTE_LIST);
+        if (AppStatics.IS_SHOWING_BYTES) Stream.of(AppStatics.CACHED_NOTE_LIST)
+                .forEach(entity -> entity.setContent(getMvpView().encrypt(entity.getContent())));
 
         if (AppStatics.CACHED_NOTE_LIST.isEmpty()) getMvpView().showNoNotesInformationTextView();
         else getMvpView().hideNoNotesInformationTextView();

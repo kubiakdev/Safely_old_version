@@ -18,6 +18,8 @@ public class AppStatics {
 
     public static boolean IS_NOTE_SELECTED = false;
 
+    public static boolean IS_SHOWING_BYTES = false;
+
     public static NoteEntity CACHED_NOTE;
 
     public static List<NoteEntity> CACHED_NOTE_LIST;

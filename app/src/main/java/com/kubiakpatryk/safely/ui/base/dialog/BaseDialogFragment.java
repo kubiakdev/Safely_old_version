@@ -18,6 +18,7 @@ import android.view.Window;
 
 import com.kubiakpatryk.safely.di.components.ActivityComponent;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
+import com.kubiakpatryk.safely.utils.ScreenUtils;
 
 import butterknife.Unbinder;
 
@@ -49,15 +50,15 @@ public abstract class BaseDialogFragment extends DialogFragment implements Dialo
 
         final ConstraintLayout layout = new ConstraintLayout(getActivity());
         layout.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+                ScreenUtils.getScreenWidth() * 4 / 5,
+                ScreenUtils.getScreenHeight() * 3 / 5));
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(layout);
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
             dialog.getWindow().setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ScreenUtils.getScreenWidth() * 4 / 5,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
         }
         dialog.setCanceledOnTouchOutside(true);

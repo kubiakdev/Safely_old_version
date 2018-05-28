@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Activity login-->
+    <dimen name="activityLogin_tvSize">24sp</dimen>
+    <dimen name="activityLogin_patternLock_normalDotSize">13dp</dimen>
+    <dimen name="activityLogin_patternLock_selectedDotSize">20dp</dimen>
+    <dimen name="activityLogin_patternLock_pathWidth">4dp</dimen>
+
+    <!--Activity options-->
+    <dimen name="activityOptions_toolbar_textView_titleTextSize">28sp</dimen>
+    <dimen name="activityOptions_toolbar_textView_categoryTextSize">20sp</dimen>
+    <dimen name="activityOptions_optionTextSize">16sp</dimen>
+    <dimen name="activityOptions_marginSize">20dp</dimen>
+
+    <!--Activity main-->
+    <dimen name="activityMain_noNotesInformationSize">24sp</dimen>
+    <dimen name="activityMain_fabSize">56dp</dimen>
+    <dimen name="activityMain_smallFabSize">40dp</dimen>
+    <dimen name="activityMain_fabMargin">16dp</dimen>
+
+    <!--Note layout-->
+    <dimen name="noteLayout_editText_noteContentSize">16sp</dimen>
+
+    <!--Note model-->
+    <dimen name="noteModel_tv_contentSize">16sp</dimen>
+
+    <!--Sort choose layout-->
     <dimen name="sortChooseLayout_cardView_height">42dp</dimen>
     <dimen name="sortChooseLayout_cardView_categoryMarginTop">6dp</dimen>
     <dimen name="sortChooseLayout_cardView_optionMarginTop">2dp</dimen>
@@ -8,4 +34,7 @@
     <dimen name="sortChooseLayout_textView_titleTextSize">26sp</dimen>
     <dimen name="sortChooseLayout_textView_categoryTextSize">20sp</dimen>
     <dimen name="sortChooseLayout_textView_optionTextSize">14sp</dimen>
+
+    <!--Small action buttons main-->
+    <dimen name="smallActionButtonsMain_smallFabMargin">30dp</dimen>
 </resources>

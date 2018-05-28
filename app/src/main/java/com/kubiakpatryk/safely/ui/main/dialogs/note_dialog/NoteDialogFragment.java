@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.dialog.BaseDialogFragment;
+import com.kubiakpatryk.safely.utils.ScreenUtils;
 
 import javax.inject.Inject;
 
@@ -55,7 +57,20 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
             setUnbinder(ButterKnife.bind(this, view));
             presenter.onAttach(this);
         }
+
+        setUpDialogSize(view);
         return view;
+    }
+
+    @Override
+    public void setUpDialogSize(View view) {
+        view.addOnLayoutChangeListener((v, i, i1, i2, i3, i4, i5, i6, i7) -> {
+            if (view.getHeight() > ScreenUtils.getScreenHeight() * 3 / 5) {
+                view.setLayoutParams(new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ScreenUtils.getScreenHeight() * 3 / 5));
+            }
+        });
     }
 
     @Override

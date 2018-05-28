@@ -10,15 +10,18 @@
         android:id="@+id/login_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="@string/patternLock_selectYourPattern"
-        android:textSize="24sp"
         android:textAlignment="center"
+        android:textSize="@dimen/activityLogin_tvSize"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <com.andrognito.patternlockview.PatternLockView
         android:id="@+id/login_activity_pattern_lock_view"
@@ -28,12 +31,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        app:correctStateColor="@color/patternCorrect"
-        app:normalStateColor="@color/patternNormal"
-        app:wrongStateColor="@color/patternWrong"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view"
+        app:correctStateColor="@color/patternCorrect"
+        app:normalStateColor="@color/patternNormal"
+        app:wrongStateColor="@color/patternWrong"
+        app:dotNormalSize="@dimen/activityLogin_patternLock_normalDotSize"
+        app:dotSelectedSize="@dimen/activityLogin_patternLock_selectedDotSize"
+        app:pathWidth="@dimen/pattern_lock_path_width"/>
 
 </android.support.constraint.ConstraintLayout>

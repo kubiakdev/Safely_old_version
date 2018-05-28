@@ -4,8 +4,6 @@ public interface PrefsHelper {
 
     boolean isFirstLaunch();
 
-    boolean isShowingBytes();
-
     Long getLastNoteId();
 
     String getSavedPatternLock();
@@ -13,8 +11,6 @@ public interface PrefsHelper {
     String getSortOption();
 
     void setIsFirstLaunch(boolean value);
-
-    void setIsShowingBytes(boolean value);
 
     void setLastNoteId(long id);
 

@@ -75,17 +75,19 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         android:text="@string/recyclerView_noNotesInformation"
+        android:textSize="@dimen/activityMain_noNotesInformationSize"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:layout_gravity="center"/>
 
     <com.kubiakpatryk.safely.ui.custom.CustomFab
         android:id="@+id/mainActivity_fab_actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/activityMain_fabMargin"
         android:clickable="true"
         android:focusable="true"
+        app:fabCustomSize="@dimen/activityMain_fabSize"
         android:src="@drawable/plus" />
 
     <include layout="@layout/small_action_buttons_main" />

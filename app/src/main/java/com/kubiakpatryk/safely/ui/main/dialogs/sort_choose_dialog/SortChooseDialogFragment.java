@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
@@ -71,11 +72,26 @@ public class SortChooseDialogFragment extends BaseDialogFragment
             presenter.onAttach(this);
         }
 
-        setUpDialog();
+        setUpDialogSize(view);
+
+        if (getDialog().getWindow() != null)
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         initSortOptionViewsArray();
         colorOriginalSortOption();
         return view;
     }
+
+    @Override
+    public void setUpDialogSize(View view) {
+        view.addOnLayoutChangeListener((v, i, i1, i2, i3, i4, i5, i6, i7) -> {
+            if (view.getHeight() > ScreenUtils.getScreenHeight() * 3 / 5) {
+                view.setLayoutParams(new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ScreenUtils.getScreenHeight() * 3 / 5));
+            }
+        });
+    }
+
 
     @Override
     public CardView[] getOptionsCardViewArray() {
@@ -105,10 +121,10 @@ public class SortChooseDialogFragment extends BaseDialogFragment
         super.onDestroyView();
     }
 
+
     public void show(FragmentManager fragmentManager) {
         super.show(fragmentManager, TAG);
     }
-
 
     public void initSortOptionViewsArray() {
         presenter.initSortOptionViewsArray();
@@ -116,14 +132,5 @@ public class SortChooseDialogFragment extends BaseDialogFragment
 
     public void colorOriginalSortOption() {
         presenter.colorOriginalSortOption();
-    }
-
-    private void setUpDialog() {
-        if (getDialog().getWindow() != null)
-            getDialog().getWindow().setLayout(
-                    ScreenUtils.getScreenWidth() * 4 / 5,
-                    ScreenUtils.getScreenHeight() * 3 / 5);
-
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 }

@@ -39,7 +39,7 @@ public class SortChooseDialogPresenter<V extends SortChooseDialogMvpView> extend
                                     .forEach(view -> view.setBackgroundColor(Color.WHITE));
                             setCardViewsColor((CardView) v, i);
                             returnChosenSortOption(getMvpView().getOptionsTextViewArray()[i]
-                                    .getText().toString());
+                                    .getContentDescription().toString());
                         }));
     }
 
@@ -51,7 +51,7 @@ public class SortChooseDialogPresenter<V extends SortChooseDialogMvpView> extend
                 .doOnComplete(() -> setCardViewsColor(getMvpView().getOptionsCardViewArray()
                         [cachedSortOptionIndex], cachedSortOptionIndex))
                 .subscribe(i -> {
-                    if (getMvpView().getOptionsTextViewArray()[i].getText().toString()
+                    if (getMvpView().getOptionsTextViewArray()[i].getContentDescription().toString()
                             .equals(getDataManager().getSortOption())) {
                         cachedSortOptionIndex = i;
                     }

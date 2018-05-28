@@ -23,6 +23,7 @@ public class MainCipherPresenter<V extends MainCipherMvpView> extends BasePresen
                         SchedulerProviderHelper schedulerProviderHelper,
                         CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
+        initializeCipherEntityList();
     }
 
     @Override
@@ -63,10 +64,17 @@ public class MainCipherPresenter<V extends MainCipherMvpView> extends BasePresen
     }
 
     private String encryptBytes(final String source) {
-        return Stream.of(AppStatics.CIPHER_ENTITY_LIST)
+        if (AppStatics.CIPHER_ENTITY_LIST.size() != 0) {
+            List<String> results = Stream.of(AppStatics.CIPHER_ENTITY_LIST)
+                    .filter(entity -> entity.getKey().equals(source))
+                    .map(CipherEntity::getValue)
+                    .toList();
+            if (results.size() != 0) return results.get(0);
+        }
+        return getDataManager().getAllCipherEntity()
                 .filter(entity -> entity.getKey().equals(source))
                 .map(CipherEntity::getValue)
-                .toList().get(0);
+                .blockingFirst();
     }
 
     private String getSeparatedAndMultipliedBytes(byte[] bytes) {
@@ -92,10 +100,17 @@ public class MainCipherPresenter<V extends MainCipherMvpView> extends BasePresen
     }
 
     private String decryptBytes(final String source) {
-        return Stream.of(AppStatics.CIPHER_ENTITY_LIST)
+        if (AppStatics.CIPHER_ENTITY_LIST.size() != 0) {
+            List<String> results = Stream.of(AppStatics.CIPHER_ENTITY_LIST)
+                    .filter(entity -> entity.getValue().equals(source))
+                    .map(CipherEntity::getKey)
+                    .toList();
+            if (results.size() != 0) return results.get(0);
+        }
+        return getDataManager().getAllCipherEntity()
                 .filter(entity -> entity.getValue().equals(source))
                 .map(CipherEntity::getKey)
-                .toList().get(0);
+                .blockingFirst();
     }
 
     private String[] divideByMultiplier(String[] array) {
@@ -104,5 +119,12 @@ public class MainCipherPresenter<V extends MainCipherMvpView> extends BasePresen
             array[i] = String.valueOf(val);
         }
         return array;
+    }
+
+    private void initializeCipherEntityList() {
+        getDataManager().getAllCipherEntity()
+                .observeOn(getSchedulerProviderHelper().ui())
+                .subscribeOn(getSchedulerProviderHelper().io())
+                .subscribe(entity -> AppStatics.CIPHER_ENTITY_LIST.add(entity));
     }
 }

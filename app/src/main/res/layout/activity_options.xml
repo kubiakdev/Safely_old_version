@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainActivity_coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/mainActivity_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/optionsActivity_leftArrowButton"
+                android:background="@null"
+                android:contentDescription="@string/appBar_leftArrowDescription"
+                android:src="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/mainActivity_textView_appName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/appBar_optionsName"
+                android:textSize="@dimen/activityOptions_toolbar_textView_titleTextSize" />
+        </LinearLayout>
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:toolbarId="@+id/mainActivity_toolbar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/mainActivity_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/optionsActivity_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activityOptions_marginSize"
+                    android:text="@string/activityOptions_displayCategory"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/activityOptions_toolbar_textView_categoryTextSize" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/activityOptions_marginSize"
+                        android:layout_marginBottom="@dimen/activityOptions_marginSize"
+                        android:layout_marginStart="@dimen/activityOptions_marginSize"
+                        android:layout_marginLeft="@dimen/activityOptions_marginSize"
+                        android:layout_marginEnd="@dimen/activityOptions_marginSize"
+                        android:layout_marginRight="@dimen/activityOptions_marginSize"
+                        android:layout_gravity="center"
+                        android:src="@drawable/settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activityOptions_marginSize"
+                        android:layout_marginBottom="@dimen/activityOptions_marginSize"
+                        android:text="@string/activityOptions_showBytes"
+                        android:textSize="@dimen/activityOptions_optionTextSize" />
+
+                </LinearLayout>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/optionsActivity_switch_showBytes"
+                    android:layout_margin="@dimen/activityOptions_marginSize" />
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activityOptions_marginSize"
+                    android:text="@string/activityOptions_privacyCategory"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/activityOptions_toolbar_textView_categoryTextSize" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/optionsActivity_cardView_changeSecureMethod">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/activityOptions_marginSize"
+                        android:layout_marginBottom="@dimen/activityOptions_marginSize"
+                        android:layout_marginStart="@dimen/activityOptions_marginSize"
+                        android:layout_marginLeft="@dimen/activityOptions_marginSize"
+                        android:layout_marginEnd="@dimen/activityOptions_marginSize"
+                        android:layout_marginRight="@dimen/activityOptions_marginSize"
+                        android:layout_gravity="center"
+                        android:src="@drawable/settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activityOptions_marginSize"
+                        android:layout_marginBottom="@dimen/activityOptions_marginSize"
+                        android:text="@string/activityOptions_changeSecureType"
+                        android:textSize="@dimen/activityOptions_optionTextSize" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+

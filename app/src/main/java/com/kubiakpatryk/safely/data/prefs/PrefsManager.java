@@ -12,7 +12,6 @@ public class PrefsManager implements PrefsHelper {
 
     private final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
     private final String PREFS_LAST_NOTE_ID_KEY = "PREFS_LAST_NOTE_ID";
-    private final String PREFS_SHOW_BYTES_KEY = "PREFS_IS_SHOWING_BYTES";
     private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
     private final String PREFS_SORT_OPTION_KEY = "PREFS_SORT_OPTION";
 
@@ -42,16 +41,6 @@ public class PrefsManager implements PrefsHelper {
     }
 
     @Override
-    public boolean isShowingBytes() {
-        return preferences.getBoolean(PREFS_SHOW_BYTES_KEY, false);
-    }
-
-    @Override
-    public void setIsShowingBytes(boolean value) {
-        preferences.edit().putBoolean(PREFS_SHOW_BYTES_KEY, value).apply();
-    }
-
-    @Override
     public String getSavedPatternLock() {
         return preferences.getString(PREFS_SAVED_PATTERN_LOCK_KEY, "");
     }
@@ -63,7 +52,7 @@ public class PrefsManager implements PrefsHelper {
 
     @Override
     public String getSortOption() {
-        return preferences.getString(PREFS_SORT_OPTION_KEY, "");
+        return preferences.getString(PREFS_SORT_OPTION_KEY, "To latest");
     }
 
     @Override

@@ -21,7 +21,6 @@ import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
 import javax.inject.Inject;
 
-import io.objectbox.Box;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -36,8 +35,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                   SchedulerProviderHelper schedulerProviderHelper,
                   CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
-        getDataManager().setLastNoteId(-1L);
-        getDataManager().getNoteBox().subscribe(Box::removeAll);
+//        getDataManager().setLastNoteId(-1L);
+//        getDataManager().getNoteBox().subscribe(Box::removeAll);
     }
 
     @Override
@@ -60,6 +59,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void initViewTypeButton() {
         getMvpView().getViewTypeButton().setOnClickListener(v -> {
+            if (AppStatics.IS_SHOWING_BYTES) return;
             if (AppStatics.RECYCLER_VIEW_SPAN_COUNT == 2) {
                 AppStatics.RECYCLER_VIEW_SPAN_COUNT = 1;
                 v.setRotation(90);
@@ -73,8 +73,10 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
 
     @Override
     public void initSortByButton() {
-        getMvpView().getSortByButton().setOnClickListener(v ->
-                getMvpView().openSortChooseDialogFragment());
+        getMvpView().getSortByButton().setOnClickListener(v -> {
+            if (AppStatics.IS_SHOWING_BYTES) return;
+            getMvpView().openSortChooseDialogFragment();
+        });
     }
 
     @Override
@@ -94,13 +96,14 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void initSmallMainFabArray() {
         getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_NEW_NOTE]
-                .setOnClickListener(v -> getMvpView().onNewNoteClick());
+                .setOnClickListener(v -> {
+                    if (!AppStatics.IS_SHOWING_BYTES) getMvpView().onNewNoteClick();
+                });
         getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_PASSWORDS]
                 .setOnClickListener(v -> Toast.makeText(getMvpView().getBaseActivity(),
                         "Not Available yet.", Toast.LENGTH_SHORT).show());
         getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_SETTINGS]
-                .setOnClickListener(v -> Toast.makeText(getMvpView().getBaseActivity(),
-                        "Not Available yet.", Toast.LENGTH_SHORT).show());
+                .setOnClickListener(v -> getMvpView().openOptionsActivity());
     }
 
     @Override
@@ -195,7 +198,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         getMvpView().getNoNotesInformationTextView().setGravity(Gravity.FILL_VERTICAL);
         getMvpView().getNoNotesInformationTextView().setVisibility(View.VISIBLE);
         getMvpView().getNoNotesInformationTextView()
-                .setOnClickListener(v -> getMvpView().onNewNoteClick());
+                .setOnClickListener(v -> {
+                    if (!AppStatics.IS_SHOWING_BYTES) getMvpView().onNewNoteClick();
+                });
     }
 
     @Override
@@ -225,17 +230,17 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .doOnComplete(() -> {
-            NoteEntity e = new NoteEntity(
-                    getDataManager().getNoteEntityByModified(getMvpView()
-                            .encrypt(entity.getModified())).blockingFirst().getId(),
-                    entity.getContent(),
-                    entity.getCreated(),
-                    entity.getModified(),
-                    entity.isBookmarked());
+                    NoteEntity e = new NoteEntity(
+                            getDataManager().getNoteEntityByModified(getMvpView()
+                                    .encrypt(entity.getModified())).blockingFirst().getId(),
+                            entity.getContent(),
+                            entity.getCreated(),
+                            entity.getModified(),
+                            entity.isBookmarked());
                     AppStatics.CACHED_NOTE_LIST.add(e);
                     onReloadAdapterListCallback.reloadAdapter();
-                    })
-                        .subscribe());
+                })
+                .subscribe());
     }
 
     private void onUpdateNote(final NoteEntity original, final NoteEntity modified) {

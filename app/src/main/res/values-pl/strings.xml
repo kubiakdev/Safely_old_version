@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Safely</string>
+
+    <!--Login Activity-->
+
+    <!--PatternLock-->
+    <string name="patternLock_chooseYourPattern">Teraz, wybierz swój wzór</string>
+    <string name="patternLock_selectYourPattern">Wybierz swój wzór</string>
+    <string name="patternLock_selectYourPatternAgain">Wybierz swój wzór ponownie</string>
+    <string name="patternLock_rememberThat">Zapamiętaj go!</string>
+    <string name="patternLock_patternsMustBeTheSame">Wzory muszą być takie same!
+        \n Spróbuj ponownie!</string>
+    <string name="patternLock_tryAgain">Ups… Spróbuj ponownie!</string>
+    <string name="patternLock_yourLastChance">To twoja ostania szansa!
+        \n(Aplikacja się wyłączy)</string>
+
+    <!--Main Activity-->
+
+    <!--Activity_Main-->
+    <string name="toolbar_viewTypeDescription">Typ widoku</string>
+    <string name="toolbar_sortByButtonDescription">Sortuj według</string>
+    <string name="alertDialog_sureToCut">Jesteś pewien, że chcesz usunąć zawartość?</string>
+    <string name="alertDialog_sureToCut_positive">Pewnie</string>
+    <string name="alertDialog_sureToCut_negative">Nie</string>
+    <string name="alertDialog_sureToDelete">Jesteś pewien, że chcesz usunąc notatkę?</string>
+    <string name="alertDialog_sureToDelete_positive">Pewnie</string>
+    <string name="alertDialog_sureToDelete_negative">Nie</string>
+
+    <!--Note_layout-->
+    <string name="noteLayout_editTextHint">Napisz swoją notatkę</string>
+
+    <!--RecyclerView-->
+    <string name="recyclerView_noNotesInformation">Nie masz żadnych notatek
+        \nDotknij by dodać</string>
+
+    <!--SortChoose layout-->
+    <string name="sortChooseLayout_title">Sortuj według</string>
+    <string name="sortChooseLayout_alphabeticallyCategory">Alfabetycznie</string>
+    <string name="sortChooseLayout_bookmarkedCategory">Zaznaczenia</string>
+    <string name="sortChooseLayout_bookmarkedCategory_yes">Tak</string>
+    <string name="sortChooseLayout_bookmarkedCategory_no">Nie</string>
+    <string name="sortChooseLayout_contentCategory">Zawartość</string>
+    <string name="sortChooseLayout_contentCategory_toLongest">Do najdłuższej</string>
+    <string name="sortChooseLayout_contentCategory_toShortest">Do najkrótszej</string>
+    <string name="sortChooseLayout_createdDateCategory">Daty stworzenia</string>
+    <string name="sortChooseLayout_createdDateCategory_toNewest">Do najnowszej</string>
+    <string name="sortChooseLayout_createdDateCategory_toOldest">Do najstarszej</string>
+    <string name="sortChooseLayout_modifiedDateCategory">Daty modyfikacji</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toEarliest">Do najwcześniejszej</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toLatest">Do najpóźniejszej</string>
+
+    <!--Activity_Options-->
+    <string name="appBar_optionsName">Opcje</string>
+    <string name="appBar_leftArrowDescription">Lewa strzałka</string>
+    <string name="activityOptions_displayCategory">Widok</string>
+    <string name="activityOptions_privacyCategory">Prywatność</string>
+    <string name="activityOptions_showBytes">Pokaż bajty</string>
+    <string name="activityOptions_changeSecureType">Zmień metodę zabezpieczenia</string>
+</resources>

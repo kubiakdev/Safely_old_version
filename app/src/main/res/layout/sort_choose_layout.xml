@@ -61,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_alphabeticallyCategory_AToZ_contentDescription"
                     android:text="@string/sortChooseLayout_alphabeticallyCategory_AToZ"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -81,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_alphabeticallyCategory_ZToA_contentDescription"
                     android:text="@string/sortChooseLayout_alphabeticallyCategory_ZToA"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -126,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_bookmarkedCategory_yes_contentDescription"
                     android:text="@string/sortChooseLayout_bookmarkedCategory_yes"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -146,6 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_bookmarkedCategory_no_contentDescription"
                     android:text="@string/sortChooseLayout_bookmarkedCategory_no"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -191,6 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_contentCategory_toLongest_contentDescription"
                     android:text="@string/sortChooseLayout_contentCategory_toLongest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -211,6 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_contentCategory_toShortest_contentDescription"
                     android:text="@string/sortChooseLayout_contentCategory_toShortest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -256,6 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_createdDateCategory_toNewest_contentDescription"
                     android:text="@string/sortChooseLayout_createdDateCategory_toNewest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -276,6 +283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_createdDateCategory_toOldest_contentDescription"
                     android:text="@string/sortChooseLayout_createdDateCategory_toOldest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -321,6 +329,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_modifiedDateCategory_toEarliest_contentDescription"
                     android:text="@string/sortChooseLayout_modifiedDateCategory_toEarliest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
@@ -341,6 +350,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/sortChooseLayout_modifiedDateCategory_toLatest_contentDescription"
                     android:text="@string/sortChooseLayout_modifiedDateCategory_toLatest"
                     android:textAlignment="center"
                     android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />

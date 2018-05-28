@@ -42,6 +42,8 @@ public interface MainMvpView extends MvpView {
 
     void onNewNoteClick();
 
+    void openOptionsActivity();
+
     void openSortChooseDialogFragment();
 
     void reloadAdapter();

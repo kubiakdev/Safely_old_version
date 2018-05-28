@@ -28,8 +28,8 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
 
     @Inject
     MainNoteOptionsPresenter(DataManager dataManager,
-                                    SchedulerProviderHelper schedulerProviderHelper,
-                                    CompositeDisposable compositeDisposable) {
+                             SchedulerProviderHelper schedulerProviderHelper,
+                             CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
     }
 
@@ -147,8 +147,6 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
     }
 
     private void onPasteNote(NoteEntity entity) {
-        getDataManager().getAllNoteEntity().subscribe(e -> System.out.println(e.getId() + "e23" + e.getContent()));
-        System.out.println(getDataManager().getLastNoteId() + "43347347");
         setPasteButtonIsClickable(false);
         ClipboardManager clipboardManager = (ClipboardManager)
                 getMvpView().getActivitySystemService(Context.CLIPBOARD_SERVICE);
@@ -163,11 +161,11 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
                 String timeStamp = CommonUtils.getTimeStamp();
                 AppStatics.CACHED_NOTE_LIST.set(CommonUtils.indexOfCachedNoteEntity(),
                         new NoteEntity(
-                             entity.getId(),
-                        builder.toString(),
-                        entity.getCreated(),
-                        timeStamp,
-                        entity.isBookmarked()));
+                                entity.getId(),
+                                builder.toString(),
+                                entity.getCreated(),
+                                timeStamp,
+                                entity.isBookmarked()));
                 updateContentEntity(entity, cachedContent, timeStamp);
             }
         }
@@ -207,7 +205,8 @@ public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends 
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();
         AppStatics.CACHED_NOTE_LIST.remove(CommonUtils.indexOfCachedNoteEntity());
-        AppStatics.CACHED_NOTE = new NoteEntity(-1L,"", "", "", false);
+        AppStatics.CACHED_NOTE =
+                new NoteEntity(-1L, "", "", "", false);
         hideOptionsFabArray_left();
         hideOptionsFabArray_right();
         AppStatics.IS_NOTE_SELECTED = false;

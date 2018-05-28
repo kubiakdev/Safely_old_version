@@ -18,8 +18,8 @@
 
     <!--Activity_Main-->
     <string name="toolbar_appName">@string/app_name</string>
-    <string name="toolbar_viewTypeDescription">""</string>
-    <string name="toolbar_sortByButtonDescription">""</string>
+    <string name="toolbar_viewTypeDescription">"View type"</string>
+    <string name="toolbar_sortByButtonDescription">"Sort by"</string>
     <string name="alertDialog_sureToCut">Are you sure to cut note content?</string>
     <string name="alertDialog_sureToCut_positive">Sure</string>
     <string name="alertDialog_sureToCut_negative">No</string>
@@ -36,6 +36,7 @@
 
     <!--SortChoose layout-->
     <string name="sortChooseLayout_title">Sort by</string>
+
     <string name="sortChooseLayout_alphabeticallyCategory">Alphabetically</string>
     <string name="sortChooseLayout_alphabeticallyCategory_AToZ">A -> Z</string>
     <string name="sortChooseLayout_alphabeticallyCategory_ZToA">Z -> A</string>
@@ -51,5 +52,29 @@
     <string name="sortChooseLayout_modifiedDateCategory">Modified</string>
     <string name="sortChooseLayout_modifiedDateCategory_toEarliest">To earliest</string>
     <string name="sortChooseLayout_modifiedDateCategory_toLatest">To latest</string>
+
+    <string name="sortChooseLayout_alphabeticallyCategory_AToZ_contentDescription">A -> Z</string>
+    <string name="sortChooseLayout_alphabeticallyCategory_ZToA_contentDescription">Z -> A</string>
+    <string name="sortChooseLayout_bookmarkedCategory_yes_contentDescription">Yes</string>
+    <string name="sortChooseLayout_bookmarkedCategory_no_contentDescription">No</string>
+    <string name="sortChooseLayout_contentCategory_toLongest_contentDescription">To longest</string>
+    <string name="sortChooseLayout_contentCategory_toShortest_contentDescription">
+        To shortest</string>
+    <string name="sortChooseLayout_createdDateCategory_toNewest_contentDescription">
+        To newest</string>
+    <string name="sortChooseLayout_createdDateCategory_toOldest_contentDescription">
+        To oldest</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toEarliest_contentDescription">
+        To earliest</string>
+    <string name="sortChooseLayout_modifiedDateCategory_toLatest_contentDescription">
+        To latest</string>
+
+    <!--Activity_Options-->
+    <string name="appBar_optionsName">Options</string>
+    <string name="appBar_leftArrowDescription">"Left arrow"</string>
+    <string name="activityOptions_displayCategory">Display</string>
+    <string name="activityOptions_privacyCategory">Privacy</string>
+    <string name="activityOptions_showBytes">Show bytes</string>
+    <string name="activityOptions_changeSecureType">Change secure method</string>
 
 </resources>

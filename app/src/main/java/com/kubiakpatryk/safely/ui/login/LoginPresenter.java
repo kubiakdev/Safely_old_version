@@ -82,6 +82,7 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(i -> {
                     getDataManager().setPatternLock(patternSecondTry);
+                    getDataManager().setIsFirstLaunch(false);
                     patternTryCount++;
                     getMvpView().openSecureChooseActivity();
                 });

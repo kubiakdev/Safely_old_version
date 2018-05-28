@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/action_buttons_horizontal_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/action_buttons_vertical_guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/action_buttons_vertical_guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_bookmark_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/bookmark_outline"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtons_button_copy_left"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_copy_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/content_copy"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtons_button_paste_left"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_paste_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/content_paste"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/action_buttons_horizontal_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/action_buttons_horizontal_guideline" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_cut_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/content_cut"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtons_button_paste_left"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_delete_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/delete_outline"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtons_button_cut_left"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_bookmark_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/bookmark_outline"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtons_button_copy_right"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_copy_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/content_copy"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtons_button_paste_right"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_paste_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/content_paste"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/action_buttons_horizontal_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintTop_toTopOf="@+id/action_buttons_horizontal_guideline" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_cut_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/content_cut"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtons_button_paste_right"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.kubiakpatryk.safely.ui.custom.SmallCustomFab
+        android:id="@+id/actionButtons_button_delete_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/delete_outline"
+        android:visibility="invisible"
+        app:backgroundTint="@color/secondaryDarkColor"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/action_buttons_vertical_guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtons_button_cut_right"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>

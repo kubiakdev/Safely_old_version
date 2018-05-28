@@ -3,7 +3,7 @@
     package="com.kubiakpatryk.safely">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".App"
@@ -18,30 +18,32 @@
             android:value="2.1" />
 
         <activity android:name=".ui.splash.SplashActivity">
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
+
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".ui.tutorial.TutorialActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-             <!--<intent-filter> -->
-             <!--<action android:name="android.intent.action.MAIN" /> -->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" /> -->
-             <!--</intent-filter> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".ui.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".ui.secure_choose.SecureChooseActivity">
 
@@ -53,6 +55,18 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".ui.login.LoginActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".ui.options.OptionsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kubiakpatryk.safely.ui.main.MainActivity" />
              <!--<intent-filter>-->
              <!--<action android:name="android.intent.action.MAIN" />-->
 

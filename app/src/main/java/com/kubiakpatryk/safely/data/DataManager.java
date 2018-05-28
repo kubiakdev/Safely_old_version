@@ -158,16 +158,6 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public boolean isShowingBytes() {
-        return prefsHelper.isShowingBytes();
-    }
-
-    @Override
-    public void setIsShowingBytes(boolean value) {
-        prefsHelper.setIsShowingBytes(value);
-    }
-
-    @Override
     public String getSavedPatternLock() {
         return prefsHelper.getSavedPatternLock();
     }

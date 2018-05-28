@@ -23,6 +23,7 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public void onClick(View v) {
+        if (AppStatics.IS_SHOWING_BYTES) return;
         MainActivity activity = (MainActivity) v.getContext();
         activity.onOpenNoteDialog(new NoteEntity(
                 getNoteEntity().getId(),
@@ -41,6 +42,7 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public boolean onLongClick(View v) {
+        if (AppStatics.IS_SHOWING_BYTES) return false;
         if (AppStatics.IS_NOTE_SELECTED) onReturnDefaultColor.returnDefaultColor();
 
         AppStatics.IS_NOTE_SELECTED = true;
