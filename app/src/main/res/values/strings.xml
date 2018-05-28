@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Safely</string>
 
+    <!--General-->
+    <string name="general_turnOffBytesModeFirst">Turn off bytes mode first</string>
+    <string name="general_notAvailableYet">Not available yet</string>
+
     <!--Login Activity-->
 
     <!--PatternLock-->
@@ -74,7 +78,7 @@
     <string name="appBar_leftArrowDescription">"Left arrow"</string>
     <string name="activityOptions_displayCategory">Display</string>
     <string name="activityOptions_privacyCategory">Privacy</string>
-    <string name="activityOptions_showBytes">Show bytes</string>
+    <string name="activityOptions_bytesMode">Bytes mode</string>
     <string name="activityOptions_changeSecureType">Change secure method</string>
 
 </resources>

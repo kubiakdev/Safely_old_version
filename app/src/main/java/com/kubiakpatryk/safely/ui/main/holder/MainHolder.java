@@ -3,6 +3,7 @@ package com.kubiakpatryk.safely.ui.main.holder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
@@ -23,7 +24,11 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public void onClick(View v) {
-        if (AppStatics.IS_SHOWING_BYTES) return;
+        if (AppStatics.IS_IN_BYTE_MODE){
+            Toast.makeText(v.getContext(), R.string.general_turnOffBytesModeFirst,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         MainActivity activity = (MainActivity) v.getContext();
         activity.onOpenNoteDialog(new NoteEntity(
                 getNoteEntity().getId(),
@@ -42,7 +47,11 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public boolean onLongClick(View v) {
-        if (AppStatics.IS_SHOWING_BYTES) return false;
+        if (AppStatics.IS_IN_BYTE_MODE){
+            Toast.makeText(v.getContext(), R.string.general_turnOffBytesModeFirst,
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if (AppStatics.IS_NOTE_SELECTED) onReturnDefaultColor.returnDefaultColor();
 
         AppStatics.IS_NOTE_SELECTED = true;

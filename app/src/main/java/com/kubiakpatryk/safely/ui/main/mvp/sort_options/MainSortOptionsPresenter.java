@@ -26,8 +26,6 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                              SchedulerProviderHelper schedulerProviderHelper,
                              CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProviderHelper, compositeDisposable);
-
-//        getDataManager().getNoteBox().subscribe(Box::removeAll);
     }
 
     @Override
@@ -43,8 +41,11 @@ public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends 
                     .blockingGet());
         }
         AppStatics.CACHED_NOTE_LIST = sortNoteEntityList(AppStatics.CACHED_NOTE_LIST);
-        if (AppStatics.IS_SHOWING_BYTES) Stream.of(AppStatics.CACHED_NOTE_LIST)
-                .forEach(entity -> entity.setContent(getMvpView().encrypt(entity.getContent())));
+        if (AppStatics.IS_IN_BYTE_MODE && AppStatics.IS_JUST_BYTE_MODE_ON) {
+            AppStatics.IS_JUST_BYTE_MODE_ON = false;
+            Stream.of(AppStatics.CACHED_NOTE_LIST).forEach(entity ->
+                    entity.setContent(getMvpView().encrypt(entity.getContent())));
+        }
 
         if (AppStatics.CACHED_NOTE_LIST.isEmpty()) getMvpView().showNoNotesInformationTextView();
         else getMvpView().hideNoNotesInformationTextView();

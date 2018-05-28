@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/toolbar_appName"
-                    android:textSize="28sp"/>
+                    android:textSize="28sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,8 +39,8 @@
                         android:id="@+id/mainActivity_imageButton_ViewTypeButton"
                         android:layout_width="?android:attr/actionBarSize"
                         android:layout_height="?android:attr/actionBarSize"
-                        android:contentDescription="@string/toolbar_viewTypeDescription"
                         android:background="@null"
+                        android:contentDescription="@string/toolbar_viewTypeDescription"
                         android:padding="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/view_stream" />
@@ -49,8 +49,8 @@
                         android:id="@+id/mainActivity_imageButton_sortByButton"
                         android:layout_width="?android:attr/actionBarSize"
                         android:layout_height="?android:attr/actionBarSize"
-                        android:contentDescription="@string/toolbar_sortByButtonDescription"
                         android:background="@null"
+                        android:contentDescription="@string/toolbar_sortByButtonDescription"
                         android:padding="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/sort_variant" />
@@ -64,6 +64,7 @@
         android:id="@+id/mainActivity_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@null"
         android:layoutAnimation="@anim/content_staggered_grid_layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -73,11 +74,11 @@
         android:id="@+id/mainActivity_textView_noNotesInformation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:layout_gravity="center"
         android:text="@string/recyclerView_noNotesInformation"
-        android:textSize="@dimen/activityMain_noNotesInformationSize"
         android:textAlignment="center"
-        android:layout_gravity="center"/>
+        android:textSize="@dimen/activityMain_noNotesInformationSize"
+        android:visibility="gone" />
 
     <com.kubiakpatryk.safely.ui.custom.CustomFab
         android:id="@+id/mainActivity_fab_actionButton"
@@ -87,8 +88,8 @@
         android:layout_margin="@dimen/activityMain_fabMargin"
         android:clickable="true"
         android:focusable="true"
-        app:fabCustomSize="@dimen/activityMain_fabSize"
-        android:src="@drawable/plus" />
+        android:src="@drawable/plus"
+        app:fabCustomSize="@dimen/activityMain_fabSize" />
 
     <include layout="@layout/small_action_buttons_main" />
 

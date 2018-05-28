@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--General-->
+    <string name="general_turnOffBytesModeFirst">Wyłącz wpierw tryb bajtów</string>
+    <string name="general_notAvailableYet">Jeszcze niedostępne</string>
+
     <!--Login Activity-->
 
     <!--PatternLock-->
@@ -53,6 +57,6 @@
     <string name="appBar_leftArrowDescription">Lewa strzałka</string>
     <string name="activityOptions_displayCategory">Widok</string>
     <string name="activityOptions_privacyCategory">Prywatność</string>
-    <string name="activityOptions_showBytes">Pokaż bajty</string>
+    <string name="activityOptions_bytesMode">Tryb bajtów</string>
     <string name="activityOptions_changeSecureType">Zmień metodę zabezpieczenia</string>
 </resources>

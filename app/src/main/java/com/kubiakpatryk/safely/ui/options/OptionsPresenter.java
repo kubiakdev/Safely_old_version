@@ -25,9 +25,10 @@ public class OptionsPresenter<V extends MvpView> extends BasePresenter<V>
     @Override
     public void initializeShowBytesSwitch(Switch showBytesSwitch) {
         showBytesSwitch.setOnClickListener(v -> {
-            AppStatics.IS_SHOWING_BYTES = !AppStatics.IS_SHOWING_BYTES;
+            AppStatics.IS_IN_BYTE_MODE = !AppStatics.IS_IN_BYTE_MODE;
+            AppStatics.IS_JUST_BYTE_MODE_ON = !AppStatics.IS_JUST_BYTE_MODE_ON;
             AppStatics.CACHED_NOTE_LIST = null;
         });
-        showBytesSwitch.setChecked(AppStatics.IS_SHOWING_BYTES);
+        showBytesSwitch.setChecked(AppStatics.IS_IN_BYTE_MODE);
     }
 }

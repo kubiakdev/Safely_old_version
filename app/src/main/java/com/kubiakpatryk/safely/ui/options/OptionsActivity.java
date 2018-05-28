@@ -60,7 +60,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
 
     @OnClick(R.id.optionsActivity_cardView_changeSecureMethod)
     public void onChangeSecureMethodClick(){
-        Toast.makeText(this, "Not available yet", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
     }
 
     public interface OnReloadAdapterListCallback {

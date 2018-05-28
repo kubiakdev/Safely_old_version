@@ -82,7 +82,7 @@
                     android:drawableLeft="@drawable/settings"
                     android:drawablePadding="@dimen/activityOptions_marginSize"
                     android:drawableStart="@drawable/settings"
-                    android:text="@string/activityOptions_showBytes"
+                    android:text="@string/activityOptions_bytesMode"
                     android:textSize="@dimen/activityOptions_optionTextSize" />
 
                 <Switch
