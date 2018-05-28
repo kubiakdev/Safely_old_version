@@ -61,7 +61,7 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
         patternFirstTry = PatternLockUtils.patternToString(getMvpView().getPatternLockView(),
                 event.getPattern());
         patternTryCount++;
-        getMvpView().getTextView().setText(R.string.patternLock_selectYourPatternAgain);
+        getMvpView().getTextView().setText(R.string.patternLock_chooseYourPatternAgain);
         getMvpView().getPatternLockView().clearPattern();
     }
 

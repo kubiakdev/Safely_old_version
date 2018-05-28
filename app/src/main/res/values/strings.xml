@@ -5,8 +5,8 @@
 
     <!--PatternLock-->
     <string name="patternLock_chooseYourPattern">"Now, choose your pattern lock"</string>
+    <string name="patternLock_chooseYourPatternAgain">"Choose your pattern lock again"</string>
     <string name="patternLock_selectYourPattern">"Select your pattern lock"</string>
-    <string name="patternLock_selectYourPatternAgain">"Select your pattern lock again"</string>
     <string name="patternLock_rememberThat">Remember that!</string>
     <string name="patternLock_patternsMustBeTheSame">Pattern locks must be the same
         \nTry Again!</string>

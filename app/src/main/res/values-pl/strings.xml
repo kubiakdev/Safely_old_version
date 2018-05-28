@@ -4,8 +4,8 @@
 
     <!--PatternLock-->
     <string name="patternLock_chooseYourPattern">Teraz, wybierz swój wzór</string>
-    <string name="patternLock_selectYourPattern">Wybierz swój wzór</string>
-    <string name="patternLock_selectYourPatternAgain">Wybierz swój wzór ponownie</string>
+    <string name="patternLock_chooseYourPatternAgain">Wybierz swój wzór ponownie</string>
+    <string name="patternLock_selectYourPattern">Podaj swój wzór</string>
     <string name="patternLock_rememberThat">Zapamiętaj go!</string>
     <string name="patternLock_patternsMustBeTheSame">Wzory muszą być takie same!
         \n Spróbuj ponownie!</string>
