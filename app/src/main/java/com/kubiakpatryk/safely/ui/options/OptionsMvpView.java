@@ -8,7 +8,11 @@ public interface OptionsMvpView extends MvpView {
 
     String[] getFontSizesArray();
 
+    String[] getLanguagesArray();
+
     String[] getRecyclerColorsArray();
 
     CardView getChangeRecyclerColorSample();
+
+    void onRestartContentView();
 }

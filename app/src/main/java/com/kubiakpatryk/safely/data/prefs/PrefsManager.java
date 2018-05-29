@@ -6,12 +6,15 @@ import android.content.SharedPreferences;
 import com.kubiakpatryk.safely.di.annotations.ApplicationContext;
 import com.kubiakpatryk.safely.utils.AppConstants;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 public class PrefsManager implements PrefsHelper {
 
     private final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
     private final String PREFS_FONT_SIZE_KEY = "PREFS_FONT_SIZE";
+    private final String PREFS_LANGUAGE_KEY = "PREFS_LANGUAGE";
     private final String PREFS_LAST_NOTE_ID_KEY = "PREFS_LAST_NOTE_ID";
     private final String PREFS_RECYCLER_COLOR_KEY = "PREFS_RECYCLER_COLOR";
     private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
@@ -40,6 +43,16 @@ public class PrefsManager implements PrefsHelper {
     @Override
     public void setFontSize(Long value) {
         preferences.edit().putLong(PREFS_FONT_SIZE_KEY, value).apply();
+    }
+
+    @Override
+    public String getLanguage() {
+        return preferences.getString(PREFS_LANGUAGE_KEY, Locale.getDefault().getLanguage());
+    }
+
+    @Override
+    public void setLanguage(String language) {
+        preferences.edit().putString(PREFS_LANGUAGE_KEY, language).apply();
     }
 
     @Override

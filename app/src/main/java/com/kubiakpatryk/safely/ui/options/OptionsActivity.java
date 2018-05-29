@@ -31,6 +31,9 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     @BindView(R.id.optionsActivity_tv_changeFontSize)
     TextView changeFontSizeTextView;
 
+    @BindView(R.id.optionsActivity_tv_changeLanguage)
+    TextView changeLanguageTextView;
+
     @BindView(R.id.optionsActivity_switch_showBytes)
     Switch showBytesSwitch;
 
@@ -47,15 +50,25 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
 
-        initializeShowBytesSwitch();
-        initializeChangeFontSizeTextView();
-        initializeChangeRecyclerColorSample();
+        init();
     }
 
     @Override
     public void onBackPressed() {
         onReloadAdapterListCallback.reloadAdapter();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onRestartContentView() {
+        presenter.setLanguage();
+        setContentView(R.layout.activity_options);
+
+        getActivityComponent().inject(this);
+        setUnbinder(ButterKnife.bind(this));
+        presenter.onAttach(this);
+
+        init();
     }
 
     @Override
@@ -69,35 +82,51 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     }
 
     @Override
+    public String[] getLanguagesArray() {
+        return getResources().getStringArray(R.array.languages);
+    }
+
+    @Override
     public String[] getRecyclerColorsArray() {
         return getResources().getStringArray(R.array.customRecyclerColorsArray);
     }
 
-    private void initializeChangeFontSizeTextView(){
+    private void init(){
+        initializeShowBytesSwitch();
+        initializeChangeFontSizeTextView();
+        initializeChangeLanguageTextView();
+        initializeChangeRecyclerColorSample();
+    }
+
+    private void initializeChangeFontSizeTextView() {
         presenter.initializeChangeFontSizeTextView(changeFontSizeTextView);
     }
 
-    private void initializeChangeRecyclerColorSample(){
+    private void initializeChangeLanguageTextView() {
+        presenter.initializeChangeLanguageTextView(changeLanguageTextView);
+    }
+
+    private void initializeChangeRecyclerColorSample() {
         presenter.initializeChangeRecyclerColorSample();
     }
 
-    private void initializeShowBytesSwitch(){
+    private void initializeShowBytesSwitch() {
         presenter.initializeShowBytesSwitch(showBytesSwitch);
     }
 
     @OnClick(R.id.optionsActivity_leftArrowButton)
-    public void onLeftArrowButtonClick(){
+    public void onLeftArrowButtonClick() {
         onReloadAdapterListCallback.reloadAdapter();
         finish();
     }
 
     @OnClick(R.id.optionsActivity_cardView_changeRecyclerColor)
-    public void onChangeRecyclerColor(){
+    public void onChangeRecyclerColor() {
         presenter.onChangeRecyclerColor(getRecyclerColorsArray());
     }
 
     @OnClick(R.id.optionsActivity_cardView_changeSecureMethod)
-    public void onChangeSecureMethodClick(){
+    public void onChangeSecureMethodClick() {
         Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
     }
 

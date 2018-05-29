@@ -110,6 +110,8 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
@@ -134,6 +136,12 @@ public class MainActivity extends BaseActivity implements
         initSmallOptionFabArray();
 
         reloadAdapter();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainPresenter.setLanguage();
     }
 
     @Override

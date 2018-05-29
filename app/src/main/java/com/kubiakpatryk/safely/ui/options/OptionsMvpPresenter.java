@@ -10,6 +10,8 @@ public interface OptionsMvpPresenter<V extends MvpView> extends MvpPresenter<V>{
 
     void initializeChangeFontSizeTextView(TextView textView);
 
+    void initializeChangeLanguageTextView(TextView textView);
+
     void initializeChangeRecyclerColorSample();
 
     void initializeShowBytesSwitch(Switch showBytesSwitch);

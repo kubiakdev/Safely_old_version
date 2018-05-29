@@ -1,5 +1,8 @@
 package com.kubiakpatryk.safely.utils;
 
+import android.content.Context;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -8,12 +11,24 @@ import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Locale;
 
 public final class CommonUtils {
 
     private static final String TAG = "CommonUtils";
 
     private CommonUtils() {
+    }
+
+    public static void setLanguage(Context context, String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        if (Build.VERSION.SDK_INT >= 17) {
+            configuration.setLocale(locale);
+        } else configuration.locale = locale;
+        context.getResources().updateConfiguration(configuration,
+                context.getResources().getDisplayMetrics());
     }
 
     public static String getTimeStamp() {

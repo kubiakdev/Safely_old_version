@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/activityOptions_marginBetweenCardViewsSize">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/settings"
+        android:drawablePadding="@dimen/activityOptions_marginSize"
+        android:drawableStart="@drawable/settings"
+        android:padding="@dimen/activityOptions_marginSize"
+        android:text="@string/activityOptions_changeLanguage"
+        android:textSize="@dimen/activityOptions_optionTextSize" />
+
+    <TextView
+        android:id="@+id/optionsActivity_tv_changeLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:padding="@dimen/activityOptions_marginSize"
+        android:textSize="@dimen/activityOptions_optionTextSize" />
+
+</android.support.v7.widget.CardView>

@@ -1,6 +1,10 @@
 package com.kubiakpatryk.safely.ui.base;
 
+import android.content.Context;
+
 import com.kubiakpatryk.safely.data.DataManager;
+import com.kubiakpatryk.safely.di.annotations.ApplicationContext;
+import com.kubiakpatryk.safely.utils.CommonUtils;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
 import javax.inject.Inject;
@@ -16,6 +20,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     private V mvpView;
 
     @Inject
+    @ApplicationContext
+    Context context;
+
+    @Inject
     public BasePresenter(DataManager dataManager,
                          SchedulerProviderHelper schedulerProviderHelper,
                          CompositeDisposable compositeDisposable) {
@@ -27,12 +35,18 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     @Override
     public void onAttach(V mvpView) {
         this.mvpView = mvpView;
+        setLanguage();
     }
 
     @Override
     public void onDetach() {
         compositeDisposable.dispose();
         mvpView = null;
+    }
+
+    @Override
+    public void setLanguage() {
+        CommonUtils.setLanguage(context, getDataManager().getLanguage());
     }
 
     protected boolean isViewAttached() {

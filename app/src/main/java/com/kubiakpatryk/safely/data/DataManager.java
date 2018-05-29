@@ -158,6 +158,16 @@ public class DataManager implements DataHelper {
     }
 
     @Override
+    public String getLanguage() {
+        return prefsHelper.getLanguage();
+    }
+
+    @Override
+    public void setLanguage(String language) {
+        prefsHelper.setLanguage(language);
+    }
+
+    @Override
     public Long getLastNoteId() {
         return prefsHelper.getLastNoteId();
     }

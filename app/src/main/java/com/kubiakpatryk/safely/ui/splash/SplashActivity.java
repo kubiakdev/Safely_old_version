@@ -23,6 +23,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
+        presenter.setLanguage();
         presenter.selectSuitableActivity();
     }
 

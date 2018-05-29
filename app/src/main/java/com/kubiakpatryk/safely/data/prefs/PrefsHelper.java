@@ -8,6 +8,8 @@ public interface PrefsHelper {
 
     Long getFontSize();
 
+    String getLanguage();
+
     String getPatternLock();
 
     String getRecyclerColor();
@@ -17,6 +19,8 @@ public interface PrefsHelper {
     void setIsFirstLaunch(boolean value);
 
     void setFontSize(Long value);
+
+    void setLanguage(String language);
 
     void setLastNoteId(long id);
 

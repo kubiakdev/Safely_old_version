@@ -40,6 +40,23 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
     }
 
     @Override
+    public void initializeChangeLanguageTextView(TextView textView) {
+        textView.setText(getDataManager().getLanguage().toUpperCase());
+        textView.setOnClickListener(v -> {
+            String[] languages = getMvpView().getLanguagesArray();
+            int currentLanguage = getLanguage(languages);
+            if (currentLanguage == languages.length - 1) {
+                textView.setText(languages[0].toUpperCase());
+                getDataManager().setLanguage(languages[0]);
+            } else {
+                textView.setText(languages[currentLanguage + 1].toUpperCase());
+                getDataManager().setLanguage(languages[currentLanguage + 1]);
+            }
+            getMvpView().onRestartContentView();
+        });
+    }
+
+    @Override
     public void initializeChangeRecyclerColorSample() {
         getMvpView().getChangeRecyclerColorSample().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));
@@ -69,6 +86,14 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
         }
     }
 
+    private int getColorIndex(String[] colors) {
+        String currentColor = getDataManager().getRecyclerColor();
+        for (int i = 0; i < colors.length; i++) {
+            if (colors[i].equals(currentColor)) return i;
+        }
+        return -1;
+    }
+
     private int getFontIndex(String[] fontSizes) {
         String currentSize = String.valueOf(getDataManager().getFontSize().intValue());
         for (int i = 0; i < fontSizes.length; i++) {
@@ -77,10 +102,10 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
         return -1;
     }
 
-    private int getColorIndex(String[] colors) {
-        String currentColor = getDataManager().getRecyclerColor();
-        for (int i = 0; i < colors.length; i++) {
-            if (colors[i].equals(currentColor)) return i;
+    private int getLanguage(String[] languages) {
+        String currentLanguage = getDataManager().getLanguage();
+        for (int i = 0; i < languages.length; i++) {
+            if (languages[i].equals(currentLanguage)) return i;
         }
         return -1;
     }
