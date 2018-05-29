@@ -59,5 +59,6 @@
     <string name="activityOptions_privacyCategory">Prywatność</string>
     <string name="activityOptions_bytesMode">Tryb bajtów</string>
     <string name="activityOptions_changeRecyclerColor">Zmień kolor tła</string>
+    <string name="activityOptions_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
     <string name="activityOptions_changeSecureType">Zmień metodę zabezpieczenia</string>
 </resources>

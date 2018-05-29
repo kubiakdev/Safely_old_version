@@ -6,6 +6,8 @@ import com.kubiakpatryk.safely.ui.base.MvpView;
 
 public interface OptionsMvpView extends MvpView {
 
+    String[] getFontSizesArray();
+
     String[] getRecyclerColorsArray();
 
     CardView getChangeRecyclerColorSample();

@@ -36,6 +36,7 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
                     getMvpView().getBundleArguments().getBoolean(
                             "noteEntity_favourite", false)));
             getMvpView().getEditText().setText(getMvpView().getNoteEntity().getContent());
+            getMvpView().getEditText().setTextSize(getDataManager().getFontSize());
             getMvpView().getEditText().setSelection(getMvpView().getEditText().getText().length());
         }
     }

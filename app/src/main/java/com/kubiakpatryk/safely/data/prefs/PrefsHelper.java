@@ -6,13 +6,17 @@ public interface PrefsHelper {
 
     Long getLastNoteId();
 
-    String getRecyclerColor();
+    Long getFontSize();
 
     String getPatternLock();
+
+    String getRecyclerColor();
 
     String getSortOption();
 
     void setIsFirstLaunch(boolean value);
+
+    void setFontSize(Long value);
 
     void setLastNoteId(long id);
 

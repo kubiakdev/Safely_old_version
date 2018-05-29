@@ -27,11 +27,13 @@ public class MainAdapter extends BaseAdapter<MainHolder> implements
         MainNoteOptionsPresenter.OnBookmarkNote {
 
     private List<NoteEntity> list;
+    private long fontSize;
     private List<MainHolder> cachedHoldersList = new ArrayList<>(0);
 
-    public MainAdapter(List<NoteEntity> list) {
+    public MainAdapter(List<NoteEntity> list, long fontSize) {
         super(list);
         this.list = list;
+        this.fontSize = fontSize;
 
         MainPresenter.onReturnDefaultColor = this;
         MainHolder.onReturnDefaultColor = this;
@@ -51,6 +53,7 @@ public class MainAdapter extends BaseAdapter<MainHolder> implements
         cachedHoldersList.add(holder);
         holder.setNoteEntity(list.get(position));
         holder.getContentView().setText(holder.getNoteEntity().getContent());
+        holder.getContentView().setTextSize(fontSize);
         if (holder.getNoteEntity().isBookmarked())
             holder.getBookmarkView().setVisibility(View.VISIBLE);
         colorHolderCardView();

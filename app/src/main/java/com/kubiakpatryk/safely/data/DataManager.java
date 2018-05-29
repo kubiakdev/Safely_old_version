@@ -148,6 +148,16 @@ public class DataManager implements DataHelper {
     }
 
     @Override
+    public Long getFontSize() {
+        return prefsHelper.getFontSize();
+    }
+
+    @Override
+    public void setFontSize(Long value) {
+        prefsHelper.setFontSize(value);
+    }
+
+    @Override
     public Long getLastNoteId() {
         return prefsHelper.getLastNoteId();
     }

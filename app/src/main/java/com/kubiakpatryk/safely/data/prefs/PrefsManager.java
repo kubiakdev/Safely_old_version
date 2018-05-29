@@ -11,6 +11,7 @@ import javax.inject.Inject;
 public class PrefsManager implements PrefsHelper {
 
     private final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
+    private final String PREFS_FONT_SIZE_KEY = "PREFS_FONT_SIZE";
     private final String PREFS_LAST_NOTE_ID_KEY = "PREFS_LAST_NOTE_ID";
     private final String PREFS_RECYCLER_COLOR_KEY = "PREFS_RECYCLER_COLOR";
     private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
@@ -29,6 +30,16 @@ public class PrefsManager implements PrefsHelper {
 
     public void setIsFirstLaunch(boolean value) {
         preferences.edit().putBoolean(PREFS_FIRST_LAUNCH_KEY, value).apply();
+    }
+
+    @Override
+    public Long getFontSize() {
+        return preferences.getLong(PREFS_FONT_SIZE_KEY, 14);
+    }
+
+    @Override
+    public void setFontSize(Long value) {
+        preferences.edit().putLong(PREFS_FONT_SIZE_KEY, value).apply();
     }
 
     @Override

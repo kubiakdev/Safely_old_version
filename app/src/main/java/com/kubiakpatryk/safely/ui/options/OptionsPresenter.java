@@ -2,6 +2,7 @@ package com.kubiakpatryk.safely.ui.options;
 
 import android.graphics.Color;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
@@ -23,6 +24,22 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
     }
 
     @Override
+    public void initializeChangeFontSizeTextView(TextView textView) {
+        textView.setText(String.valueOf(getDataManager().getFontSize()));
+        textView.setOnClickListener(v -> {
+            String[] fontSizes = getMvpView().getFontSizesArray();
+            int currentIndex = getFontIndex(fontSizes);
+            if (currentIndex == fontSizes.length - 1) {
+                textView.setText(fontSizes[0]);
+                getDataManager().setFontSize(Long.valueOf(fontSizes[0]));
+            } else {
+                textView.setText(fontSizes[currentIndex + 1]);
+                getDataManager().setFontSize(Long.valueOf(fontSizes[currentIndex + 1]));
+            }
+        });
+    }
+
+    @Override
     public void initializeChangeRecyclerColorSample() {
         getMvpView().getChangeRecyclerColorSample().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));
@@ -40,10 +57,6 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
 
     @Override
     public void onChangeRecyclerColor(String[] colors) {
-        for (String c: colors
-             ) {
-            System.out.println(c + "!!!!!!");
-        }
         int currentIndex = getColorIndex(colors);
         if (currentIndex == colors.length - 1) {
             getMvpView().getChangeRecyclerColorSample().setBackgroundColor
@@ -54,6 +67,14 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
                     Color.parseColor(colors[currentIndex + 1]));
             getDataManager().setRecyclerColor(colors[currentIndex + 1]);
         }
+    }
+
+    private int getFontIndex(String[] fontSizes) {
+        String currentSize = String.valueOf(getDataManager().getFontSize().intValue());
+        for (int i = 0; i < fontSizes.length; i++) {
+            if (fontSizes[i].equals(currentSize)) return i;
+        }
+        return -1;
     }
 
     private int getColorIndex(String[] colors) {

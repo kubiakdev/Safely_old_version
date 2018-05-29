@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kubiakpatryk.safely.R;
@@ -24,14 +25,14 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     @Inject
     OptionsMvpPresenter<OptionsMvpView> presenter;
 
-    @BindView(R.id.optionsActivity_switch_showBytes)
-    Switch showBytesSwitch;
-
     @BindView(R.id.optionsActivity_cardView_changeRecyclerColor_sample)
     CardView changeRecyclerColorSample;
 
-//    @BindArray(R.array.mainActivity_customRecyclerColorsArray)
-//    int[] recyclerColorsArray;
+    @BindView(R.id.optionsActivity_tv_changeFontSize)
+    TextView changeFontSizeTextView;
+
+    @BindView(R.id.optionsActivity_switch_showBytes)
+    Switch showBytesSwitch;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, OptionsActivity.class);
@@ -47,6 +48,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
         presenter.onAttach(this);
 
         initializeShowBytesSwitch();
+        initializeChangeFontSizeTextView();
         initializeChangeRecyclerColorSample();
     }
 
@@ -62,8 +64,17 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     }
 
     @Override
+    public String[] getFontSizesArray() {
+        return getResources().getStringArray(R.array.notesFontSizes);
+    }
+
+    @Override
     public String[] getRecyclerColorsArray() {
-        return this.getResources().getStringArray(R.array.mainActivity_customRecyclerColorsArray);
+        return getResources().getStringArray(R.array.customRecyclerColorsArray);
+    }
+
+    private void initializeChangeFontSizeTextView(){
+        presenter.initializeChangeFontSizeTextView(changeFontSizeTextView);
     }
 
     private void initializeChangeRecyclerColorSample(){

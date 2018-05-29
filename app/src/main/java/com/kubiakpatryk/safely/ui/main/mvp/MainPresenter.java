@@ -188,7 +188,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         getMvpView().getCustomRecycler().setLayoutManager(getLayoutManager());
         getMvpView().getCustomRecycler().setLayoutAnimation(AnimationUtils.loadLayoutAnimation(
                 getMvpView().getBaseActivity(), R.anim.content_staggered_grid_layout_animation));
-        getMvpView().getCustomRecycler().setAdapter(new MainAdapter(getMvpView().getList()));
+        getMvpView().getCustomRecycler().setAdapter(new MainAdapter(getMvpView().getList(),
+                getDataManager().getFontSize()));
     }
 
     @Override

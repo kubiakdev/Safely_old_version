@@ -80,6 +80,7 @@
     <string name="activityOptions_privacyCategory">Privacy</string>
     <string name="activityOptions_bytesMode">Bytes mode</string>
     <string name="activityOptions_changeRecyclerColor">Change background color</string>
+    <string name="activityOptions_changeNotesFontSize">Change notes font size</string>
     <string name="activityOptions_changeSecureType">Change secure method</string>
 
 </resources>
