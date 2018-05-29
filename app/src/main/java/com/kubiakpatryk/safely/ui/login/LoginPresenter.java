@@ -34,7 +34,7 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     @Override
     public void initializePatternLock() {
-        if (!getDataManager().getSavedPatternLock().equals(""))
+        if (!getDataManager().getPatternLock().equals(""))
             getMvpView().getTextView().setText(R.string.patternLock_selectYourPattern);
         else getMvpView().getTextView().setText(R.string.patternLock_chooseYourPattern);
 
@@ -43,11 +43,11 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .subscribe(event -> {
                     if (event.getEventType() == PatternLockCompoundEvent.EventType.PATTERN_COMPLETE) {
-                        if (getDataManager().getSavedPatternLock().equals("")) {
+                        if (getDataManager().getPatternLock().equals("")) {
                             if (patternTryCount == 0) onFirstTryAddPatternLock(event);
                             else if (patternTryCount == 1) onSecondTryAddPatternLock(event);
                         } else {
-                            if (getDataManager().getSavedPatternLock().equals(PatternLockUtils
+                            if (getDataManager().getPatternLock().equals(PatternLockUtils
                                     .patternToString(getMvpView().getPatternLockView(),
                                             event.getPattern()))) onGoodPattern();
                             else onWrongPattern();

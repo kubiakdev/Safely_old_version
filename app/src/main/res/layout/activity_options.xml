@@ -92,6 +92,32 @@
                     android:layout_margin="@dimen/activityOptions_marginSize" />
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/optionsActivity_cardView_changeRecyclerColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activityOptions_marginBetweenCardViewsSize">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activityOptions_marginSize"
+                    android:drawableLeft="@drawable/settings"
+                    android:drawablePadding="@dimen/activityOptions_marginSize"
+                    android:drawableStart="@drawable/settings"
+                    android:text="@string/activityOptions_changeRecyclerColor"
+                    android:textSize="@dimen/activityOptions_optionTextSize" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/optionsActivity_cardView_changeRecyclerColor_sample"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activityOptions_marginSize"
+                app:cardBackgroundColor="@color/secondaryTheLightestColor">
+
+            </android.support.v7.widget.CardView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -6,12 +6,12 @@
     <dimen name="activityLogin_patternLock_selectedDotSize">30dp</dimen>
     <dimen name="activityLogin_patternLock_pathWidth">7dp</dimen>
 
-
     <!--Activity options-->
     <dimen name="activityOptions_toolbar_textView_titleTextSize">28sp</dimen>
     <dimen name="activityOptions_toolbar_textView_categoryTextSize">20sp</dimen>
     <dimen name="activityOptions_optionTextSize">16sp</dimen>
     <dimen name="activityOptions_marginSize">20dp</dimen>
+    <dimen name="activityOptions_marginBetweenCardViewsSize">8dp</dimen>
 
     <!--Activity main-->
     <dimen name="activityMain_noNotesInformationSize">34sp</dimen>

@@ -1,5 +1,6 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -281,7 +282,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     private void setCustomRecyclerColor() {
         if (AppStatics.IS_IN_BYTE_MODE) getMvpView().getCustomRecycler()
                 .setBackgroundResource(R.drawable.red_frame);
-        else if (getDataManager().)getMvpView().getCustomRecycler().setBackgroundResource(0);
+        else getMvpView().getCustomRecycler().setBackgroundColor(
+                Color.parseColor(getDataManager().getRecyclerColor()));
     }
 
     public interface OnReloadAdapterListCallback {

@@ -158,13 +158,23 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public String getSavedPatternLock() {
-        return prefsHelper.getSavedPatternLock();
+    public String getPatternLock() {
+        return prefsHelper.getPatternLock();
     }
 
     @Override
     public void setPatternLock(String value) {
         prefsHelper.setPatternLock(value);
+    }
+
+    @Override
+    public String getRecyclerColor() {
+        return prefsHelper.getRecyclerColor();
+    }
+
+    @Override
+    public void setRecyclerColor(String color) {
+        prefsHelper.setRecyclerColor(color);
     }
 
     @Override

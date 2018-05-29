@@ -7,5 +7,9 @@ import com.kubiakpatryk.safely.ui.base.MvpView;
 
 public interface OptionsMvpPresenter<V extends MvpView> extends MvpPresenter<V>{
 
+    void initializeChangeRecyclerColorSample();
+
     void initializeShowBytesSwitch(Switch showBytesSwitch);
+
+    void onChangeRecyclerColor(String[] colors);
 }

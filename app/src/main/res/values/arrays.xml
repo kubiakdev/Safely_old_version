@@ -12,4 +12,13 @@
         <item>@string/sortChooseLayout_modifiedDateCategory_toEarliest</item>
         <item>@string/sortChooseLayout_modifiedDateCategory_toLatest</item>
     </string-array>
+
+    <string-array name="mainActivity_customRecyclerColorsArray">
+        <item>#00000000</item>
+        <item>#8078909c</item>
+        <item>#80a7c0cd</item>
+        <item>#80ffa726</item>
+        <item>#80ffd95b</item>
+        <item>#80ffe58f</item>
+    </string-array>
 </resources>

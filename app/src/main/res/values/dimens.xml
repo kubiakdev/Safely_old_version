@@ -11,6 +11,7 @@
     <dimen name="activityOptions_toolbar_textView_categoryTextSize">20sp</dimen>
     <dimen name="activityOptions_optionTextSize">16sp</dimen>
     <dimen name="activityOptions_marginSize">20dp</dimen>
+    <dimen name="activityOptions_marginBetweenCardViewsSize">4dp</dimen>
 
     <!--Activity main-->
     <dimen name="activityMain_noNotesInformationSize">24sp</dimen>

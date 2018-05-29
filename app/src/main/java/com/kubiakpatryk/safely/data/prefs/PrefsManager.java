@@ -12,6 +12,7 @@ public class PrefsManager implements PrefsHelper {
 
     private final String PREFS_FIRST_LAUNCH_KEY = "PREFS_IS_FIRST_LAUNCH";
     private final String PREFS_LAST_NOTE_ID_KEY = "PREFS_LAST_NOTE_ID";
+    private final String PREFS_RECYCLER_COLOR_KEY = "PREFS_RECYCLER_COLOR";
     private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
     private final String PREFS_SORT_OPTION_KEY = "PREFS_SORT_OPTION";
 
@@ -41,13 +42,23 @@ public class PrefsManager implements PrefsHelper {
     }
 
     @Override
-    public String getSavedPatternLock() {
+    public String getPatternLock() {
         return preferences.getString(PREFS_SAVED_PATTERN_LOCK_KEY, "");
     }
 
     @Override
     public void setPatternLock(String value) {
         preferences.edit().putString(PREFS_SAVED_PATTERN_LOCK_KEY, value).apply();
+    }
+
+    @Override
+    public String getRecyclerColor() {
+        return preferences.getString(PREFS_RECYCLER_COLOR_KEY, "#00000000");
+    }
+
+    @Override
+    public void setRecyclerColor(String color) {
+        preferences.edit().putString(PREFS_RECYCLER_COLOR_KEY, color).apply();
     }
 
     @Override

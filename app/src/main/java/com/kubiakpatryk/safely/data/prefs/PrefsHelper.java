@@ -6,7 +6,9 @@ public interface PrefsHelper {
 
     Long getLastNoteId();
 
-    String getSavedPatternLock();
+    String getRecyclerColor();
+
+    String getPatternLock();
 
     String getSortOption();
 
@@ -15,6 +17,8 @@ public interface PrefsHelper {
     void setLastNoteId(long id);
 
     void setPatternLock(String value);
+
+    void setRecyclerColor(String color);
 
     void setSortOption(String value);
 }
