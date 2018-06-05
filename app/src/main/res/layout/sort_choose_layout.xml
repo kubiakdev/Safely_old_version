@@ -21,14 +21,14 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_title"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_titleTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_title_fontSize" />
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/sortChooseLayout_cardView_height"
-            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_category_topMargin"
             app:cardBackgroundColor="@color/primaryLightColor">
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_alphabeticallyCategory"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_category_fontSize" />
 
         </android.support.v7.widget.CardView>
 
@@ -51,9 +51,9 @@
                 android:id="@+id/sortChooseLayout_cardView_AtoZ"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:contentDescription="@string/sortChooseLayout_alphabeticallyCategory_AToZ_contentDescription"
                     android:text="@string/sortChooseLayout_alphabeticallyCategory_AToZ"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -72,9 +72,9 @@
                 android:id="@+id/sortChooseLayout_cardView_ZtoA"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:contentDescription="@string/sortChooseLayout_alphabeticallyCategory_ZToA_contentDescription"
                     android:text="@string/sortChooseLayout_alphabeticallyCategory_ZToA"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -95,7 +95,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/sortChooseLayout_cardView_height"
-            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_category_topMargin"
             app:cardBackgroundColor="@color/primaryLightColor">
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_bookmarkedCategory"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_category_fontSize" />
 
         </android.support.v7.widget.CardView>
 
@@ -118,9 +118,9 @@
                 android:id="@+id/sortChooseLayout_cardView_isBookmarked"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -131,7 +131,7 @@
                     android:contentDescription="@string/sortChooseLayout_bookmarkedCategory_yes_contentDescription"
                     android:text="@string/sortChooseLayout_bookmarkedCategory_yes"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -139,9 +139,9 @@
                 android:id="@+id/sortChooseLayout_cardView_isNotBookmarked"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:contentDescription="@string/sortChooseLayout_bookmarkedCategory_no_contentDescription"
                     android:text="@string/sortChooseLayout_bookmarkedCategory_no"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -162,7 +162,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/sortChooseLayout_cardView_height"
-            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_category_topMargin"
             app:cardBackgroundColor="@color/primaryLightColor">
 
             <TextView
@@ -171,7 +171,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_contentCategory"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_category_fontSize" />
 
         </android.support.v7.widget.CardView>
 
@@ -185,9 +185,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toLongest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:contentDescription="@string/sortChooseLayout_contentCategory_toLongest_contentDescription"
                     android:text="@string/sortChooseLayout_contentCategory_toLongest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -206,9 +206,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toShortest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -219,7 +219,7 @@
                     android:contentDescription="@string/sortChooseLayout_contentCategory_toShortest_contentDescription"
                     android:text="@string/sortChooseLayout_contentCategory_toShortest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -229,7 +229,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/sortChooseLayout_cardView_height"
-            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_category_topMargin"
             app:cardBackgroundColor="@color/primaryLightColor">
 
             <TextView
@@ -238,7 +238,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_createdDateCategory"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_category_fontSize" />
 
         </android.support.v7.widget.CardView>
 
@@ -252,9 +252,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toNewest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -265,7 +265,7 @@
                     android:contentDescription="@string/sortChooseLayout_createdDateCategory_toNewest_contentDescription"
                     android:text="@string/sortChooseLayout_createdDateCategory_toNewest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -273,9 +273,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toOldest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -286,7 +286,7 @@
                     android:contentDescription="@string/sortChooseLayout_createdDateCategory_toOldest_contentDescription"
                     android:text="@string/sortChooseLayout_createdDateCategory_toOldest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -296,7 +296,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/sortChooseLayout_cardView_height"
-            android:layout_marginTop="@dimen/sortChooseLayout_cardView_categoryMarginTop"
+            android:layout_marginTop="@dimen/sortChooseLayout_cardView_category_topMargin"
             app:cardBackgroundColor="@color/primaryLightColor">
 
             <TextView
@@ -305,7 +305,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sortChooseLayout_modifiedDateCategory"
                 android:textAlignment="center"
-                android:textSize="@dimen/sortChooseLayout_textView_categoryTextSize" />
+                android:textSize="@dimen/sortChooseLayout_textView_category_fontSize" />
 
         </android.support.v7.widget.CardView>
 
@@ -319,9 +319,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toEarliest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginEnd="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginRight="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -332,7 +332,7 @@
                     android:contentDescription="@string/sortChooseLayout_modifiedDateCategory_toEarliest_contentDescription"
                     android:text="@string/sortChooseLayout_modifiedDateCategory_toEarliest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 
@@ -340,9 +340,9 @@
                 android:id="@+id/sortChooseLayout_cardView_toLatest"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sortChooseLayout_cardView_height"
-                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews"
-                android:layout_marginTop="@dimen/sortChooseLayout_cardView_optionMarginTop"
+                android:layout_marginLeft="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginStart="@dimen/sortChooseLayout_cardView_breakBetweenCardViews_margin"
+                android:layout_marginTop="@dimen/sortChooseLayout_cardView_option_topMargin"
                 android:layout_weight="1">
 
                 <TextView
@@ -353,7 +353,7 @@
                     android:contentDescription="@string/sortChooseLayout_modifiedDateCategory_toLatest_contentDescription"
                     android:text="@string/sortChooseLayout_modifiedDateCategory_toLatest"
                     android:textAlignment="center"
-                    android:textSize="@dimen/sortChooseLayout_textView_optionTextSize" />
+                    android:textSize="@dimen/sortChooseLayout_textView_option_fontSize" />
 
             </android.support.v7.widget.CardView>
 

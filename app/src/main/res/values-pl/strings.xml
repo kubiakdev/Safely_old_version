@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--General-->
-    <string name="general_turnOffBytesModeFirst">Wyłącz wpierw tryb bajtów</string>
+    <string name="general_HideEncryptedNotesFirst">Ukryj wpierw zaszyfrowane notatki</string>
     <string name="general_notAvailableYet">Jeszcze niedostępne</string>
 
     <!--Login Activity-->
@@ -55,11 +55,29 @@
     <!--Activity_Options-->
     <string name="appBar_optionsName">Opcje</string>
     <string name="appBar_leftArrowDescription">Lewa strzałka</string>
-    <string name="activityOptions_displayCategory">Widok</string>
-    <string name="activityOptions_privacyCategory">Prywatność</string>
-    <string name="activityOptions_bytesMode">Tryb bajtów</string>
-    <string name="activityOptions_changeRecyclerColor">Zmień kolor tła</string>
-    <string name="activityOptions_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
-    <string name="activityOptions_changeLanguage">Zmień język</string>
-    <string name="activityOptions_changeSecureType">Zmień metodę zabezpieczenia</string>
+    <string name="optionsActivity_displayCategory">Widok</string>
+    <string name="optionsActivity_privacyCategory">Prywatność</string>
+    <string name="optionsActivity_showEncryptedNotes">Pokaż zaszyfrowane notatki</string>
+    <string name="optionsActivity_changeRecyclerColor">Zmień kolor tła</string>
+    <string name="optionsActivity_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
+    <string name="optionsActivity_changeLanguage">Zmień język</string>
+    <string name="optionsActivity_changeSecureType">Zmień metodę zabezpieczenia</string>
+
+    <!--Tutorial activity-->
+    <string name="tutorialActivity_welcome">Witaj w Safely!
+    \nmiejscu, w którym możesz bezpiecznie zapisywać swoje notatki i hasła</string>
+    <string name="tutorialActivity_byte_safety">Czuj się bezpiecznie!
+    \nSafely szyfruje twoje dane do postaci bajtów pomnożonych przez pewną liczbę</string>
+    <string name="tutorialActivity_internet_safety">Brak połączenia z internetem!
+    \Twoje dane nie mogą więc być wysłane na żadną chmurę lub serwer  </string>
+    <string name="tutorialActivity_chooseSecureMethod">Wybierz swoją metodę zabezpieczenia</string>
+    <string name="tutorialActivity_patternLock">Wzór</string>
+    <string name="tutorialActivity_patternLockDescription">Pattern lock</string>
+    <string name="tutorialActivity_pinLock">PIN</string>
+    <string name="tutorialActivity_pinLockDescription">Pin lock</string>
+    <string name="tutorialActivity_passwordLock">Hasło</string>
+    <string name="tutorialActivity_passwordLockDescription">Password lock</string>
+    <string name="tutorialActivity_noLock">Brak</string>
+    <string name="tutorialActivity_noLockDescription">No lock</string>
+
 </resources>

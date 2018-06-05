@@ -12,12 +12,15 @@ import javax.inject.Inject;
 
 public class CustomHorizontalScrollView extends HorizontalScrollView {
 
+    public static OnActionUpEvent onActionUpEvent;
+
     private int currentView = 1;
     private int currentPosition = 0;
     private int viewsWidth = ScreenUtils.getScreenWidth();
 
     @Inject
     CustomGestureDetector gestureDetector;
+
 
     public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -42,9 +45,9 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     public boolean onTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
             updateCurrentView(getScrollDistance());
-            Runnable scrollToCenter = () ->
-                    smoothScrollTo((currentView - 1) * viewsWidth, 0);
+            Runnable scrollToCenter = () -> smoothScrollTo((currentView - 1) * viewsWidth, 0);
             postDelayed(scrollToCenter, 0);
+            onActionUpEvent.checkRadioButton(currentView - 1);
             performClick();
         }
         return super.onTouchEvent(ev);
@@ -53,6 +56,12 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     @Override
     public boolean performClick() {
         return super.performClick();
+    }
+
+    public void scrollToView(final int viewId) {
+        Runnable scrollToCenter = () ->  smoothScrollTo(viewId * viewsWidth, 0);
+        postDelayed(scrollToCenter, 0);
+        currentView = viewId;
     }
 
     private void updateCurrentView(int distance) {
@@ -65,5 +74,9 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     private int getScrollDistance() {
         int touchStartPosition = viewsWidth * currentView - viewsWidth;
         return currentPosition - touchStartPosition;
+    }
+
+    public interface OnActionUpEvent {
+        void checkRadioButton(int viewId);
     }
 }

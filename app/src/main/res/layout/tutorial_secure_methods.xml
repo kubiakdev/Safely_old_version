@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tutorialActivity_constraintLayout_secure_methods"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundDefault">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/tutorialActivity_smallMargin"
+            android:gravity="center"
+            android:text="@string/tutorialActivity_chooseSecureMethod"
+            android:textAlignment="center"
+            android:textSize="@dimen/tutorialActivity_textView_big_fontSize" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tutorialActivity_radioGroup_height">
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/tutorialActivity_constraintLayout_pinLock"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialActivity_constraintLayout_patternLock"
+                app:layout_constraintEnd_toStartOf="@+id/tutorialActivity_constraintLayout_passwordLock"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/tutorialActivity_cardView_margin"
+                    app:cardBackgroundColor="#FAFAFA"
+                    app:layout_constraintBottom_toTopOf="@id/tutorialActivity_cardView_pinLock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:contentDescription="@string/tutorialActivity_pinLockDescription"
+                        android:src="@drawable/pin_lock" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/tutorialActivity_cardView_pinLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                        android:gravity="center"
+                        android:text="@string/tutorialActivity_pinLock"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+
+                </android.support.v7.widget.CardView>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/tutorialActivity_constraintLayout_passwordLock"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialActivity_constraintLayout_noLock"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tutorialActivity_constraintLayout_pinLock"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/tutorialActivity_cardView_margin"
+                    app:layout_constraintBottom_toTopOf="@id/tutorialActivity_cardView_passwordLock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:contentDescription="@string/tutorialActivity_passwordLockDescription"
+                        android:src="@drawable/password_lock" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/tutorialActivity_cardView_passwordLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                        android:gravity="center"
+                        android:text="@string/tutorialActivity_passwordLock"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/tutorialActivity_constraintLayout_patternLock"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tutorialActivity_constraintLayout_noLock"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tutorialActivity_constraintLayout_pinLock">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/tutorialActivity_cardView_margin"
+                    app:layout_constraintBottom_toTopOf="@id/tutorialActivity_cardView_patternLock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:contentDescription="@string/tutorialActivity_patternLockDescription"
+                        android:src="@drawable/pattern_lock" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/tutorialActivity_cardView_patternLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                        android:gravity="center"
+                        android:text="@string/tutorialActivity_patternLock"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/tutorialActivity_constraintLayout_noLock"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tutorialActivity_constraintLayout_patternLock"
+                app:layout_constraintTop_toBottomOf="@+id/tutorialActivity_constraintLayout_passwordLock">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/tutorialActivity_cardView_margin"
+                    app:layout_constraintBottom_toTopOf="@id/tutorialActivity_cardView_noLock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:contentDescription="@string/tutorialActivity_noLockDescription"
+                        android:src="@drawable/no_lock" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/tutorialActivity_cardView_noLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/tutorialActivity_cardView_margin"
+                        android:gravity="center"
+                        android:text="@string/tutorialActivity_noLock"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

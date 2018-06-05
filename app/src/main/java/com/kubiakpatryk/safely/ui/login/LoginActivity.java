@@ -44,6 +44,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     public void openMainActivity() {
         startActivity(MainActivity.getStartIntent(this));
         finish();

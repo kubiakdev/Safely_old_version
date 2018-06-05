@@ -9,6 +9,7 @@ import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.di.annotations.ActivityContext;
 import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomGestureListener;
+import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
@@ -45,6 +46,8 @@ import com.kubiakpatryk.safely.ui.tutorial.TutorialMvpView;
 import com.kubiakpatryk.safely.ui.tutorial.TutorialPresenter;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProvider;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -166,5 +169,13 @@ public class ActivityModule {
     @Provides
     GestureDetector.OnGestureListener provideGestureListener(@ActivityContext Context context) {
         return new CustomGestureListener(context);
+    }
+
+    @Provides
+    @Named("ScrollView")
+    CustomHorizontalScrollView provideCustomHorizontalScrollView(
+            @PerActivity AppCompatActivity activity){
+        return (CustomHorizontalScrollView)
+                activity.findViewById(R.id.tutorialActivity_horizontalScrollView);
     }
 }

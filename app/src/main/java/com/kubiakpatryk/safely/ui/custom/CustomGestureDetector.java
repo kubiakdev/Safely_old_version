@@ -7,7 +7,7 @@ import com.kubiakpatryk.safely.di.annotations.ActivityContext;
 
 import javax.inject.Inject;
 
-public class CustomGestureDetector extends GestureDetector{
+class CustomGestureDetector extends GestureDetector{
 
     @Inject
     CustomGestureDetector(@ActivityContext Context context, CustomGestureListener listener) {

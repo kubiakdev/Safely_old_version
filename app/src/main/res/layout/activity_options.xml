@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/appBar_optionsName"
-                android:textSize="@dimen/activityOptions_toolbar_textView_titleTextSize" />
+                android:textSize="@dimen/optionsActivity_toolbar_textView_title_fontSize" />
         </LinearLayout>
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -64,10 +64,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activityOptions_marginSize"
-                    android:text="@string/activityOptions_displayCategory"
+                    android:layout_margin="@dimen/optionsActivity_margin"
+                    android:text="@string/optionsActivity_displayCategory"
                     android:textAlignment="center"
-                    android:textSize="@dimen/activityOptions_toolbar_textView_categoryTextSize" />
+                    android:textSize="@dimen/optionsActivity_toolbar_textView_category_fontSize" />
 
             </LinearLayout>
 
@@ -77,7 +77,7 @@
 
             <include layout="@layout/options_background_color" />
 
-            <include layout="@layout/options_byte_mode" />
+            <include layout="@layout/options_encrypted_notes" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,10 +86,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activityOptions_marginSize"
-                    android:text="@string/activityOptions_privacyCategory"
+                    android:layout_margin="@dimen/optionsActivity_margin"
+                    android:text="@string/optionsActivity_privacyCategory"
                     android:textAlignment="center"
-                    android:textSize="@dimen/activityOptions_toolbar_textView_categoryTextSize" />
+                    android:textSize="@dimen/optionsActivity_toolbar_textView_category_fontSize" />
 
             </LinearLayout>
 

@@ -2,7 +2,7 @@
     <string name="app_name">Safely</string>
 
     <!--General-->
-    <string name="general_turnOffBytesModeFirst">Turn off bytes mode first</string>
+    <string name="general_HideEncryptedNotesFirst">Hide encrypted notes first</string>
     <string name="general_notAvailableYet">Not available yet</string>
 
     <!--Login Activity-->
@@ -76,12 +76,32 @@
     <!--Activity_Options-->
     <string name="appBar_optionsName">Options</string>
     <string name="appBar_leftArrowDescription">"Left arrow"</string>
-    <string name="activityOptions_displayCategory">Display</string>
-    <string name="activityOptions_privacyCategory">Privacy</string>
-    <string name="activityOptions_bytesMode">Bytes mode</string>
-    <string name="activityOptions_changeRecyclerColor">Change background color</string>
-    <string name="activityOptions_changeNotesFontSize">Change notes font size</string>
-    <string name="activityOptions_changeLanguage">Change language</string>
-    <string name="activityOptions_changeSecureType">Change secure method</string>
-
+    <string name="optionsActivity_displayCategory">Display</string>
+    <string name="optionsActivity_privacyCategory">Privacy</string>
+    <string name="optionsActivity_showEncryptedNotes">Show encrypted notes</string>
+    <string name="optionsActivity_changeRecyclerColor">Change background color</string>
+    <string name="optionsActivity_changeNotesFontSize">Change notes font size</string>
+    <string name="optionsActivity_changeLanguage">Change language</string>
+    <string name="optionsActivity_changeSecureType">Change secure method</string>
+    
+    <!--Activity Tutorial-->
+    <string name="tutorialActivity_logotypeDescription">Logotype</string>
+    <string name="tutorialActivity_bytesDescription">Bytes</string>
+    <string name="tutorialActivity_wifi_offDescription">Wifi off</string>
+    <string name="tutorialActivity_welcome">Welcome in Safely!
+        \nYour new app where you can safe your notes and passwords</string>
+    <string name="tutorialActivity_byte_safety">Keep calm!
+        \nSafely encrypts your data to bytes multiplied by a big number</string>
+    <string name="tutorialActivity_internet_safety">No internet connection!
+    \n Your data cannot be send to any cloud or server</string>
+    <string name="tutorialActivity_chooseSecureMethod">Choose your secure method</string>
+    <string name="tutorialActivity_patternLock">Pattern</string>
+    <string name="tutorialActivity_patternLockDescription">Pattern lock</string>
+    <string name="tutorialActivity_pinLock">PIN</string>
+    <string name="tutorialActivity_pinLockDescription">Pin lock</string>
+    <string name="tutorialActivity_passwordLock">Password</string>
+    <string name="tutorialActivity_passwordLockDescription">Password lock</string>
+    <string name="tutorialActivity_noLock">No lock</string>
+    <string name="tutorialActivity_noLockDescription">No lock</string>
+    
 </resources>

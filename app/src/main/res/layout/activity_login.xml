@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/patternLock_selectYourPattern"
         android:textAlignment="center"
-        android:textSize="@dimen/activityLogin_tvSize"
+        android:textSize="@dimen/loginActivity_textView_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
         app:correctStateColor="@color/patternCorrect"
         app:normalStateColor="@color/patternNormal"
         app:wrongStateColor="@color/patternWrong"
-        app:dotNormalSize="@dimen/activityLogin_patternLock_normalDotSize"
-        app:dotSelectedSize="@dimen/activityLogin_patternLock_selectedDotSize"
+        app:dotNormalSize="@dimen/loginActivity_patternLock_normalDot_size"
+        app:dotSelectedSize="@dimen/loginActivity_patternLock_selectedDot_size"
         app:pathWidth="@dimen/pattern_lock_path_width"/>
 
 </android.support.constraint.ConstraintLayout>

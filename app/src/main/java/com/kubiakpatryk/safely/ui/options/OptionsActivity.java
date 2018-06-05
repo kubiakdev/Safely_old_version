@@ -34,7 +34,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     @BindView(R.id.optionsActivity_tv_changeLanguage)
     TextView changeLanguageTextView;
 
-    @BindView(R.id.optionsActivity_switch_showBytes)
+    @BindView(R.id.optionsActivity_switch_showEncryptedNotes)
     Switch showBytesSwitch;
 
     public static Intent getStartIntent(Context context) {

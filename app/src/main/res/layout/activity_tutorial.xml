@@ -1,168 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kubiakpatryk.safely.ui.tutorial.TutorialActivity">
 
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tutorialActivity_guideline"
-        app:layout_constraintGuide_percent="0.5"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="192dp" />
-
     <com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView
         android:id="@+id/tutorialActivity_horizontalScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scrollbars="none"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/tutorialActivity_constraintLayout_leftOuter"
-                android:layout_width="720dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_blue_bright">
+            <include layout="@layout/tutorial_welcome" />
 
-            </android.support.constraint.ConstraintLayout>
+            <include layout="@layout/tutorial_byte_safety" />
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/tutorialActivity_constraintLayout_leftInner"
-                android:layout_width="720dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_blue_dark">
+            <include layout="@layout/tutorial_internet_safety" />
 
-            </android.support.constraint.ConstraintLayout>
+            <include layout="@layout/tutorial_backup" />
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/tutorialActivity_constraintLayout_center"
-                android:layout_width="720dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_blue_light">
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/tutorialActivity_constraintLayout_rightInner"
-                android:layout_width="720dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_green_dark">
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/tutorialActivity_constraintLayout_rightOuter"
-                android:layout_width="380dp"
-                android:layout_height="500dp"
-                android:background="@android:color/holo_green_light">
-
-                <Button
-                    android:id="@+id/tutorialActivity_button_agree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="I agree"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.8" />
-            </android.support.constraint.ConstraintLayout>
+            <include layout="@layout/tutorial_secure_methods" />
 
         </LinearLayout>
 
     </com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/tutorialActivity_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/tutorialActivity_guideline"
         app:layout_constraintRight_toLeftOf="@+id/tutorialActivity_guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:id="@+id/constraintLayout">
-
+        app:layout_constraintVertical_bias="1">
 
         <RadioGroup
             android:id="@+id/tutorialActivity_radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
+            android:layout_height="@dimen/tutorialActivity_radioGroup_height"
             android:orientation="horizontal"
-            android:weightSum="5"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <RadioButton
-                android:id="@+id/tutorialActivity_radioButton_leftOuter"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:rotation="270"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
+                android:id="@+id/tutorialActivity_radioButton_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
+                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
 
             <RadioButton
-                android:id="@+id/tutorialActivity_radioButton_leftInner"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:rotation="270"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
-
-            <RadioButton
-                android:id="@+id/tutorialActivity_radioButton_center"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:rotation="270"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
+                android:id="@+id/tutorialActivity_radioButton_byteSafety"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
+                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
 
 
             <RadioButton
-                android:id="@+id/tutorialActivity_radioButton_rightInner"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:rotation="270"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
+                android:id="@+id/tutorialActivity_radioButton_internetSafety"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
+                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
 
             <RadioButton
-                android:id="@+id/tutorialActivity_radioButton_rightOuter"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:rotation="270"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
+                android:id="@+id/tutorialActivity_radioButton_secureMethods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
+                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
 
         </RadioGroup>
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

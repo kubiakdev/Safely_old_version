@@ -58,9 +58,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void initViewTypeButton() {
         getMvpView().getViewTypeButton().setOnClickListener(v -> {
-            if (AppStatics.IS_IN_BYTE_MODE) {
+            if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES) {
                 Toast.makeText(v.getContext(),
-                        R.string.general_turnOffBytesModeFirst,
+                        R.string.general_HideEncryptedNotesFirst,
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -78,8 +78,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void initSortByButton() {
         getMvpView().getSortByButton().setOnClickListener(v -> {
-            if (AppStatics.IS_IN_BYTE_MODE) Toast.makeText(v.getContext(),
-                    R.string.general_turnOffBytesModeFirst, Toast.LENGTH_SHORT).show();
+            if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES) Toast.makeText(v.getContext(),
+                    R.string.general_HideEncryptedNotesFirst, Toast.LENGTH_SHORT).show();
             else getMvpView().openSortChooseDialogFragment();
         });
     }
@@ -102,8 +102,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     public void initSmallMainFabArray() {
         getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_NEW_NOTE]
                 .setOnClickListener(v -> {
-                    if (AppStatics.IS_IN_BYTE_MODE) Toast.makeText(v.getContext(),
-                            R.string.general_turnOffBytesModeFirst, Toast.LENGTH_SHORT).show();
+                    if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES) Toast.makeText(v.getContext(),
+                            R.string.general_HideEncryptedNotesFirst, Toast.LENGTH_SHORT).show();
                     else getMvpView().onNewNoteClick();
                 });
         getMvpView().getMainFabArray()[AppConstants.MAIN_FAB_INDEX_PASSWORDS]
@@ -208,8 +208,8 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         getMvpView().getNoNotesInformationTextView().setVisibility(View.VISIBLE);
         getMvpView().getNoNotesInformationTextView()
                 .setOnClickListener(v -> {
-                    if (AppStatics.IS_IN_BYTE_MODE) Toast.makeText(v.getContext(),
-                            R.string.general_turnOffBytesModeFirst, Toast.LENGTH_SHORT).show();
+                    if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES) Toast.makeText(v.getContext(),
+                            R.string.general_HideEncryptedNotesFirst, Toast.LENGTH_SHORT).show();
                     else getMvpView().onNewNoteClick();
                 });
     }
@@ -281,7 +281,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     private void setCustomRecyclerColor() {
-        if (AppStatics.IS_IN_BYTE_MODE) getMvpView().getCustomRecycler()
+        if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES) getMvpView().getCustomRecycler()
                 .setBackgroundResource(R.drawable.red_frame);
         else getMvpView().getCustomRecycler().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));

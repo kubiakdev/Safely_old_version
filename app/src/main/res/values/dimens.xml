@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Activity login-->
-    <dimen name="activityLogin_tvSize">24sp</dimen>
-    <dimen name="activityLogin_patternLock_normalDotSize">13dp</dimen>
-    <dimen name="activityLogin_patternLock_selectedDotSize">20dp</dimen>
-    <dimen name="activityLogin_patternLock_pathWidth">4dp</dimen>
+    <!--Login Activity-->
+    <dimen name="loginActivity_textView_size">24sp</dimen>
+    <dimen name="loginActivity_patternLock_normalDot_size">13dp</dimen>
+    <dimen name="loginActivity_patternLock_selectedDot_size">20dp</dimen>
+    <dimen name="loginActivity_patternLock_path_width">4dp</dimen>
 
-    <!--Activity options-->
-    <dimen name="activityOptions_toolbar_textView_titleTextSize">28sp</dimen>
-    <dimen name="activityOptions_toolbar_textView_categoryTextSize">20sp</dimen>
-    <dimen name="activityOptions_optionTextSize">16sp</dimen>
-    <dimen name="activityOptions_marginSize">20dp</dimen>
-    <dimen name="activityOptions_marginBetweenCardViewsSize">4dp</dimen>
-
-    <!--Activity main-->
-    <dimen name="activityMain_noNotesInformationSize">24sp</dimen>
-    <dimen name="activityMain_fabSize">56dp</dimen>
-    <dimen name="activityMain_smallFabSize">40dp</dimen>
-    <dimen name="activityMain_fabMargin">16dp</dimen>
+    <!--Main activity-->
+    <dimen name="mainActivity_textView_noNotesInformation_fontSize">24sp</dimen>
+    <dimen name="mainActivity_fab_size">56dp</dimen>
+    <dimen name="activityMain_smallFab_size">40dp</dimen>
+    <dimen name="mainActivity_fab_margin">16dp</dimen>
 
     <!--Note layout-->
-    <dimen name="noteLayout_editText_noteContentSize">16sp</dimen>
+    <dimen name="noteLayout_editText_noteContent_size">16sp</dimen>
 
     <!--Note model-->
-    <dimen name="noteModel_tv_contentSize">16sp</dimen>
+    <dimen name="noteModel_textView_content_size">16sp</dimen>
+
+    <!--Options activity-->
+    <dimen name="optionsActivity_toolbar_textView_title_fontSize">28sp</dimen>
+    <dimen name="optionsActivity_toolbar_textView_category_fontSize">20sp</dimen>
+    <dimen name="optionsActivity_optionText_fontSize">16sp</dimen>
+    <dimen name="optionsActivity_margin">20dp</dimen>
+    <dimen name="optionsActivity_spaceBetweenCardViews_margin">4dp</dimen>
 
     <!--Sort choose layout-->
     <dimen name="sortChooseLayout_cardView_height">42dp</dimen>
-    <dimen name="sortChooseLayout_cardView_categoryMarginTop">6dp</dimen>
-    <dimen name="sortChooseLayout_cardView_optionMarginTop">2dp</dimen>
-    <dimen name="sortChooseLayout_cardView_breakBetweenCardViews">1dp</dimen>
+    <dimen name="sortChooseLayout_cardView_category_topMargin">6dp</dimen>
+    <dimen name="sortChooseLayout_cardView_option_topMargin">2dp</dimen>
+    <dimen name="sortChooseLayout_cardView_breakBetweenCardViews_margin">1dp</dimen>
 
-    <dimen name="sortChooseLayout_textView_titleTextSize">26sp</dimen>
-    <dimen name="sortChooseLayout_textView_categoryTextSize">20sp</dimen>
-    <dimen name="sortChooseLayout_textView_optionTextSize">14sp</dimen>
+    <dimen name="sortChooseLayout_textView_title_fontSize">26sp</dimen>
+    <dimen name="sortChooseLayout_textView_category_fontSize">20sp</dimen>
+    <dimen name="sortChooseLayout_textView_option_fontSize">14sp</dimen>
 
     <!--Small action buttons main-->
-    <dimen name="smallActionButtonsMain_smallFabMargin">30dp</dimen>
+    <dimen name="smallActionButtonsMain_smallFab_margin">30dp</dimen>
+
+    <!--Tutorial activity-->
+    <dimen name="tutorialActivity_smallMargin">16dp</dimen>
+    <dimen name="tutorialActivity_bigMargin">32dp</dimen>
+    <dimen name="tutorialActivity_cardView_margin">4dp</dimen>
+
+    <dimen name="tutorialActivity_radioGroup_height">56dp</dimen>
+    <dimen name="tutorialActivity_radioButton_scale">0.7</dimen>
+
+    <dimen name="tutorialActivity_textView_fontSize">18sp</dimen>
+    <dimen name="tutorialActivity_textView_big_fontSize">24sp</dimen>
+    <dimen name="tutorialActivity_textView_margin">4dp</dimen>
 </resources>

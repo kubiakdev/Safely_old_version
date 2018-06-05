@@ -24,8 +24,8 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public void onClick(View v) {
-        if (AppStatics.IS_IN_BYTE_MODE){
-            Toast.makeText(v.getContext(), R.string.general_turnOffBytesModeFirst,
+        if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES){
+            Toast.makeText(v.getContext(), R.string.general_HideEncryptedNotesFirst,
                     Toast.LENGTH_SHORT).show();
             return;
         }
@@ -47,8 +47,8 @@ public class MainHolder extends BaseHolder {
 
     @Override
     public boolean onLongClick(View v) {
-        if (AppStatics.IS_IN_BYTE_MODE){
-            Toast.makeText(v.getContext(), R.string.general_turnOffBytesModeFirst,
+        if (AppStatics.IS_SHOWING_ENCRYPTED_NOTES){
+            Toast.makeText(v.getContext(), R.string.general_HideEncryptedNotesFirst,
                     Toast.LENGTH_SHORT).show();
             return false;
         }

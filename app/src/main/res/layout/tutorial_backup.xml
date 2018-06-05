@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tutorialActivity_constraintLayout_backup"
+    android:layout_width="380dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:visibility="gone">
+
+</android.support.constraint.ConstraintLayout>
