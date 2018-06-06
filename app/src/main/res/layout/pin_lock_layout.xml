@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kubiakpatryk.safely.ui.login.LoginActivity">
+
+    <TextView
+        android:id="@+id/pin_lock_layout_text_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+        android:text="@string/patternLock_selectYourLock"
+        android:textAlignment="center"
+        android:textSize="@dimen/loginActivity_textView_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <com.andrognito.pinlockview.IndicatorDots
+        android:id="@+id/pin_lock_layout_indicatorDots_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+        android:gravity="center"
+        app:dotDiameter="@dimen/loginActivity_pinLock_dotDiameter_size"
+        app:dotFilledBackground="@drawable/circle_lock_normal"
+        app:dotSpacing="@dimen/loginActivity_pinLock_dot_horizontalSpacing"
+        app:indicatorType="fill"
+        app:layout_constraintBottom_toTopOf="@+id/pin_lock_layout_pin_lock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_lock_layout_text_view_title">
+
+    </com.andrognito.pinlockview.IndicatorDots>
+
+    <TextView
+        android:id="@+id/pin_lock_layout_text_view_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/lockCorrect"
+        android:textSize="@dimen/loginActivity_textView_size"
+        app:layout_constraintBottom_toTopOf="@+id/pin_lock_layout_pin_lock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_lock_layout_text_view_title">
+
+    </TextView>
+
+    <com.andrognito.pinlockview.PinLockView
+        android:id="@+id/pin_lock_layout_pin_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+        app:keypadDeleteButtonDrawable="@drawable/backspace"
+        app:keypadDeleteButtonSize="@dimen/loginActivity_textView_size"
+        app:keypadHorizontalSpacing="@dimen/loginActivity_pinLock_keyPad_horizontalSpacing"
+        app:keypadShowDeleteButton="true"
+        app:keypadTextColor="@color/secondaryColor"
+        app:keypadTextSize="@dimen/loginActivity_textView_size"
+        app:keypadVerticalSpacing="@dimen/loginActivity_pinLock_keypad_verticalSpacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+</android.support.constraint.ConstraintLayout>

@@ -11,11 +11,11 @@ import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
+import com.kubiakpatryk.safely.utils.AppConstants;
 
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -33,7 +33,6 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     TutorialMvpPresenter<TutorialMvpView> presenter;
 
     @Inject
-    @Named("ScrollView")
     CustomHorizontalScrollView scrollView;
 
     @BindViews({R.id.tutorialActivity_constraintLayout_welcome,
@@ -62,8 +61,10 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     }
 
     @Override
-    public void openLoginActivity() {
-        startActivity(LoginActivity.getStartIntent(this));
+    public void openLoginActivity(String result) {
+        Intent intent = LoginActivity.getStartIntent(this);
+        intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, result);
+        startActivity(intent);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
 
     @OnClick(R.id.tutorialActivity_constraintLayout_pinLock)
     public void onPinLockClick() {
-        Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
+        presenter.onPinLockClick();
     }
 
     @OnClick(R.id.tutorialActivity_constraintLayout_passwordLock)

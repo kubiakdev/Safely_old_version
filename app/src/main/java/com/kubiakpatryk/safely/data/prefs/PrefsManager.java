@@ -16,9 +16,10 @@ public class PrefsManager implements PrefsHelper {
     private final String PREFS_FONT_SIZE_KEY = "PREFS_FONT_SIZE";
     private final String PREFS_LANGUAGE_KEY = "PREFS_LANGUAGE";
     private final String PREFS_LAST_NOTE_ID_KEY = "PREFS_LAST_NOTE_ID";
-    private final String PREFS_RECYCLER_COLOR_KEY = "PREFS_RECYCLER_COLOR";
-    private final String PREFS_SAVED_PATTERN_LOCK_KEY = "PREFS_SAVED_PATTERN_LOCK";
+    private final String PREFS_LOCK_KEY = "PREFS_LOCK";
+    private final String PREFS_LOCK_METHOD = "PREFS_LOCK_METHOD";
     private final String PREFS_SORT_OPTION_KEY = "PREFS_SORT_OPTION";
+    private final String PREFS_RECYCLER_COLOR_KEY = "PREFS_RECYCLER_COLOR";
 
     private final SharedPreferences preferences;
 
@@ -66,13 +67,23 @@ public class PrefsManager implements PrefsHelper {
     }
 
     @Override
-    public String getPatternLock() {
-        return preferences.getString(PREFS_SAVED_PATTERN_LOCK_KEY, "");
+    public String getLock() {
+        return preferences.getString(PREFS_LOCK_KEY, "");
     }
 
     @Override
-    public void setPatternLock(String value) {
-        preferences.edit().putString(PREFS_SAVED_PATTERN_LOCK_KEY, value).apply();
+    public void setLock(String value) {
+        preferences.edit().putString(PREFS_LOCK_KEY, value).apply();
+    }
+
+    @Override
+    public String getLockMethod() {
+        return preferences.getString(PREFS_LOCK_METHOD, "");
+    }
+
+    @Override
+    public void setLockMethod(String lockMethod) {
+        preferences.edit().putString(PREFS_LOCK_METHOD, lockMethod).apply();
     }
 
     @Override

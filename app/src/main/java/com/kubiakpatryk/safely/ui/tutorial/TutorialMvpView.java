@@ -13,5 +13,5 @@ public interface TutorialMvpView extends MvpView{
 
     int[] getRadioButtonsIdsArray();
 
-    void openLoginActivity();
+    void openLoginActivity(String result);
 }

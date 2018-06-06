@@ -1,11 +1,13 @@
 package com.kubiakpatryk.safely.ui.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
 import com.kubiakpatryk.safely.ui.tutorial.TutorialActivity;
+import com.kubiakpatryk.safely.utils.AppConstants;
 
 import javax.inject.Inject;
 
@@ -35,7 +37,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openLoginActivity() {
-        startActivity(LoginActivity.getStartIntent(this));
+        Intent intent = LoginActivity.getStartIntent(this);
+        String lockMethod = presenter.getLockMethod();
+        intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, lockMethod);
+        startActivity(intent);
         finish();
     }
 

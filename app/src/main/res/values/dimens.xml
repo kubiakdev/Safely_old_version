@@ -2,9 +2,15 @@
 <resources>
     <!--Login Activity-->
     <dimen name="loginActivity_textView_size">24sp</dimen>
+
     <dimen name="loginActivity_patternLock_normalDot_size">13dp</dimen>
     <dimen name="loginActivity_patternLock_selectedDot_size">20dp</dimen>
     <dimen name="loginActivity_patternLock_path_width">4dp</dimen>
+
+    <dimen name="loginActivity_pinLock_dotDiameter_size">12dp</dimen>
+    <dimen name="loginActivity_pinLock_dot_horizontalSpacing">24dp</dimen>
+    <dimen name="loginActivity_pinLock_keyPad_horizontalSpacing">32dp</dimen>
+    <dimen name="loginActivity_pinLock_keypad_verticalSpacing">0dp</dimen>
 
     <!--Main activity-->
     <dimen name="mainActivity_textView_noNotesInformation_fontSize">24sp</dimen>
@@ -44,7 +50,7 @@
     <dimen name="tutorialActivity_cardView_margin">4dp</dimen>
 
     <dimen name="tutorialActivity_radioGroup_height">56dp</dimen>
-    <dimen name="tutorialActivity_radioButton_scale">0.7</dimen>
+    <item name="tutorialActivity_radioButton_scale" type="dimen" format="float">0.7</item>
 
     <dimen name="tutorialActivity_textView_fontSize">18sp</dimen>
     <dimen name="tutorialActivity_textView_big_fontSize">24sp</dimen>

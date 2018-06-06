@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public final class AppConstants {
+    public static final int LOGIN_ACTIVITY_LONG_LOCK_DURATION = 1000;
+    public static final int LOGIN_ACTIVITY_SHORT_LOCK_DURATION = 300;
+
     public static final int MAIN_FAB_INDEX_NEW_NOTE = 0;
     public static final int MAIN_FAB_INDEX_PASSWORDS = 1;
     public static final int MAIN_FAB_INDEX_SETTINGS = 2;
@@ -36,6 +39,12 @@ public final class AppConstants {
     public static final char[] POLISH_SIGNS_ARRAY =
             {'ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż',
                     'Ą', 'Ć', 'Ę', 'Ł', 'Ń', 'Ó', 'Ś', 'Ź', 'Ż'};
+
+    public static final String LOGIN_ACTIVITY_BUNDLE_NAME = "LOCK_METHOD";
+    public static final String PATTERN_LOCK_METHOD = "pattern";
+    public static final String PIN_LOCK_METHOD = "pin";
+    public static final String PASSWORD_LOCK_METHOD = "password";
+    public static final String NO_LOCK_METHOD = "no_lock";
 
     public static final String SPACE_BETWEEN_BYTES = " ";
 

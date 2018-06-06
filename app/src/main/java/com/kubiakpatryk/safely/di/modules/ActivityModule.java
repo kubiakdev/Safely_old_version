@@ -11,9 +11,11 @@ import com.kubiakpatryk.safely.di.annotations.PerActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomGestureListener;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
-import com.kubiakpatryk.safely.ui.login.LoginMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
-import com.kubiakpatryk.safely.ui.login.LoginPresenter;
+import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternMvpPresenter;
+import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternPresenter;
+import com.kubiakpatryk.safely.ui.login.pin.LoginPinMvpPresenter;
+import com.kubiakpatryk.safely.ui.login.pin.LoginPinPresenter;
 import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogMvpView;
 import com.kubiakpatryk.safely.ui.main.dialogs.note_dialog.NoteDialogPresenter;
@@ -24,13 +26,10 @@ import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsPresenter;
 import com.kubiakpatryk.safely.ui.options.OptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.options.OptionsMvpView;
@@ -46,8 +45,6 @@ import com.kubiakpatryk.safely.ui.tutorial.TutorialMvpView;
 import com.kubiakpatryk.safely.ui.tutorial.TutorialPresenter;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProvider;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
-
-import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -90,8 +87,15 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    LoginMvpPresenter<LoginMvpView> provideLoginMvpPresenter(
-            LoginPresenter<LoginMvpView> presenter) {
+    LoginPatternMvpPresenter<LoginMvpView> provideLoginPatternMvpPresenter(
+            LoginPatternPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    LoginPinMvpPresenter<LoginMvpView> provideLoginPinMvpPresenter(
+            LoginPinPresenter<LoginMvpView> presenter) {
         return presenter;
     }
 
@@ -109,8 +113,8 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    MainCipherMvpPresenter<MainCipherMvpView> provideMainCipherMvpPresenter(
-            MainCipherPresenter<MainCipherMvpView> presenter) {
+    MainCipherMvpPresenter<MainMvpView> provideMainCipherMvpPresenter(
+            MainCipherPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
@@ -123,14 +127,14 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    MainNoteOptionsMvpPresenter<MainNoteOptionsMvpView> provideMainNoteOptionsMvpPresenter(
-            MainNoteOptionsPresenter<MainNoteOptionsMvpView> presenter) {
+    MainNoteOptionsMvpPresenter<MainMvpView> provideMainNoteOptionsMvpPresenter(
+            MainNoteOptionsPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
     @Provides
-    MainSortOptionsMvpPresenter<MainSortOptionsMvpView> provideMainSortOptionsMvpPresenter(
-            MainSortOptionsPresenter<MainSortOptionsMvpView> presenter) {
+    MainSortOptionsMvpPresenter<MainMvpView> provideMainSortOptionsMvpPresenter(
+            MainSortOptionsPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
@@ -172,7 +176,6 @@ public class ActivityModule {
     }
 
     @Provides
-    @Named("ScrollView")
     CustomHorizontalScrollView provideCustomHorizontalScrollView(
             @PerActivity AppCompatActivity activity){
         return (CustomHorizontalScrollView)

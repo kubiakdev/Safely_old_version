@@ -25,4 +25,8 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
         else getMvpView().openLoginActivity();
     }
 
+    @Override
+    public String getLockMethod() {
+        return getDataManager().getLockMethod();
+    }
 }

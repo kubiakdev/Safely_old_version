@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
+import com.kubiakpatryk.safely.utils.AppConstants;
 import com.kubiakpatryk.safely.utils.ScreenUtils;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
@@ -38,21 +39,25 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
     @Override
     public void onPatternLockClick() {
         if (!isViewAttached()) return;
-        getMvpView().openLoginActivity();
+        getMvpView().openLoginActivity(AppConstants.PATTERN_LOCK_METHOD);
     }
 
     @Override
     public void onPinLockClick() {
+        if (!isViewAttached()) return;
+        getMvpView().openLoginActivity(AppConstants.PIN_LOCK_METHOD);
     }
 
     @Override
     public void onPasswordLockClick() {
-
+        if (!isViewAttached()) return;
+        getMvpView().openLoginActivity(AppConstants.PASSWORD_LOCK_METHOD);
     }
 
     @Override
     public void onLackLockClick() {
-
+        if (!isViewAttached()) return;
+        getMvpView().openLoginActivity(AppConstants.NO_LOCK_METHOD);
     }
 
     @Override

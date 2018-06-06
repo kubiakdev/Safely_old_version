@@ -178,13 +178,23 @@ public class DataManager implements DataHelper {
     }
 
     @Override
-    public String getPatternLock() {
-        return prefsHelper.getPatternLock();
+    public String getLock() {
+        return prefsHelper.getLock();
     }
 
     @Override
-    public void setPatternLock(String value) {
-        prefsHelper.setPatternLock(value);
+    public void setLock(String value) {
+        prefsHelper.setLock(value);
+    }
+
+    @Override
+    public String getLockMethod() {
+        return prefsHelper.getLockMethod();
+    }
+
+    @Override
+    public void setLockMethod(String lockMethod) {
+        prefsHelper.setLockMethod(lockMethod);
     }
 
     @Override

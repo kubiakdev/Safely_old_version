@@ -2,9 +2,15 @@
 <resources>
     <!--Login Activity-->
     <dimen name="loginActivity_textView_size">34sp</dimen>
+
     <dimen name="loginActivity_patternLock_normalDot_size">20dp</dimen>
     <dimen name="loginActivity_patternLock_selectedDot_size">30dp</dimen>
     <dimen name="loginActivity_patternLock_path_width">7dp</dimen>
+
+    <dimen name="loginActivity_pinLock_dotDiameter_size">20dp</dimen>
+    <dimen name="loginActivity_pinLock_dot_horizontalSpacing">48dp</dimen>
+    <dimen name="loginActivity_pinLock_keyPad_horizontalSpacing">84dp</dimen>
+    <dimen name="loginActivity_pinLock_keypad_verticalSpacing">48dp</dimen>
 
     <!--Main activity-->
     <dimen name="mainActivity_textView_noNotesInformation_fontSize">34sp</dimen>

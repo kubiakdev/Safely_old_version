@@ -1,11 +1,17 @@
 package com.kubiakpatryk.safely.ui.login;
 
-import android.widget.TextView;
+import android.content.res.Resources;
+import android.support.v7.app.AppCompatActivity;
 
-import com.andrognito.patternlockview.PatternLockView;
 import com.kubiakpatryk.safely.ui.base.MvpView;
 
+import butterknife.Unbinder;
+
 public interface LoginMvpView extends MvpView{
+
+    AppCompatActivity getActivity();
+
+    Resources getResources();
 
     void openMainActivity();
 
@@ -13,11 +19,9 @@ public interface LoginMvpView extends MvpView{
 
     void startVibration();
 
-    void restartActivity();
+    void restartActivity(String lockMethod);
 
     void closeApp();
 
-    PatternLockView getPatternLockView();
-
-    TextView getTextView();
+    void setUnBinder(Unbinder unBinder);
 }

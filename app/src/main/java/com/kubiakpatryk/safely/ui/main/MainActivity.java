@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
+import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomFab;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
@@ -22,12 +23,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpView;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
-import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpView;
 import com.kubiakpatryk.safely.ui.options.OptionsActivity;
 
 import java.util.List;
@@ -39,28 +37,24 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements
-        MainMvpView,
-        MainCipherMvpView,
-        MainNoteOptionsMvpView,
-        MainSortOptionsMvpView,
+public class MainActivity extends BaseActivity implements MainMvpView,
         NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
         MainPresenter.OnReloadAdapterListCallback,
         OptionsActivity.OnReloadAdapterListCallback,
-        SortChooseDialogPresenter.OnReloadAdapterListCallback {
+        SortChooseDialogPresenter.OnReloadAdapterListCallback, MvpView {
 
     @Inject
     MainMvpPresenter<MainMvpView> mainPresenter;
 
     @Inject
-    MainCipherMvpPresenter<MainCipherMvpView> cipherPresenter;
+    MainCipherMvpPresenter<MainMvpView> cipherPresenter;
 
     @Inject
-    MainNoteOptionsMvpPresenter<MainNoteOptionsMvpView> noteOptionsPresenter;
+    MainNoteOptionsMvpPresenter<MainMvpView> noteOptionsPresenter;
 
     @Inject
-    MainSortOptionsMvpPresenter<MainSortOptionsMvpView> sortOptionsPresenter;
+    MainSortOptionsMvpPresenter<MainMvpView> sortOptionsPresenter;
 
     @Inject
     @Named("SmallCustomFabArray_Main")
@@ -179,11 +173,6 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void showMainFabArray() {
-        mainPresenter.showMainFabArray();
-    }
-
-    @Override
     public void showNoNotesInformationTextView() {
         mainPresenter.showNoNotesInformationTextView();
     }
@@ -201,16 +190,6 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void hideOptionsFabArray_right() {
         noteOptionsPresenter.hideOptionsFabArray_right();
-    }
-
-    @Override
-    public void showOptionsFabArray_left() {
-        noteOptionsPresenter.showOptionsFabArray_left();
-    }
-
-    @Override
-    public void showOptionsFabArray_right() {
-        noteOptionsPresenter.showOptionsFabArray_right();
     }
 
     @Override

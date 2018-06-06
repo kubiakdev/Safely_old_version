@@ -4,18 +4,39 @@
     <string name="general_HideEncryptedNotesFirst">Ukryj wpierw zaszyfrowane notatki</string>
     <string name="general_notAvailableYet">Jeszcze niedostępne</string>
 
+
     <!--Login Activity-->
+    <string name="loginActivity_rememberThat">Zapamiętaj go!</string>
+    <string name="loginActivity_tryAgain">Ups… Spróbuj ponownie!</string>
+    <string name="loginActivity_yourLastChance">To twoja ostania szansa!
+        \n(Aplikacja się wyłączy)</string>
 
     <!--PatternLock-->
-    <string name="patternLock_chooseYourPattern">Teraz, wybierz swój wzór</string>
-    <string name="patternLock_chooseYourPatternAgain">Wybierz swój wzór ponownie</string>
-    <string name="patternLock_selectYourPattern">Podaj swój wzór</string>
-    <string name="patternLock_rememberThat">Zapamiętaj go!</string>
-    <string name="patternLock_patternsMustBeTheSame">Wzory muszą być takie same!
-        \n Spróbuj ponownie!</string>
-    <string name="patternLock_tryAgain">Ups… Spróbuj ponownie!</string>
-    <string name="patternLock_yourLastChance">To twoja ostania szansa!
-        \n(Aplikacja się wyłączy)</string>
+    <string name="patternLock_chooseYourLock">Teraz, wybierz swój wzór</string>
+    <string name="patternLock_chooseYourLockAgain">Wybierz swój wzór ponownie</string>
+    <string name="patternLock_selectYourLock">Podaj swój wzór</string>
+    <string name="patternLock_locksMustBeTheSame">Wzory muszą być takie same!
+        \nSpróbuj ponownie!</string>
+
+    <!--PinLock-->
+    <string name="pinLock_chooseYourLock">"Teraz, wpisz swój PIN"</string>
+    <string name="pinLock_chooseYourLockAgain">"Wpisz swój PIN ponownie"</string>
+    <string name="pinLock_locksMustBeTheSame">Numery PIN muszą być takie same!
+        \nSpróbuj ponownie!</string>
+    <string name="pinLock_selectYourLock">"Wpisz swój PIN"</string>
+
+    <!--PasswordLock-->
+    <string name="passwordLock_chooseYourLock">"Teraz, wybierz swoje hasło"</string>
+    <string name="passwordLock_chooseYourLockAgain">"Wybierz swoje hasło ponownie"</string>
+    <string name="passwordLock_locksMustBeTheSame">Hasła muszą być takie same!
+        \nSpróbuj ponownie!</string>
+    <string name="passwordLock_selectYourLock">"Wybierz swoje hasło"</string>
+
+    <!--NoLock-->
+    <string name="noLock_question">Na pewno nie chcesz żadnej blokady?
+    \n(Możesz później zmienić tą opcję)</string>
+    <string name="noLock_yes">Nie chcę</string>
+    <string name="noLock_no">Jednak chcę</string>
 
     <!--Main Activity-->
 
@@ -36,6 +57,7 @@
     <string name="recyclerView_noNotesInformation">Nie masz żadnych notatek
         \nDotknij by dodać</string>
 
+
     <!--SortChoose layout-->
     <string name="sortChooseLayout_title">Sortuj według</string>
     <string name="sortChooseLayout_alphabeticallyCategory">Alfabetycznie</string>
@@ -52,6 +74,7 @@
     <string name="sortChooseLayout_modifiedDateCategory_toEarliest">Do najwcześniejszej</string>
     <string name="sortChooseLayout_modifiedDateCategory_toLatest">Do najpóźniejszej</string>
 
+
     <!--Activity_Options-->
     <string name="appBar_optionsName">Opcje</string>
     <string name="appBar_leftArrowDescription">Lewa strzałka</string>
@@ -62,6 +85,7 @@
     <string name="optionsActivity_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
     <string name="optionsActivity_changeLanguage">Zmień język</string>
     <string name="optionsActivity_changeSecureType">Zmień metodę zabezpieczenia</string>
+
 
     <!--Tutorial activity-->
     <string name="tutorialActivity_welcome">Witaj w Safely!

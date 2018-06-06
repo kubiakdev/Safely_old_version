@@ -4,6 +4,7 @@ import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.CipherEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
+import com.kubiakpatryk.safely.ui.base.MvpView;
 import com.kubiakpatryk.safely.utils.AppConstants;
 import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
@@ -15,7 +16,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MainCipherPresenter<V extends MainCipherMvpView> extends BasePresenter<V>
+public class MainCipherPresenter<V extends MvpView> extends BasePresenter<V>
         implements MainCipherMvpPresenter<V> {
 
     @Inject

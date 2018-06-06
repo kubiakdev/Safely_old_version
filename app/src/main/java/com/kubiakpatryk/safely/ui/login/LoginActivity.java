@@ -2,31 +2,30 @@ package com.kubiakpatryk.safely.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 
-import com.andrognito.patternlockview.PatternLockView;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
+import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternMvpPresenter;
+import com.kubiakpatryk.safely.ui.login.pin.LoginPinMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
+import com.kubiakpatryk.safely.utils.AppConstants;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Inject
-    LoginMvpPresenter<LoginMvpView> presenter;
+    LoginPatternMvpPresenter<LoginMvpView> patternPresenter;
 
-    @BindView(R.id.login_activity_pattern_lock_view)
-    PatternLockView patternLockView;
-
-    @BindView(R.id.login_activity_text_view)
-    TextView textView;
+    @Inject
+    LoginPinMvpPresenter<LoginMvpView> pinPresenter;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -35,18 +34,19 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         getActivityComponent().inject(this);
-        setUnbinder(ButterKnife.bind(this));
-        presenter.onAttach(this);
-
-        initializePatternLock();
+        setContentView();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public Resources getResources() {
+        return super.getResources();
     }
 
     @Override
@@ -68,8 +68,10 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
-    public void restartActivity() {
-        startActivity(getStartIntent(this));
+    public void restartActivity(String lockMethod) {
+        Intent intent = getStartIntent(this);
+        intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, lockMethod);
+        startActivity(intent);
         finish();
     }
 
@@ -79,22 +81,40 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
-    public PatternLockView getPatternLockView() {
-        return patternLockView;
+    public AppCompatActivity getActivity() {
+        return this;
     }
 
     @Override
-    public TextView getTextView() {
-        return textView;
-    }
-
-    private void initializePatternLock() {
-        presenter.initializePatternLock();
+    public void setUnBinder(Unbinder unBinder) {
+        setUnbinder(unBinder);
     }
 
     @Override
     protected void onDestroy() {
-        presenter.onDetach();
+        patternPresenter.onDetach();
+        pinPresenter.onDetach();
         super.onDestroy();
+    }
+
+    private void setContentView() {
+        String result = "";
+        if (getIntent().getExtras() != null)
+            result = getIntent().getExtras().getString(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME);
+        if (result != null) {
+            if (result.equals(AppConstants.PATTERN_LOCK_METHOD)) initializePatternLock();
+            else if (result.equals(AppConstants.PIN_LOCK_METHOD)) initializePinLock();
+        }
+
+    }
+
+    private void initializePatternLock() {
+        setContentView(R.layout.pattern_lock_layout);
+        patternPresenter.onAttach(this);
+    }
+
+    private void initializePinLock() {
+        setContentView(R.layout.pin_lock_layout);
+        pinPresenter.onAttach(this);
     }
 }

@@ -10,7 +10,9 @@ public interface PrefsHelper {
 
     String getLanguage();
 
-    String getPatternLock();
+    String getLock();
+
+    String getLockMethod();
 
     String getRecyclerColor();
 
@@ -24,7 +26,9 @@ public interface PrefsHelper {
 
     void setLastNoteId(long id);
 
-    void setPatternLock(String value);
+    void setLock(String value);
+
+    void setLockMethod(String lockMethod);
 
     void setRecyclerColor(String color);
 

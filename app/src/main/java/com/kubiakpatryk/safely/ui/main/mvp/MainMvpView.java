@@ -1,5 +1,6 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.support.annotation.NonNull;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,15 +27,25 @@ public interface MainMvpView extends MvpView {
 
     List<NoteEntity> getList();
 
+    Object getActivitySystemService(@NonNull String name);
+
     SmallCustomFab[] getMainFabArray();
 
-    String encrypt(final String source);
+    SmallCustomFab[] getOptionsFabArray_left();
 
-    String decrypt(final String source);
+    SmallCustomFab[] getOptionsFabArray_right();
+
+    String encrypt(String value);
+
+    String decrypt(String value);
+
+    String getStringValue(int id);
 
     TextView getNoNotesInformationTextView();
 
     void hideMainFabArray();
+
+    void hideNoNotesInformationTextView();
 
     void hideOptionsFabArray_left();
 
@@ -46,7 +57,7 @@ public interface MainMvpView extends MvpView {
 
     void openSortChooseDialogFragment();
 
-    void reloadAdapter();
+    void showNoNotesInformationTextView();
 
-    void showMainFabArray();
+    void reloadAdapter();
 }

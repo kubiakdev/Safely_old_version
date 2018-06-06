@@ -11,6 +11,7 @@ import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.custom.SmallCustomFab;
+import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.utils.AppConstants;
 import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.CommonUtils;
@@ -20,7 +21,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MainNoteOptionsPresenter<V extends MainNoteOptionsMvpView> extends BasePresenter<V>
+public class MainNoteOptionsPresenter<V extends MainMvpView> extends BasePresenter<V>
         implements MainNoteOptionsMvpPresenter<V> {
 
     public static OnReloadAdapterListCallback onReloadAdapterListCallback;

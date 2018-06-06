@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
+import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
 import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.CommonUtils;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MainSortOptionsPresenter<V extends MainSortOptionsMvpView> extends BasePresenter<V>
+public class MainSortOptionsPresenter<V extends MainMvpView> extends BasePresenter<V>
         implements MainSortOptionsMvpPresenter<V> {
 
     @Inject
