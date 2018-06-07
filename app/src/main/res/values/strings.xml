@@ -7,27 +7,27 @@
 
 
     <!--Login Activity-->
-    <string name="loginActivity_rememberThat">Remember that!</string>
+    <string name="loginActivity_rememberThat">Remember!</string>
     <string name="loginActivity_tryAgain">Ups…Try again!</string>
     <string name="loginActivity_yourLastChance">This is your last chance
         \n(App will close) </string>
 
     <!--PatternLock-->
-    <string name="patternLock_chooseYourLock">"Now, choose your pattern"</string>
+    <string name="patternLock_chooseYourLock">"Choose your pattern"</string>
     <string name="patternLock_chooseYourLockAgain">"Choose your pattern again"</string>
-    <string name="patternLock_locksMustBeTheSame">Patterns must be the same
-        \nTry Again!</string>
+    <string name="patternLock_locksMustBeTheSame">Patterns must be the same!
+     \nTry Again!</string>
     <string name="patternLock_selectYourLock">"Select your pattern"</string>
 
     <!--PinLock-->
-    <string name="pinLock_chooseYourLock">"Now, write your PIN"</string>
+    <string name="pinLock_chooseYourLock">"Write your PIN"</string>
     <string name="pinLock_chooseYourLockAgain">"Write your PIN again"</string>
     <string name="pinLock_locksMustBeTheSame">PIN numbers must be the same
         \nTry Again!</string>
     <string name="pinLock_selectYourLock">"Select your PIN"</string>
 
     <!--PasswordLock-->
-    <string name="passwordLock_chooseYourLock">"Now, choose your password"</string>
+    <string name="passwordLock_chooseYourLock">"Choose your password"</string>
     <string name="passwordLock_chooseYourLockAgain">"Write your password again"</string>
     <string name="passwordLock_locksMustBeTheSame">Passwords must be the same
         \nTry Again!</string>
@@ -36,13 +36,13 @@
     <string name="passwordLock_minimalPasswordLength">
         Your password must be at least 1 sign!</string>
 
-
     <!--NoLock-->
     <string name="noLock_alertDialog_title">
         Are you sure you don\'t want to have any secure method?</string>
     <string name="noLock_alertDialog_message">(You can change this option later)</string>
     <string name="noLock_alertDialog_yes">Yes</string>
     <string name="noLock_alertDialog_no">No</string>
+
 
     <!--Main Activity-->
 

@@ -6,27 +6,27 @@
 
 
     <!--Login Activity-->
-    <string name="loginActivity_rememberThat">Zapamiętaj go!</string>
+    <string name="loginActivity_rememberThat">Zapamiętaj!</string>
     <string name="loginActivity_tryAgain">Ups… Spróbuj ponownie!</string>
     <string name="loginActivity_yourLastChance">To twoja ostania szansa!
         \n(Aplikacja się wyłączy)</string>
 
     <!--PatternLock-->
-    <string name="patternLock_chooseYourLock">Teraz, wybierz swój wzór</string>
+    <string name="patternLock_chooseYourLock">Wybierz swój wzór</string>
     <string name="patternLock_chooseYourLockAgain">Wybierz swój wzór ponownie</string>
     <string name="patternLock_selectYourLock">Podaj swój wzór</string>
     <string name="patternLock_locksMustBeTheSame">Wzory muszą być takie same!
         \nSpróbuj ponownie!</string>
 
     <!--PinLock-->
-    <string name="pinLock_chooseYourLock">"Teraz, wpisz swój PIN"</string>
+    <string name="pinLock_chooseYourLock">"Wpisz swój PIN"</string>
     <string name="pinLock_chooseYourLockAgain">"Wpisz swój PIN ponownie"</string>
     <string name="pinLock_locksMustBeTheSame">Numery PIN muszą być takie same!
         \nSpróbuj ponownie!</string>
     <string name="pinLock_selectYourLock">"Wpisz swój PIN"</string>
 
     <!--PasswordLock-->
-    <string name="passwordLock_chooseYourLock">"Teraz, wybierz swoje hasło"</string>
+    <string name="passwordLock_chooseYourLock">"Wybierz swoje hasło"</string>
     <string name="passwordLock_chooseYourLockAgain">"Wpisz swoje hasło ponownie"</string>
     <string name="passwordLock_locksMustBeTheSame">Hasła muszą być takie same!
         \nSpróbuj ponownie!</string>
@@ -35,13 +35,12 @@
     <string name="passwordLock_minimalPasswordLength">
        Twoje hasło musi zawierać co najmniej 1 znak!</string>
 
-
-
     <!--NoLock-->
-    <string name="noLock_question">Na pewno nie chcesz żadnej blokady?
-    \n(Możesz później zmienić tą opcję)</string>
-    <string name="noLock_yes">Nie chcę</string>
-    <string name="noLock_no">Jednak chcę</string>
+    <string name="noLock_alertDialog_title">Na pewno nie chcesz żadnej blokady?</string>
+    <string name="noLock_alertDialog_message">(Możesz później zmienić tą opcję)</string>
+    <string name="noLock_alertDialog_yes">Nie chcę</string>
+    <string name="noLock_alertDialog_no">Jednak chcę</string>
+
 
     <!--Main Activity-->
 
