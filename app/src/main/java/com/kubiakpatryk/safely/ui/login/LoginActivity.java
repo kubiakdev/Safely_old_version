@@ -111,6 +111,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 case AppConstants.PASSWORD_LOCK_METHOD:
                     initializePasswordLock();
                     break;
+                case AppConstants.NO_LOCK_METHOD:
+                    openMainActivity();
+                    break;
             }
         }
     }

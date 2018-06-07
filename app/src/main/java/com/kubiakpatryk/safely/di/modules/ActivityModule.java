@@ -186,7 +186,7 @@ public class ActivityModule {
 
     @Provides
     CustomHorizontalScrollView provideCustomHorizontalScrollView(
-            @PerActivity AppCompatActivity activity){
+            @PerActivity AppCompatActivity activity) {
         return (CustomHorizontalScrollView)
                 activity.findViewById(R.id.tutorialActivity_horizontalScrollView);
     }

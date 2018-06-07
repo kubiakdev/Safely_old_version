@@ -210,11 +210,6 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     }
 
     @Override
-    public String getStringValue(int id) {
-        return getString(id);
-    }
-
-    @Override
     public ImageButton getViewTypeButton() {
         return viewTypeButton;
     }

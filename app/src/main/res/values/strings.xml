@@ -38,10 +38,11 @@
 
 
     <!--NoLock-->
-    <string name="noLock_question">Are you sure you don\'t want to have any secure method?
-    \n(You can change this option later)</string>
-    <string name="noLock_yes">Yes</string>
-    <string name="noLock_no">No</string>
+    <string name="noLock_alertDialog_title">
+        Are you sure you don\'t want to have any secure method?</string>
+    <string name="noLock_alertDialog_message">(You can change this option later)</string>
+    <string name="noLock_alertDialog_yes">Yes</string>
+    <string name="noLock_alertDialog_no">No</string>
 
     <!--Main Activity-->
 

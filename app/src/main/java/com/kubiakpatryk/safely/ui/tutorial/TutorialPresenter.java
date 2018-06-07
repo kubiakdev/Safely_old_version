@@ -1,8 +1,10 @@
 package com.kubiakpatryk.safely.ui.tutorial;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.widget.RadioGroup;
 
+import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
@@ -55,9 +57,9 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
     }
 
     @Override
-    public void onLackLockClick() {
+    public void onNoLockClick() {
         if (!isViewAttached()) return;
-        getMvpView().openLoginActivity(AppConstants.NO_LOCK_METHOD);
+        onNoLockAlertDialog();
     }
 
     @Override
@@ -80,5 +82,24 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
             if (array[j] == i) return j;
         }
         return -1;
+    }
+
+    private void onNoLockAlertDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getMvpView().getBaseActivity()).create();
+        alertDialog.setTitle(getMvpView().getString(R.string.noLock_alertDialog_title));
+        alertDialog.setMessage(getMvpView().getString(R.string.noLock_alertDialog_message));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
+                getMvpView().getString(R.string.noLock_alertDialog_yes),
+                (dialog, which) -> {
+                    getDataManager().setLock("");
+                    getDataManager().setLockMethod(AppConstants.NO_LOCK_METHOD);
+                    getDataManager().setIsFirstLaunch(false);
+                    getMvpView().openSecureChooseActivity();
+                    getMvpView().finish();
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
+                getMvpView().getString(R.string.noLock_alertDialog_no),
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.show();
     }
 }

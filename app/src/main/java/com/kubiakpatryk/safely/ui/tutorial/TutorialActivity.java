@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
+import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
 
 import java.util.List;
@@ -68,6 +68,11 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     }
 
     @Override
+    public void openSecureChooseActivity() {
+        startActivity(SecureChooseActivity.getStartIntent(this));
+    }
+
+    @Override
     protected void onDestroy() {
         presenter.onDetach();
         super.onDestroy();
@@ -90,8 +95,13 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     }
 
     @OnClick(R.id.tutorialActivity_constraintLayout_noLock)
-    public void onLackLockClick() {
-        Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
+    public void onNoLockClick() {
+      presenter.onNoLockClick();
+    }
+
+    @Override
+    public BaseActivity getBaseActivity() {
+        return this;
     }
 
     @Override

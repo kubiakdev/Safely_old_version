@@ -39,7 +39,7 @@ public interface MainMvpView extends MvpView {
 
     String decrypt(String value);
 
-    String getStringValue(int id);
+    String getString(int id);
 
     TextView getNoNotesInformationTextView();
 

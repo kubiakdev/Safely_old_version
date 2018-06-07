@@ -19,7 +19,7 @@ public interface TutorialMvpPresenter<V extends TutorialMvpView> extends MvpPres
 
     void onPasswordLockClick();
 
-    void onLackLockClick();
+    void onNoLockClick();
 
     void setLayoutParameters(List<ConstraintLayout> layouts);
 }

@@ -125,24 +125,24 @@ public class MainNoteOptionsPresenter<V extends MainMvpView> extends BasePresent
 
     private void onCutNoteAlertDialog(NoteEntity entity) {
         AlertDialog alertDialog = new AlertDialog.Builder(getMvpView().getBaseActivity()).create();
-        alertDialog.setMessage(getMvpView().getStringValue(R.string.alertDialog_sureToCut));
+        alertDialog.setMessage(getMvpView().getString(R.string.alertDialog_sureToCut));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
-                getMvpView().getStringValue(R.string.alertDialog_sureToCut_positive),
+                getMvpView().getString(R.string.alertDialog_sureToCut_positive),
                 (dialog, which) -> onCutNote(entity));
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
-                getMvpView().getStringValue(R.string.alertDialog_sureToCut_negative),
+                getMvpView().getString(R.string.alertDialog_sureToCut_negative),
                 (dialog, which) -> dialog.dismiss());
         alertDialog.show();
     }
 
     private void onDeleteNoteAlertDialog(NoteEntity entity) {
         AlertDialog alertDialog = new AlertDialog.Builder(getMvpView().getBaseActivity()).create();
-        alertDialog.setMessage(getMvpView().getStringValue(R.string.alertDialog_sureToDelete));
+        alertDialog.setMessage(getMvpView().getString(R.string.alertDialog_sureToDelete));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
-                getMvpView().getStringValue(R.string.alertDialog_sureToDelete_positive),
+                getMvpView().getString(R.string.alertDialog_sureToDelete_positive),
                 (dialog, which) -> onDeleteNote(entity));
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
-                getMvpView().getStringValue(R.string.alertDialog_sureToDelete_negative),
+                getMvpView().getString(R.string.alertDialog_sureToDelete_negative),
                 (dialog, which) -> dialog.dismiss());
         alertDialog.show();
     }
