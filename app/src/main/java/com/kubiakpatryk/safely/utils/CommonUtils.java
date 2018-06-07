@@ -1,11 +1,15 @@
 package com.kubiakpatryk.safely.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 
@@ -82,6 +86,19 @@ public final class CommonUtils {
                 && original.getModified().equals(modified.getModified())
 //                && original.isBookmarked() == modified.isBookmarked());
         );
+    }
+
+    public static void showSoftKeyboard(Window window) {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && activity.getCurrentFocus() != null)
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     public static void setCardColor(CardView cardView, int colorId) {

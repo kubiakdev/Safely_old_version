@@ -27,8 +27,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter<V>
         implements LoginPatternMvpPresenter<V> {
 
-    private int tryCount = 0;
-    private String firstTryValue;
+    private String firstTryValue = "";
     private int lives = 3;
 
     @BindView(R.id.pattern_lock_layout_pattern_lock)
@@ -49,11 +48,12 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
         super.onAttach(mvpView);
         Unbinder unbinder = ButterKnife.bind(this, getMvpView().getActivity());
         getMvpView().setUnBinder(unbinder);
-        initializePatternLock();
+        initializeLock();
     }
 
-    private void initializePatternLock() {
-        if (!getDataManager().getLock().equals(""))
+    private void initializeLock() {
+        if (getDataManager().getLockMethod().equals(AppConstants.PATTERN_LOCK_METHOD)
+                && !getDataManager().getLock().equals(""))
             title.setText(R.string.patternLock_selectYourLock);
         else title.setText(R.string.patternLock_chooseYourLock);
 
@@ -62,9 +62,10 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .subscribe(event -> {
                     if (event.getEventType() == PatternLockCompoundEvent.EventType.PATTERN_COMPLETE) {
-                        if (getDataManager().getLock().equals("")) {
-                            if (tryCount == 0) onFirstTryAddLock(event);
-                            else if (tryCount == 1) onSecondTryAddLock(event);
+                        if (getDataManager().getLock().equals("")
+                                && getDataManager().getLockMethod().equals("")) {
+                            if (firstTryValue.equals("")) onFirstTryAddLock(event);
+                            else onSecondTryAddLock(event);
                         } else {
                             if (getDataManager().getLock().equals(PatternLockUtils
                                     .patternToString(patternLockView,
@@ -79,7 +80,6 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
     private void onFirstTryAddLock(PatternLockCompoundEvent event) {
         firstTryValue = PatternLockUtils.patternToString(patternLockView,
                 event.getPattern());
-        tryCount++;
         title.setText(R.string.patternLock_chooseYourLockAgain);
         patternLockView.clearPattern();
     }
@@ -87,11 +87,11 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
     private void onSecondTryAddLock(PatternLockCompoundEvent event) {
         String patternSecondTry = PatternLockUtils.patternToString(patternLockView,
                 event.getPattern());
-        if (firstTryValue.equals(patternSecondTry)) onLocksAreSame(patternSecondTry);
+        if (firstTryValue.equals(patternSecondTry)) onLocksAreSame();
         else onLocksAreDifferent();
     }
 
-    private void onLocksAreSame(final String patternSecondTry) {
+    private void onLocksAreSame() {
         Single.fromCallable(() -> {
             patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
             title.setText(R.string.loginActivity_rememberThat);
@@ -100,11 +100,11 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
                 .delay(AppConstants.LOGIN_ACTIVITY_LONG_LOCK_DURATION, TimeUnit.MILLISECONDS)
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(i -> {
-                    getDataManager().setLock(patternSecondTry);
+                    getDataManager().setLock(firstTryValue);
                     getDataManager().setLockMethod(AppConstants.PATTERN_LOCK_METHOD);
                     getDataManager().setIsFirstLaunch(false);
-                    tryCount++;
                     getMvpView().openSecureChooseActivity();
+                    getMvpView().finish();
                 });
     }
 
@@ -126,6 +126,7 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
         patternLockView.setViewMode(
                 PatternLockView.PatternViewMode.CORRECT);
         getMvpView().openMainActivity();
+        getMvpView().finish();
     }
 
     private void onWrongPattern() {

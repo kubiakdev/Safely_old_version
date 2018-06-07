@@ -2,6 +2,7 @@ package com.kubiakpatryk.safely.ui.login;
 
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 
 import com.kubiakpatryk.safely.ui.base.MvpView;
 
@@ -12,6 +13,10 @@ public interface LoginMvpView extends MvpView{
     AppCompatActivity getActivity();
 
     Resources getResources();
+
+    Window getWindow();
+
+    void finish();
 
     void openMainActivity();
 

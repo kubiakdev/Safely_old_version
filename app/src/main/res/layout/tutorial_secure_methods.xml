@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/tutorialActivity_smallMargin"
+            android:layout_margin="@dimen/smallMargin"
             android:gravity="center"
             android:text="@string/tutorialActivity_chooseSecureMethod"
             android:textAlignment="center"
@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:layout_margin="@dimen/smallMargin"
                         android:contentDescription="@string/tutorialActivity_pinLockDescription"
                         android:src="@drawable/pin_lock" />
 
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:layout_margin="@dimen/smallMargin"
                         android:contentDescription="@string/tutorialActivity_passwordLockDescription"
                         android:src="@drawable/password_lock" />
 
@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:layout_margin="@dimen/smallMargin"
                         android:contentDescription="@string/tutorialActivity_patternLockDescription"
                         android:src="@drawable/pattern_lock" />
 
@@ -217,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/tutorialActivity_smallMargin"
+                        android:layout_margin="@dimen/smallMargin"
                         android:contentDescription="@string/tutorialActivity_noLockDescription"
                         android:src="@drawable/no_lock" />
 

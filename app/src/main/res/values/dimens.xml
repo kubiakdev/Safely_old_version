@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--General-->
+    <dimen name="smallMargin">16dp</dimen>
+    <dimen name="bigMargin">32dp</dimen>
+
+
     <!--Login Activity-->
     <dimen name="loginActivity_textView_size">24sp</dimen>
 
@@ -12,6 +17,7 @@
     <dimen name="loginActivity_pinLock_keyPad_horizontalSpacing">32dp</dimen>
     <dimen name="loginActivity_pinLock_keypad_verticalSpacing">0dp</dimen>
 
+
     <!--Main activity-->
     <dimen name="mainActivity_textView_noNotesInformation_fontSize">24sp</dimen>
     <dimen name="mainActivity_fab_size">56dp</dimen>
@@ -23,6 +29,7 @@
 
     <!--Note model-->
     <dimen name="noteModel_textView_content_size">16sp</dimen>
+
 
     <!--Options activity-->
     <dimen name="optionsActivity_toolbar_textView_title_fontSize">28sp</dimen>
@@ -41,16 +48,16 @@
     <dimen name="sortChooseLayout_textView_category_fontSize">20sp</dimen>
     <dimen name="sortChooseLayout_textView_option_fontSize">14sp</dimen>
 
+
     <!--Small action buttons main-->
     <dimen name="smallActionButtonsMain_smallFab_margin">30dp</dimen>
 
+
     <!--Tutorial activity-->
-    <dimen name="tutorialActivity_smallMargin">16dp</dimen>
-    <dimen name="tutorialActivity_bigMargin">32dp</dimen>
     <dimen name="tutorialActivity_cardView_margin">4dp</dimen>
 
     <dimen name="tutorialActivity_radioGroup_height">56dp</dimen>
-    <item name="tutorialActivity_radioButton_scale" type="dimen" format="float">0.7</item>
+    <item name="tutorialActivity_radioButton_scale" format="float" type="dimen">0.7</item>
 
     <dimen name="tutorialActivity_textView_fontSize">18sp</dimen>
     <dimen name="tutorialActivity_textView_big_fontSize">24sp</dimen>

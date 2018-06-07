@@ -8,12 +8,12 @@ import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.dialog.BaseDialogFragment;
+import com.kubiakpatryk.safely.utils.CommonUtils;
 import com.kubiakpatryk.safely.utils.ScreenUtils;
 
 import javax.inject.Inject;
@@ -80,8 +80,7 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        if (getDialog().getWindow() != null) getDialog().getWindow()
-                .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        if (getDialog().getWindow() != null) CommonUtils.showSoftKeyboard(getDialog().getWindow());
         super.onActivityCreated(savedInstanceState);
     }
 

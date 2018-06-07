@@ -86,7 +86,7 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
 
     @OnClick(R.id.tutorialActivity_constraintLayout_passwordLock)
     public void onPasswordLockClick() {
-        Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
+        presenter.onPasswordLockClick();
     }
 
     @OnClick(R.id.tutorialActivity_constraintLayout_noLock)

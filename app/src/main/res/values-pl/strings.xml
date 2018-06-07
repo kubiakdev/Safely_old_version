@@ -27,10 +27,15 @@
 
     <!--PasswordLock-->
     <string name="passwordLock_chooseYourLock">"Teraz, wybierz swoje hasło"</string>
-    <string name="passwordLock_chooseYourLockAgain">"Wybierz swoje hasło ponownie"</string>
+    <string name="passwordLock_chooseYourLockAgain">"Wpisz swoje hasło ponownie"</string>
     <string name="passwordLock_locksMustBeTheSame">Hasła muszą być takie same!
         \nSpróbuj ponownie!</string>
-    <string name="passwordLock_selectYourLock">"Wybierz swoje hasło"</string>
+    <string name="passwordLock_selectYourLock">"Wpisz swoje hasło"</string>
+    <string name="passwordLock_save">Zapisz</string>
+    <string name="passwordLock_minimalPasswordLength">
+       Twoje hasło musi zawierać co najmniej 1 znak!</string>
+
+
 
     <!--NoLock-->
     <string name="noLock_question">Na pewno nie chcesz żadnej blokady?

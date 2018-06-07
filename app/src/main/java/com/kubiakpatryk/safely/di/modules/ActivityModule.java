@@ -12,6 +12,8 @@ import com.kubiakpatryk.safely.ui.custom.CustomGestureListener;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.custom.CustomRecycler;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
+import com.kubiakpatryk.safely.ui.login.password.LoginPasswordMvpPresenter;
+import com.kubiakpatryk.safely.ui.login.password.LoginPasswordPresenter;
 import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternPresenter;
 import com.kubiakpatryk.safely.ui.login.pin.LoginPinMvpPresenter;
@@ -83,6 +85,13 @@ public class ActivityModule {
     @Provides
     SchedulerProviderHelper provideSchedulerHelperProvider() {
         return new SchedulerProvider();
+    }
+
+    @Provides
+    @PerActivity
+    LoginPasswordMvpPresenter<LoginMvpView> provideLoginPasswordMvpPresenter(
+            LoginPasswordPresenter<LoginMvpView> presenter) {
+        return presenter;
     }
 
     @Provides

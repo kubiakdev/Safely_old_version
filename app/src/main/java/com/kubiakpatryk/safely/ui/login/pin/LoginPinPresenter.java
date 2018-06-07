@@ -34,8 +34,7 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
         super(dataManager, schedulerProviderHelper, compositeDisposable);
     }
 
-    private int tryCount = 0;
-    private String firstTryValue;
+    private String firstTryValue = "";
     private int lives = 3;
 
     @BindView(R.id.pin_lock_layout_pin_lock)
@@ -55,11 +54,12 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
         super.onAttach(mvpView);
         Unbinder unbinder = ButterKnife.bind(this, getMvpView().getActivity());
         getMvpView().setUnBinder(unbinder);
-        initializePatternLock();
+        initializeLock();
     }
 
-    private void initializePatternLock() {
-        if (!getDataManager().getLock().equals(""))
+    private void initializeLock() {
+        if (getDataManager().getLockMethod().equals(AppConstants.PIN_LOCK_METHOD)
+                && !getDataManager().getLock().equals(""))
             title.setText(R.string.pinLock_selectYourLock);
         else title.setText(R.string.pinLock_chooseYourLock);
 
@@ -67,9 +67,10 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
         pinLockView.setPinLockListener(new PinLockListener() {
             @Override
             public void onComplete(String pin) {
-                if (getDataManager().getLock().equals("")) {
-                    if (tryCount == 0) onFirstTryAddLock(pin);
-                    else if (tryCount == 1) onSecondTryAddLock(pin);
+                if (getDataManager().getLock().equals("")
+                        && getDataManager().getLockMethod().equals("")) {
+                    if (firstTryValue.equals("")) onFirstTryAddLock(pin);
+                    else onSecondTryAddLock(pin);
                 } else {
                     if (getDataManager().getLock().equals(pin)) onGoodPattern();
                     else onWrongPattern();
@@ -88,20 +89,19 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     private void onFirstTryAddLock(String pin) {
         firstTryValue = pin;
-        tryCount++;
         title.setText(R.string.pinLock_chooseYourLockAgain);
         pinLockView.resetPinLockView();
     }
 
     private void onSecondTryAddLock(String pin) {
-        if (firstTryValue.equals(pin)) onLocksAreSame(pin);
+        if (firstTryValue.equals(pin)) onLocksAreSame();
         else onLocksAreDifferent();
     }
 
-    private void onLocksAreSame(final String pin) {
+    private void onLocksAreSame() {
         Single.fromCallable(() -> {
             indicatorDots.setVisibility(View.GONE);
-            pinTextView.setText(pin);
+            pinTextView.setText(firstTryValue);
             pinLockView.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
             title.setText(R.string.loginActivity_rememberThat);
             return true;
@@ -109,11 +109,11 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
                 .delay(AppConstants.LOGIN_ACTIVITY_LONG_LOCK_DURATION, TimeUnit.MILLISECONDS)
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribe(i -> {
-                    getDataManager().setLock(pin);
+                    getDataManager().setLock(firstTryValue);
                     getDataManager().setLockMethod(AppConstants.PIN_LOCK_METHOD);
                     getDataManager().setIsFirstLaunch(false);
-                    tryCount++;
                     getMvpView().openSecureChooseActivity();
+                    getMvpView().finish();
                 });
     }
 
@@ -134,6 +134,7 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
     private void onGoodPattern() {
         pinLockView.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
         getMvpView().openMainActivity();
+        getMvpView().finish();
     }
 
     private void onWrongPattern() {

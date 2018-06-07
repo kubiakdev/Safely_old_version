@@ -28,10 +28,14 @@
 
     <!--PasswordLock-->
     <string name="passwordLock_chooseYourLock">"Now, choose your password"</string>
-    <string name="passwordLock_chooseYourLockAgain">"Choose your password again"</string>
+    <string name="passwordLock_chooseYourLockAgain">"Write your password again"</string>
     <string name="passwordLock_locksMustBeTheSame">Passwords must be the same
         \nTry Again!</string>
-    <string name="passwordLock_selectYourLock">"Select your password"</string>
+    <string name="passwordLock_selectYourLock">"Write your password"</string>
+    <string name="passwordLock_save">Save</string>
+    <string name="passwordLock_minimalPasswordLength">
+        Your password must be at least 1 sign!</string>
+
 
     <!--NoLock-->
     <string name="noLock_question">Are you sure you don\'t want to have any secure method?

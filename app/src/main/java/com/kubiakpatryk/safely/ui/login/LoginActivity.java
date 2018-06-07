@@ -2,13 +2,13 @@ package com.kubiakpatryk.safely.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
+import com.kubiakpatryk.safely.ui.login.password.LoginPasswordMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.pin.LoginPinMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
@@ -20,6 +20,9 @@ import javax.inject.Inject;
 import butterknife.Unbinder;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
+
+    @Inject
+    LoginPasswordMvpPresenter<LoginMvpView> passwordPresenter;
 
     @Inject
     LoginPatternMvpPresenter<LoginMvpView> patternPresenter;
@@ -42,11 +45,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    public Resources getResources() {
-        return super.getResources();
     }
 
     @Override
@@ -92,6 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     protected void onDestroy() {
+        passwordPresenter.onDetach();
         patternPresenter.onDetach();
         pinPresenter.onDetach();
         super.onDestroy();
@@ -102,10 +101,23 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         if (getIntent().getExtras() != null)
             result = getIntent().getExtras().getString(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME);
         if (result != null) {
-            if (result.equals(AppConstants.PATTERN_LOCK_METHOD)) initializePatternLock();
-            else if (result.equals(AppConstants.PIN_LOCK_METHOD)) initializePinLock();
+            switch (result) {
+                case AppConstants.PATTERN_LOCK_METHOD:
+                    initializePatternLock();
+                    break;
+                case AppConstants.PIN_LOCK_METHOD:
+                    initializePinLock();
+                    break;
+                case AppConstants.PASSWORD_LOCK_METHOD:
+                    initializePasswordLock();
+                    break;
+            }
         }
+    }
 
+    private void initializePasswordLock() {
+        setContentView(R.layout.password_lock_layout);
+        passwordPresenter.onAttach(this);
     }
 
     private void initializePatternLock() {
