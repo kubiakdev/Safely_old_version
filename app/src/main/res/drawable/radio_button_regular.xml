@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="@dimen/tutorialActivity_radioButton_padding"
+                android:left="@dimen/tutorialActivity_radioButton_padding"
+                android:right="@dimen/tutorialActivity_radioButton_padding"
+                android:top="@dimen/tutorialActivity_radioButton_padding" />
+
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+
+            <solid android:color="@android:color/tab_indicator_text" />
+        </shape>
+    </item>
+</layer-list>

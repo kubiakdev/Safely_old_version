@@ -66,36 +66,48 @@
 
             <RadioButton
                 android:id="@+id/tutorialActivity_radioButton_welcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/smallMargin"
-                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
-                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
+                android:layout_width="@dimen/tutorialActivity_radioButton_size"
+                android:layout_height="@dimen/tutorialActivity_radioButton_size"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:background="@drawable/radio_button_background"
+                android:button="@android:color/transparent" />
 
             <RadioButton
                 android:id="@+id/tutorialActivity_radioButton_byteSafety"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/smallMargin"
-                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
-                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
+                android:layout_width="@dimen/tutorialActivity_radioButton_size"
+                android:layout_height="@dimen/tutorialActivity_radioButton_size"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:background="@drawable/radio_button_background"
+                android:button="@android:color/transparent" />
 
 
             <RadioButton
                 android:id="@+id/tutorialActivity_radioButton_internetSafety"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/smallMargin"
-                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
-                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
+                android:layout_width="@dimen/tutorialActivity_radioButton_size"
+                android:layout_height="@dimen/tutorialActivity_radioButton_size"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:background="@drawable/radio_button_background"
+                android:button="@android:color/transparent" />
 
             <RadioButton
                 android:id="@+id/tutorialActivity_radioButton_secureMethods"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/smallMargin"
-                android:scaleX="@dimen/tutorialActivity_radioButton_scale"
-                android:scaleY="@dimen/tutorialActivity_radioButton_scale" />
+                android:layout_width="@dimen/tutorialActivity_radioButton_size"
+                android:layout_height="@dimen/tutorialActivity_radioButton_size"
+                android:layout_marginEnd="@dimen/smallMargin"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginRight="@dimen/smallMargin"
+                android:layout_marginStart="@dimen/smallMargin"
+                android:background="@drawable/radio_button_background"
+                android:button="@android:color/transparent" />
 
         </RadioGroup>
 

@@ -36,10 +36,10 @@
        Twoje hasło musi zawierać co najmniej 1 znak!</string>
 
     <!--NoLock-->
-    <string name="noLock_alertDialog_title">Na pewno nie chcesz żadnej blokady?</string>
+    <string name="noLock_alertDialog_title">Jesteś pewien, że nie chcesz żadnej blokady?</string>
     <string name="noLock_alertDialog_message">(Możesz później zmienić tą opcję)</string>
-    <string name="noLock_alertDialog_yes">Nie chcę</string>
-    <string name="noLock_alertDialog_no">Jednak chcę</string>
+    <string name="noLock_alertDialog_yes">Tak</string>
+    <string name="noLock_alertDialog_no">Nie</string>
 
 
     <!--Main Activity-->
