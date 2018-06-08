@@ -56,6 +56,8 @@
 
     <!--Note_layout-->
     <string name="noteLayout_editTextHint">Napisz swoją notatkę</string>
+    <string name="noteLayout_cancel">Anuluj</string>
+    <string name="noteLayout_save">Zapisz</string>
 
     <!--RecyclerView-->
     <string name="recyclerView_noNotesInformation">Nie masz żadnych notatek

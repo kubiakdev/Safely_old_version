@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,18 +14,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/note_layout_editText_noteContent"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/noteLayout_editTextHint"
-            android:textSize="@dimen/noteLayout_editText_noteContent_size"
-            app:backgroundTint="@color/secondaryColor">
-        </android.support.v7.widget.AppCompatEditText>
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/note_layout_editText_noteContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/noteLayout_editTextHint"
+                android:textSize="@dimen/noteLayout_editText_noteContent_size"
+                app:backgroundTint="@color/secondaryColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/note_layout_text_view_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/smallMargin"
+                        android:textColor="@color/secondaryColor"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="@string/noteLayout_cancel" />
+
+                    <TextView
+                        android:id="@+id/note_layout_text_view_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/smallMargin"
+                        android:textColor="@color/secondaryColor"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/noteLayout_save" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

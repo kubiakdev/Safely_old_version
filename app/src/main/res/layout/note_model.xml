@@ -19,7 +19,7 @@
             android:rotation="45"
             android:layout_gravity="end"
             android:visibility="gone"
-            android:contentDescription=""
+            android:contentDescription="@string/noteModel_shapeImageDescription"
             android:src="@drawable/bookmark_shape" />
 
         <TextView

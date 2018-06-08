@@ -72,7 +72,7 @@ public class SortChooseDialogFragment extends BaseDialogFragment
             presenter.onAttach(this);
         }
 
-        setUpDialogSize(view);
+        setDialogSize(view);
 
         if (getDialog().getWindow() != null)
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -82,7 +82,7 @@ public class SortChooseDialogFragment extends BaseDialogFragment
     }
 
     @Override
-    public void setUpDialogSize(View view) {
+    public void setDialogSize(View view) {
         view.addOnLayoutChangeListener((v, i, i1, i2, i3, i4, i5, i6, i7) -> {
             if (view.getHeight() > ScreenUtils.getScreenHeight() * 3 / 5) {
                 view.setLayoutParams(new FrameLayout.LayoutParams(

@@ -1,5 +1,7 @@
 package com.kubiakpatryk.safely.ui.main.dialogs.note_dialog;
 
+import android.widget.TextView;
+
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
@@ -12,6 +14,8 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresenter<V>
         implements NoteDialogMvpPresenter<V> {
+
+    private boolean isCancelled = false;
 
     @Inject
     NoteDialogPresenter(DataManager dataManager,
@@ -43,6 +47,7 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
 
     @Override
     public void onDetach() {
+        if (!isCancelled)
         getMvpView().onCancelOrDismissDialog(getMvpView().getNoteEntity(), new NoteEntity(
                 getMvpView().getNoteEntity().getId(),
                 getMvpView().getEditText().getText().toString(),
@@ -50,6 +55,17 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
                 CommonUtils.getTimeStamp(),
                 false));
         super.onDetach();
+    }
+
+    @Override
+    public void initializeTextViews(TextView cancel, TextView save) {
+        cancel.setTextSize(getDataManager().getFontSize());
+        save.setTextSize(getDataManager().getFontSize());
+        cancel.setOnClickListener(v -> {
+            isCancelled = true;
+            getMvpView().dismiss();
+        });
+        save.setOnClickListener(v -> getMvpView().dismiss());
     }
 
     private String getCreated() {

@@ -59,6 +59,11 @@
 
     <!--Note_layout-->
     <string name="noteLayout_editTextHint">Write your note here</string>
+    <string name="noteLayout_cancel">Cancel</string>
+    <string name="noteLayout_save">Save</string>
+
+    <!--Note_model-->
+    <string name="noteModel_shapeImageDescription">Bookmark</string>
 
     <!--RecyclerView-->
     <string name="recyclerView_noNotesInformation">You have not any notes

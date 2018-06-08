@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
@@ -23,15 +24,21 @@ import butterknife.ButterKnife;
 
 public class NoteDialogFragment extends BaseDialogFragment implements NoteDialogMvpView {
 
-    private static final String TAG = NoteDialogFragment.class.getName();
     public NoteEntity noteEntity;
     public static OnCancelOrDismissDialogCallback onCancelOrDismissDialogCallback;
+    private static final String TAG = NoteDialogFragment.class.getName();
 
     @Inject
     NoteDialogMvpPresenter<NoteDialogMvpView> presenter;
 
     @BindView(R.id.note_layout_editText_noteContent)
     AppCompatEditText editText;
+
+    @BindView(R.id.note_layout_text_view_cancel)
+    TextView tvCancel;
+
+    @BindView(R.id.note_layout_text_view_save)
+    TextView tvSave;
 
     public static NoteDialogFragment newInstance(NoteEntity entity) {
         NoteDialogFragment dialog = new NoteDialogFragment();
@@ -58,12 +65,13 @@ public class NoteDialogFragment extends BaseDialogFragment implements NoteDialog
             presenter.onAttach(this);
         }
 
-        setUpDialogSize(view);
+        setDialogSize(view);
+        presenter.initializeTextViews(tvCancel, tvSave);
         return view;
     }
 
     @Override
-    public void setUpDialogSize(View view) {
+    public void setDialogSize(View view) {
         view.addOnLayoutChangeListener((v, i, i1, i2, i3, i4, i5, i6, i7) -> {
             if (view.getHeight() > ScreenUtils.getScreenHeight() * 3 / 5) {
                 view.setLayoutParams(new FrameLayout.LayoutParams(

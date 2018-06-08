@@ -6,7 +6,5 @@ import com.kubiakpatryk.safely.ui.base.MvpView;
 
 public interface DialogMvpView extends MvpView {
 
-    void dismissDialog(String tag);
-
-    void setUpDialogSize(View view);
+    void setDialogSize(View view);
 }

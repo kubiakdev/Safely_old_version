@@ -14,7 +14,9 @@ public interface NoteDialogMvpView extends MvpView {
 
     NoteEntity getNoteEntity();
 
-    void setNoteEntity(NoteEntity entity);
+    void dismiss();
 
     void onCancelOrDismissDialog(NoteEntity original, NoteEntity modified);
+
+    void setNoteEntity(NoteEntity entity);
 }

@@ -80,10 +80,6 @@ public abstract class BaseDialogFragment extends DialogFragment implements Dialo
         show(transaction, tag);
     }
 
-    @Override
-    public void dismissDialog(String tag) {
-        dismiss();
-    }
 
     @Override
     public void onDestroy() {
