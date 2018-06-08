@@ -38,7 +38,7 @@ public class PrefsManager implements PrefsHelper {
 
     @Override
     public Long getFontSize() {
-        return preferences.getLong(PREFS_FONT_SIZE_KEY, 14);
+        return preferences.getLong(PREFS_FONT_SIZE_KEY, 16);
     }
 
     @Override

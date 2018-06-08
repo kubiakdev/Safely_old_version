@@ -14,7 +14,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     public static OnActionUpEvent onActionUpEvent;
 
-    private int currentView = 1;
+    private int cachedViewId = 0;
     private int currentPosition = 0;
     private int viewsWidth = ScreenUtils.getScreenWidth();
 
@@ -45,9 +45,9 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     public boolean onTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
             updateCurrentView(getScrollDistance());
-            Runnable scrollToCenter = () -> smoothScrollTo((currentView - 1) * viewsWidth, 0);
+            Runnable scrollToCenter = () -> smoothScrollTo((cachedViewId) * viewsWidth, 0);
             postDelayed(scrollToCenter, 0);
-            onActionUpEvent.checkRadioButton(currentView - 1);
+            onActionUpEvent.checkRadioButton(cachedViewId);
             performClick();
         }
         return super.onTouchEvent(ev);
@@ -59,20 +59,25 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     public void scrollToView(final int viewId) {
-        Runnable scrollToCenter = () ->  smoothScrollTo(viewId * viewsWidth, 0);
+        Runnable scrollToCenter = () ->  smoothScrollTo((viewId) * viewsWidth, 0);
         postDelayed(scrollToCenter, 0);
-        currentView = viewId;
+        onActionUpEvent.checkRadioButton(viewId);
+        cachedViewId = viewId;
+    }
+
+    public int getCachedViewId() {
+        return cachedViewId;
     }
 
     private void updateCurrentView(int distance) {
         if (distance > viewsWidth / 4)
-            currentView++;
+            cachedViewId++;
         else if (distance < -(viewsWidth / 4))
-            currentView--;
+            cachedViewId--;
     }
 
     private int getScrollDistance() {
-        int touchStartPosition = viewsWidth * currentView - viewsWidth;
+        int touchStartPosition = viewsWidth * cachedViewId;
         return currentPosition - touchStartPosition;
     }
 

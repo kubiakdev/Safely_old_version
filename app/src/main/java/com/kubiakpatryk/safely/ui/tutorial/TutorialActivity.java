@@ -56,7 +56,7 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
-        presenter.setLayoutParameters(constraintLayoutList);
+        presenter.initializeConstraintLayouts(constraintLayoutList);
         initializeRadioGroup();
     }
 

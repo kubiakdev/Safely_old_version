@@ -4,6 +4,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.widget.RadioGroup;
 
+import com.annimon.stream.Stream;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
@@ -63,12 +64,9 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
     }
 
     @Override
-    public void setLayoutParameters(List<ConstraintLayout> layouts) {
-        getCompositeDisposable().add(Observable.fromIterable(layouts)
-                .subscribeOn(getSchedulerProviderHelper().io())
-                .observeOn(getSchedulerProviderHelper().ui())
-                .subscribe(layout -> layout.getLayoutParams().width =
-                        ScreenUtils.getScreenWidth()));
+    public void initializeConstraintLayouts(List<ConstraintLayout> layouts) {
+        setLayoutParameters(layouts);
+        setLayoutOnClickListeners(layouts);
     }
 
     @Override
@@ -101,5 +99,21 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
                 getMvpView().getString(R.string.noLock_alertDialog_no),
                 (dialog, which) -> dialog.dismiss());
         alertDialog.show();
+    }
+
+    private void setLayoutParameters(List<ConstraintLayout> layouts) {
+        getCompositeDisposable().add(Observable.fromIterable(layouts)
+                .subscribeOn(getSchedulerProviderHelper().io())
+                .observeOn(getSchedulerProviderHelper().ui())
+                .subscribe(layout ->
+                        layout.getLayoutParams().width = ScreenUtils.getScreenWidth()));
+    }
+
+    private void setLayoutOnClickListeners(List<ConstraintLayout> layouts) {
+        Stream.of(layouts).forEach(layout -> layout.setOnClickListener(v -> {
+                    int currentView = getMvpView().getScrollView().getCachedViewId();
+                    if (currentView != getMvpView().getRadioButtonsIdsArray().length - 1)
+                    getMvpView().getScrollView().scrollToView(currentView + 1);
+                }));
     }
 }

@@ -21,5 +21,5 @@ public interface TutorialMvpPresenter<V extends TutorialMvpView> extends MvpPres
 
     void onNoLockClick();
 
-    void setLayoutParameters(List<ConstraintLayout> layouts);
+    void initializeConstraintLayouts(List<ConstraintLayout> layouts);
 }
