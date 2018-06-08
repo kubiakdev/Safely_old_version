@@ -83,9 +83,8 @@ public final class CommonUtils {
         return (original.getId() == modified.getId()
                 && original.getContent().equals(modified.getContent())
                 && original.getCreated().equals(modified.getCreated())
-                && original.getModified().equals(modified.getModified())
+                && original.getModified().equals(modified.getModified()));
 //                && original.isBookmarked() == modified.isBookmarked());
-        );
     }
 
     public static void showSoftKeyboard(Window window) {

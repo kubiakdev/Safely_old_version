@@ -53,7 +53,7 @@ public class NoteDialogPresenter<V extends NoteDialogMvpView> extends BasePresen
                 getMvpView().getEditText().getText().toString(),
                 getCreated(),
                 CommonUtils.getTimeStamp(),
-                false));
+                getMvpView().getNoteEntity().isBookmarked()));
         super.onDetach();
     }
 
