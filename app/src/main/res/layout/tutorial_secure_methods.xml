@@ -22,7 +22,7 @@
             android:gravity="center"
             android:text="@string/tutorialActivity_chooseSecureMethod"
             android:textAlignment="center"
-            android:textSize="@dimen/tutorialActivity_textView_big_fontSize" />
+            android:textSize="@dimen/tutorialActivity_textView_title_fontSize" />
 
 
         <android.support.constraint.ConstraintLayout
@@ -80,7 +80,7 @@
                         android:gravity="center"
                         android:text="@string/tutorialActivity_pinLock"
                         android:textAlignment="center"
-                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+                        android:textSize="@dimen/tutorialActivity_textView_message_fontSize" />
 
                 </android.support.v7.widget.CardView>
 
@@ -134,7 +134,7 @@
                         android:gravity="center"
                         android:text="@string/tutorialActivity_passwordLock"
                         android:textAlignment="center"
-                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+                        android:textSize="@dimen/tutorialActivity_textView_message_fontSize" />
 
                 </android.support.v7.widget.CardView>
 
@@ -187,7 +187,7 @@
                         android:gravity="center"
                         android:text="@string/tutorialActivity_patternLock"
                         android:textAlignment="center"
-                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+                        android:textSize="@dimen/tutorialActivity_textView_message_fontSize" />
 
                 </android.support.v7.widget.CardView>
 
@@ -240,7 +240,7 @@
                         android:gravity="center"
                         android:text="@string/tutorialActivity_noLock"
                         android:textAlignment="center"
-                        android:textSize="@dimen/tutorialActivity_textView_fontSize" />
+                        android:textSize="@dimen/tutorialActivity_textView_message_fontSize" />
 
                 </android.support.v7.widget.CardView>
 

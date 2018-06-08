@@ -92,13 +92,16 @@
 
 
     <!--Tutorial activity-->
-    <string name="tutorialActivity_welcome">Witaj w Safely!
-    \nmiejscu, w którym możesz bezpiecznie zapisywać swoje notatki i hasła</string>
-    <string name="tutorialActivity_byte_safety">Czuj się bezpiecznie!
-    \nSafely szyfruje twoje dane do postaci bajtów pomnożonych przez pewną liczbę</string>
-    <string name="tutorialActivity_internet_safety">Brak połączenia z internetem!
-    \Twoje dane nie mogą więc być wysłane na żadną chmurę lub serwer  </string>
-    <string name="tutorialActivity_chooseSecureMethod">Wybierz swoją metodę zabezpieczenia</string>
+    <string name="tutorialActivity_welcome_title">Witaj w Safely!</string>
+    <string name="tutorialActivity_welcome_message">
+        Miejscu, w którym możesz bezpiecznie zapisywać swoje notatki i hasła</string>
+    <string name="tutorialActivity_byte_safety_title">Twoje dane są szyfrowane!</string>
+    <string name="tutorialActivity_byte_safety_message">
+        Safely szyfruje twoje dane do postaci bajtów pomnożonych przez pewną liczbę</string>
+    <string name="tutorialActivity_internet_safety_title">Brak połączenia z internetem!</string>
+    <string name="tutorialActivity_internet_safety_message">
+        Safely nie ma połączenia z internetem, więc nikt nie zobaczy twoich danych w sieci!</string>
+    <string name="tutorialActivity_chooseSecureMethod">Wybierz metodę zabezpieczenia</string>
     <string name="tutorialActivity_patternLock">Wzór</string>
     <string name="tutorialActivity_patternLockDescription">Pattern lock</string>
     <string name="tutorialActivity_pinLock">PIN</string>

@@ -55,11 +55,10 @@
     <!--Tutorial activity-->
     <dimen name="tutorialActivity_cardView_margin">8dp</dimen>
 
-    <dimen name="tutorialActivity_radioButton_padding">17dp</dimen>
     <dimen name="tutorialActivity_radioButton_size">54dp</dimen>
     <dimen name="tutorialActivity_radioGroup_height">60dp</dimen>
 
     <dimen name="tutorialActivity_textView_big_fontSize">32sp</dimen>
-    <dimen name="tutorialActivity_textView_fontSize">24sp</dimen>
+    <dimen name="tutorialActivity_textView_message_fontSize">24sp</dimen>
     <dimen name="tutorialActivity_textView_margin">8dp</dimen>
 </resources>

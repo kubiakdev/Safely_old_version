@@ -117,13 +117,16 @@
     <string name="tutorialActivity_logotypeDescription">Logotype</string>
     <string name="tutorialActivity_bytesDescription">Bytes</string>
     <string name="tutorialActivity_wifi_offDescription">Wifi off</string>
-    <string name="tutorialActivity_welcome">Welcome in Safely!
-        \nYour new app where you can safe your notes and passwords</string>
-    <string name="tutorialActivity_byte_safety">Keep calm!
-        \nSafely encrypts your data to bytes multiplied by a big number</string>
-    <string name="tutorialActivity_internet_safety">No internet connection!
-    \n Your data cannot be send to any cloud or server</string>
-    <string name="tutorialActivity_chooseSecureMethod">Choose your secure method</string>
+    <string name="tutorialActivity_welcome_title">Welcome in Safely!</string>
+    <string name="tutorialActivity_welcome_message">
+        Your new app where you can safe your notes and passwords</string>
+    <string name="tutorialActivity_byte_safety_title">Your data are encrypted!</string>
+    <string name="tutorialActivity_byte_safety_message">
+        Safely encrypts your data to bytes multiplied by a big number</string>
+    <string name="tutorialActivity_internet_safety_title">No internet connection!</string>
+    <string name="tutorialActivity_internet_safety_message">
+      Safely has no internet connection so no one will see your data on the web! </string>
+    <string name="tutorialActivity_chooseSecureMethod">Choose secure method</string>
     <string name="tutorialActivity_patternLock">Pattern</string>
     <string name="tutorialActivity_patternLockDescription">Pattern lock</string>
     <string name="tutorialActivity_pinLock">PIN</string>
