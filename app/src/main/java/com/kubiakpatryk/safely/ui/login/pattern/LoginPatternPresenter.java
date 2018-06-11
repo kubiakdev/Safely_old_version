@@ -12,6 +12,7 @@ import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
 import java.util.concurrent.TimeUnit;
@@ -62,8 +63,9 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
                 .subscribeOn(getSchedulerProviderHelper().io())
                 .subscribe(event -> {
                     if (event.getEventType() == PatternLockCompoundEvent.EventType.PATTERN_COMPLETE) {
-                        if (getDataManager().getLock().equals("")
-                                && getDataManager().getLockMethod().equals("")) {
+                        if ((getDataManager().getLock().equals("")
+                                && getDataManager().getLockMethod().equals(""))
+                                || AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE) {
                             if (firstTryValue.equals("")) onFirstTryAddLock(event);
                             else onSecondTryAddLock(event);
                         } else {
@@ -125,7 +127,11 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
     private void onGoodPattern() {
         patternLockView.setViewMode(
                 PatternLockView.PatternViewMode.CORRECT);
-        getMvpView().openMainActivity();
+        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE) {
+            AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
+            AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
+            getMvpView().openTutorialActivity();
+        } else getMvpView().openMainActivity();
         getMvpView().finish();
     }
 

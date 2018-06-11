@@ -22,6 +22,8 @@ public interface LoginMvpView extends MvpView{
 
     void openSecureChooseActivity();
 
+    void openTutorialActivity();
+
     void startVibration();
 
     void restartActivity(String lockMethod);

@@ -3,6 +3,7 @@
     <!--General-->
     <string name="general_HideEncryptedNotesFirst">Ukryj wpierw zaszyfrowane notatki</string>
     <string name="general_notAvailableYet">Jeszcze niedostępne</string>
+    <string name="general_secureMethodChanged">Twoja metoda zabezpieczenia została zmieniona</string>
 
 
     <!--Login Activity-->
@@ -112,5 +113,8 @@
     <string name="tutorialActivity_passwordLockDescription">Password lock</string>
     <string name="tutorialActivity_noLock">Brak</string>
     <string name="tutorialActivity_noLockDescription">No lock</string>
+
+    <!--Tutorial secure methods-->
+    <string name="tutorial_secure_methods_text_view_cancel">Anuluj</string>
 
 </resources>

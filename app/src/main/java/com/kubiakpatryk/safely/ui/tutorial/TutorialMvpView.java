@@ -22,6 +22,8 @@ public interface TutorialMvpView extends MvpView{
 
     void openLoginActivity(String result);
 
+    void openMainActivity();
+
     void openSecureChooseActivity();
 
 }

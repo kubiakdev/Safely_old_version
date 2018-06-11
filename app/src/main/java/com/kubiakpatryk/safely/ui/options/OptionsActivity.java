@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
+import com.kubiakpatryk.safely.ui.login.LoginActivity;
 import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
+import com.kubiakpatryk.safely.utils.AppConstants;
 
 import javax.inject.Inject;
 
@@ -60,14 +61,18 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     }
 
     @Override
+    public void openLoginActivity() {
+        Intent intent = LoginActivity.getStartIntent(this);
+        intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, presenter.getLockMethod());
+        startActivity(intent);
+    }
+    @Override
     public void onRestartContentView() {
         presenter.setLanguage();
         setContentView(R.layout.activity_options);
-
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
-
         init();
     }
 
@@ -92,10 +97,10 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     }
 
     private void init(){
-        initializeShowBytesSwitch();
         initializeChangeFontSizeTextView();
         initializeChangeLanguageTextView();
         initializeChangeRecyclerColorSample();
+        initializeShowBytesSwitch();
     }
 
     private void initializeChangeFontSizeTextView() {
@@ -127,7 +132,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
 
     @OnClick(R.id.optionsActivity_cardView_changeSecureMethod)
     public void onChangeSecureMethodClick() {
-        Toast.makeText(this, R.string.general_notAvailableYet, Toast.LENGTH_SHORT).show();
+        presenter.onChangeSecureMethod();
     }
 
     public interface OnReloadAdapterListCallback {

@@ -19,6 +19,7 @@ import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.CommonUtils;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
@@ -69,7 +70,8 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
 
     private void initializeLock() {
         if (getDataManager().getLockMethod().equals(AppConstants.PASSWORD_LOCK_METHOD)
-                && !getDataManager().getLock().equals(""))
+                && !getDataManager().getLock().equals("")
+                && !AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE)
             title.setText(R.string.passwordLock_selectYourLock);
         else {
             title.setText(R.string.passwordLock_chooseYourLock);
@@ -89,7 +91,7 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String password = getDataManager().getLock();
-                if (!password.equals("")) {
+                if (!password.equals("") && !AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE) {
                     if (password.length() == charSequence.toString().length()) {
                         if (password.equals(charSequence.toString())) onGoodPassword();
                         else onWrongPassword();
@@ -160,7 +162,12 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
         editText.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
         editText.getBackground().mutate().setColorFilter(getMvpView().getResources()
                 .getColor(R.color.lockCorrect), PorterDuff.Mode.SRC_ATOP);
-        getMvpView().openMainActivity();
+        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+            AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
+            AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
+            getMvpView().openTutorialActivity();
+        }
+        else getMvpView().openMainActivity();
         getMvpView().finish();
     }
 

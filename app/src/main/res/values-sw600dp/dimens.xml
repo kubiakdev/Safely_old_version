@@ -57,6 +57,7 @@
 
     <dimen name="tutorialActivity_radioButton_size">54dp</dimen>
     <dimen name="tutorialActivity_radioGroup_height">60dp</dimen>
+    <dimen name="tutorialActivity_radioGroup_height_opposite">-60dp</dimen>
 
     <dimen name="tutorialActivity_textView_big_fontSize">32sp</dimen>
     <dimen name="tutorialActivity_textView_message_fontSize">24sp</dimen>

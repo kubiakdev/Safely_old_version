@@ -14,5 +14,7 @@ public interface OptionsMvpView extends MvpView {
 
     CardView getChangeRecyclerColorSample();
 
+    void openLoginActivity();
+
     void onRestartContentView();
 }

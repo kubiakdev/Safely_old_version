@@ -24,6 +24,11 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
     }
 
     @Override
+    public String getLockMethod() {
+        return getDataManager().getLockMethod();
+    }
+
+    @Override
     public void initializeChangeFontSizeTextView(TextView textView) {
         textView.setText(String.valueOf(getDataManager().getFontSize()));
         textView.setOnClickListener(v -> {
@@ -60,6 +65,12 @@ public class OptionsPresenter<V extends OptionsMvpView> extends BasePresenter<V>
     public void initializeChangeRecyclerColorSample() {
         getMvpView().getChangeRecyclerColorSample().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));
+    }
+
+    @Override
+    public void onChangeSecureMethod() {
+        AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = true;
+        getMvpView().openLoginActivity();
     }
 
     @Override

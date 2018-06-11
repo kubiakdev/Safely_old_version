@@ -21,6 +21,9 @@ public class AppStatics {
     public static boolean IS_SHOWING_ENCRYPTED_NOTES = false;
     public static boolean IS_JUST_SHOWING_ENCRYPTED_NOTES = false;
 
+    public static boolean IS_IN_CHANGE_LOCK_METHOD_MODE = false;
+    public static boolean IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
+
     public static NoteEntity CACHED_NOTE;
 
     public static List<NoteEntity> CACHED_NOTE_LIST;

@@ -3,16 +3,15 @@ package com.kubiakpatryk.safely.ui.secure_choose;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
+import com.kubiakpatryk.safely.utils.AppStatics;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SecureChooseActivity extends BaseActivity implements SecureChooseMvpView {
 
@@ -30,18 +29,17 @@ public class SecureChooseActivity extends BaseActivity implements SecureChooseMv
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
+        if (AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE){
+            openMainActivity();
+            finish();
+        }
+        else presenter.onGenerateCipherButtonClick();
     }
 
     @Override
     public void openMainActivity() {
         startActivity(MainActivity.getStartIntent(this));
         finish();
-    }
-
-    @OnClick(R.id.secureChooseActivity_button_generateCipher)
-    public void onGenerateCipherButtonClick(Button button){
-        button.setClickable(false);
-        presenter.onGenerateCipherButtonClick();
     }
 
     @Override

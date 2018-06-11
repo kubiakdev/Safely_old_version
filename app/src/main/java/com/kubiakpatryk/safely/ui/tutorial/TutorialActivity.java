@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.custom.CustomHorizontalScrollView;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
+import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 
 import java.util.List;
 
@@ -45,6 +48,9 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     @BindView(R.id.tutorialActivity_radioGroup)
     RadioGroup radioGroup;
 
+    @BindView(R.id.tutorial_secure_method_cancel)
+    TextView tvCancel;
+
     public static Intent getStartIntent(Context context) {
         return new Intent(context, TutorialActivity.class);
     }
@@ -58,6 +64,19 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
         presenter.onAttach(this);
         presenter.initializeConstraintLayouts(constraintLayoutList);
         initializeRadioGroup();
+
+        if (AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE) {
+            setContentView(R.layout.tutorial_secure_methods);
+            initializeCancelTextView(findViewById(R.id.tutorial_secure_method_cancel));
+            findViewById(R.id.tutorialActivity_constraintLayout_patternLock).setOnClickListener(v ->
+                    presenter.onPatternLockClick());
+            findViewById(R.id.tutorialActivity_constraintLayout_pinLock).setOnClickListener(v ->
+                    presenter.onPinLockClick());
+            findViewById(R.id.tutorialActivity_constraintLayout_passwordLock).setOnClickListener(v ->
+                    presenter.onPasswordLockClick());
+            findViewById(R.id.tutorialActivity_constraintLayout_noLock).setOnClickListener(v ->
+                    presenter.onNoLockClick());
+        }
     }
 
     @Override
@@ -65,6 +84,11 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
         Intent intent = LoginActivity.getStartIntent(this);
         intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, result);
         startActivity(intent);
+    }
+
+    @Override
+    public void openMainActivity() {
+        startActivity(MainActivity.getStartIntent(this));
     }
 
     @Override
@@ -96,7 +120,7 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
 
     @OnClick(R.id.tutorialActivity_constraintLayout_noLock)
     public void onNoLockClick() {
-      presenter.onNoLockClick();
+        presenter.onNoLockClick();
     }
 
     @Override
@@ -117,6 +141,10 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     @Override
     public int[] getRadioButtonsIdsArray() {
         return radioButtonsIdsArray;
+    }
+
+    private void initializeCancelTextView(TextView tvCancel) {
+        presenter.initializeCancelTextView(tvCancel);
     }
 
     private void initializeRadioGroup() {

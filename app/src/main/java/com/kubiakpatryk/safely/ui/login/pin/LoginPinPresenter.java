@@ -12,6 +12,7 @@ import com.kubiakpatryk.safely.data.DataManager;
 import com.kubiakpatryk.safely.ui.base.BasePresenter;
 import com.kubiakpatryk.safely.ui.login.LoginMvpView;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 import com.kubiakpatryk.safely.utils.rx.SchedulerProviderHelper;
 
 import java.util.concurrent.TimeUnit;
@@ -67,8 +68,9 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
         pinLockView.setPinLockListener(new PinLockListener() {
             @Override
             public void onComplete(String pin) {
-                if (getDataManager().getLock().equals("")
-                        && getDataManager().getLockMethod().equals("")) {
+                if ((getDataManager().getLock().equals("")
+                        && getDataManager().getLockMethod().equals(""))
+                        || AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE) {
                     if (firstTryValue.equals("")) onFirstTryAddLock(pin);
                     else onSecondTryAddLock(pin);
                 } else {
@@ -133,7 +135,12 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     private void onGoodPattern() {
         pinLockView.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
-        getMvpView().openMainActivity();
+        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+            AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
+            AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
+            getMvpView().openTutorialActivity();
+        }
+        else getMvpView().openMainActivity();
         getMvpView().finish();
     }
 

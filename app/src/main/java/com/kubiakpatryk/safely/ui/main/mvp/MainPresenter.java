@@ -41,6 +41,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+        AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = false;
         AppStatics.CIPHER_ENTITY_LIST.clear();
         getCompositeDisposable().add(getDataManager().getAllCipherEntity()
                 .subscribeOn(getSchedulerProviderHelper().io())

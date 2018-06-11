@@ -4,6 +4,7 @@
     <!--General-->
     <string name="general_HideEncryptedNotesFirst">Hide encrypted notes first</string>
     <string name="general_notAvailableYet">Not available yet</string>
+    <string name="general_secureMethodChanged">Your secure method has been changed</string>
 
 
     <!--Login Activity-->
@@ -140,5 +141,8 @@
     <string name="tutorialActivity_passwordLockDescription">Password lock</string>
     <string name="tutorialActivity_noLock">No lock</string>
     <string name="tutorialActivity_noLockDescription">No lock</string>
-    
+
+    <!--Tutorial secure methods-->
+    <string name="tutorial_secure_methods_text_view_cancel">Cancel</string>
+
 </resources>

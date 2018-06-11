@@ -13,7 +13,9 @@ import com.kubiakpatryk.safely.ui.login.pattern.LoginPatternMvpPresenter;
 import com.kubiakpatryk.safely.ui.login.pin.LoginPinMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.ui.secure_choose.SecureChooseActivity;
+import com.kubiakpatryk.safely.ui.tutorial.TutorialActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 
 import javax.inject.Inject;
 
@@ -29,6 +31,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Inject
     LoginPinMvpPresenter<LoginMvpView> pinPresenter;
+
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -56,6 +59,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     public void openSecureChooseActivity() {
         startActivity(SecureChooseActivity.getStartIntent(this));
+        finish();
+    }
+
+    @Override
+    public void openTutorialActivity() {
+        startActivity(TutorialActivity.getStartIntent(this));
         finish();
     }
 
@@ -112,7 +121,13 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     initializePasswordLock();
                     break;
                 case AppConstants.NO_LOCK_METHOD:
-                    openMainActivity();
+                    if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+                        AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
+                        AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
+                        openTutorialActivity();
+                        finish();
+                    }
+                    else openMainActivity();
                     break;
             }
         }
