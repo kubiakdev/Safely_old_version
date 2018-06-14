@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
-import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
+import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
 
 import javax.inject.Inject;
@@ -20,8 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OptionsActivity extends BaseActivity implements OptionsMvpView {
-
-    public static MainPresenter.OnReloadAdapterListCallback onReloadAdapterListCallback;
 
     @Inject
     OptionsMvpPresenter<OptionsMvpView> presenter;
@@ -56,7 +54,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
 
     @Override
     public void onBackPressed() {
-        onReloadAdapterListCallback.reloadAdapter();
+        startActivity(MainActivity.getStartIntent(this));
         super.onBackPressed();
     }
 
@@ -65,6 +63,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
         Intent intent = LoginActivity.getStartIntent(this);
         intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, presenter.getLockMethod());
         startActivity(intent);
+        finish();
     }
     @Override
     public void onRestartContentView() {
@@ -121,7 +120,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
 
     @OnClick(R.id.optionsActivity_leftArrowButton)
     public void onLeftArrowButtonClick() {
-        onReloadAdapterListCallback.reloadAdapter();
+        startActivity(MainActivity.getStartIntent(this));
         finish();
     }
 
@@ -133,9 +132,5 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     @OnClick(R.id.optionsActivity_cardView_changeSecureMethod)
     public void onChangeSecureMethodClick() {
         presenter.onChangeSecureMethod();
-    }
-
-    public interface OnReloadAdapterListCallback {
-        void reloadAdapter();
     }
 }

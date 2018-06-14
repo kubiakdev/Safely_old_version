@@ -102,6 +102,7 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     private void onLocksAreSame() {
         Single.fromCallable(() -> {
+            getMvpView().disableBackButton();
             indicatorDots.setVisibility(View.GONE);
             pinTextView.setText(firstTryValue);
             pinLockView.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));

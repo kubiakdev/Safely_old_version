@@ -23,6 +23,8 @@ import butterknife.Unbinder;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
+    private boolean isBackButtonEnabled = true;
+
     @Inject
     LoginPasswordMvpPresenter<LoginMvpView> passwordPresenter;
 
@@ -45,9 +47,16 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
+    public void disableBackButton() {
+        isBackButtonEnabled = false;
+    }
+
+    @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        if (isBackButtonEnabled) {
+            super.onBackPressed();
+            finish();
+        }
     }
 
     @Override
@@ -121,13 +130,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     initializePasswordLock();
                     break;
                 case AppConstants.NO_LOCK_METHOD:
-                    if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+                    if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE) {
                         AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
                         AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
                         openTutorialActivity();
                         finish();
-                    }
-                    else openMainActivity();
+                    } else openMainActivity();
                     break;
             }
         }

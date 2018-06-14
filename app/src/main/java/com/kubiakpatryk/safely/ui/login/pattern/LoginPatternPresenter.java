@@ -95,6 +95,7 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
 
     private void onLocksAreSame() {
         Single.fromCallable(() -> {
+            getMvpView().disableBackButton();
             patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
             title.setText(R.string.loginActivity_rememberThat);
             return true;

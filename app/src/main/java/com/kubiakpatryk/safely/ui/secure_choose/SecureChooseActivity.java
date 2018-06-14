@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppStatics;
@@ -25,7 +24,6 @@ public class SecureChooseActivity extends BaseActivity implements SecureChooseMv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secure_choose);
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
@@ -35,6 +33,9 @@ public class SecureChooseActivity extends BaseActivity implements SecureChooseMv
         }
         else presenter.onGenerateCipherButtonClick();
     }
+
+    @Override
+    public void onBackPressed() {}
 
     @Override
     public void openMainActivity() {

@@ -28,7 +28,6 @@ import io.reactivex.disposables.CompositeDisposable;
 public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         implements MainMvpPresenter<V> {
 
-    public static OnReloadAdapterListCallback onReloadAdapterListCallback;
     public static OnReturnDefaultColor onReturnDefaultColor;
 
     @Inject
@@ -72,7 +71,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 AppStatics.RECYCLER_VIEW_SPAN_COUNT = 2;
                 v.setRotation(0);
             }
-            onReloadAdapterListCallback.reloadAdapter();
+            getMvpView().reloadAdapter();
         });
     }
 
@@ -250,7 +249,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                             entity.getModified(),
                             entity.isBookmarked());
                     AppStatics.CACHED_NOTE_LIST.add(e);
-                    onReloadAdapterListCallback.reloadAdapter();
+                    getMvpView().reloadAdapter();
                 })
                 .subscribe());
     }
@@ -262,7 +261,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         AppStatics.CACHED_NOTE_LIST.remove(index);
         AppStatics.CACHED_NOTE_LIST.add(0, noteEntity);
         if (AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE) AppStatics.CACHED_NOTE = modified;
-        onReloadAdapterListCallback.reloadAdapter();
+      getMvpView().reloadAdapter();
 
         getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
                 original.getId(),
@@ -286,10 +285,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 .setBackgroundResource(R.drawable.red_frame);
         else getMvpView().getCustomRecycler().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));
-    }
-
-    public interface OnReloadAdapterListCallback {
-        void reloadAdapter();
     }
 
     public interface OnReturnDefaultColor {

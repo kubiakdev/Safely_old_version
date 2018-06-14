@@ -31,4 +31,6 @@ public interface LoginMvpView extends MvpView{
     void closeApp();
 
     void setUnBinder(Unbinder unBinder);
+
+    void disableBackButton();
 }

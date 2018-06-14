@@ -89,11 +89,13 @@ public class TutorialActivity extends BaseActivity implements TutorialMvpView {
     @Override
     public void openMainActivity() {
         startActivity(MainActivity.getStartIntent(this));
+        finish();
     }
 
     @Override
     public void openSecureChooseActivity() {
         startActivity(SecureChooseActivity.getStartIntent(this));
+        finish();
     }
 
     @Override

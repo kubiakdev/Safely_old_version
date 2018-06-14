@@ -24,21 +24,6 @@ public final class CommonUtils {
     private CommonUtils() {
     }
 
-    public static void setLanguage(Context context, String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        if (Build.VERSION.SDK_INT >= 17) {
-            configuration.setLocale(locale);
-        } else configuration.locale = locale;
-        context.getResources().updateConfiguration(configuration,
-                context.getResources().getDisplayMetrics());
-    }
-
-    public static String getTimeStamp() {
-        return AppConstants.SIMPLE_DATE_FORMAT.format(new Date());
-    }
-
     public static int CompareDates(String firstDate, String secondDate) {
         Date d1 = null;
         Date d2 = null;
@@ -50,6 +35,19 @@ public final class CommonUtils {
         }
         assert d1 != null;
         return (d1.compareTo(d2));
+    }
+
+    public static String getTimeStamp() {
+        return AppConstants.SIMPLE_DATE_FORMAT.format(new Date());
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && activity.getCurrentFocus() != null)
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     public static int indexOfCachedNoteEntity() {
@@ -87,21 +85,24 @@ public final class CommonUtils {
 //                && original.isBookmarked() == modified.isBookmarked());
     }
 
-    public static void showSoftKeyboard(Window window) {
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-    }
-
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null && activity.getCurrentFocus() != null)
-            inputMethodManager.hideSoftInputFromWindow(
-                    activity.getCurrentFocus().getWindowToken(), 0);
-    }
-
     public static void setCardColor(CardView cardView, int colorId) {
         int color = ContextCompat.getColor(cardView.getContext(), colorId);
         cardView.setCardBackgroundColor(color);
+    }
+
+    public static void setLanguage(Context context, String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        if (Build.VERSION.SDK_INT >= 17) {
+            configuration.setLocale(locale);
+        } else configuration.locale = locale;
+        context.getResources().updateConfiguration(configuration,
+                context.getResources().getDisplayMetrics());
+    }
+
+
+    public static void showSoftKeyboard(Window window) {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 }

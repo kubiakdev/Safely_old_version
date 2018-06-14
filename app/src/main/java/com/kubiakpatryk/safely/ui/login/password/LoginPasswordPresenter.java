@@ -109,7 +109,7 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
 
     private void onFirstTryAddLock(String password) {
         firstTryValue = password;
-        title.setText(R.string.pinLock_chooseYourLockAgain);
+        title.setText(R.string.passwordLock_chooseYourLockAgain);
         editText.setText("");
     }
 
@@ -120,6 +120,7 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
 
     private void onLocksAreSame() {
         Single.fromCallable(() -> {
+            getMvpView().disableBackButton();
             editText.setInputType(InputType.TYPE_CLASS_TEXT);
             button.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
             editText.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));

@@ -21,7 +21,6 @@ import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDial
 import com.kubiakpatryk.safely.ui.main.dialogs.sort_choose_dialog.SortChooseDialogPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.MainMvpView;
-import com.kubiakpatryk.safely.ui.main.mvp.MainPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.cipher.MainCipherMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
@@ -40,8 +39,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements MainMvpView,
         NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
-        MainPresenter.OnReloadAdapterListCallback,
-        OptionsActivity.OnReloadAdapterListCallback,
         SortChooseDialogPresenter.OnReloadAdapterListCallback, MvpView {
 
     @Inject
@@ -96,7 +93,9 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     SmallCustomFab[] optionsFabArray_right;
 
     public static Intent getStartIntent(Context context) {
-        return new Intent(context, MainActivity.class);
+       Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        return intent;
     }
 
     //Activity Lifecycle Methods//
@@ -104,7 +103,6 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
@@ -116,9 +114,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
         sortOptionsPresenter.onAttach(this);
 
         MainNoteOptionsPresenter.onReloadAdapterListCallback = this;
-        MainPresenter.onReloadAdapterListCallback = this;
         NoteDialogFragment.onCancelOrDismissDialogCallback = this;
-        OptionsActivity.onReloadAdapterListCallback = this;
         SortChooseDialogPresenter.onReloadAdapterListCallback = this;
 
         appBarLayout.setExpanded(true, false);
@@ -146,7 +142,10 @@ public class MainActivity extends BaseActivity implements MainMvpView,
 
     @Override
     protected void onDestroy() {
+        cipherPresenter.onDetach();
         mainPresenter.onDetach();
+        noteOptionsPresenter.onDetach();
+        sortOptionsPresenter.onDetach();
         super.onDestroy();
     }
 
@@ -180,6 +179,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     @Override
     public void openOptionsActivity() {
         startActivity(OptionsActivity.getStartIntent(this));
+        finish();
     }
 
     @Override

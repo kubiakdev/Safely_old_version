@@ -2,6 +2,7 @@ package com.kubiakpatryk.safely.ui.tutorial;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class TutorialPresenter<V extends TutorialMvpView> extends BasePresenter<
         tvCancel.setText(getMvpView().getString(
                 R.string.tutorial_secure_methods_text_view_cancel));
         tvCancel.setOnClickListener(v -> getMvpView().openMainActivity());
+        getMvpView().getRadioGroup().setVisibility(View.GONE);
+        getMvpView().getScrollView().setOnTouchListener(null);
     }
 
     @Override
