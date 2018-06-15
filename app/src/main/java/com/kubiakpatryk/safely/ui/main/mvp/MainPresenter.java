@@ -2,10 +2,8 @@ package com.kubiakpatryk.safely.ui.main.mvp;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +46,10 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+        if (AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK){
+            getMvpView().openSplashActivity();
+            getMvpView().finish();
+        }
         AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = false;
         AppStatics.CIPHER_ENTITY_LIST.clear();
         getCompositeDisposable().add(getDataManager().getAllCipherEntity()
@@ -232,7 +234,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         getCompositeDisposable().add(getNotificationBuilder()
                 .observeOn(getSchedulerProviderHelper().ui())
                 .subscribeOn(getSchedulerProviderHelper().io())
-                .doOnComplete(this::registerReceiver)
+                .doOnComplete(() -> getMvpView().registerReceiver())
                 .subscribe(builder -> {
                    notificationManager = (NotificationManager)
                             getMvpView().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -333,20 +335,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setSmallIcon(R.mipmap.ic_launcher_notification));
-    }
-
-    private void registerReceiver(){
-        BroadcastReceiver receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction() != null)
-                    if (intent.getAction().equals(AppConstants.ACTION_CLOSE_APP))
-                        getMvpView().finish();
-            }
-        };
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(AppConstants.ACTION_CLOSE_APP);
-        getMvpView().registerReceiver(receiver, filter);
     }
 
     public interface OnReturnDefaultColor {

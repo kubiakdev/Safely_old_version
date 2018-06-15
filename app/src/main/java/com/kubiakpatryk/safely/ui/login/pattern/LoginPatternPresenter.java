@@ -132,7 +132,10 @@ public class LoginPatternPresenter<V extends LoginMvpView> extends BasePresenter
             AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
             AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
             getMvpView().openTutorialActivity();
-        } else getMvpView().openMainActivity();
+        } else {
+            AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK = false;
+            getMvpView().openMainActivity();
+        }
         getMvpView().finish();
     }
 

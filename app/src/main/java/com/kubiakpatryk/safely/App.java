@@ -12,10 +12,6 @@ import com.squareup.leakcanary.LeakCanary;
 import io.objectbox.BoxStore;
 
 public class App extends Application {
-
-    //todoPlace
-    //todo change each option to new fragment dialog
-
     private static App app;
 
     protected ApplicationComponent applicationComponent;
@@ -61,5 +57,4 @@ public class App extends Application {
                 .penaltyDeath() //
                 .build());
     }
-
 }

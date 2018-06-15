@@ -135,7 +135,10 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                         AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
                         openTutorialActivity();
                         finish();
-                    } else openMainActivity();
+                    } else {
+                        AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK = false;
+                        openMainActivity();
+                    }
                     break;
             }
         }

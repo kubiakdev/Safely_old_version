@@ -136,12 +136,14 @@ public class LoginPinPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
     private void onGoodPattern() {
         pinLockView.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
-        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE) {
             AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
             AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
             getMvpView().openTutorialActivity();
+        } else {
+            AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK = false;
+            getMvpView().openMainActivity();
         }
-        else getMvpView().openMainActivity();
         getMvpView().finish();
     }
 

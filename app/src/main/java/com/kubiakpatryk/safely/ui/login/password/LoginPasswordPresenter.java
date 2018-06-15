@@ -163,12 +163,14 @@ public class LoginPasswordPresenter<V extends LoginMvpView> extends BasePresente
         editText.setTextColor(getMvpView().getResources().getColor(R.color.lockCorrect));
         editText.getBackground().mutate().setColorFilter(getMvpView().getResources()
                 .getColor(R.color.lockCorrect), PorterDuff.Mode.SRC_ATOP);
-        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE){
+        if (AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE) {
             AppStatics.IS_IN_RE_ENTERING_LOCK_METHOD_MODE = false;
             AppStatics.IS_IN_CHANGE_LOCK_METHOD_MODE = true;
             getMvpView().openTutorialActivity();
+        } else {
+            AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK = false;
+            getMvpView().openMainActivity();
         }
-        else getMvpView().openMainActivity();
         getMvpView().finish();
     }
 

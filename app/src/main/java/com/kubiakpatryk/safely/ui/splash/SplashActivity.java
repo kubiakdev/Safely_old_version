@@ -1,5 +1,6 @@
 package com.kubiakpatryk.safely.ui.splash;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +18,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Inject
     SplashMvpPresenter<SplashMvpView> presenter;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, SplashActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

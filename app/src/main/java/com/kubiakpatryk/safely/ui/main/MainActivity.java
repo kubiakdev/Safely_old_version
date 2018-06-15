@@ -1,7 +1,9 @@
 package com.kubiakpatryk.safely.ui.main;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -26,7 +28,9 @@ import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresen
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.options.OptionsActivity;
+import com.kubiakpatryk.safely.ui.splash.SplashActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
+import com.kubiakpatryk.safely.utils.AppStatics;
 
 import java.util.List;
 
@@ -41,6 +45,8 @@ public class MainActivity extends BaseActivity implements MainMvpView,
         NoteDialogFragment.OnCancelOrDismissDialogCallback,
         MainNoteOptionsPresenter.OnReloadAdapterListCallback,
         SortChooseDialogPresenter.OnReloadAdapterListCallback, MvpView {
+
+    private BroadcastReceiver receiver;
 
     @Inject
     MainMvpPresenter<MainMvpView> mainPresenter;
@@ -94,7 +100,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     SmallCustomFab[] optionsFabArray_right;
 
     public static Intent getStartIntent(Context context) {
-       Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         return intent;
     }
@@ -135,12 +141,14 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     protected void onResume() {
         super.onResume();
         mainPresenter.setLanguage();
+        registerReceiver();
         reloadAdapter();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        unregisterReceiver(receiver);
         mainPresenter.onPause();
     }
 
@@ -179,11 +187,6 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     @Override
     public void showNoNotesInformationTextView() {
         mainPresenter.showNoNotesInformationTextView();
-    }
-
-    @Override
-    public void openOptionsActivity() {
-        startActivity(OptionsActivity.getStartIntent(this));
     }
 
     @Override
@@ -255,8 +258,37 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     }
 
     @Override
+    public void openOptionsActivity() {
+        startActivity(OptionsActivity.getStartIntent(this));
+    }
+
+
+    @Override
     public void openSortChooseDialogFragment() {
         SortChooseDialogFragment.newInstance().show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void openSplashActivity() {
+        startActivity(SplashActivity.getStartIntent(this));
+    }
+
+    @Override
+    public void registerReceiver() {
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction() != null) {
+                    if (intent.getAction().equals(AppConstants.ACTION_CLOSE_APP)) {
+                        AppStatics.WAS_EXIT_NOTIFICATION_BUTTON_CLICK = true;
+                        finish();
+                    }
+                }
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(AppConstants.ACTION_CLOSE_APP);
+        registerReceiver(receiver, filter);
     }
 
     //Callbacks//
