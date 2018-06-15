@@ -26,6 +26,7 @@ import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsMvpPresen
 import com.kubiakpatryk.safely.ui.main.mvp.note_options.MainNoteOptionsPresenter;
 import com.kubiakpatryk.safely.ui.main.mvp.sort_options.MainSortOptionsMvpPresenter;
 import com.kubiakpatryk.safely.ui.options.OptionsActivity;
+import com.kubiakpatryk.safely.utils.AppConstants;
 
 import java.util.List;
 
@@ -125,6 +126,8 @@ public class MainActivity extends BaseActivity implements MainMvpView,
         initSmallMainFabArray();
         initSmallOptionFabArray();
 
+        mainPresenter.showNotification();
+
         reloadAdapter();
     }
 
@@ -132,6 +135,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     protected void onResume() {
         super.onResume();
         mainPresenter.setLanguage();
+        reloadAdapter();
     }
 
     @Override
@@ -146,6 +150,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
         mainPresenter.onDetach();
         noteOptionsPresenter.onDetach();
         sortOptionsPresenter.onDetach();
+        mainPresenter.getNotificationManager().cancel(AppConstants.ACTION_CLOSE_APP_ID);
         super.onDestroy();
     }
 
@@ -179,7 +184,6 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     @Override
     public void openOptionsActivity() {
         startActivity(OptionsActivity.getStartIntent(this));
-        finish();
     }
 
     @Override
@@ -205,8 +209,8 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     }
 
     @Override
-    public Object getActivitySystemService(@NonNull String name) {
-        return getSystemService(name);
+    public Object getSystemService(@NonNull String name) {
+        return super.getSystemService(name);
     }
 
     @Override
@@ -218,6 +222,7 @@ public class MainActivity extends BaseActivity implements MainMvpView,
     public ImageButton getSortByButton() {
         return sortByButton;
     }
+
 
     @Override
     public CustomRecycler getCustomRecycler() {

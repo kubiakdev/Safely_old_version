@@ -66,14 +66,31 @@
     <!--Note_model-->
     <string name="noteModel_shapeImageDescription">Bookmark</string>
 
+    <!--Notification-->
+    <string name="notification_closeApp">Close application</string>
+    <string name="notification_message">Application is still running…</string>
+    <string name="notification_title">@string/app_name</string>
+
+
     <!--RecyclerView-->
     <string name="recyclerView_noNotesInformation">You have not any notes
         \nTap here to Add one</string>
 
 
+    <!--Options Activity-->
+    <string name="appBar_optionsName">Options</string>
+    <string name="appBar_leftArrowDescription">"Left arrow"</string>
+    <string name="optionsActivity_displayCategory">Display</string>
+    <string name="optionsActivity_privacyCategory">Privacy</string>
+    <string name="optionsActivity_showEncryptedNotes">Show encrypted notes</string>
+    <string name="optionsActivity_changeRecyclerColor">Change background color</string>
+    <string name="optionsActivity_changeNotesFontSize">Change notes font size</string>
+    <string name="optionsActivity_changeLanguage">Change language</string>
+    <string name="optionsActivity_changeSecureType">Change secure method</string>
+
+
     <!--SortChoose layout-->
     <string name="sortChooseLayout_title">Sort by</string>
-
     <string name="sortChooseLayout_alphabeticallyCategory">Alphabetically</string>
     <string name="sortChooseLayout_alphabeticallyCategory_AToZ">A -> Z</string>
     <string name="sortChooseLayout_alphabeticallyCategory_ZToA">Z -> A</string>
@@ -107,19 +124,7 @@
         To latest</string>
 
 
-    <!--Activity_Options-->
-    <string name="appBar_optionsName">Options</string>
-    <string name="appBar_leftArrowDescription">"Left arrow"</string>
-    <string name="optionsActivity_displayCategory">Display</string>
-    <string name="optionsActivity_privacyCategory">Privacy</string>
-    <string name="optionsActivity_showEncryptedNotes">Show encrypted notes</string>
-    <string name="optionsActivity_changeRecyclerColor">Change background color</string>
-    <string name="optionsActivity_changeNotesFontSize">Change notes font size</string>
-    <string name="optionsActivity_changeLanguage">Change language</string>
-    <string name="optionsActivity_changeSecureType">Change secure method</string>
-
-
-    <!--Activity Tutorial-->
+    <!--Tutorial Activity-->
     <string name="tutorialActivity_logotypeDescription">Logotype</string>
     <string name="tutorialActivity_bytesDescription">Bytes</string>
     <string name="tutorialActivity_wifi_offDescription">Wifi off</string>

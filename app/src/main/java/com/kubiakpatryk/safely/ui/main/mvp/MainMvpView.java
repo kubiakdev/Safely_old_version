@@ -1,5 +1,8 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,9 +28,13 @@ public interface MainMvpView extends MvpView {
 
     ImageButton getSortByButton();
 
+    Intent getIntent();
+
+    Intent registerReceiver(BroadcastReceiver receiver, IntentFilter intentFilter);
+
     List<NoteEntity> getList();
 
-    Object getActivitySystemService(@NonNull String name);
+    Object getSystemService(@NonNull String name);
 
     SmallCustomFab[] getMainFabArray();
 
@@ -42,6 +49,8 @@ public interface MainMvpView extends MvpView {
     String getString(int id);
 
     TextView getNoNotesInformationTextView();
+
+    void finish();
 
     void hideMainFabArray();
 

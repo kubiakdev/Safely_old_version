@@ -1,5 +1,6 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.app.NotificationManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.kubiakpatryk.safely.data.db.entity.NoteEntity;
@@ -8,6 +9,8 @@ import com.kubiakpatryk.safely.ui.base.MvpPresenter;
 
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
+
+    NotificationManager getNotificationManager();
 
     StaggeredGridLayoutManager getLayoutManager();
 
@@ -32,4 +35,6 @@ public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V>
     void showMainFabArray();
 
     void showNoNotesInformationTextView();
+
+    void showNotification();
 }

@@ -118,7 +118,7 @@ public class MainNoteOptionsPresenter<V extends MainMvpView> extends BasePresent
 
     private void onCopyNote() {
         ClipboardManager clipboardManager = (ClipboardManager)
-                getMvpView().getActivitySystemService(Context.CLIPBOARD_SERVICE);
+                getMvpView().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("Note", AppStatics.CACHED_NOTE.getContent());
         clipboardManager.setPrimaryClip(clipData);
     }
@@ -150,7 +150,7 @@ public class MainNoteOptionsPresenter<V extends MainMvpView> extends BasePresent
     private void onPasteNote(NoteEntity entity) {
         setPasteButtonIsClickable(false);
         ClipboardManager clipboardManager = (ClipboardManager)
-                getMvpView().getActivitySystemService(Context.CLIPBOARD_SERVICE);
+                getMvpView().getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboardManager.hasPrimaryClip()) {
             ClipDescription description = clipboardManager.getPrimaryClipDescription();
             ClipData data = clipboardManager.getPrimaryClip();

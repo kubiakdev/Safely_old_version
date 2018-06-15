@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public final class AppConstants {
+    public static final int ACTION_CLOSE_APP_ID = 0;
+
     public static final int LOGIN_ACTIVITY_LONG_LOCK_DURATION = 1000;
     public static final int LOGIN_ACTIVITY_SHORT_LOCK_DURATION = 300;
 
@@ -39,6 +41,8 @@ public final class AppConstants {
     public static final char[] POLISH_SIGNS_ARRAY =
             {'ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż',
                     'Ą', 'Ć', 'Ę', 'Ł', 'Ń', 'Ó', 'Ś', 'Ź', 'Ż'};
+
+    public static final String ACTION_CLOSE_APP = "action_close_app";
 
     public static final String LOGIN_ACTIVITY_BUNDLE_NAME = "LOCK_METHOD";
     public static final String PATTERN_LOCK_METHOD = "pattern";

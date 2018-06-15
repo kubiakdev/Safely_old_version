@@ -101,7 +101,6 @@ public final class CommonUtils {
                 context.getResources().getDisplayMetrics());
     }
 
-
     public static void showSoftKeyboard(Window window) {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }

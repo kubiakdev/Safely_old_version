@@ -1,6 +1,13 @@
 package com.kubiakpatryk.safely.ui.main.mvp;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -29,6 +36,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         implements MainMvpPresenter<V> {
 
     public static OnReturnDefaultColor onReturnDefaultColor;
+    private NotificationManager notificationManager;
 
     @Inject
     MainPresenter(DataManager dataManager,
@@ -220,6 +228,24 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
     @Override
+    public void showNotification() {
+        getCompositeDisposable().add(getNotificationBuilder()
+                .observeOn(getSchedulerProviderHelper().ui())
+                .subscribeOn(getSchedulerProviderHelper().io())
+                .doOnComplete(this::registerReceiver)
+                .subscribe(builder -> {
+                   notificationManager = (NotificationManager)
+                            getMvpView().getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(AppConstants.ACTION_CLOSE_APP_ID, builder.build());
+                }));
+    }
+
+    @Override
+    public NotificationManager getNotificationManager() {
+        return notificationManager;
+    }
+
+    @Override
     public void onCancelOrDismissDialog(NoteEntity originalEntity, NoteEntity modifiedEntity) {
         hideMainFabArray();
         if (!(originalEntity.getContent().equals(modifiedEntity.getContent()))) {
@@ -261,7 +287,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         AppStatics.CACHED_NOTE_LIST.remove(index);
         AppStatics.CACHED_NOTE_LIST.add(0, noteEntity);
         if (AppStatics.IS_OPTION_FAB_ARRAY_VISIBLE) AppStatics.CACHED_NOTE = modified;
-      getMvpView().reloadAdapter();
+        getMvpView().reloadAdapter();
 
         getCompositeDisposable().add(getDataManager().getNoteEntity(new NoteEntity(
                 original.getId(),
@@ -285,6 +311,42 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                 .setBackgroundResource(R.drawable.red_frame);
         else getMvpView().getCustomRecycler().setBackgroundColor(
                 Color.parseColor(getDataManager().getRecyclerColor()));
+    }
+
+    private Observable<NotificationCompat.Builder> getNotificationBuilder() {
+        return Observable.fromCallable(() -> new NotificationCompat.Builder(
+                getMvpView().getBaseActivity(), "")
+                .addAction(R.drawable.ic_exit,
+                        getMvpView().getString(R.string.notification_closeApp),
+                        PendingIntent.getBroadcast(
+                                getMvpView().getBaseActivity(),
+                                0,
+                                new Intent(AppConstants.ACTION_CLOSE_APP),
+                                0))
+                .setContentIntent(PendingIntent.getActivity(
+                        getMvpView().getBaseActivity(),
+                        0,
+                        getMvpView().getIntent(),
+                        PendingIntent.FLAG_UPDATE_CURRENT))
+                .setContentText(getMvpView().getString(R.string.notification_message))
+                .setContentTitle(getMvpView().getString(R.string.notification_title))
+                .setOngoing(true)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setSmallIcon(R.mipmap.ic_launcher_notification));
+    }
+
+    private void registerReceiver(){
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction() != null)
+                    if (intent.getAction().equals(AppConstants.ACTION_CLOSE_APP))
+                        getMvpView().finish();
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(AppConstants.ACTION_CLOSE_APP);
+        getMvpView().registerReceiver(receiver, filter);
     }
 
     public interface OnReturnDefaultColor {

@@ -60,9 +60,25 @@
     <string name="noteLayout_cancel">Anuluj</string>
     <string name="noteLayout_save">Zapisz</string>
 
+    <!--Notification-->
+    <string name="notification_closeApp">Zamknij aplikację</string>
+    <string name="notification_message">Aplikacja jest uruchomiona…</string>
+
     <!--RecyclerView-->
     <string name="recyclerView_noNotesInformation">Nie masz żadnych notatek
         \nDotknij by dodać</string>
+
+
+    <!--Options Activity-->
+    <string name="appBar_optionsName">Opcje</string>
+    <string name="appBar_leftArrowDescription">Lewa strzałka</string>
+    <string name="optionsActivity_displayCategory">Widok</string>
+    <string name="optionsActivity_privacyCategory">Prywatność</string>
+    <string name="optionsActivity_showEncryptedNotes">Pokaż zaszyfrowane notatki</string>
+    <string name="optionsActivity_changeRecyclerColor">Zmień kolor tła</string>
+    <string name="optionsActivity_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
+    <string name="optionsActivity_changeLanguage">Zmień język</string>
+    <string name="optionsActivity_changeSecureType">Zmień metodę zabezpieczenia</string>
 
 
     <!--SortChoose layout-->
@@ -80,18 +96,6 @@
     <string name="sortChooseLayout_modifiedDateCategory">Daty modyfikacji</string>
     <string name="sortChooseLayout_modifiedDateCategory_toEarliest">Do najwcześniejszej</string>
     <string name="sortChooseLayout_modifiedDateCategory_toLatest">Do najpóźniejszej</string>
-
-
-    <!--Activity_Options-->
-    <string name="appBar_optionsName">Opcje</string>
-    <string name="appBar_leftArrowDescription">Lewa strzałka</string>
-    <string name="optionsActivity_displayCategory">Widok</string>
-    <string name="optionsActivity_privacyCategory">Prywatność</string>
-    <string name="optionsActivity_showEncryptedNotes">Pokaż zaszyfrowane notatki</string>
-    <string name="optionsActivity_changeRecyclerColor">Zmień kolor tła</string>
-    <string name="optionsActivity_changeNotesFontSize">Zmień rozmiar czcionki notatek</string>
-    <string name="optionsActivity_changeLanguage">Zmień język</string>
-    <string name="optionsActivity_changeSecureType">Zmień metodę zabezpieczenia</string>
 
 
     <!--Tutorial activity-->

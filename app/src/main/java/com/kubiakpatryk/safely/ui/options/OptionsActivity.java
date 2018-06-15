@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.kubiakpatryk.safely.R;
 import com.kubiakpatryk.safely.ui.base.activity.BaseActivity;
 import com.kubiakpatryk.safely.ui.login.LoginActivity;
-import com.kubiakpatryk.safely.ui.main.MainActivity;
 import com.kubiakpatryk.safely.utils.AppConstants;
 
 import javax.inject.Inject;
@@ -53,15 +52,10 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
     }
 
     @Override
-    public void onBackPressed() {
-        startActivity(MainActivity.getStartIntent(this));
-        super.onBackPressed();
-    }
-
-    @Override
     public void openLoginActivity() {
         Intent intent = LoginActivity.getStartIntent(this);
         intent.putExtra(AppConstants.LOGIN_ACTIVITY_BUNDLE_NAME, presenter.getLockMethod());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
@@ -120,8 +114,7 @@ public class OptionsActivity extends BaseActivity implements OptionsMvpView {
 
     @OnClick(R.id.optionsActivity_leftArrowButton)
     public void onLeftArrowButtonClick() {
-        startActivity(MainActivity.getStartIntent(this));
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.optionsActivity_cardView_changeRecyclerColor)

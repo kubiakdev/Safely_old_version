@@ -60,7 +60,8 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".ui.login.LoginActivity"
-            android:configChanges="locale|orientation">
+            android:configChanges="locale|orientation"
+            android:launchMode="singleInstance">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
